@@ -4,25 +4,45 @@
 \alias{make_pop}
 \title{make_pop}
 \usage{
-make_pop(max_age = 11, nM = 0.38, fM = 0, n_init = 1e+05)
+make_pop(max_age, nM, fM, n_init, f = c(rep(0, 2), rep(1, max_age - 2)))
 }
 \arguments{
 \item{max_age}{The maximum age of fish in the population(s). A numeric vector of length 1.}
 
-\item{nM}{Instantaneous natural mortality rate. A numeric vector of length 1.}
+\item{nM}{Instantaneous natural mortality rate. 
+A numeric vector of length 1.}
 
-\item{fM}{Instantaneous fishing mortality rate. A numeric vector of length 1.}
+\item{fM}{Instantaneous fishing mortality rate. 
+A numeric vector of length 1.}
 
 \item{n_init}{Initial population abundance (includes all age classes)}
+
+\item{f}{Reproductive rate (rate of replacement).}
 }
 \value{
-A vector containing age-specific abundances. A numeric vector with length = max_age.
+A vector containing age-specific abundances 
+with \code{length = max_age}.
 }
 \description{
-Function used to seed initial
-populations for simulation based on life-history
-characteristics and stable age distributions
+Function used to seed initial age-structured
+population for simulation based on life-history
+characteristics. Uses an initial population seed, mortality
+estimates, and reproductive rate to populate a leslie 
+matrix and extract stable age distribution through
+eigen analysis with functions imported from the \code{demogR} package 
+(Holland Jones 2007).
+}
+\examples{
+# Example usage
+\dontrun{
+  
+# Simulate a fish population at stable age distribution
+  pop = make_pop(max_age = 9, nM = 0.38, fM = 0.05, n_init = 1e6)
+  
+}
 }
 \references{
-None yet.
+J. Holland Jones. 2007. demogR: A package for the construction
+and analysis of age-structured demographic models. Journal of Statistical
+Sofware 22(10):1-28. URL: http://dx.doi.org/10.18637/jss.v022.i10.
 }
