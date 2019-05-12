@@ -2,10 +2,9 @@
 % Please edit documentation in R/beverton_holt.R
 \name{beverton_holt}
 \alias{beverton_holt}
-\title{Beverton and Holt (1957) stock-recruit curve 
-with habitat constraints}
+\title{}
 \usage{
-beverton_holt(a = 250000, S = 1, b = 0.340297, acres = 1,
+beverton_holt(a = 250000, S = 100, b = 0.340297, acres = 1,
   error = "multiplicative")
 }
 \arguments{
@@ -28,9 +27,10 @@ A numeric vector with one or more elements representing
  habitat
 }
 \description{
-Beverton-Holt stock recruitment model. Default parameter
-values are tuned to predict age-0 recruitment assuming a carrying 
-capacity for spawning adults of 100 fish per acre. See "\bold{Uses}" below.
+Beverton and Holt (1957) stock-recruit curve 
+with habitat constraints. Default parameter values are tuned to predict 
+age-0 recruitment assuming a carrying capacity for spawning adults of 
+100 fish per acre. See "\bold{Uses}" below.
 }
 \section{Uses}{
 
@@ -41,11 +41,13 @@ of habitat in the same unit.However, the number of potential uses is
 flexible. For example, passing a single value to each argument would 
 result calculation of a single recruitment value. But, passing a vector
 to one of the four default arguments allows the user to explore values
-of recruitment over a range of each input. Under the current
-implementation, only a single argument may accept more than one value
-at a time. Otherwise, we recommend conducting more in-depth sensitivity
-explorations by use of single values applied under a boot-strapping, or
-Monte Carlo approach with the function.
+of recruitment over a range of each input. 
+
+Under the current implementation, it is recommended that the user
+pass multiple values to only a single argument per call.
+Otherwise, we recommend conducting more in-depth sensitivity 
+explorations by use of single values applied 
+under a boot-strapping, or Monte Carlo approach using this function.
 }
 
 \examples{
