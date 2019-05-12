@@ -9,3 +9,4 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: demogR
+RoxygenNote: 6.1.1
