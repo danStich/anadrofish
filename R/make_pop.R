@@ -54,7 +54,7 @@ make_pop <- function(max_age, nM, fM, n_init,
   # Multiply stable age dist
   # by an arbitrarily large
   # number to get a population
-    pop <- dem$stable.age * n_init
+    pop <- c(n_init, dem$stable.age * n_init)
 
   # Return the result to R
     return(pop)

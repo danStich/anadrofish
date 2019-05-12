@@ -1,9 +1,9 @@
-#' @title Beverton and Holt (1957) stock-recruit curve 
-#' with habitat constraints
+#' @title 
 #'
-#' @description Beverton-Holt stock recruitment model. Default parameter
-#' values are tuned to predict age-0 recruitment assuming a carrying 
-#' capacity for spawning adults of 100 fish per acre. See "\bold{Uses}" below.
+#' @description Beverton and Holt (1957) stock-recruit curve 
+#' with habitat constraints. Default parameter values are tuned to predict 
+#' age-0 recruitment assuming a carrying capacity for spawning adults of 
+#' 100 fish per acre. See "\bold{Uses}" below.
 #'
 #' @param a Ratio of recruits per spawner. Density independent parameter
 #'  equivelant to the slope near \code{S = 0}. By default specified as
@@ -30,11 +30,13 @@
 #' flexible. For example, passing a single value to each argument would 
 #' result calculation of a single recruitment value. But, passing a vector
 #' to one of the four default arguments allows the user to explore values
-#' of recruitment over a range of each input. Under the current
-#' implementation, only a single argument may accept more than one value
-#' at a time. Otherwise, we recommend conducting more in-depth sensitivity
-#' explorations by use of single values applied under a boot-strapping, or
-#' Monte Carlo approach with the function.
+#' of recruitment over a range of each input. 
+#' 
+#' Under the current implementation, it is recommended that the user
+#' pass multiple values to only a single argument per call.
+#' Otherwise, we recommend conducting more in-depth sensitivity 
+#' explorations by use of single values applied 
+#' under a boot-strapping, or Monte Carlo approach using this function.
 #'
 #' @example inst/examples/bevholt_ex.R
 #'
@@ -45,7 +47,7 @@
 #' @export
 #'
 beverton_holt <- function(a = 2.5e5,
-                          S = 1,
+                          S = 100,
                           b = 0.340297,
                           acres = 1,
                           error='multiplicative'
@@ -53,7 +55,7 @@ beverton_holt <- function(a = 2.5e5,
   {
   
     b = b/acres
-  
+    
     if(error=='additive'){
     
       r <- a * S/(1 + b * S)
