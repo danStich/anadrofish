@@ -2,14 +2,14 @@
 % Please edit documentation in R/beverton_holt.R
 \name{beverton_holt}
 \alias{beverton_holt}
-\title{}
+\title{Beverton-Holt stock recruit curve}
 \usage{
 beverton_holt(a = 250000, S = 100, b = 0.340297, acres = 1,
-  error = "multiplicative")
+  error = "multiplicative", age_structured = FALSE)
 }
 \arguments{
-\item{a}{Ratio of recruits per spawner. Density independent parameter
-equivelant to the slope near \code{S = 0}. By default specified as
+\item{a}{Ratio of recruits per spawner. Density independent parameter 
+equivelant to the slope near \code{S = 0}. By default specified as 
 realized annual fecundity.}
 
 \item{S}{Spawning stock abundance per acre.
@@ -20,11 +20,15 @@ basis (will be divided by \code{acres} in function)}
 
 \item{error}{Character string indicating whether to use
 \code{'additive'} or \code{'multiplicative'} error structure.}
+
+\item{age_structured}{Logical indicating whether to return age-structured,
+density-dependent recruitment from the Beverton-Holt curve. If \code{TRUE}
+then a vector of \code{length} = max age must be passed to \code{S}.}
 }
 \value{
-A numeric vector with one or more elements representing
- age-0 recruits (downstream migrants in freshwater) per unit of 
- habitat
+A numeric vector with one or more elements representing 
+age-0 recruits (downstream migrants in freshwater) per unit of 
+habitat
 }
 \description{
 Beverton and Holt (1957) stock-recruit curve 
@@ -32,8 +36,7 @@ with habitat constraints. Default parameter values are tuned to predict
 age-0 recruitment assuming a carrying capacity for spawning adults of 
 100 fish per acre. See "\bold{Uses}" below.
 }
-\section{Uses}{
-
+\details{
 The primary use of this function in the \code{anadrofish} package
 is to predict number of age-0 recruits in a river based on the number of
 fish within a functional habitat unit, and the number of surface acres 
@@ -49,7 +52,6 @@ Otherwise, we recommend conducting more in-depth sensitivity
 explorations by use of single values applied 
 under a boot-strapping, or Monte Carlo approach using this function.
 }
-
 \examples{
 # Example usage
 \dontrun{
@@ -72,7 +74,7 @@ under a boot-strapping, or Monte Carlo approach using this function.
 }
 }
 \references{
-Beverton, R. J. H. and S. J. Holt. 1957. On the Dynamics
- of Exploited Fish Populations, Fisheries Investigations (Series 2), 
- Volume 19. United Kingdom Ministry of Agriculture and Fisheries, 533 pp.
+Beverton, R. J. H. and S. J. Holt. 1957. On the Dynamics 
+of Exploited Fish Populations, Fisheries Investigations (Series 2), 
+Volume 19. United Kingdom Ministry of Agriculture and Fisheries, 533 pp.
 }

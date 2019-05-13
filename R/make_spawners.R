@@ -12,10 +12,13 @@
 #'
 #' @return A numeric vector of \code{length = length(pop)}
 #'
-#' @example inst/examples/bevholt_ex.R
+#' @example inst/examples/makespawners_ex.R
 #'
-#' @references None
-#'
+#' @references Bailey, M. M., and J. D. Zydlewski. 2013. To stock or not
+#' to stock? Assessing the restoration potential of a remnant American shad
+#' spawning run with hatchery supplementation. North American Journal of
+#' Fisheries Management 33:459-467. doi: 10.1080/02755947.2013.763874.
+#' 
 #' @export
 #'
 make_spawners <- function(pop, probs){
