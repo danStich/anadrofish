@@ -26,5 +26,3 @@ make_spawners <- function(pop, probs){
   pop * probs
   
 }
-
-

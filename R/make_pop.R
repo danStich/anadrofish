@@ -39,7 +39,9 @@ make_pop <- function(max_age, nM, fM, n_init,
     Z <- nM + fM
 
   # Survival rate
-    s <- rep((1-exp(-Z)), max_age)
+  # Annual mortality rate (A) = 1-exp(-Z)
+  # lx (s) = 1 - A
+    s <- rep(1-(1-exp(-Z)), max_age)
 
   # Make a Leslie matrix for projection
     les <- demogR::leslie.matrix(

@@ -18,7 +18,9 @@ Numeric vector with single or multiple elements.}
 \item{b}{Density-dependent parameter. By default specified on a per-acre
 basis (will be divided by \code{acres} in function)}
 
-\item{error}{Character string indicating whether to use
+\item{acres}{Surface area (in acres) of habitat units.}
+
+\item{error}{Character string indicating whether to use 
 \code{'additive'} or \code{'multiplicative'} error structure.}
 
 \item{age_structured}{Logical indicating whether to return age-structured,

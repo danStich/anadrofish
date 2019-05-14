@@ -3,9 +3,6 @@
 #' @description Function used to make fecundity values
 #' for age-structured spawning population of fish
 #'
-#' @param max_age The maximum age of fish in the population(s).
-#' A numeric vector of length 1.
-#'
 #' @param eggs The number of eggs an individual fish
 #' can produce
 #' 

@@ -15,6 +15,6 @@
 #'
 lower95 <- function(x){
 
-  as.vector(quantile(x, probs = c(0.025)))
+  as.vector(stats::quantile(x, probs = c(0.025)))
 
 }

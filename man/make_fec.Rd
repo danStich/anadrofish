@@ -13,9 +13,6 @@ can produce}
 \item{sr}{Sex ratio}
 
 \item{s_hatch}{Hatching success (hatch to larval survival)}
-
-\item{max_age}{The maximum age of fish in the population(s).
-A numeric vector of length 1.}
 }
 \value{
 Number of age-0 recruits produced. May be a single 

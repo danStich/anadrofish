@@ -14,9 +14,11 @@
 #'
 #' @param b Density-dependent parameter. By default specified on a per-acre
 #' basis (will be divided by \code{acres} in function)
+#' 
+#' @param acres Surface area (in acres) of habitat units.
 #'
-#' @param error Character string indicating whether to use
-#'  \code{'additive'} or \code{'multiplicative'} error structure.
+#' @param error Character string indicating whether to use 
+#' \code{'additive'} or \code{'multiplicative'} error structure.
 #'  
 #' @param age_structured Logical indicating whether to return age-structured,
 #' density-dependent recruitment from the Beverton-Holt curve. If \code{TRUE}

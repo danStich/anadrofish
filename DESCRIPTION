@@ -5,8 +5,8 @@ Version: 0.1.0
 Author: Daniel S. Stich, Samuel G. Roy, Joseph D. Zydlewski
 Maintainer: Daniel S. Stich <daniel.stich@oneonta.edu>
 Description: Stochastic estimation of anadromous fish population response to changes in habitat.
-License: GPL-3
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: demogR
+Imports: demogR, stats
 RoxygenNote: 6.1.1
