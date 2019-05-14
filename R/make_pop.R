@@ -44,14 +44,14 @@ make_pop <- function(max_age, nM, fM, n_init,
     s <- rep(1-(1-exp(-Z)), max_age)
 
   # Make a Leslie matrix for projection
-    les <- demogR::leslie.matrix(
+    les <- leslie.matrix(
       lx=cumprod(s),
       mx=f
       )
 
   # Calculate asymptotic growth
   # rate and related quantities
-    dem <- demogR::eigen.analysis(les)
+    dem <- eigen.analysis(les)
 
   # Multiply stable age dist
   # by an arbitrarily large
