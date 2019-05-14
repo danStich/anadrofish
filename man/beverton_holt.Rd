@@ -29,30 +29,29 @@ then a vector of \code{length} = max age must be passed to \code{S}.}
 }
 \value{
 A numeric vector with one or more elements representing 
-age-0 recruits (downstream migrants in freshwater) per unit of 
-habitat
+age-1 recruits (downstream migrants in freshwater).
 }
 \description{
 Beverton and Holt (1957) stock-recruit curve 
 with habitat constraints. Default parameter values are tuned to predict 
-age-0 recruitment assuming a carrying capacity for spawning adults of 
-100 fish per acre. See "\bold{Uses}" below.
+age-1 recruitment assuming a carrying capacity for spawning adults of 
+100 fish per acre. See \code{details}.
 }
 \details{
-The primary use of this function in the \code{anadrofish} package
-is to predict number of age-0 recruits in a river based on the number of
+The primary use of this function in the \code{anadrofish} package 
+is to predict number of age-1 recruits in a river based on the number of 
 fish within a functional habitat unit, and the number of surface acres 
-of habitat in the same unit.However, the number of potential uses is
-flexible. For example, passing a single value to each argument would 
-result calculation of a single recruitment value. But, passing a vector
-to one of the four default arguments allows the user to explore values
-of recruitment over a range of each input. 
+of habitat in the same unit. However, the number of potential uses is 
+flexible. Passing a single value to each argument would 
+result in calculation of a single recruitment value. Alternatively, 
+passing a vector to one of the default arguments allows the user to 
+explore values of recruitment over a range of each input. 
 
 Under the current implementation, it is recommended that the user
 pass multiple values to only a single argument per call.
 Otherwise, we recommend conducting more in-depth sensitivity 
 explorations by use of single values applied 
-under a boot-strapping, or Monte Carlo approach using this function.
+under a boot-strapping, or Monte Carlo approach.
 }
 \examples{
 # Example usage
