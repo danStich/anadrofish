@@ -1,12 +1,17 @@
 # River system ----
   data(habitat)
 
-# Select a signle HUC 10 unit
-  river = hab[grep(pattern = 'Penobscot', x = hab$HUC10_location),]
+# Select a single HUC 10 
+### Need to add options for
+### + Calculation scenarios
+### + Habitat type
+### + Sub-basin extent(s)
+  river = 'Penobscot'
+  acres = make_habitat(habitat_data = habitat,
+                       river = 'Penobscot',
+                       type = 'functional'
+                       )
 
-# Convert from km2 to acre
-  acres <- 247.105 * sum(river$functional_habitatSegment_sqkm)
-  
 # Initial population ----
 # Population vital rates
   max_age = 9
@@ -117,16 +122,12 @@
                                  age_structured = TRUE
                                  )
   recruits_f_age
-  age1 <- sum(recruits_f_age)
+  age0 <- sum(recruits_f_age)
   
-# Untested ----
+# Post-spawn dynamics ----
+### Everything below this is play code ###  
 
 # Post-spawn survival  
-  
-  
-  
-  
-### Everything below this is play code ###  
   
 ### NEED TO ADD:
 ### - Hatch-to-outmigrant survival
@@ -135,40 +136,26 @@
 ###    + Juveniles
   
   
-# Project population 
-### This also needs to get rolled into a function
+# Project population ----
 ### It would be really nice if the rates in this 
 ### function could be the same as those used in the
 ### 'make_pop' function, but I guess it doesn't matter
   
-# Now, project the population using a leslie 
-# matrix...or not? Maybe that is not the correct approach?
-  
-  # Calculate total mortality
-    Z <- nM + fM
+# Now, project the population using a leslie matrix
+  pop <- project_pop(pop + spawners, age0 = age0, nM = nM, fM = fM)  
 
-  # Survival rate
-    s <- rep(1-(1-exp(-Z)), max_age+1)  
-    
-  # Make a Leslie matrix for projection
-    les <- demogR::leslie.matrix(
-      lx=cumprod(s),
-      mx=rep(0.0000000000001, length(s))
-      )  
-    
-  # Project the population forward one year in time  
-  les %*% spawners 
-    
-    
-    
+# Make a list of objects for export
+  out <- list(
+    river = river,
+    max_age = max_age,
+    nM = nM,
+    fM = fM,
+    n_init = n_init,
+    spawnRecruit = spawnRecruit,
+    eggs = eggs,
+    sr = sr,
+    s_hatch = s_hatch,
+    S_prespawn = S_prespawn,
+    spawners = spawners
+  )
   
-
-  
-  
-  
-  
-  
-  
-  
-  
-
