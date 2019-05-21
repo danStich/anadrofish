@@ -8,10 +8,12 @@
 #' @section Functions called directly:
 #'  \describe{
 #'    \code{\link{beverton_holt}} \cr
-#'    \code{\link{lower95}} \cr
+#'    \code{\link{lower95}} \cr 
 #'    \code{\link{make_fec}} \cr
+#'    \code{\link{make_habitat}}
 #'    \code{\link{make_pop}} \cr
 #'    \code{\link{make_spawners}} \cr
+#'    \code{\link{project_pop}} \cr
 #'    \code{\link{upper95}} \cr
 #'  }
 #'  
@@ -23,7 +25,7 @@
 #'
 #' @docType package
 #' 
-#' @name shadia
+#' @name anadrofish
 #' 
 #' @importFrom demogR leslie.matrix eigen.analysis
 #' @importFrom stats quantile
