@@ -1,21 +1,95 @@
+# . Package load ----
+library(snowfall)
+
+# . Parallel settings ----
+# Get number of cores
+  args <- commandArgs(trailingOnly = TRUE);
+  ncpus <- args[1];
+  ncpus <- 7 # Uncomment to run on local workstation
+
+# Initialize snowfall
+  sfInit(parallel = TRUE, cpus=ncpus, type="SOCK")
+
+# Wrapper function ----
+  sim <- function(x){
+  
+# . Get cpu ids ----  
+  workerId <- paste(Sys.info()[['nodename']],
+                    Sys.getpid(),
+                    sep='-'
+                    )
+  
+# . Call simulation ----
   res <- sim_pop(
     nyears = 50,
     river = 'Penobscot',
-    max_age = 9,
+    max_age = 4,
     nM = rbeta(1, 6, 12),
     fM = rbeta(1, 5, 100),
     n_init = MASS::rnegbin(1, 4e3, 10),
-    spawnRecruit = c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00), 
-    eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724),
+    spawnRecruit = c(0,0,.5,1),#c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00, 1.00), 
+    eggs = c(0, 0, 20654, 34674),#c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724, 97724),
     sr = 0.50,
     s_prespawn = rbeta(1, 90, 10),  
     s_hatch = rbeta(1, 100, 1000))
+
+# . Define the output lists ----
+    retlist <- list(
+      worker=workerId,
+      res=res)      
+    
+    return(retlist)    
+}  
   
-  plot(x=res$out_year,
-       y = apply(res[ , c(27:35)], 1, sum),
-       typ='l',
-       ylim=c(0, 2.5e5)
-       ) 
+
+# Parallel execution ----
+
+# . Load libraries on workers -----
+sfLibrary(anadrofish)
+
+# . Distribute to workers -----
+# Number of simulations to run
+niterations <- 10000  
+
+# Run the simulation ----
+start <- Sys.time()
+
+result <- sfLapply(1:niterations, sim) 
+
+Sys.time()-start
+
+# . Stop snowfall ----
+sfStop()
+
+# Results ----
+# 'result' is a list of lists. Save this:
+#save(result, file = "sim_result.rda")
+
+# Extract results dataframes by string and rbind them
+res <- lapply(result, function(x) x[[c('res')]])
+resdf <- do.call(rbind, res)
+
+library(plyr)
+
+resdf$pop <- apply(resdf[ , grep('pop_', names(resdf))], 1, sum)
+resdf$spawners <- apply(resdf[ , grep('spawners_', names(resdf))], 1, sum)
+
+sums <- ddply(resdf, .(out_year), summarize, means=mean(spawners),
+              lci=quantile(spawners, probs=c(0.025)),
+              uci=quantile(spawners, probs=c(0.975))              
+              ) 
+
+plot(x=sums$out_year,
+     y = sums$means,
+     typ='l',
+     ylim=c(0, 2.5e5),
+     xlab = 'Year',
+     ylab = 'Spawner abundance'
+     ) 
+lines(sums$out_year, sums$lci, lty=2)
+lines(sums$out_year, sums$uci, lty=2)
+
+
 
 
 
@@ -27,17 +101,6 @@ Testing code and comments below this
 
 ###
 ###
-
-
-
-
-
-
-
-
-
-
-
 
  nyears = 50
   river = 'Penobscot'
