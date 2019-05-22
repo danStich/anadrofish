@@ -24,7 +24,7 @@ library(snowfall)
     nyears = 50,
     river = 'Penobscot',
     max_age = 4,
-    nM = rbeta(1, 6, 12),
+    nM = rbeta(1, 60, 120),
     fM = rbeta(1, 5, 100),
     n_init = MASS::rnegbin(1, 4e3, 10),
     spawnRecruit = c(0,0,.5,1),#c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00, 1.00), 
@@ -49,7 +49,7 @@ sfLibrary(anadrofish)
 
 # . Distribute to workers -----
 # Number of simulations to run
-niterations <- 10000  
+niterations <- 100000  
 
 # Run the simulation ----
 start <- Sys.time()
@@ -67,27 +67,36 @@ sfStop()
 
 # Extract results dataframes by string and rbind them
 res <- lapply(result, function(x) x[[c('res')]])
-resdf <- do.call(rbind, res)
+library(data.table)
+resdf <- rbindlist(res)
 
+# Summarize and plot results
 library(plyr)
 
-resdf$pop <- apply(resdf[ , grep('pop_', names(resdf))], 1, sum)
-resdf$spawners <- apply(resdf[ , grep('spawners_', names(resdf))], 1, sum)
+# Summarize spawner and overall population abundance
+# across age classes
+resdf$pop <- apply(resdf[ , .SD, .SDcols=c(names(resdf)[grep(pattern='pop_', names(resdf))])], 1, sum)
+resdf$spawners <- apply(resdf[ , .SD, .SDcols=c(names(resdf)[grep(pattern='spawners_', names(resdf))])], 1, sum)
 
+# Summarize spawner abundance by year
 sums <- ddply(resdf, .(out_year), summarize, means=mean(spawners),
               lci=quantile(spawners, probs=c(0.025)),
               uci=quantile(spawners, probs=c(0.975))              
               ) 
 
+# Plot spawner abundance by year
+par(mar=c(5,5,1,1))
 plot(x=sums$out_year,
      y = sums$means,
      typ='l',
-     ylim=c(0, 2.5e5),
+     ylim=c(0, .75e5),
      xlab = 'Year',
      ylab = 'Spawner abundance'
      ) 
 lines(sums$out_year, sums$lci, lty=2)
 lines(sums$out_year, sums$uci, lty=2)
+
+
 
 
 
