@@ -1,3 +1,72 @@
+  res <- sim_pop(
+    nyears = 50,
+    river = 'Penobscot',
+    max_age = 9,
+    nM = rbeta(1, 6, 12),
+    fM = rbeta(1, 5, 100),
+    n_init = MASS::rnegbin(1, 4e3, 10),
+    spawnRecruit = c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00), 
+    eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724),
+    sr = 0.50,
+    s_prespawn = rbeta(1, 90, 10),  
+    s_hatch = rbeta(1, 100, 1000))
+  
+  plot(x=res$out_year,
+       y = apply(res[ , c(27:35)], 1, sum),
+       typ='l',
+       ylim=c(0, 2.5e5)
+       ) 
+
+
+
+
+###
+###
+  
+Testing code and comments below this
+
+###
+###
+
+
+
+
+
+
+
+
+
+
+
+
+ nyears = 50
+  river = 'Penobscot'
+  max_age = 9
+  nM = 0.38
+  fM = 0.00
+  n_init = 1e5
+  spawnRecruit = c(0, 0, 0, 0.01, .33, .84, .97, .99, 1.00)  
+  eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724)
+  s_prespawn = 0.90  
+  sr <- 0.50
+  s_hatch = 0.10     
+  params = c('river',
+             'max_age',
+             'nM',
+             'fM',
+             'n_init',
+             'spawnRecruit',
+             'eggs',
+             'sr',
+             's_hatch',
+             'S_prespawn',
+             'spawners',
+             'pop'
+             )
+
+
+
+  
 # River system ----
   data(habitat)
 
@@ -8,7 +77,7 @@
 ### + Sub-basin extent(s)
   river = 'Penobscot'
   acres = make_habitat(habitat_data = habitat,
-                       river = 'Penobscot',
+                       river = river,
                        type = 'functional'
                        )
 
@@ -143,19 +212,43 @@
   
 # Now, project the population using a leslie matrix
   pop <- project_pop(pop + spawners, age0 = age0, nM = nM, fM = fM)  
+  
 
+# Fill output vectors ----
+### Needs to go in a simulate_pop function
+### call or something along those lines. That
+### could morph out of the tester file  
+# Collect parameters  
+  out_river[[t]] = river
+  out_max_age[[t]] = max_age
+  out_nM[[t]] = nM
+  out_fM[[t]] = fM
+  out_n_init[[t]] = n_init
+  out_spawnRecruit[[t]] = spawnRecruit
+  out_eggs[[t]] = eggs
+  out_sr[[t]] = sr
+  out_s_hatch[[t]] = s_hatch
+  out_S_prespawn[[t]] = S_prespawn
+  out_spawners[[t]] = spawners
+  out_pop[[t]] = pop
+  
+
+# Data write ----
 # Make a list of objects for export
-  out <- list(
-    river = river,
-    max_age = max_age,
-    nM = nM,
-    fM = fM,
-    n_init = n_init,
-    spawnRecruit = spawnRecruit,
-    eggs = eggs,
-    sr = sr,
-    s_hatch = s_hatch,
-    S_prespawn = S_prespawn,
-    spawners = spawners
+  out <- data.frame(
+    river = out_river,
+    max_age = out_max_age,
+    nM = out_nM,
+    fM = out_fM,
+    n_init = out_n_init,
+    spawnRecruit = out_spawnRecruit,
+    eggs = out_eggs,
+    sr = out_sr,
+    s_hatch = out_s_hatch,
+    S_prespawn = out_S_prespawn,
+    spawners = out_spawners,
+    pop = out_pop
   )
+  
+  
   

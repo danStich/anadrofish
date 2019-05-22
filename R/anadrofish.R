@@ -1,9 +1,8 @@
 #' anadrofish: Anadromous Fish Population Responses to Habitat Changes
 #' 
-#' The anadrofish package provides tools for running
-#' coastwide or river-specific population models for migratory
-#' fish lacking fine-scale information about intracatchment
-#' homing.
+#' The anadrofish package is a collection of tools for running
+#' coastwide or river-specific population models for
+#' anadromous fish in response to habitat change.
 #' 
 #' @section Functions called directly:
 #'  \describe{
@@ -29,4 +28,5 @@
 #' 
 #' @importFrom demogR leslie.matrix eigen.analysis
 #' @importFrom stats quantile
+#' 
 NULL

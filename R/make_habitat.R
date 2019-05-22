@@ -35,5 +35,4 @@ make_habitat <- function(habitat_data, river, type = 'functional'){
   }
   
   return(acres)
-  
 }

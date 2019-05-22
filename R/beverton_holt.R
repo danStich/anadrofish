@@ -58,10 +58,10 @@ beverton_holt <- function(a = 2.5e5,
                           age_structured = FALSE
                           )
   {
-  
+
     if(age_structured == FALSE){
       
-      b = b/acres
+      b <- b/acres
 
     } else {
       

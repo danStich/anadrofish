@@ -1,7 +1,7 @@
 Package: anadrofish
 Type: Package
 Title: Anadromous Fish Population Responses to Habitat Changes
-Version: 0.1.0
+Version: 0.2.0
 Author: Daniel S. Stich, Samuel G. Roy, Joseph D. Zydlewski
 Maintainer: Daniel S. Stich <daniel.stich@oneonta.edu>
 Description: Stochastic estimation of anadromous fish population response to changes in habitat.

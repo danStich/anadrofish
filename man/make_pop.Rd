@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_pop.R
 \name{make_pop}
 \alias{make_pop}
-\title{make_pop}
+\title{Make population}
 \usage{
 make_pop(max_age, nM, fM, n_init, f = c(rep(0, 2), rep(1, max_age - 2)))
 }
@@ -15,7 +15,7 @@ A numeric vector of length 1.}
 \item{fM}{Instantaneous fishing mortality rate. 
 A numeric vector of length 1.}
 
-\item{n_init}{Initial population abundance (includes all age classes)}
+\item{n_init}{Initial population abundance (includes all age classes).}
 
 \item{f}{Reproductive rate (rate of replacement).}
 }
@@ -29,7 +29,7 @@ population for simulation based on life-history
 characteristics. Uses an initial population seed, mortality
 estimates, and reproductive rate to populate a leslie 
 matrix and extract stable age distribution through
-eigen analysis with functions imported from the \code{demogR} package 
+eigen analysis with functions imported from the \link{demogR} package 
 (Holland Jones 2007).
 }
 \examples{
@@ -42,7 +42,7 @@ eigen analysis with functions imported from the \code{demogR} package
 }
 }
 \references{
-J. Holland Jones. 2007. demogR: A package for the construction
-and analysis of age-structured demographic models. Journal of Statistical
+J. Holland Jones. 2007. demogR: A package for the construction 
+and analysis of age-structured demographic models. Journal of Statistical 
 Sofware 22(10):1-28. URL: http://dx.doi.org/10.18637/jss.v022.i10.
 }

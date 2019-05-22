@@ -1,11 +1,11 @@
-#' @title make_pop
+#' @title Make population
 #'
 #' @description Function used to seed initial age-structured
 #' population for simulation based on life-history
 #' characteristics. Uses an initial population seed, mortality
 #' estimates, and reproductive rate to populate a leslie 
 #' matrix and extract stable age distribution through
-#' eigen analysis with functions imported from the \code{demogR} package 
+#' eigen analysis with functions imported from the \link{demogR} package 
 #' (Holland Jones 2007).
 #'
 #' @param max_age The maximum age of fish in the population(s). A numeric vector of length 1.
@@ -16,7 +16,7 @@
 #' @param fM Instantaneous fishing mortality rate. 
 #' A numeric vector of length 1.
 #'
-#' @param n_init Initial population abundance (includes all age classes)
+#' @param n_init Initial population abundance (includes all age classes).
 #' 
 #' @param f Reproductive rate (rate of replacement).
 #'
@@ -25,13 +25,14 @@
 #'
 #' @example inst/examples/makepop_ex.R
 #'
-#' @references J. Holland Jones. 2007. demogR: A package for the construction
-#' and analysis of age-structured demographic models. Journal of Statistical
+#' @references J. Holland Jones. 2007. demogR: A package for the construction 
+#' and analysis of age-structured demographic models. Journal of Statistical 
 #' Sofware 22(10):1-28. URL: http://dx.doi.org/10.18637/jss.v022.i10.
-#'
+#' 
+#' @importFrom demogR leslie.matrix eigen.analysis
+#' 
 #' @export
 #'
-
 make_pop <- function(max_age, nM, fM, n_init,
                      f = c(rep(0, 2), rep(1, max_age-2))){
 
