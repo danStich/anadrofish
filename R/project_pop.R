@@ -13,14 +13,18 @@
 #' @param nM Instantaneous natural mortality.
 #' 
 #' @param fM Instantaneous fishing mortality.
+#' 
+#' @param max_age Maximum age of spawning fish.
 #'
 #' @return A numeric vector of age-structured abundance in time t + 1
 #'
 #' #@example inst/examples/makefec_ex.R
 #' 
+#' @importFrom demogR leslie.matrix
+#' 
 #' @export
 #'
-project_pop <- function(x, age0, nM, fM){
+project_pop <- function(x, age0, nM, fM, max_age){
   
   # Calculate total mortality
     Z <- nM + fM

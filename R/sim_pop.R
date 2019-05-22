@@ -34,6 +34,8 @@
 #' 
 #' @example inst/examples/simpop_ex.R
 #' 
+#' @importFrom demogR, leslie.matrix, eigen.analysis
+#' 
 #' @export
 #' 
 sim_pop <- function(
@@ -120,7 +122,8 @@ sim_pop <- function(
         x = .sim_pop$pop + .sim_pop$spawners, 
         age0 = .sim_pop$age0,
         nM = nM, 
-        fM = fM)  
+        fM = fM,
+        max_age = max_age)  
     
     # Fill the output vectors
       environment(fill_output) <- .sim_pop
