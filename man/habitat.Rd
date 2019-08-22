@@ -3,33 +3,48 @@
 \docType{data}
 \name{habitat}
 \alias{habitat}
-\title{American shad habitat ("HabitatNE_wd10.0m_slp0.01_tidal1.rda")}
-\format{A data frame with 53940 rows and 10 variables}
+\title{American shad habitat}
+\format{A data frame with 4216 observations of 16 variables:
+\describe{
+\code{UNIQUE_ID}{ unique value given to each dam and outlet feature.}
+
+\code{type}{ type of feature, either\code{dam} or \code{outlet}.}
+
+\code{catchmentID}{ unique value of the coastal outlet in which the dam is located upstream.}
+
+\code{habitat_sqkm}{ total habitat upstream, given in square kilometers of river area.}
+
+\code{habitatSegment_sqkm}{ amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.}
+
+\code{functional_habitatSegment_sqkm}{ the value of \code{habitatSegment_sqkm} multiplied by the compounded passage fraction from outlet up to the feature.}
+
+\code{PassageToHabitat}{ passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.}
+
+\code{TERMCODE}{ code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.}
+
+\code{terminal_name_huc10}{ name of HUC10 watershed of feature's outlet.}
+
+\code{terminal_name_huc8}{ name of HUC8 watershed of feature's outlet.}
+
+\code{terminal_name_huc6}{ name of HUC6 watershed of feature's outlet.}
+
+\code{terminal_name_huc4}{ name of HUC4 watershed of feature's outlet.}
+
+\code{dam_name}{ name of dam feature, "n/a" if \code{outlet}.}
+
+\code{latitude/longitude}{ coordinates of feature.}
+
+\code{dam_order}{ order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.}
+}}
 \source{
-<http://www.diamondse.info/>
+Samuel G. Roy: \url{https://github.com/samGroy/AmShadProject}
 }
 \usage{
 habitat
 }
 \description{
-A dataset containing the surface area of functional American 
-shad habitat by river reach in the New England Region.
-}
-\details{
-* `UNIQUE_ID`: polygon ID
-* `type`: river reach type: either \code{outlet} or \code{dam}
-* `catchmentID`: ID for catchment containing river reach
-* `habitat_sqkm`: cumulative habitat upstream of feature
-   indicated in \code{type}
-* `habitatSegment_sqkm`: surface area (km2) of habitat 
-* `functional_habitatSegment_sqkm`: surface area (km2) of
-   habitat in segment adjusted by \code{passageToHabitat}
-* `PassageToHabitat`: probability of migratory fish passage
-   to habitat segment
-* `Decision`: NEEDS DOCUMENTATION
-* `HUC6_location`: Name for geographic location of
-   HUC6 catchment basin
-* `HUC10_location`: Name for geographic location of
-   HUC10 catchment basin
+A dataset containing the surface area of American 
+shad habitat segments by feature (dam or outlet) in
+Atlantic coast drainages.
 }
 \keyword{datasets}

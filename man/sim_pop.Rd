@@ -6,10 +6,10 @@
 \usage{
 sim_pop(nyears = 100, river = "Penobscot", max_age = 9, nM = 0.38,
   fM = 0, n_init = 1e+05, spawnRecruit = c(0, 0, 0, 0.01, 0.33, 0.84,
-  0.97, 0.99, 1), eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724),
-  sr = 0.5, s_prespawn = 0.9, s_hatch = 0.1, params = c("river",
-  "max_age", "nM", "fM", "n_init", "spawnRecruit", "eggs", "sr", "s_hatch",
-  "S_prespawn", "spawners", "pop"))
+  0.97, 0.99, 1), eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480,
+  97724), sr = 0.5, s_prespawn = 0.9, s_hatch = 0.1,
+  params = c("river", "max_age", "nM", "fM", "n_init", "spawnRecruit",
+  "eggs", "sr", "s_hatch", "S_prespawn", "spawners", "pop"))
 }
 \arguments{
 \item{nyears}{Number of years.}

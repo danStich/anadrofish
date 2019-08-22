@@ -34,35 +34,22 @@
 #' 
 #' @example inst/examples/simpop_ex.R
 #' 
-#' @importFrom demogR, leslie.matrix, eigen.analysis
+#' @importFrom demogR leslie.matrix eigen.analysis
 #' 
 #' @export
 #' 
 sim_pop <- function(
-  nyears = 100,
-  river = 'Penobscot',
-  max_age = 9,
-  nM = 0.38,
-  fM = 0.00,
-  n_init = 1e5,
-  spawnRecruit = c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00), 
-  eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724),
-  sr = 0.50,
-  s_prespawn = 0.90,  
-  s_hatch = 0.10,
-  params = c('river',
-             'max_age',
-             'nM',
-             'fM',
-             'n_init',
-             'spawnRecruit',
-             'eggs',
-             'sr',
-             's_hatch',
-             'S_prespawn',
-             'spawners',
-             'pop'
-             )
+  nyears,
+  river,
+  max_age,
+  nM,
+  fM,
+  n_init,
+  spawnRecruit, 
+  eggs,
+  sr,
+  s_prespawn,  
+  s_hatch
 )
 
 {

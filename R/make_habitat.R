@@ -16,14 +16,14 @@
 #' for calculations. See \code{?habitat} for explanation of built-in 
 #' data sets.
 #' 
-#' #@example inst/examples/makefec_ex.R
+# #' @example inst/examples/makefec_ex.R
 #' 
 #' @export
 #'
 make_habitat <- function(habitat_data, river, type = 'functional'){
   
   # Select habitat units based on HUC 10 watershed names
-  units <- habitat[grep(pattern = river, x = habitat$HUC10_location),]
+  units <- habitat[grep(pattern = paste0(river, ' '), x = habitat$terminal_name_huc10),]
   
   # Calculate habitat surface acres from the 
   # sum of functional habitat in the subset

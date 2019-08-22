@@ -2,7 +2,7 @@
 #'
 #' @description Function used to project population forward 
 #' one time step using matrix multiplication. Based on 
-#' modification of the \code{project.leslie} in \code{demogR}
+#' modification of \code{project.leslie} in \link{demogR}
 #'
 #' @param x An numeric vector containing age-specific 
 #' abundance at end of year t.
@@ -18,7 +18,7 @@
 #'
 #' @return A numeric vector of age-structured abundance in time t + 1
 #'
-#' #@example inst/examples/makefec_ex.R
+# #' @example inst/examples/makefec_ex.R
 #' 
 #' @importFrom demogR leslie.matrix
 #' 
@@ -33,7 +33,7 @@ project_pop <- function(x, age0, nM, fM, max_age){
     s <- rep(1-(1-exp(-Z)), max_age+2)  
       
   # Make the projection matrix
-    les <- demogR::leslie.matrix(
+    les <- leslie.matrix(
       lx = cumprod(c(s)),
       mx = rep( 1, length(s) )
       )  

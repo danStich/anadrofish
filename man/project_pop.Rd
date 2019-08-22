@@ -4,7 +4,7 @@
 \alias{project_pop}
 \title{Project population}
 \usage{
-project_pop(x, age0, nM, fM)
+project_pop(x, age0, nM, fM, max_age)
 }
 \arguments{
 \item{x}{An numeric vector containing age-specific 
@@ -16,14 +16,14 @@ at end of year t.}
 \item{nM}{Instantaneous natural mortality.}
 
 \item{fM}{Instantaneous fishing mortality.}
+
+\item{max_age}{Maximum age of spawning fish.}
 }
 \value{
 A numeric vector of age-structured abundance in time t + 1
-
-#@example inst/examples/makefec_ex.R
 }
 \description{
 Function used to project population forward 
 one time step using matrix multiplication. Based on 
-modification of the \code{project.leslie} in \code{demogR}
+modification of \code{project.leslie} in \link{demogR}
 }

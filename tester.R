@@ -22,16 +22,17 @@ library(snowfall)
 # . Call simulation ----
   res <- sim_pop(
     nyears = 50,
-    river = 'Penobscot',
-    max_age = 4,
+    river = 'Delaware',
+    max_age = 9,
     nM = rbeta(1, 60, 120),
     fM = rbeta(1, 5, 100),
     n_init = MASS::rnegbin(1, 4e3, 10),
-    spawnRecruit = c(0,0,.5,1),#c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00, 1.00), 
-    eggs = c(0, 0, 20654, 34674),#c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724, 97724),
+    spawnRecruit = c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00), 
+    eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724),
     sr = 0.50,
     s_prespawn = rbeta(1, 90, 10),  
-    s_hatch = rbeta(1, 100, 1000))
+    s_hatch = rbeta(1, 100, 100000)
+    )
 
 # . Define the output lists ----
     retlist <- list(
@@ -49,7 +50,7 @@ sfLibrary(anadrofish)
 
 # . Distribute to workers -----
 # Number of simulations to run
-niterations <- 100000  
+niterations <- 100 
 
 # Run the simulation ----
 start <- Sys.time()
@@ -89,7 +90,7 @@ par(mar=c(5,5,1,1))
 plot(x=sums$out_year,
      y = sums$means,
      typ='l',
-     ylim=c(0, .75e5),
+     ylim=c(0, max(sums$uci)),
      xlab = 'Year',
      ylab = 'Spawner abundance'
      ) 
@@ -103,7 +104,7 @@ lines(sums$out_year, sums$uci, lty=2)
 
 
 
-###
+#####
 ###
   
 Testing code and comments below this
@@ -202,7 +203,7 @@ Testing code and comments below this
 ### all three of the required arguments.
   
 ### Eggs:  these are based on (somewhat arbitrary) L-F regressions
-### Info can be updated to includee von Bert estimates and
+### Info can be updated to include von Bert estimates and
 ### newer fecundity estimates (?). Is there a new regression being
 ### developed? I am guessing these are underestimated?
   

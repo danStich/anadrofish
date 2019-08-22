@@ -8,5 +8,6 @@ Description: Stochastic estimation of anadromous fish population response to cha
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: demogR, stats
+Depends: R(>= 3.5.0)
+Imports: demogR
 RoxygenNote: 6.1.1
