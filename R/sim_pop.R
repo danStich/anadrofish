@@ -5,7 +5,10 @@
 #' 
 #' @param nyears Number of years.
 #' 
-#' @param river River basin. Currently defined as HUC 10 watershed.
+#' @param river River basin. All rivers implemented in package 
+#' can be viewed by calling \code{get_rivers()}. Alternatively,
+#' the user can specify \code{rivers = sample(get_rivers(), 1)} 
+#' to randomly sample river within larger simulation studies.
 #' 
 #' @param max_age Maximum age of fish in population.
 #' 
@@ -49,7 +52,7 @@ sim_pop <- function(
   eggs,
   sr,
   s_prespawn,  
-  s_hatch
+  s_hatch 
 )
 
 {
@@ -59,7 +62,7 @@ sim_pop <- function(
   
   # Make output vectors
     environment(make_output) <- .sim_pop
-    list2env(make_output(), env = .sim_pop)
+    list2env(make_output(), envir = .sim_pop)
   
   # Make habitat from built-in data sets
     .sim_pop$acres <- make_habitat(river = river)
@@ -114,7 +117,7 @@ sim_pop <- function(
     
     # Fill the output vectors
       environment(fill_output) <- .sim_pop
-      list2env(fill_output(), env=.sim_pop)    
+      list2env(fill_output(), envir =.sim_pop)    
       
   } # YEAR LOOP  
     
