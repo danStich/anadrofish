@@ -18,9 +18,7 @@ or \code{segment}. For \code{PassageToHabitat < 1},
 \code{type = 'functional'} adjusts \code{habitatSegment_sqkm} 
 proportionally and uses the variable \code{functional_habitatSegment_sqkm} 
 for calculations. See \code{?habitat} for explanation of built-in 
-data sets.
-
-#@example inst/examples/makefec_ex.R}
+data sets.}
 }
 \description{
 Function used to make habitat from the built-in 

@@ -1,0 +1,21 @@
+#' @title U.S Atlantic coast American shad rivers
+#'
+#' @description A dataset containing the names U.S
+#' Atlantic coast rivers identified as historical American
+#' shad habitat that are used in \code{anadrofish}. 
+#' Derived from \code{inventory}. Used to relate 
+#' user-specified river(s) to amount of habitat in each system 
+#' and regional biological parameters via termcode.
+#'
+#' @format A data frame with 65 observations of 6 variables:
+#' \describe{
+#' 
+#' \code{system}{ The name of each river system.}
+#' 
+#' \code{termcode}{ A unique identifier for each river system that is
+#' region (NI = Northern iteroparous, SI = Southern iteroparous, 
+#' SP = Semelparous), state of outlet, and HUC code.}
+#' }
+#' 
+#' @source Atlantic States Marine Fisheries Commission
+"shad_rivers"

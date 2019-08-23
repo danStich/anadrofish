@@ -5,9 +5,6 @@
 #' 
 #' Not intended to be called directly.
 #' 
-#' @param params Character vector of parameters
-#' 
-#' 
 #' @export
 #' 
 make_output <- function(){

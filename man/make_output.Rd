@@ -6,9 +6,6 @@
 \usage{
 make_output()
 }
-\arguments{
-\item{params}{Character vector of parameters}
-}
 \description{
 Create output vectors for default
 arguments in \code{\link{sim_pop}}.
