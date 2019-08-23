@@ -21,9 +21,11 @@
 #' @export
 #'
 make_habitat <- function(habitat_data, river, type = 'functional'){
+  # Get termcode for river
+  termcode <- shad_rivers[shad_rivers==river,2]
   
   # Select habitat units based on HUC 10 watershed names
-  units <- habitat[grep(pattern = paste0(river, ' '), x = habitat$terminal_name_huc10),]
+  units <- habitat[termcode == habitat$TERMCODE,]
   
   # Calculate habitat surface acres from the 
   # sum of functional habitat in the subset
