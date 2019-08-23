@@ -22,16 +22,16 @@ library(snowfall)
 # . Call simulation ----
   res <- sim_pop(
     nyears = 50,
-    river = 'Delaware',
+    river = 'Merrimack',
     max_age = 9,
     nM = rbeta(1, 60, 120),
     fM = rbeta(1, 5, 100),
-    n_init = MASS::rnegbin(1, 4e3, 10),
+    n_init = MASS::rnegbin(1, 10e3, 10),
     spawnRecruit = c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00), 
     eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724),
     sr = 0.50,
     s_prespawn = rbeta(1, 90, 10),  
-    s_hatch = rbeta(1, 100, 100000)
+    s_hatch = runif(1, 0.00056, 0.008)#rbeta(1, 100, 10000)
     )
 
 # . Define the output lists ----
@@ -50,7 +50,7 @@ sfLibrary(anadrofish)
 
 # . Distribute to workers -----
 # Number of simulations to run
-niterations <- 100 
+niterations <- 1000 
 
 # Run the simulation ----
 start <- Sys.time()
