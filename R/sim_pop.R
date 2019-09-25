@@ -52,7 +52,8 @@ sim_pop <- function(
   eggs,
   sr,
   s_prespawn,  
-  s_hatch 
+  s_hatch,
+  type = 'total'
 )
 
 {
@@ -65,7 +66,7 @@ sim_pop <- function(
     list2env(make_output(), envir = .sim_pop)
   
   # Make habitat from built-in data sets
-    .sim_pop$acres <- make_habitat(river = river)
+    .sim_pop$acres <- make_habitat(river = river, type=type)
   
   # Make the population
     environment(make_pop) <- .sim_pop
@@ -102,10 +103,13 @@ sim_pop <- function(
       .sim_pop$age0 <- sum(.sim_pop$recruits_f_age)    
         
     ### NEED TO ADD:
+    ### - Post-spawn survival
     ### - Hatch-to-outmigrant survival
     ### - Outmigrant survival
     ###    + Adults (incl. post-spawn survival)
     ###    + Juveniles    
+      
+    # Post-spawning survival
       
     # Project population into next time step
       .sim_pop$pop <- project_pop(
