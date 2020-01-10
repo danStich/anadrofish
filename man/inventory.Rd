@@ -9,18 +9,21 @@
 
 \code{system}{ The name of each river system.}
 
-\code{included}{ Names of other rivers included within the system.}
+\code{region}{ The life-history region in which the river is
+located (NI = Northern iteroparous, SI = Southern iteroparous,
+SP = Semelparous)}
 
 \code{huc_level}{ The HUC level used to calculate surface acres
 of habitat in the river system}
 
 \code{termcode}{ A unique identifier for each river system that is
-region (NI = Northern iteroparous, SI = Southern iteroparous, 
-SP = Semelparous), state of outlet, and HUC code.}
+region, state of outlet, and HUC code.}
 }
 
 \code{huc_code}{ Code for HUC used to calculate habitat in
 \code{habitat}}
+
+\code{included}{ Names of other rivers included within the system.}
 
 \code{operational_notes}{ Notes related to data management, processing,
 etc. Not used directly. Included for transparency.}}

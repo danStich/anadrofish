@@ -4,7 +4,7 @@
 \alias{make_habitat}
 \title{Project population}
 \usage{
-make_habitat(habitat_data, river, type = "functional")
+make_habitat(habitat_data, river, type)
 }
 \arguments{
 \item{habitat_data}{A built-in \code{data.frame} containing habitat 

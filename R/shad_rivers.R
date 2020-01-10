@@ -1,4 +1,4 @@
-#' @title U.S Atlantic coast American shad rivers
+#' @title Sex-specific maturity schedules for American shad
 #'
 #' @description A dataset containing the names U.S
 #' Atlantic coast rivers identified as historical American
