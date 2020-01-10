@@ -32,6 +32,13 @@
 #' 
 #' @param s_hatch Survival from hatch to outmigrant
 #' 
+#' @param type Type of habitat calculation used. 
+#' The default \code{functional} assumes current functional
+#' habitat available based on dam locations. \code{total}
+#' assumes that fish have access to all historical habitat
+#' identified through GIS mapping in combination with 
+#' expert opinion.
+#' 
 #' @return A data.frame containing simulation inputs (arguments) 
 #' and outputs (pop, spawners) by year.
 #' 
@@ -44,11 +51,11 @@
 sim_pop <- function(
   nyears,
   river,
-  max_age,
-  nM,
+  max_age = NULL,
+  nM = NULL,
   fM,
   n_init,
-  spawnRecruit, 
+  spawnRecruit = NULL, 
   eggs,
   sr,
   s_prespawn,  
@@ -57,10 +64,23 @@ sim_pop <- function(
 )
 
 {
+  # Get region for river system
+    region <- inventory$region[inventory$system == river]
+    
+  # Get life-history parameters
+  # Instantaneous natural mortality - avg for M and F within region
+    if(is.null(nM)){ nM <- mean(mortality$M[mortality$region==region])}
+      
+  # Maximum age
+    if(is.null(max_age)){ max_age <- max(max_ages$maxage[max_ages$region==region])}
+    
+  # Maturity schedule
+    if(is.null(spawnRecruit)){ spawnRecruit <- as.numeric(maturity[maturity$region==region & maturity$sex=='F', 3:(2+max_age)])}
+    
   # Make a hidden environment to avoid
   # cluttering .GlobalEnv
     .sim_pop <- new.env()
-  
+    
   # Make output vectors
     environment(make_output) <- .sim_pop
     list2env(make_output(), envir = .sim_pop)
@@ -104,13 +124,11 @@ sim_pop <- function(
         
     ### NEED TO ADD:
     ### - Post-spawn survival
-    ### - Hatch-to-outmigrant survival
     ### - Outmigrant survival
-    ###    + Adults (incl. post-spawn survival)
+    ###    + Adults
     ###    + Juveniles    
       
-    # Post-spawning survival
-      
+
     # Project population into next time step
       .sim_pop$pop <- project_pop(
         x = .sim_pop$pop + .sim_pop$spawners, 

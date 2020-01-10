@@ -21,6 +21,7 @@
 #' @export
 #'
 make_habitat <- function(habitat_data, river, type){
+  
   # Get termcode for river
   termcode <- shad_rivers[shad_rivers==river, 2]
   
@@ -29,15 +30,12 @@ make_habitat <- function(habitat_data, river, type){
   
   # Calculate habitat surface acres from the 
   # sum of functional habitat in the subset
-  
   if(type == 'functional'){
     acres <- 247.105 * sum(units$functional_habitatSegment_sqkm)
   }
   if(type == 'total'){
     acres <- 247.105 * sum(units$habitatSegment_sqkm)    
-  } else {
-    stop('Error: only functional and total habitat implemented so far!')
-  }
+  } 
   
   return(acres)
 }

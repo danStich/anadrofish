@@ -4,8 +4,8 @@
 \alias{sim_pop}
 \title{Simulate population dynamics through time}
 \usage{
-sim_pop(nyears, river, max_age, nM, fM, n_init, spawnRecruit, eggs, sr,
-  s_prespawn, s_hatch)
+sim_pop(nyears, river, max_age = NULL, nM = NULL, fM, n_init,
+  spawnRecruit = NULL, eggs, sr, s_prespawn, s_hatch, type = "total")
 }
 \arguments{
 \item{nyears}{Number of years.}
@@ -36,6 +36,13 @@ if eggs per female is age invariant, or can be vector of length
 \item{s_prespawn}{Pre-spawn survival for spawners.}
 
 \item{s_hatch}{Survival from hatch to outmigrant}
+
+\item{type}{Type of habitat calculation used. 
+The default \code{functional} assumes current functional
+habitat available based on dam locations. \code{total}
+assumes that fish have access to all historical habitat
+identified through GIS mapping in combination with 
+expert opinion.}
 }
 \value{
 A data.frame containing simulation inputs (arguments) 
