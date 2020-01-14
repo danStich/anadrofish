@@ -5,7 +5,8 @@
 \title{Simulate population dynamics through time}
 \usage{
 sim_pop(nyears, river, max_age = NULL, nM = NULL, fM, n_init,
-  spawnRecruit = NULL, eggs, sr, s_prespawn, s_hatch, type = "total")
+  spawnRecruit = NULL, eggs = NULL, sr, s_prespawn, s_hatch,
+  type = "total")
 }
 \arguments{
 \item{nyears}{Number of years.}

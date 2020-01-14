@@ -56,7 +56,7 @@ sim_pop <- function(
   fM,
   n_init,
   spawnRecruit = NULL, 
-  eggs,
+  eggs = NULL,
   sr,
   s_prespawn,  
   s_hatch,
@@ -77,6 +77,9 @@ sim_pop <- function(
   # Maturity schedule
     if(is.null(spawnRecruit)){ spawnRecruit <- as.numeric(maturity[maturity$region==region & maturity$sex=='F', 3:(2+max_age)])}
     
+  # Get estimated number of eggs per female
+    if(is.null(eggs)){eggs <- make_eggs(region, max_age)}
+          
   # Make a hidden environment to avoid
   # cluttering .GlobalEnv
     .sim_pop <- new.env()
@@ -87,7 +90,7 @@ sim_pop <- function(
   
   # Make habitat from built-in data sets
     .sim_pop$acres <- make_habitat(river = river, type=type)
-  
+    
   # Make the population
     environment(make_pop) <- .sim_pop
     .sim_pop$pop <-  make_pop(max_age = max_age,
@@ -108,8 +111,11 @@ sim_pop <- function(
     # Apply prespawn survival to spawners  
       .sim_pop$spawners <- .sim_pop$spawners * s_prespawn  
     
-    # Make realized fecundity of spawners  
-      .sim_pop$fec <- make_fec(eggs = eggs, sr = sr, s_hatch = s_hatch)
+    # Make annual fecundity of spawners  
+      .sim_pop$fec <- make_fec(
+        eggs = eggs,
+        sr = sr, s_hatch = s_hatch
+        )
      
     # Calculate recruitment from Beverton-Holt curve   
       .sim_pop$recruits_f_age <- beverton_holt(
