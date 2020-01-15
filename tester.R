@@ -1,7 +1,12 @@
-# . Package load ----
-  library(snowfall)
+# Testing code ---- 
+rm(list = ls())
+if(!is.null(dev.list())) dev.off()
 
-# . Parallel settings ----
+# Package load ----
+  library(snowfall)
+  library(anadrofish)
+
+# Parallel settings ----
 # Get number of cores
   args <- commandArgs(trailingOnly = TRUE);
   ncpus <- args[1];
@@ -22,11 +27,11 @@
 # . Call simulation ----
   res <- sim_pop(
     nyears = 50,
-    river = 'Susquehanna',
+    river = get_rivers()[48],
     max_age = NULL,
     nM = NULL,
     fM = 0,
-    n_init = MASS::rnegbin(1, 10e3, 100),
+    n_init = MASS::rnegbin(1, 40e3, 100),
     spawnRecruit = NULL,
     eggs = NULL,
     sr = rbeta(1, 100, 100),
@@ -51,7 +56,7 @@ sfLibrary(anadrofish)
 
 # . Distribute to workers -----
 # Number of simulations to run
-niterations <- 1000
+niterations <- 100
 
 # Run the simulation ----
 start <- Sys.time()
@@ -96,16 +101,19 @@ sums <- ddply(resdf, .(out_year), summarize, means=mean(spawners),
   #   pointsize = 6
   # )
 
-par(mar=c(5,5,1,1))
+par(mar=c(4,6,1,1))
 plot(x=sums$out_year,
      y = sums$means,
      type='l', col=NA,
      ylim=c(0, max(sums$uci+1e5)),
      xlab = 'Year',
-     ylab = 'Spawner abundance (millions)',
+     ylab = '',
      yaxt='n'
      ) 
-axis(2, at=seq(0,10e6,.5e6), labels=sprintf(seq(0,10,.5), fmt = '%#.1f'), las=2)
+axis(2, at=seq(0,max(sums$uci+1e5),round(max(sums$uci+1e5)/5, -4)),
+     labels=sprintf(seq(0,max(sums$uci+1e5),round(max(sums$uci+1e5)/5, -4)), fmt = '%.0f'),
+     las=2
+     )
 polygon(x=c(sums$out_year, rev(sums$out_year)),
         y=c(sums$lci, rev(sums$uci)),
         col='gray87', border = NA
@@ -113,7 +121,6 @@ polygon(x=c(sums$out_year, rev(sums$out_year)),
 lines(x=sums$out_year, y=sums$means, lty=1, lwd=1, col='black')
 lines(sums$out_year, sums$lci, lty=2)
 lines(sums$out_year, sums$uci, lty=2)
+mtext('Spawner abundance', side = 2, line=5)
 #text('Dams', x=0, y=.9e6, adj=0)
 # dev.off()
-
-
