@@ -31,6 +31,8 @@ write_output <- function(){
   # Make a list of objects for export
     out <- data.frame(
       river = out_river,
+      region = out_region,
+      govt = out_govt,
       max_age = out_max_age,
       nM = out_nM,
       fM = out_fM,
