@@ -67,6 +67,10 @@ sim_pop <- function(
   # Get region for river system
     region <- inventory$region[inventory$system == river]
     
+  # Get governmental unit
+    govt <- substr(inventory$termcode[inventory$system == river],
+                   start = 3, stop = 4)
+    
   # Get life-history parameters
   # Instantaneous natural mortality - avg for M and F within region
     if(is.null(nM)){ nM <- mean(mortality$M[mortality$region==region])}
@@ -97,7 +101,7 @@ sim_pop <- function(
                               nM = nM,
                               fM = fM,
                               n_init = n_init,
-                              f = eggs*sr*s_hatch*s_prespawn
+                              f = (eggs*sr*s_hatch*s_prespawn)/2
                               )
     
   for(t in 1:nyears){    
