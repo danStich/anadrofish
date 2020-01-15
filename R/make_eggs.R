@@ -37,6 +37,6 @@ make_eggs <- function(region, max_age){
   # Calculate number of eggs
   # Based on Hudson River data (Lehman 1953)
   eggs <- exp(-4.8641 + 2.8189*log(fl)) 
-  
+
 }
 
