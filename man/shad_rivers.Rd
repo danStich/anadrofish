@@ -3,7 +3,7 @@
 \docType{data}
 \name{shad_rivers}
 \alias{shad_rivers}
-\title{Sex-specific maturity schedules for American shad}
+\title{U.S. Altantic Coast American shad Rivers}
 \format{A data frame with 65 observations of 6 variables:
 \describe{
 

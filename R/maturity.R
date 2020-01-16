@@ -5,7 +5,7 @@
 #' (NI = Northern iteroparous, SI = Southern iteroparous, 
 #' SP = Semelparous)
 #'
-#' @format A data frame with 65 observations of 6 variables:
+#' @format A data frame with 6 observations of 15 variables:
 #' \describe{
 #' 
 #' \code{region}{ Life-history region}

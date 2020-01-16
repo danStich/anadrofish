@@ -1,11 +1,11 @@
-#' @title Sex-specific maturity schedules for American shad
+#' @title Sex-specific instaneous mortality of American shad
 #'
-#' @description A dataset containing sex-specific probabilities 
-#' of maturation at age for each life-history region 
+#' @description A dataset containing sex-specific instantaneous
+#' mortality estimates for each life-history region 
 #' (NI = Northern iteroparous, SI = Southern iteroparous, 
 #' SP = Semelparous)
 #'
-#' @format A data frame with 65 observations of 6 variables:
+#' @format A data frame with 6 observations of 3 variables:
 #' \describe{
 #' 
 #' \code{region}{ Life-history region}

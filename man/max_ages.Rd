@@ -3,8 +3,8 @@
 \docType{data}
 \name{max_ages}
 \alias{max_ages}
-\title{Sex-specific maturity schedules for American shad}
-\format{A data frame with 65 observations of 6 variables:
+\title{Sex-specific maximum ages of American shad}
+\format{A data frame with 6 observations of 3 variables:
 \describe{
 
 \code{region}{ Life-history region}
@@ -21,8 +21,8 @@ Atlantic States Marine Fisheries Commission
 max_ages
 }
 \description{
-A dataset containing sex-specific instantaneous
-natural mortality for each life-history region (NI = Northern iteroparous,
- SI = Southern iteroparous, SP = Semelparous)
+A dataset containing sex-specific maximum
+ages for each life-history region (NI = Northern iteroparous, 
+SI = Southern iteroparous, SP = Semelparous)
 }
 \keyword{datasets}
