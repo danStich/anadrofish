@@ -4,12 +4,25 @@
 \alias{make_eggs}
 \title{Simulate number of eggs per fish}
 \usage{
-make_eggs(region, max_age)
+make_eggs(region, max_age, egg_est)
 }
 \arguments{
 \item{region}{The life-history region for the population.}
 
-\item{max_age}{The maximum age of fish in the population(s). A numeric vector of length 1.}
+\item{max_age}{The maximum age of fish in the population(s).
+A numeric vector of length 1.}
+
+\item{egg_est}{The method used to estimate number of eggs
+per female in each age class. The default \code{'Olney_McBride'}
+uses predictive equations from Olney and McBride (2003) to estimate
+batch fecundity from weight-fecundity relationships
+using coefficients in \code{Olney} for the life-history region
+corresponding to the specified river. Number of batches for this
+approach is currently drawn from a random normal distribution
+with a mean of 6.7 and a standard deviation of 2.1 (McBride et al. 2016).
+
+\code{Lehman} uses an alternative equation from Lehman (1953)
+to predict mean fecundity from length.}
 }
 \value{
 A vector containing age-specific potential annual 
