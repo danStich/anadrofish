@@ -26,6 +26,12 @@
 #' if eggs per female is age invariant, or can be vector of length 
 #' \code{max_age} if age-specific.
 #' 
+#' @param egg_est Method used to estimate fecundity. Currently either
+#' parameterized from fecundity~length relationships from the Hudson
+#' River, NY, USA (\code{Lehman} Lehman 1953) or region-specific, 
+#' multiple-regression relationships from five coastal rivers
+#' (\code{Leggett} Legget and Cascardden 1978)
+#' 
 #' @param sr Sex ratio (expressed as percent female or P(female)).
 #' 
 #' @param s_prespawn Pre-spawn survival for spawners.
@@ -82,7 +88,7 @@ sim_pop <- function(
     if(is.null(spawnRecruit)){ spawnRecruit <- as.numeric(maturity[maturity$region==region & maturity$sex=='F', 3:(2+max_age)])}
     
   # Get estimated number of eggs per female
-    if(is.null(eggs)){eggs <- make_eggs(region, max_age)}
+    if(is.null(eggs)){eggs <- make_eggs(region, max_age, egg_est)}
           
   # Make a hidden environment to avoid
   # cluttering .GlobalEnv
@@ -104,6 +110,7 @@ sim_pop <- function(
                               f = (eggs*sr*s_hatch*s_prespawn)/2
                               )
     
+  # Simulate for nyears until population stabilizes.  
   for(t in 1:nyears){    
       
     # Make spawning population
@@ -133,15 +140,21 @@ sim_pop <- function(
       .sim_pop$age0 <- sum(.sim_pop$recruits_f_age)    
         
     ### NEED TO ADD:
-    ### - Post-spawn survival
     ### - Outmigrant survival
     ###    + Adults
     ###    + Juveniles    
       
+    # Get rate of iteroparity from river based on latitude
+      .sim_pop$latitude <- make_lat(river)
+      .sim_pop$iteroparity <- make_iteroparity(.sim_pop$latitude)
+      
+    # Apply post-spawn survival
+      .sim_pop$postspawn_s <- make_postspawn(.sim_pop$iteroparity, nM)
+      .sim_pop$spawners2 <- .sim_pop$spawners * .sim_pop$postspawn_s      
 
     # Project population into next time step
       .sim_pop$pop <- project_pop(
-        x = .sim_pop$pop + .sim_pop$spawners, 
+        x = .sim_pop$pop + .sim_pop$spawners2, 
         age0 = .sim_pop$age0,
         nM = nM, 
         fM = fM,

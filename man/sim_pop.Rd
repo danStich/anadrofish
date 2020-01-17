@@ -44,6 +44,12 @@ habitat available based on dam locations. \code{total}
 assumes that fish have access to all historical habitat
 identified through GIS mapping in combination with 
 expert opinion.}
+
+\item{egg_est}{Method used to estimate fecundity. Currently either
+parameterized from fecundity~length relationships from the Hudson
+River, NY, USA (\code{Lehman} Lehman 1953) or region-specific, 
+multiple-regression relationships from five coastal rivers
+(\code{Leggett} Legget and Cascardden 1978)}
 }
 \value{
 A data.frame containing simulation inputs (arguments) 
