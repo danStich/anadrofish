@@ -1,6 +1,6 @@
 # Testing code ---- 
-rm(list = ls())
-if(!is.null(dev.list())) dev.off()
+# rm(list = ls())
+# if(!is.null(dev.list())) dev.off()
 
 # Package load ----
   library(snowfall)
@@ -27,17 +27,17 @@ if(!is.null(dev.list())) dev.off()
 # . Call simulation ----
   res <- sim_pop(
     nyears = 50,
-    river = get_rivers()[48],
-    max_age = NULL,
+    river = 'Connecticut',
+    max_age = 9,
     nM = NULL,
     fM = 0,
-    n_init = MASS::rnegbin(1, 40e3, 100),
+    n_init = MASS::rnegbin(1, 4e4, 10),
     spawnRecruit = NULL,
     eggs = NULL,
     sr = rbeta(1, 100, 100),
     s_prespawn = rbeta(1, 90, 10),  
     s_hatch = runif(1, 0.005, 0.0086),
-    type='total'
+    type='functional'
     )
 
 # . Define the output lists ----
@@ -110,8 +110,8 @@ plot(x=sums$out_year,
      ylab = '',
      yaxt='n'
      ) 
-axis(2, at=seq(0,max(sums$uci+1e5),round(max(sums$uci+1e5)/5, -4)),
-     labels=sprintf(seq(0,max(sums$uci+1e5),round(max(sums$uci+1e5)/5, -4)), fmt = '%.0f'),
+axis(2, at=seq(0,max(sums$uci+1e5),round(max(sums$uci+1e5)/5, -5)),
+     labels=sprintf(seq(0,max(sums$uci+1e5),round(max(sums$uci+1e5)/5, -5)), fmt = '%.0f'),
      las=2
      )
 polygon(x=c(sums$out_year, rev(sums$out_year)),
@@ -124,3 +124,7 @@ lines(sums$out_year, sums$uci, lty=2)
 mtext('Spawner abundance', side = 2, line=5)
 #text('Dams', x=0, y=.9e6, adj=0)
 # dev.off()
+
+boxplot(resdf[,29:37])
+
+               
