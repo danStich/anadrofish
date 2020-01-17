@@ -2,7 +2,7 @@
 % Please edit documentation in R/make_postspawn.R
 \name{make_postspawn}
 \alias{make_postspawn}
-\title{}
+\title{Post-spawning survival}
 \usage{
 make_postspawn(iteroparity, nM)
 }

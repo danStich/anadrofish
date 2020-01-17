@@ -42,6 +42,8 @@ write_output <- function(){
       sr = out_sr,
       s_hatch = out_s_hatch,
       s_prespawn = out_s_prespawn,
+      s_postspawn = out_s_postspawn,
+      iteroparity = out_iteroparity,
       out_spawners,
       out_pop,
       out_year

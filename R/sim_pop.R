@@ -120,7 +120,7 @@ sim_pop <- function(
       .sim_pop$pop <- .sim_pop$pop - .sim_pop$spawners  
       
     # Apply prespawn survival to spawners  
-      .sim_pop$spawners <- .sim_pop$spawners * s_prespawn  
+      .sim_pop$spawners1 <- .sim_pop$spawners * s_prespawn  
     
     # Make annual fecundity of spawners  
       .sim_pop$fec <- make_fec(
@@ -131,7 +131,7 @@ sim_pop <- function(
     # Calculate recruitment from Beverton-Holt curve   
       .sim_pop$recruits_f_age <- beverton_holt(
         a = .sim_pop$fec,
-        S=.sim_pop$spawners,
+        S=.sim_pop$spawners1,
         acres = .sim_pop$acres,
         age_structured = TRUE
         )
@@ -149,8 +149,8 @@ sim_pop <- function(
       .sim_pop$iteroparity <- make_iteroparity(.sim_pop$latitude)
       
     # Apply post-spawn survival
-      .sim_pop$postspawn_s <- make_postspawn(.sim_pop$iteroparity, nM)
-      .sim_pop$spawners2 <- .sim_pop$spawners * .sim_pop$postspawn_s      
+      .sim_pop$s_postspawn <- make_postspawn(.sim_pop$iteroparity, nM)
+      .sim_pop$spawners2 <- .sim_pop$spawners1 * .sim_pop$s_postspawn      
 
     # Project population into next time step
       .sim_pop$pop <- project_pop(

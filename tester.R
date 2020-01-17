@@ -125,6 +125,6 @@ mtext('Spawner abundance', side = 2, line=5)
 #text('Dams', x=0, y=.9e6, adj=0)
 # dev.off()
 
-boxplot(resdf[,29:37])
+boxplot(resdf[,31:39])
 
                

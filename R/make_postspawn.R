@@ -1,4 +1,4 @@
-#' @title 
+#' @title Post-spawning survival
 #'
 #' @description Function used to estimate post-spawn survival 
 #' from proportion of repeat spawners by latitude (Leggett and
