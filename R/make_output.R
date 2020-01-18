@@ -10,6 +10,7 @@
 make_output <- function(){
   
   out_river = vector(mode='character', length=nyears)
+  out_type = vector(mode='character', length=nyears)
   out_region = vector(mode='character', length=nyears)
   out_govt = vector(mode='character', length=nyears)
   out_max_age = vector(mode='numeric', length=nyears)
@@ -30,6 +31,7 @@ make_output <- function(){
   return(
     list(
       out_river = out_river,
+      out_type = out_type,
       out_region = out_region,
       out_govt = out_govt,
       out_max_age = out_max_age,

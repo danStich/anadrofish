@@ -49,6 +49,10 @@ write_output <- function(){
       out_year
     )
   
-  return(out)
+  ifelse(
+     output=='last',
+     yes = return(out[nrow(out), ]),
+     no = return(out)
+  )
 
 }

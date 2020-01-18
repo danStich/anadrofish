@@ -45,6 +45,11 @@
 #' identified through GIS mapping in combination with 
 #' expert opinion.
 #' 
+#' @param output Level of detail provided in output. The default
+#' value of '\code{last}' returns the final year of simulation.
+#' Any value other than the default '\code{last}' will return
+#' data for all years of simulation. This is useful for testing.
+#' 
 #' @return A data.frame containing simulation inputs (arguments) 
 #' and outputs (pop, spawners) by year.
 #' 
@@ -66,7 +71,8 @@ sim_pop <- function(
   sr,
   s_prespawn,  
   s_hatch,
-  type = 'total'
+  type = 'total',
+  output = 'last'
 )
 
 {
