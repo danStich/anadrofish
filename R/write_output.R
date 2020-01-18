@@ -27,26 +27,29 @@ write_output <- function(){
   # Unlist and spawner abundance
     out_spawners <- do.call("rbind", lapply(out_spawners, unlist))
     colnames(out_spawners) <- paste('spawners_', 1:dim(out_spawners)[2], sep = '')
-  
+    spawners <- rowSums(out_spawners)
+    
   # Make a list of objects for export
     out <- data.frame(
       river = out_river,
+      year = out_year,
+      type = out_type,
       region = out_region,
       govt = out_govt,
       max_age = out_max_age,
       nM = out_nM,
       fM = out_fM,
       n_init = out_n_init,
-      out_spawnRecruit,
-      out_eggs,
+      # out_spawnRecruit,
+      # out_eggs,
       sr = out_sr,
       s_hatch = out_s_hatch,
       s_prespawn = out_s_prespawn,
       s_postspawn = out_s_postspawn,
       iteroparity = out_iteroparity,
-      out_spawners,
-      out_pop,
-      out_year
+      spawners
+      # out_spawners,
+      # out_pop
     )
   
   ifelse(

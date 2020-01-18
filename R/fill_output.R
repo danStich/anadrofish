@@ -25,8 +25,8 @@ fill_output <- function(){
     out_sr[[t]] = sr
     out_s_hatch[[t]] = s_hatch
     out_s_prespawn[[t]] = s_prespawn
-    # out_s_postspawn[[t]] = s_postspawn
-    # out_iteroparity[[t]] = iteroparity
+    out_s_postspawn[[t]] = s_postspawn
+    out_iteroparity[[t]] = iteroparity
     out_spawners[[t]] = spawners
     out_pop[[t]] = pop
     out_year[[t]] = t
