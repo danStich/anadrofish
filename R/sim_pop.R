@@ -45,6 +45,16 @@
 #' identified through GIS mapping in combination with 
 #' expert opinion.
 #' 
+#' @param upstream Numeric of length 1 representing proportional 
+#' upstream passage through dams.
+#' 
+#' @param downstream Numeric of length 1 indicating proportional 
+#' downstream survival through dams. 
+#' 
+#' @param downstream_j Numeric of length 1 indicating proportional
+#' downstream survival through dams for juveniles, if different
+#' from adults.
+#' 
 #' @param output Level of detail provided in output. The default
 #' value of '\code{last}' returns the final year of simulation.
 #' Any value other than the default '\code{last}' will return
@@ -71,7 +81,11 @@ sim_pop <- function(
   sr,
   s_prespawn,  
   s_hatch,
+  s_downstream = NULL,
   type = 'total',
+  upstream = NULL,
+  downstream = NULL,  
+  downstream_j = NULL,
   output = 'last'
 )
 
@@ -95,7 +109,28 @@ sim_pop <- function(
     
   # Get estimated number of eggs per female
     if(is.null(eggs)){eggs <- make_eggs(region, max_age, egg_est)}
-          
+    
+    
+  # Get upstream passage if not specified
+    if(type == 'functional'){upstream <- 0}
+    if(type == 'total'){upstream <- 1}
+    
+  # Get downstream passage if not specified  
+    if(type == 'functional'){downstream <- 1}
+    if(type == 'total'){downstream <- 1}
+    if(type == 'functional'){downstream_j <- 1}
+    if(type == 'total'){downstream_j <- 1}
+    
+  # Assign juvenile downstream survival to be the same
+  # as adult downstream survival if not specified.
+    if(is.null(downstream_j)){ downstream_j <- downstream}
+  
+  # Error message for unspecified passage rates if
+  # type == passage
+    if(type == 'passage' & (is.null(upstream) | is.null(downstream))){
+      stop('if type == `passage` then a value must be provided for both upstream and downstream in the call to sim_pop()')
+    }
+    
   # Make a hidden environment to avoid
   # cluttering .GlobalEnv
     .sim_pop <- new.env()
@@ -105,7 +140,20 @@ sim_pop <- function(
     list2env(make_output(), envir = .sim_pop)
   
   # Make habitat from built-in data sets
-    .sim_pop$acres <- make_habitat(river = river, type=type)
+    .sim_pop$acres <- make_habitat(river = river, type=type,
+                                   upstream=upstream)
+    
+  # Make downstream survival through dams
+    .sim_pop$s_downstream <- make_downstream(river = river, type=type,
+                                             downstream=downstream)
+    if(downstream_j == downstream){
+    .sim_pop$s_downstream_j <- make_downstream(river = river, type=type,
+                                             downstream=downstream)      
+    } else {
+    .sim_pop$s_downstream_j <- make_downstream(river = river, type=type,
+                                             downstream=downstream_j)       
+    }  
+  
     
   # Make the population
     environment(make_pop) <- .sim_pop
@@ -144,11 +192,6 @@ sim_pop <- function(
     
     # Sum recruits to get age0 fish  
       .sim_pop$age0 <- sum(.sim_pop$recruits_f_age)    
-        
-    ### NEED TO ADD:
-    ### - Outmigrant survival
-    ###    + Adults
-    ###    + Juveniles    
       
     # Get rate of iteroparity from river based on latitude
       .sim_pop$latitude <- make_lat(river)
@@ -158,10 +201,14 @@ sim_pop <- function(
       .sim_pop$s_postspawn <- make_postspawn(.sim_pop$iteroparity, nM)
       .sim_pop$spawners2 <- .sim_pop$spawners1 * .sim_pop$s_postspawn      
 
+    # Outmigrant survival
+    .sim_pop$age0_down <- .sim_pop$age0 * .sim_pop$s_downstream_j
+    .sim_pop$spawners_down <- .sim_pop$spawners2 * .sim_pop$s_downstream  
+      
     # Project population into next time step
       .sim_pop$pop <- project_pop(
-        x = .sim_pop$pop + .sim_pop$spawners2, 
-        age0 = .sim_pop$age0,
+        x = .sim_pop$pop + .sim_pop$spawners_down, 
+        age0 = .sim_pop$age0_down,
         nM = nM, 
         fM = fM,
         max_age = max_age)  

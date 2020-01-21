@@ -6,7 +6,8 @@
 \usage{
 sim_pop(nyears, river, max_age = NULL, nM = NULL, fM, n_init,
   spawnRecruit = NULL, eggs = NULL, sr, s_prespawn, s_hatch,
-  type = "total")
+  s_downstream = NULL, type = "total", upstream = NULL,
+  downstream = NULL, downstream_j = NULL, output = "last")
 }
 \arguments{
 \item{nyears}{Number of years.}
@@ -44,6 +45,21 @@ habitat available based on dam locations. \code{total}
 assumes that fish have access to all historical habitat
 identified through GIS mapping in combination with 
 expert opinion.}
+
+\item{upstream}{Numeric of length 1 representing proportional 
+upstream passage through dams.}
+
+\item{downstream}{Numeric of length 1 indicating proportional 
+downstream survival through dams.}
+
+\item{downstream_j}{Numeric of length 1 indicating proportional
+downstream survival through dams for juveniles, if different
+from adults.}
+
+\item{output}{Level of detail provided in output. The default
+value of '\code{last}' returns the final year of simulation.
+Any value other than the default '\code{last}' will return
+data for all years of simulation. This is useful for testing.}
 
 \item{egg_est}{Method used to estimate fecundity. Currently either
 parameterized from fecundity~length relationships from the Hudson

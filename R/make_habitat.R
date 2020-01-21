@@ -16,17 +16,22 @@
 #' for calculations. See \code{?habitat} for explanation of built-in 
 #' data sets.
 #' 
+#' @param upstream Proportional upstream passage through dams.
+#' 
 # #' @example inst/examples/makefec_ex.R
 #' 
 #' @export
 #'
-make_habitat <- function(habitat_data, river, type){
+make_habitat <- function(habitat_data, river, type, upstream){
   
   # Get termcode for river
   termcode <- shad_rivers[shad_rivers==river, 2]
   
   # Select habitat units based on HUC 10 watershed names
   units <- habitat[termcode == habitat$TERMCODE,]
+  
+  units$p_to_habitat <- upstream^units$dam_order
+  units$functional_upstream <- units$habitatSegment_sqkm * units$p_to_habitat
   
   # Calculate habitat surface acres from the 
   # sum of functional habitat in the subset
@@ -36,6 +41,9 @@ make_habitat <- function(habitat_data, river, type){
   if(type == 'total'){
     acres <- 247.105 * sum(units$habitatSegment_sqkm)    
   } 
+  if(type == 'passage'){
+    acres <- 247.105 * sum(units$functional_upstream)    
+  }
   
   return(acres)
 }
