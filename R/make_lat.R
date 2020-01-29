@@ -3,10 +3,12 @@
 #' @description Function used to extract river-specific latitude
 #' from built-in data sets.
 #'
-#' @param habitat A built-in \code{data.frame} containing habitat 
-#' estimates (km2) for the scenario and region selected.
+#' @param habitat A built-in data.frame containing habitat 
+#' estimates (km2) for the scenario and region selected. See 
+#' \code{\link{habitat}}.
 #'
-#' @param river Character string specifying river name
+#' @param river Character string specifying river name. See 
+#' \code{\link{get_rivers}}.
 #' 
 # #' @example inst/examples/makefec_ex.R
 #' 
@@ -20,7 +22,7 @@ make_lat <- function(river){
   # Select habitat units based on HUC 10 watershed names
   units <- habitat[termcode == habitat$TERMCODE,]
   
-  # Get latitude and longitude for the first habitat unit
+  # Get latitude and longitude for the first downstream habitat unit
   latitude <- units$latitude[1]
   
   return(latitude)

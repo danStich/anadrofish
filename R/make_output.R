@@ -1,7 +1,7 @@
 #' @title Make output vectors
 #' 
-#' @description Create output vectors for default
-#' arguments in \code{\link{sim_pop}}.
+#' @description Internal function to create output 
+#' vectors in \code{\link{sim_pop}}.
 #' 
 #' Not intended to be called directly.
 #' 
@@ -10,7 +10,6 @@
 make_output <- function(){
   
   out_river = vector(mode='character', length=nyears)
-  out_type = vector(mode='character', length=nyears)
   out_upstream = vector(mode='numeric', length=nyears) 
   out_downstream = vector(mode='numeric', length=nyears) 
   out_downstream_j = vector(mode='numeric', length=nyears) 
@@ -34,7 +33,6 @@ make_output <- function(){
   return(
     list(
       out_river = out_river,
-      out_type = out_type,
       out_upstream = out_upstream,
       out_downstream = out_downstream,
       out_downstream_j = out_downstream_j,

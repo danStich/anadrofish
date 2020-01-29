@@ -1,49 +1,43 @@
-#' @title Simulate population dynamics through time
+#' @title Simulate population dynamics through time.
 #' 
-#' @description Use functions from anadrofish to simulate
+#' @description Use functions from \code{\link{anadrofish}} to simulate
 #' population change through time.
 #' 
-#' @param nyears Number of years.
+#' @param nyears Number of years for simulation(s).
 #' 
-#' @param river River basin. All rivers implemented in package 
-#' can be viewed by calling \code{get_rivers()}. Alternatively,
-#' the user can specify \code{rivers = sample(get_rivers(), 1)} 
-#' to randomly sample river within larger simulation studies.
+#' @param river River basin. Available rivers implemented in package 
+#' can be viewed by calling \code{\link{get_rivers}}. Alternatively,
+#' the user can specify \code{rivers = sample(get_rivers, 1)} 
+#' to randomly sample river within larger simulation studies. Information
+#' about each river can be found in \code{\link{inventory}} and 
+#' \code{\link{shad_rivers}} datasets.
 #' 
-#' @param max_age Maximum age of fish in population.
+#' @param max_age Maximum age of fish in population. If \code{NULL}
+#' (default), then based on the maximum age of females for the
+#' corresponding region in the \code{\link{max_ages}} dataset.
 #' 
-#' @param nM Instantaneous natural mortality estimate.
+#' @param nM Instantaneous natural mortality. If \code{NULL}
+#' (default), then based the average of males and females for the
+#' corresponding region in the \code{\link{mortality}} dataset.
 #' 
-#' @param fM Instantaneous fishing mortality estimate.
+#' @param fM Instantaneous fishing mortality. The default value is zero.
 #' 
 #' @param n_init Initial population seed (number of Age-1 individuals) 
-#' used to seed the population.
+#' used to simulate the starting population.
 #' 
 #' @param spawnRecruit Probability of recruitment to spawn at age. Numeric 
 #' vector with length \code{max_age}
 #' 
 #' @param eggs Number of eggs per female. Can be a vector of length 1
 #' if eggs per female is age invariant, or can be vector of length 
-#' \code{max_age} if age-specific.
-#' 
-#' @param egg_est Method used to estimate fecundity. Currently either
-#' parameterized from fecundity~length relationships from the Hudson
-#' River, NY, USA (\code{Lehman} Lehman 1953) or region-specific, 
-#' multiple-regression relationships from five coastal rivers
-#' (\code{Leggett} Legget and Cascardden 1978)
+#' \code{max_age} if age-specific. If \code{NULL} (default) then 
+#' estimated based on regression relationships in \code{\link{make_eggs}}.
 #' 
 #' @param sr Sex ratio (expressed as percent female or P(female)).
 #' 
 #' @param s_prespawn Pre-spawn survival for spawners.
 #' 
-#' @param s_hatch Survival from hatch to outmigrant
-#' 
-#' @param type Type of habitat calculation used. 
-#' The default \code{functional} assumes current functional
-#' habitat available based on dam locations. \code{total}
-#' assumes that fish have access to all historical habitat
-#' identified through GIS mapping in combination with 
-#' expert opinion.
+#' @param s_hatch Survival from hatch to outmigrant.
 #' 
 #' @param upstream Numeric of length 1 representing proportional 
 #' upstream passage through dams.
@@ -52,18 +46,17 @@
 #' downstream survival through dams. 
 #' 
 #' @param downstream_j Numeric of length 1 indicating proportional
-#' downstream survival through dams for juveniles, if different
-#' from adults.
+#' downstream survival through dams for juveniles.
 #' 
 #' @param output Level of detail provided in output. The default
 #' value of '\code{last}' returns the final year of simulation.
 #' Any value other than the default '\code{last}' will return
 #' data for all years of simulation. This is useful for testing.
 #' 
-#' @return A data.frame containing simulation inputs (arguments) 
-#' and outputs (pop, spawners) by year.
+#' @return A data.frame containing simulation inputs (arguments
+#' to \code{sim_pop}) and output (number of spawners) by year.
 #' 
-#' @example inst/examples/simpop_ex.R
+# #' @example inst/examples/simpop_ex.R
 #' 
 #' @importFrom demogR leslie.matrix eigen.analysis
 #' 
@@ -81,11 +74,9 @@ sim_pop <- function(
   sr,
   s_prespawn,  
   s_hatch,
-  s_downstream = NULL,
-  type = 'total',
-  upstream = NULL,
-  downstream = NULL,  
-  downstream_j = NULL,
+  upstream,
+  downstream,  
+  downstream_j,
   output = 'last'
 )
 
@@ -108,28 +99,7 @@ sim_pop <- function(
     if(is.null(spawnRecruit)){ spawnRecruit <- as.numeric(maturity[maturity$region==region & maturity$sex=='F', 3:(2+max_age)])}
     
   # Get estimated number of eggs per female
-    if(is.null(eggs)){eggs <- make_eggs(region, max_age, egg_est)}
-    
-    
-  # Get upstream passage if not specified
-    if(type == 'functional'){upstream <- 0}
-    if(type == 'total'){upstream <- 1}
-    
-  # Get downstream passage if not specified  
-    if(type == 'functional'){downstream <- 1}
-    if(type == 'total'){downstream <- 1}
-    if(type == 'functional'){downstream_j <- 1}
-    if(type == 'total'){downstream_j <- 1}
-    
-  # Assign juvenile downstream survival to be the same
-  # as adult downstream survival if not specified.
-    if(is.null(downstream_j)){ downstream_j <- downstream}
-  
-  # Error message for unspecified passage rates if
-  # type == passage
-    if(type == 'passage' & (is.null(upstream) | is.null(downstream))){
-      stop('if type == `passage` then a value must be provided for both upstream and downstream in the call to sim_pop()')
-    }
+    if(is.null(eggs)){eggs <- make_eggs(region, max_age)}
     
   # Make a hidden environment to avoid
   # cluttering .GlobalEnv
@@ -140,20 +110,13 @@ sim_pop <- function(
     list2env(make_output(), envir = .sim_pop)
   
   # Make habitat from built-in data sets
-    .sim_pop$acres <- make_habitat(river = river, type=type,
-                                   upstream=upstream)
+    .sim_pop$acres <- make_habitat(river = river, upstream=upstream)
     
   # Make downstream survival through dams
-    .sim_pop$s_downstream <- make_downstream(river = river, type=type,
-                                             downstream=downstream)
-    if(downstream_j == downstream){
-    .sim_pop$s_downstream_j <- make_downstream(river = river, type=type,
-                                             downstream=downstream)      
-    } else {
-    .sim_pop$s_downstream_j <- make_downstream(river = river, type=type,
-                                             downstream=downstream_j)       
-    }  
-  
+    .sim_pop$s_downstream <- make_downstream(
+      river = river, downstream=downstream, upstream=upstream)
+    .sim_pop$s_downstream_j <- make_downstream(
+      river = river, downstream=downstream_j, upstream=upstream)       
     
   # Make the population
     environment(make_pop) <- .sim_pop
@@ -161,7 +124,7 @@ sim_pop <- function(
                               nM = nM,
                               fM = fM,
                               n_init = n_init,
-                              f = (eggs*sr*s_hatch*s_prespawn)/2
+                              f = eggs/2
                               )
     
   # Simulate for nyears until population stabilizes.  

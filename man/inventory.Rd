@@ -4,10 +4,10 @@
 \name{inventory}
 \alias{inventory}
 \title{Inventory of U.S Atlantic coast American shad rivers}
-\format{A data frame with 65 observations of 6 variables:
+\format{A data.frame with 65 observations of 6 variables:
 \describe{
 
-\code{system}{ The name of each river system.}
+\code{system}{ The name of each river system in \code{\link{shad_rivers}}.}
 
 \code{region}{ The life-history region in which the river is
 located (NI = Northern iteroparous, SI = Southern iteroparous,
@@ -21,12 +21,14 @@ region, state of outlet, and HUC code.}
 }
 
 \code{huc_code}{ Code for HUC used to calculate habitat in
-\code{habitat}}
+\code{\link{habitat}}
 
 \code{included}{ Names of other rivers included within the system.}
 
 \code{operational_notes}{ Notes related to data management, processing,
-etc. Not used directly. Included for transparency.}}
+etc. Not used directly. Included for transparency.} 
+
+}}
 \source{
 Atlantic States Marine Fisheries Commission
 }
@@ -36,6 +38,6 @@ inventory
 \description{
 A dataset containing the name of each of the U.S
 Atlantic coast rivers identified as historical American
-shad habitat. Not used directly in package. Included for reference.
+shad habitat.
 }
 \keyword{datasets}

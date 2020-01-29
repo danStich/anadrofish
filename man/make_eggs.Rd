@@ -4,25 +4,14 @@
 \alias{make_eggs}
 \title{Simulate number of eggs per fish}
 \usage{
-make_eggs(region, max_age, egg_est)
+make_eggs(region, max_age)
 }
 \arguments{
 \item{region}{The life-history region for the population.}
 
 \item{max_age}{The maximum age of fish in the population(s).
-A numeric vector of length 1.}
-
-\item{egg_est}{The method used to estimate number of eggs
-per female in each age class. The default \code{'Olney_McBride'}
-uses predictive equations from Olney and McBride (2003) to estimate
-batch fecundity from weight-fecundity relationships
-using coefficients in \code{Olney} for the life-history region
-corresponding to the specified river. Number of batches for this
-approach is currently drawn from a random normal distribution
-with a mean of 6.7 and a standard deviation of 2.1 (McBride et al. 2016).
-
-\code{Lehman} uses an alternative equation from Lehman (1953)
-to predict mean fecundity from length.}
+A numeric vector of length 1. See \code{\link{sim_pop}} in 
+the event that the function is called internally from \code{sim_pop}}
 }
 \value{
 A vector containing age-specific potential annual 
@@ -32,7 +21,20 @@ fecundity with \code{length = max_age}.
 Function used to simulate number of eggs 
 produced per female (potential annual fecundity, PAF).
 }
+\section{Details}{
+
+The default uses predictive equations from Olney and McBride (2003) 
+to estimate batch fecundity from weight-fecundity relationships
+using coefficients in \code{\link{olney_mcbride}} for the life-history region
+corresponding to the specified river. Number of batches for this
+approach is currently drawn from a random normal distribution
+with a mean of 6.7 and a standard deviation of 2.1 (McBride et al. 2016).
+}
+
 \references{
-Lehman, B. A. 1953. Fecundity of Hudson River shad. 
-US Fish and Wildlife Service, Research Reports 33:1–8.
+Olney, J. E. and R. S. McBride. 2003. Intraspecific 
+variation in batch fecundity of American shad (Alosa sapidissima): 
+revisiting the paradigm of reciprocal latitudinal trends 
+in reproductive traits. American Fisheries Society 
+Symposium 35:185-192.
 }

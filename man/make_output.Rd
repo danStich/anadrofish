@@ -7,8 +7,8 @@
 make_output()
 }
 \description{
-Create output vectors for default
-arguments in \code{\link{sim_pop}}.
+Internal function to create output 
+vectors in \code{\link{sim_pop}}.
 
 Not intended to be called directly.
 }

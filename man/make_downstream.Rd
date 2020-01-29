@@ -4,18 +4,13 @@
 \alias{make_downstream}
 \title{Calculate downstream survival given dam passage scenario.}
 \usage{
-make_downstream(habitat_data, river, type, downstream)
+make_downstream(habitat_data, river, downstream)
 }
 \arguments{
 \item{habitat_data}{A built-in \code{data.frame} containing habitat 
 estimates (km2) for the scenario and region selected.}
 
 \item{river}{Character string specifying river name.}
-
-\item{type}{Character string indicating the type of habitat 
-to be considered. Possible values include \code{'functional'}, 
-\code{'total'}, or \code{'passage'}. See \code{?sim_pop} for explanation
-of these types.}
 
 \item{downstream}{Numeric indicating proportional downstream survival 
 through a single dam.}

@@ -4,7 +4,7 @@
 \alias{make_habitat}
 \title{Project population}
 \usage{
-make_habitat(habitat_data, river, type, upstream)
+make_habitat(habitat_data, river, upstream)
 }
 \arguments{
 \item{habitat_data}{A built-in \code{data.frame} containing habitat 
@@ -12,17 +12,10 @@ estimates (km2) for the scenario and region selected.}
 
 \item{river}{Character string specifying river name}
 
-\item{type}{Character string indicating the type of habitat 
-to be considered. Possible values include \code{functional}, 
-or \code{segment}. For \code{PassageToHabitat < 1}, 
-\code{type = 'functional'} adjusts \code{habitatSegment_sqkm} 
-proportionally and uses the variable \code{functional_habitatSegment_sqkm} 
-for calculations. See \code{?habitat} for explanation of built-in 
-data sets.}
-
 \item{upstream}{Proportional upstream passage through dams.}
 }
 \description{
-Function used to make habitat from the built-in 
+Function used to make habitat for rivers listed
+in \code{\link{get_rivers()}}from the built-in 
 dataset(s)
 }

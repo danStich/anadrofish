@@ -4,7 +4,7 @@
 \alias{make_pop}
 \title{Make population}
 \usage{
-make_pop(max_age, nM, fM, n_init, f = c(rep(0, 2), rep(1, max_age - 2)))
+make_pop(max_age, nM, fM, n_init, f)
 }
 \arguments{
 \item{max_age}{The maximum age of fish in the population(s). A numeric vector of length 1.}

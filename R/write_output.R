@@ -33,7 +33,6 @@ write_output <- function(){
     out <- data.frame(
       river = out_river,
       year = out_year,
-      type = out_type,
       upstream = out_upstream,
       downstream = out_downstream,
       downstream_j = out_downstream_j,

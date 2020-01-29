@@ -2,49 +2,48 @@
 % Please edit documentation in R/sim_pop.R
 \name{sim_pop}
 \alias{sim_pop}
-\title{Simulate population dynamics through time}
+\title{Simulate population dynamics through time.}
 \usage{
 sim_pop(nyears, river, max_age = NULL, nM = NULL, fM, n_init,
-  spawnRecruit = NULL, eggs = NULL, sr, s_prespawn, s_hatch,
-  s_downstream = NULL, type = "total", upstream = NULL,
-  downstream = NULL, downstream_j = NULL, output = "last")
+  spawnRecruit = NULL, eggs = NULL, sr, s_prespawn, s_hatch, upstream,
+  downstream, downstream_j, output = "last")
 }
 \arguments{
-\item{nyears}{Number of years.}
+\item{nyears}{Number of years for simulation(s).}
 
-\item{river}{River basin. All rivers implemented in package 
-can be viewed by calling \code{get_rivers()}. Alternatively,
-the user can specify \code{rivers = sample(get_rivers(), 1)} 
-to randomly sample river within larger simulation studies.}
+\item{river}{River basin. Available rivers implemented in package 
+can be viewed by calling \code{\link{get_rivers}}. Alternatively,
+the user can specify \code{rivers = sample(get_rivers, 1)} 
+to randomly sample river within larger simulation studies. Information
+about each river can be found in \code{\link{inventory}} and 
+\code{\link{shad_rivers}} datasets.}
 
-\item{max_age}{Maximum age of fish in population.}
+\item{max_age}{Maximum age of fish in population. If \code{NULL}
+(default), then based on the maximum age of females for the
+corresponding region in the \code{\link{max_ages}} dataset.}
 
-\item{nM}{Instantaneous natural mortality estimate.}
+\item{nM}{Instantaneous natural mortality. If \code{NULL}
+(default), then based the average of males and females for the
+corresponding region in the \code{\link{mortality}} dataset.}
 
-\item{fM}{Instantaneous fishing mortality estimate.}
+\item{fM}{Instantaneous fishing mortality. The default value is zero.}
 
 \item{n_init}{Initial population seed (number of Age-1 individuals) 
-used to seed the population.}
+used to simulate the starting population.}
 
 \item{spawnRecruit}{Probability of recruitment to spawn at age. Numeric 
 vector with length \code{max_age}}
 
 \item{eggs}{Number of eggs per female. Can be a vector of length 1
 if eggs per female is age invariant, or can be vector of length 
-\code{max_age} if age-specific.}
+\code{max_age} if age-specific. If \code{NULL} (default) then 
+estimated based on regression relationships in \code{\link{make_eggs}}.}
 
 \item{sr}{Sex ratio (expressed as percent female or P(female)).}
 
 \item{s_prespawn}{Pre-spawn survival for spawners.}
 
-\item{s_hatch}{Survival from hatch to outmigrant}
-
-\item{type}{Type of habitat calculation used. 
-The default \code{functional} assumes current functional
-habitat available based on dam locations. \code{total}
-assumes that fish have access to all historical habitat
-identified through GIS mapping in combination with 
-expert opinion.}
+\item{s_hatch}{Survival from hatch to outmigrant.}
 
 \item{upstream}{Numeric of length 1 representing proportional 
 upstream passage through dams.}
@@ -53,46 +52,18 @@ upstream passage through dams.}
 downstream survival through dams.}
 
 \item{downstream_j}{Numeric of length 1 indicating proportional
-downstream survival through dams for juveniles, if different
-from adults.}
+downstream survival through dams for juveniles.}
 
 \item{output}{Level of detail provided in output. The default
 value of '\code{last}' returns the final year of simulation.
 Any value other than the default '\code{last}' will return
 data for all years of simulation. This is useful for testing.}
-
-\item{egg_est}{Method used to estimate fecundity. Currently either
-parameterized from fecundity~length relationships from the Hudson
-River, NY, USA (\code{Lehman} Lehman 1953) or region-specific, 
-multiple-regression relationships from five coastal rivers
-(\code{Leggett} Legget and Cascardden 1978)}
 }
 \value{
-A data.frame containing simulation inputs (arguments) 
-and outputs (pop, spawners) by year.
+A data.frame containing simulation inputs (arguments
+to \code{sim_pop}) and output (number of spawners) by year.
 }
 \description{
-Use functions from anadrofish to simulate
+Use functions from \code{\link{anadrofish}} to simulate
 population change through time.
-}
-\examples{
-# Example usage
-\dontrun{
-  
-  res <- sim_pop(
-    nyears = 50,
-    river = 'Penobscot',
-    max_age = 9,
-    nM = 0.38,
-    fM = 0.00,
-    n_init = 1e5,
-    spawnRecruit = c(0, 0, 0, 0.01, 0.33, 0.84, 0.97, 0.99, 1.00), 
-    eggs = c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724),
-    sr = 0.50,
-    s_prespawn = 0.90,  
-    s_hatch = 0.10)
-  
-  plot(x=res$out_year, y = apply(res[ , c(27:35)], 1, sum) , typ='l')
-  
-}
 }

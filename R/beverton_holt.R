@@ -7,10 +7,10 @@
 #'
 #' @param a Ratio of recruits per spawner. Density independent parameter 
 #' equivelant to the slope near \code{S = 0}. By default specified as 
-#' realized annual fecundity.
+#' potential annual fecundity.
 #'
 #' @param S Spawning stock abundance per acre.
-#' Numeric vector with single or multiple elements.
+#' Numeric vector with one or more elements.
 #'
 #' @param b Density-dependent parameter. By default specified on a per-acre
 #' basis (will be divided by \code{acres} in function)

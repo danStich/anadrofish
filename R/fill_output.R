@@ -1,7 +1,7 @@
 #' @title Fill output vectors
 #' 
-#' @description Fill output vectors for default
-#' arguments in \code{sim_pop}.
+#' @description Internal function to fill output vectors for default
+#' arguments in \code{sim_pop} and the output (\code{spawners}).
 #' 
 #' Not intended to be called directly.
 #' 
@@ -13,7 +13,6 @@ fill_output <- function(){
   
   # Collect parameters  
     out_river[[t]] = river
-    out_type[[t]] = type
     out_upstream[[t]] = upstream
     out_downstream[[t]] = downstream
     out_downstream_j[[t]] = downstream_j
@@ -38,7 +37,6 @@ fill_output <- function(){
     filled <- 
       list(
         out_river,
-        out_type,
         out_upstream,
         out_downstream,
         out_downstream_j,
@@ -62,7 +60,6 @@ fill_output <- function(){
     
     names(filled) <- c(
         'out_river',
-        'out_type',
         'out_upstream',
         'out_downstream',
         'out_downstream_j',

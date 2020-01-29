@@ -35,10 +35,10 @@ project_pop <- function(x, age0, nM, fM, max_age){
   # Make the projection matrix
     les <- leslie.matrix(
       lx = cumprod(c(s)),
-      mx = rep( 1, length(s) )
+      mx = rep(1, length(s))
       )  
   
-  # Multiply eggs (fecundity) by sex ratio and hatch success
+  # Project population forward one time-step
     tplus1 <- les %*% c(age0, x)[1:(length(c(age0, x)))]
   
   # Return the result to R
