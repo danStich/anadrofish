@@ -11,6 +11,9 @@
 #' @param downstream Numeric indicating proportional downstream survival 
 #' through a single dam.
 #' 
+#' @param upstream Numeric indicating proportional upstream passage 
+#' through a single dam.
+#' 
 #' @return Numeric of length 1 representing catchment-scale 
 #' downstream migration mortality for juvenile or adult fish.
 #' 

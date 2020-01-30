@@ -10,8 +10,8 @@ fill_output()
 list of output vectors
 }
 \description{
-Fill output vectors for default
-arguments in \code{sim_pop}.
+Internal function to fill output vectors for default
+arguments in \code{sim_pop} and the output (\code{spawners}).
 
 Not intended to be called directly.
 }

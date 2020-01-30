@@ -7,10 +7,8 @@
 make_lat(river)
 }
 \arguments{
-\item{river}{Character string specifying river name}
-
-\item{habitat}{A built-in \code{data.frame} containing habitat 
-estimates (km2) for the scenario and region selected.}
+\item{river}{Character string specifying river name. See 
+\code{\link{get_rivers}}.}
 }
 \description{
 Function used to extract river-specific latitude

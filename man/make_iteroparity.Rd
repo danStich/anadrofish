@@ -4,15 +4,25 @@
 \alias{make_iteroparity}
 \title{Estimate rate of iteroparity for American shad from
 latitude based on Leggett and Cascardden (1978) and 
-Bailey and Zydlewski (2014)}
+Bailey and Zydlewski (2013).}
 \usage{
 make_iteroparity(latitude)
 }
 \arguments{
-\item{habitat}{A built-in \code{data.frame} containing habitat 
-estimates (km2) for the scenario and region selected.}
+\item{latitude}{Latitude, in decimal degrees.}
 }
 \description{
 Function used to extract river-specific latitude
 from built-in data sets.
+}
+\references{
+Bailey, M.M., and J. D. Zydlewski. 2013. To stock or not
+to stock? Assessing therestoration potential of a remnant 
+American shad spawning run with hatchery supplementation. North 
+American Journal of Fisheries Management 33:459–467.
+
+Leggett, W., and J. E. Cascardden. 1978. Latitudinal Variation in 
+Reproductive Characteristics of American Shad (Alosa sapidissima): 
+Evidence for Population Specific Life History Strategies in Fish.
+Journal of the Fisheries Research Board of Canada 35:1469-1478.
 }

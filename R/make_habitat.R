@@ -1,7 +1,7 @@
 #' @title Project population
 #'
 #' @description Function used to make habitat for rivers listed
-#' in \code{\link{get_rivers}}from the built-in 
+#' in \code{\link{get_rivers}} from the built-in 
 #' dataset(s)
 #'
 #' @param habitat_data A built-in data.frame containing habitat 

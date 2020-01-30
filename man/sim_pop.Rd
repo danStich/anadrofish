@@ -15,8 +15,8 @@ sim_pop(nyears, river, max_age = NULL, nM = NULL, fM, n_init,
 can be viewed by calling \code{\link{get_rivers}}. Alternatively,
 the user can specify \code{rivers = sample(get_rivers, 1)} 
 to randomly sample river within larger simulation studies. Information
-about each river can be found in \code{\link{inventory}} and 
-\code{\link{shad_rivers}} datasets.}
+about each river can be found in \code{\link{inventory}}, 
+\code{\link{shad_rivers}}, and \code{\link{habitat}} datasets.}
 
 \item{max_age}{Maximum age of fish in population. If \code{NULL}
 (default), then based on the maximum age of females for the

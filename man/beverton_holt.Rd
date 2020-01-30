@@ -10,10 +10,10 @@ beverton_holt(a = 250000, S = 100, b = 0.340297, acres = 1,
 \arguments{
 \item{a}{Ratio of recruits per spawner. Density independent parameter 
 equivelant to the slope near \code{S = 0}. By default specified as 
-realized annual fecundity.}
+potential annual fecundity.}
 
 \item{S}{Spawning stock abundance per acre.
-Numeric vector with single or multiple elements.}
+Numeric vector with one or more elements.}
 
 \item{b}{Density-dependent parameter. By default specified on a per-acre
 basis (will be divided by \code{acres} in function)}

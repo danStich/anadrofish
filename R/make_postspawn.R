@@ -5,8 +5,9 @@
 #' Cascardden 1978, Bailey and Zydlewski 2013) and natural mortality
 #' by life-history region.
 #'
-#' @param habitat A built-in \code{data.frame} containing habitat 
-#' estimates (km2) for the scenario and region selected.
+#' @param iteroparity Rate of iteroparity.
+#' 
+#' @param nM Instantaneous annual mortality.
 #' 
 # #' @example inst/examples/make_postspawn_ex.R
 #'

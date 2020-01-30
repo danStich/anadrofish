@@ -7,7 +7,7 @@
 make_habitat(habitat_data, river, upstream)
 }
 \arguments{
-\item{habitat_data}{A built-in \code{data.frame} containing habitat 
+\item{habitat_data}{A built-in data.frame containing habitat 
 estimates (km2) for the scenario and region selected.}
 
 \item{river}{Character string specifying river name}
@@ -16,6 +16,6 @@ estimates (km2) for the scenario and region selected.}
 }
 \description{
 Function used to make habitat for rivers listed
-in \code{\link{get_rivers()}}from the built-in 
+in \code{\link{get_rivers}} from the built-in 
 dataset(s)
 }

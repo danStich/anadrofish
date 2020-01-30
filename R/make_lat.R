@@ -3,10 +3,6 @@
 #' @description Function used to extract river-specific latitude
 #' from built-in data sets.
 #'
-#' @param habitat A built-in data.frame containing habitat 
-#' estimates (km2) for the scenario and region selected. See 
-#' \code{\link{habitat}}.
-#'
 #' @param river Character string specifying river name. See 
 #' \code{\link{get_rivers}}.
 #' 
