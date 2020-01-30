@@ -123,8 +123,7 @@ sim_pop <- function(
     .sim_pop$pop <-  make_pop(max_age = max_age,
                               nM = nM,
                               fM = fM,
-                              n_init = n_init,
-                              f = eggs/2
+                              n_init = n_init
                               )
     
   # Simulate for nyears until population stabilizes.  
