@@ -25,7 +25,7 @@ fill_output <- function(){
     out_spawnRecruit[[t]] = spawnRecruit
     out_eggs[[t]] = eggs
     out_sr[[t]] = sr
-    out_s_hatch[[t]] = s_hatch
+    out_s_juvenile[[t]] = s_juvenile
     out_s_prespawn[[t]] = s_prespawn
     out_s_postspawn[[t]] = s_postspawn
     out_iteroparity[[t]] = iteroparity
@@ -49,7 +49,7 @@ fill_output <- function(){
         out_spawnRecruit,
         out_eggs,
         out_sr,
-        out_s_hatch,
+        out_s_juvenile,
         out_s_prespawn,
         out_s_postspawn,
         out_iteroparity,
@@ -72,7 +72,7 @@ fill_output <- function(){
         'out_spawnRecruit',
         'out_eggs',
         'out_sr',
-        'out_s_hatch',
+        'out_s_juvenile',
         'out_s_prespawn',
         'out_s_postspawn',
         'out_iteroparity',

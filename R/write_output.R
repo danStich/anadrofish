@@ -45,7 +45,7 @@ write_output <- function(){
       # out_spawnRecruit,
       # out_eggs,
       sr = out_sr,
-      s_hatch = out_s_hatch,
+      s_juvenile = out_s_juvenile,
       s_prespawn = out_s_prespawn,
       s_postspawn = out_s_postspawn,
       iteroparity = out_iteroparity,
