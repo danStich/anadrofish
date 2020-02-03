@@ -1,5 +1,5 @@
 # anadrofish
-R package for modeling anadromous fish population responses to FW habitat changes
+R package for modeling anadromous fish population responses to freshwater habitat changes
 
 ## Installation
 This package can be installed with the [`devtools`](https://www.rstudio.com/products/rpackages/devtools/) package in R using the repository url:
