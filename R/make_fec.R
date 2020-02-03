@@ -8,7 +8,7 @@
 #' 
 #' @param sr Sex ratio
 #' 
-#' @param s_hatch Hatching success (hatch to larval survival)
+#' @param s_juvenile Hatching success (hatch to larval survival)
 #'
 #' @return Number of age-0 recruits produced. May be a single 
 #' value (vector of length 1) or a vector of length = maximum age
@@ -23,10 +23,10 @@
 #' 
 #' @export
 #'
-make_fec <- function(eggs, sr, s_hatch){
+make_fec <- function(eggs, sr, s_juvenile){
 
   # Multiply eggs (fecundity) by sex ratio and hatch success
-    fec <- eggs * sr * s_hatch
+    fec <- eggs * sr * s_juvenile
   
   # Return the result to R
     return(fec)

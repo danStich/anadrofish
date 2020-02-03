@@ -4,7 +4,7 @@
 \alias{make_fec}
 \title{Make fecundity}
 \usage{
-make_fec(eggs, sr, s_hatch)
+make_fec(eggs, sr, s_juvenile)
 }
 \arguments{
 \item{eggs}{The number of eggs an individual fish
@@ -12,7 +12,7 @@ can produce}
 
 \item{sr}{Sex ratio}
 
-\item{s_hatch}{Hatching success (hatch to larval survival)}
+\item{s_juvenile}{Hatching success (hatch to larval survival)}
 }
 \value{
 Number of age-0 recruits produced. May be a single 
