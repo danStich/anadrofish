@@ -5,8 +5,8 @@
 \title{Simulate population dynamics through time.}
 \usage{
 sim_pop(nyears, river, max_age = NULL, nM = NULL, fM, n_init,
-  spawnRecruit = NULL, eggs = NULL, sr, s_prespawn, s_hatch, upstream,
-  downstream, downstream_j, output = "last")
+  spawnRecruit = NULL, eggs = NULL, sr, s_prespawn, s_juvenile,
+  upstream, downstream, downstream_j, output = "last")
 }
 \arguments{
 \item{nyears}{Number of years for simulation(s).}
@@ -43,7 +43,7 @@ estimated based on regression relationships in \code{\link{make_eggs}}.}
 
 \item{s_prespawn}{Pre-spawn survival for spawners.}
 
-\item{s_hatch}{Survival from hatch to outmigrant.}
+\item{s_juvenile}{Survival from hatch to outmigrant.}
 
 \item{upstream}{Numeric of length 1 representing proportional 
 upstream passage through dams.}

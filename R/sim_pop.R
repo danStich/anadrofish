@@ -37,7 +37,7 @@
 #' 
 #' @param s_prespawn Pre-spawn survival for spawners.
 #' 
-#' @param s_hatch Survival from hatch to outmigrant.
+#' @param s_juvenile Survival from hatch to outmigrant.
 #' 
 #' @param upstream Numeric of length 1 representing proportional 
 #' upstream passage through dams.
@@ -73,7 +73,7 @@ sim_pop <- function(
   eggs = NULL,
   sr,
   s_prespawn,  
-  s_hatch,
+  s_juvenile,
   upstream,
   downstream,  
   downstream_j,
@@ -88,18 +88,21 @@ sim_pop <- function(
     govt <- substr(inventory$termcode[inventory$system == river],
                    start = 3, stop = 4)
     
-  # Get life-history parameters
+  # Get life-history parameters if not specified 
   # Instantaneous natural mortality - avg for M and F within region
     if(is.null(nM)){ nM <- mean(mortality$M[mortality$region==region])}
       
-  # Maximum age
+  # Maximum age if not specified 
     if(is.null(max_age)){ max_age <- max(max_ages$maxage[max_ages$region==region])}
     
-  # Maturity schedule
+  # Maturity schedule if not specified 
     if(is.null(spawnRecruit)){ spawnRecruit <- as.numeric(maturity[maturity$region==region & maturity$sex=='F', 3:(2+max_age)])}
     
-  # Get estimated number of eggs per female
+  # Get estimated number of eggs per female if not specified 
     if(is.null(eggs)){eggs <- make_eggs(region, max_age)}
+    
+  # Get hatch-to-outmigrant survival if not specified  
+    if(is.null(s_juvenile)){s_juvenile <- sim_juvenile_s(crecco_1983)}
     
   # Make a hidden environment to avoid
   # cluttering .GlobalEnv
@@ -141,7 +144,7 @@ sim_pop <- function(
     # Make annual fecundity of spawners  
       .sim_pop$fec <- make_fec(
         eggs = eggs,
-        sr = sr, s_hatch = s_hatch
+        sr = sr, s_juvenile = s_juvenile
         )
      
     # Calculate recruitment from Beverton-Holt curve   
