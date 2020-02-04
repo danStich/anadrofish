@@ -18,10 +18,10 @@
 make_habitat <- function(habitat_data, river, upstream){
   
   # Get termcode for river
-  termcode <- shad_rivers[shad_rivers==river, 2]
+  termcode <- shad_rivers$termcode[shad_rivers$system==river]
   
-  # Select habitat units based on HUC 10 watershed names
-  units <- habitat[termcode == habitat$TERMCODE,]
+  # Select habitat units based on huc_code
+  units <- habitat[habitat$TERMCODE==termcode,]
   
   # Calculate passage to habitat segment
   units$p_to_habitat <- upstream^units$dam_order

@@ -9,9 +9,19 @@
 
 \code{system}{ The name of each river system.}
 
+\code{region}{ Life-history region (NI = Northern 
+iteroparous, SI = Southern iteroparous, SP = Semelparous)}
+
+\code{huc_code}{ Code for the HUC level (4, 6, 8, 10)
+used to identify river system, with 3 - 9 digits (
+\code{huc_level-1}).}
+
 \code{termcode}{ A unique identifier for each river system that is
-region (NI = Northern iteroparous, SI = Southern iteroparous, 
-SP = Semelparous), state of outlet, and HUC code.}
+region, state of outlet, and HUC code.}
+
+\code{count}{ Count of habitat segments per system}
+
+\code{total}{ Sum of habitat segments (sq. km) in system}
 }}
 \source{
 Atlantic States Marine Fisheries Commission
@@ -22,9 +32,8 @@ shad_rivers
 \description{
 A dataset containing the names U.S
 Atlantic coast rivers identified as historical American
-shad habitat that are used in \code{anadrofish}. 
-Derived from \code{inventory}. Used to relate 
+shad habitat. Derived from \code{inventory}. Used to relate 
 user-specified river(s) to amount of habitat in each system 
-and regional biological parameters via termcode.
+and regional biological parameters via \code{huc_code}.
 }
 \keyword{datasets}
