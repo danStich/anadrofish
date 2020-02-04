@@ -37,7 +37,10 @@
 #' 
 #' @param s_prespawn Pre-spawn survival for spawners.
 #' 
-#' @param s_juvenile Survival from hatch to outmigrant.
+#' @param s_juvenile Survival from hatch to outmigrant. If NULL
+#' (default) then simulated from a (log) normal distribution using
+#' mean and sd of \code{Sc} through \code{70 d} for 1979-1982 from
+#' Crecco et al. (1983).
 #' 
 #' @param upstream Numeric of length 1 representing proportional 
 #' upstream passage through dams.
@@ -73,7 +76,7 @@ sim_pop <- function(
   eggs = NULL,
   sr,
   s_prespawn,  
-  s_juvenile,
+  s_juvenile = NULL,
   upstream,
   downstream,  
   downstream_j,
