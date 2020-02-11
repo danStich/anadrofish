@@ -51,14 +51,26 @@
 #' @param downstream_j Numeric of length 1 indicating proportional
 #' downstream survival through dams for juveniles.
 #' 
-#' @param output Level of detail provided in output. The default
+#' @param output_years Level of detail provided in output. The default
 #' value of '\code{last}' returns the final year of simulation.
 #' Any value other than the default '\code{last}' will return
 #' data for all years of simulation. This is useful for testing.
 #' 
+#' @param age_structured_output Should population and spawner abundance
+#' in the output data.frame be age-structured? If \code{FALSE} (default),
+#' then \code{pop} (non-spawning population) and \code{spawners} (spawning
+#' population) are summed across all age classes for each year of simulation.
+#' If \code{TRUE} then \code{pop} and \code{spawners} are returned for
+#' each age class. For the sake of managing outputs, abundances for
+#' \code{pop} and \code{spawners} are reported for all age classes 1-13 
+#' regardless of \code{max_age}, but all abundances for ages greater 
+#' than \code{max_age} are zero.
+#' 
 #' @return A data.frame containing simulation inputs (arguments
 #' to \code{sim_pop}) and output (number of spawners) by year.
 #' 
+# #' NEED TO ADD COLUMN DESCRIPTIONS HERE
+#'
 # #' @example inst/examples/simpop_ex.R
 #' 
 #' @importFrom demogR leslie.matrix eigen.analysis
@@ -80,7 +92,8 @@ sim_pop <- function(
   upstream,
   downstream,  
   downstream_j,
-  output = 'last'
+  output_years = 'last',
+  age_structured_output = FALSE
 )
 
 {

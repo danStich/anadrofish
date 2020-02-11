@@ -22,40 +22,71 @@ write_output <- function(){
       
   # Unlist and stack population size
     out_pop <- do.call("rbind", lapply(out_pop, unlist))
+    if(ncol(out_pop) < 13){
+      out_pop <- data.frame(out_pop, matrix(0, nrow=nrow(out_pop), ncol=(13-ncol(out_pop)),))
+      }
     colnames(out_pop) <- paste('pop_', 1:dim(out_pop)[2], sep = '')
-  
+    pop <- rowSums(out_pop)
+    
   # Unlist and spawner abundance
     out_spawners <- do.call("rbind", lapply(out_spawners, unlist))
+    if(ncol(out_spawners) < 13){
+      out_spawners <- data.frame(out_spawners, matrix(0, nrow=nrow(out_spawners), ncol=(13-ncol(out_spawners)),))
+      }
     colnames(out_spawners) <- paste('spawners_', 1:dim(out_spawners)[2], sep = '')
     spawners <- rowSums(out_spawners)
     
   # Make a list of objects for export
-    out <- data.frame(
-      river = out_river,
-      year = out_year,
-      upstream = out_upstream,
-      downstream = out_downstream,
-      downstream_j = out_downstream_j,
-      region = out_region,
-      govt = out_govt,
-      max_age = out_max_age,
-      nM = out_nM,
-      fM = out_fM,
-      n_init = out_n_init,
-      # out_spawnRecruit,
-      # out_eggs,
-      sr = out_sr,
-      s_juvenile = out_s_juvenile,
-      s_prespawn = out_s_prespawn,
-      s_postspawn = out_s_postspawn,
-      iteroparity = out_iteroparity,
-      spawners
-      # out_spawners,
-      # out_pop
-    )
+    if(age_structured_output==TRUE){
+      out <- data.frame(
+        river = out_river,
+        year = out_year,
+        upstream = out_upstream,
+        downstream = out_downstream,
+        downstream_j = out_downstream_j,
+        region = out_region,
+        govt = out_govt,
+        max_age = out_max_age,
+        nM = out_nM,
+        fM = out_fM,
+        n_init = out_n_init,
+        # out_spawnRecruit,
+        # out_eggs,
+        sr = out_sr,
+        s_juvenile = out_s_juvenile,
+        s_prespawn = out_s_prespawn,
+        s_postspawn = out_s_postspawn,
+        iteroparity = out_iteroparity,
+        out_spawners,
+        out_pop
+      )
+    } else {
+      out <- data.frame(
+        river = out_river,
+        year = out_year,
+        upstream = out_upstream,
+        downstream = out_downstream,
+        downstream_j = out_downstream_j,
+        region = out_region,
+        govt = out_govt,
+        max_age = out_max_age,
+        nM = out_nM,
+        fM = out_fM,
+        n_init = out_n_init,
+        # out_spawnRecruit,
+        # out_eggs,
+        sr = out_sr,
+        s_juvenile = out_s_juvenile,
+        s_prespawn = out_s_prespawn,
+        s_postspawn = out_s_postspawn,
+        iteroparity = out_iteroparity,
+        spawners,
+        pop
+      )      
+    }
   
   ifelse(
-     output=='last',
+     output_years == 'last',
      yes = return(out[nrow(out), ]),
      no = return(out)
   )

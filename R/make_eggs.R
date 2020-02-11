@@ -65,7 +65,17 @@ make_eggs <- function(region, max_age){
     fec_alpha = olney_mcbride$alpha[olney_mcbride$region==region]
     fec_beta = olney_mcbride$beta[olney_mcbride$region==region]
     batch_size <- 10^(fec_alpha + fec_beta*log10(mass))
-    n_batches <- rnorm(1, 6.7, 1)
+    
+    if(region=='NI'){
+      n_batches <- rnorm(1, 6.7, 1)
+    }
+    if(region=='SI'){
+      n_batches <- rnorm(1, 6.7, 1)
+    }
+    if(region=='SP'){
+      n_batches <- rnorm(1, 6.7, 1)
+    }
+    
     eggs <- batch_size * n_batches
   # }
     
