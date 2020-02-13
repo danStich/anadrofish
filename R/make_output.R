@@ -10,6 +10,7 @@
 make_output <- function(){
   
   out_river = vector(mode='character', length=nyears)
+  out_habitat = vector(mode='character', length=nyears) 
   out_upstream = vector(mode='numeric', length=nyears) 
   out_downstream = vector(mode='numeric', length=nyears) 
   out_downstream_j = vector(mode='numeric', length=nyears) 
@@ -33,6 +34,7 @@ make_output <- function(){
   return(
     list(
       out_river = out_river,
+      out_habitat = out_habitat,
       out_upstream = out_upstream,
       out_downstream = out_downstream,
       out_downstream_j = out_downstream_j,

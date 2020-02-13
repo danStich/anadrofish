@@ -13,6 +13,7 @@ fill_output <- function(){
   
   # Collect parameters  
     out_river[[t]] = river
+    out_habitat[[t]] = acres/247.105
     out_upstream[[t]] = upstream
     out_downstream[[t]] = downstream
     out_downstream_j[[t]] = downstream_j
@@ -37,6 +38,7 @@ fill_output <- function(){
     filled <- 
       list(
         out_river,
+        out_habitat,
         out_upstream,
         out_downstream,
         out_downstream_j,
@@ -60,6 +62,7 @@ fill_output <- function(){
     
     names(filled) <- c(
         'out_river',
+        'out_habitat',
         'out_upstream',
         'out_downstream',
         'out_downstream_j',

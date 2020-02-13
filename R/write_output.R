@@ -24,15 +24,17 @@ write_output <- function(){
     out_pop <- do.call("rbind", lapply(out_pop, unlist))
     if(ncol(out_pop) < 13){
       out_pop <- data.frame(out_pop, matrix(0, nrow=nrow(out_pop), ncol=(13-ncol(out_pop)),))
-      }
+    }
     colnames(out_pop) <- paste('pop_', 1:dim(out_pop)[2], sep = '')
+    out_pop <- apply(out_pop, 2, round)
     pop <- rowSums(out_pop)
     
   # Unlist and spawner abundance
     out_spawners <- do.call("rbind", lapply(out_spawners, unlist))
     if(ncol(out_spawners) < 13){
       out_spawners <- data.frame(out_spawners, matrix(0, nrow=nrow(out_spawners), ncol=(13-ncol(out_spawners)),))
-      }
+    }
+    out_spawners <- apply(out_spawners, 2, round)
     colnames(out_spawners) <- paste('spawners_', 1:dim(out_spawners)[2], sep = '')
     spawners <- rowSums(out_spawners)
     
@@ -40,6 +42,7 @@ write_output <- function(){
     if(age_structured_output==TRUE){
       out <- data.frame(
         river = out_river,
+        habitat = out_habitat,
         year = out_year,
         upstream = out_upstream,
         downstream = out_downstream,
@@ -63,6 +66,7 @@ write_output <- function(){
     } else {
       out <- data.frame(
         river = out_river,
+        habitat = out_habitat,
         year = out_year,
         upstream = out_upstream,
         downstream = out_downstream,
