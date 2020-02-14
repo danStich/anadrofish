@@ -25,5 +25,7 @@ make_iteroparity <- function(latitude){
   
   iteroparity = (5.08*latitude - 165)/100
   
+  if(iteroparity < 0){iteroparity <- 0}
+  
   return(iteroparity)
 }
