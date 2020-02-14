@@ -12,5 +12,5 @@
 #' @export
 #'
 get_rivers <- function(){
-  return(as.vector(shad_rivers$system))
+  return(sort(as.vector(shad_rivers$system)))
   }
