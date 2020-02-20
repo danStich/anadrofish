@@ -12,7 +12,7 @@
 # #' @example inst/examples/make_postspawn_ex.R
 #'
 #' @references Bailey, M.M., and J. D. Zydlewski. 2013. To stock or not
-#' to stock? Assessing therestoration potential of a remnant 
+#' to stock? Assessing the restoration potential of a remnant 
 #' American shad spawning run with hatchery supplementation. North 
 #' American Journal of Fisheries Management 33:459–467.
 #' 
