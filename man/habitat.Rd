@@ -4,7 +4,7 @@
 \name{habitat}
 \alias{habitat}
 \title{American shad habitat}
-\format{A data frame with 1072 observations of 16 variables:
+\format{A data frame with 1015 observations of 16 variables:
 \describe{
 \code{UNIQUE_ID}{ unique value given to each dam and outlet feature.}
 
