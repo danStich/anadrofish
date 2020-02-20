@@ -13,12 +13,13 @@ fill_output <- function(){
   
   # Collect parameters  
     out_river[[t]] = river
+    out_region[[t]] = region
+    out_govt[[t]] = govt
+    out_lat[[t]] = latitude
     out_habitat[[t]] = acres/247.105
     out_upstream[[t]] = upstream
     out_downstream[[t]] = downstream
     out_downstream_j[[t]] = downstream_j
-    out_region[[t]] = region
-    out_govt[[t]] = govt
     out_max_age[[t]] = max_age
     out_nM[[t]] = nM
     out_fM[[t]] = fM
@@ -38,12 +39,13 @@ fill_output <- function(){
     filled <- 
       list(
         out_river,
+        out_region,
+        out_govt,
+        out_lat,
         out_habitat,
         out_upstream,
         out_downstream,
         out_downstream_j,
-        out_region,
-        out_govt,
         out_max_age,
         out_nM,
         out_fM,
@@ -62,12 +64,13 @@ fill_output <- function(){
     
     names(filled) <- c(
         'out_river',
+        'out_region',
+        'out_govt',
+        'out_lat',
         'out_habitat',
         'out_upstream',
         'out_downstream',
         'out_downstream_j',
-        'out_region',
-        'out_govt',
         'out_max_age',
         'out_nM',
         'out_fM',

@@ -14,7 +14,7 @@
 #' value (vector of length 1) or a vector of length = maximum age
 #' depending on whether age-specific values are passed to \code{eggs}
 #'
-#' @example inst/examples/makefec_ex.R
+# #' @example inst/examples/makefec_ex.R
 #'
 #' @references Bailey, M. M., and J. D. Zydlewski. 2013. To stock or not
 #' to stock? Assessing the restoration potential of a remnant American shad

@@ -60,12 +60,13 @@ make_eggs <- function(region, max_age){
   # eggs <- exp(-4.8641 + 2.8189*log(fl))
   # }
     
-  # Calculate number of eggs based on Olney & McBride (2003)
+  # Calculate number of eggs per batch based on Olney & McBride (2003)
   # if(egg_est == 'Olney_McBride'){
     fec_alpha = olney_mcbride$alpha[olney_mcbride$region==region]
     fec_beta = olney_mcbride$beta[olney_mcbride$region==region]
     batch_size <- 10^(fec_alpha + fec_beta*log10(mass))
     
+  # Draw number of batches based on McBride et al. (2016)  
     if(region=='NI'){
       n_batches <- rnorm(1, 6.7, 1)
     }

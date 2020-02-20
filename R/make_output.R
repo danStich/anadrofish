@@ -10,12 +10,13 @@
 make_output <- function(){
   
   out_river = vector(mode='character', length=nyears)
+  out_region = vector(mode='character', length=nyears)
+  out_govt = vector(mode='character', length=nyears)
+  out_lat = vector(mode='numeric', length=nyears)
   out_habitat = vector(mode='character', length=nyears) 
   out_upstream = vector(mode='numeric', length=nyears) 
   out_downstream = vector(mode='numeric', length=nyears) 
   out_downstream_j = vector(mode='numeric', length=nyears) 
-  out_region = vector(mode='character', length=nyears)
-  out_govt = vector(mode='character', length=nyears)
   out_max_age = vector(mode='numeric', length=nyears)
   out_nM = vector(mode='numeric', length=nyears)
   out_fM = vector(mode='numeric', length=nyears)
@@ -34,12 +35,13 @@ make_output <- function(){
   return(
     list(
       out_river = out_river,
+      out_region = out_region,
+      out_govt = out_govt,
+      out_lat = out_lat,
       out_habitat = out_habitat,
       out_upstream = out_upstream,
       out_downstream = out_downstream,
       out_downstream_j = out_downstream_j,
-      out_region = out_region,
-      out_govt = out_govt,
       out_max_age = out_max_age,
       out_nM = out_nM,
       out_fM = out_fM,

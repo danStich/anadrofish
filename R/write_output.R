@@ -42,13 +42,14 @@ write_output <- function(){
     if(age_structured_output==TRUE){
       out <- data.frame(
         river = out_river,
+        region = out_region,
+        govt = out_govt,
+        lat = out_lat,
         habitat = out_habitat,
         year = out_year,
         upstream = out_upstream,
         downstream = out_downstream,
         downstream_j = out_downstream_j,
-        region = out_region,
-        govt = out_govt,
         max_age = out_max_age,
         nM = out_nM,
         fM = out_fM,
@@ -66,13 +67,14 @@ write_output <- function(){
     } else {
       out <- data.frame(
         river = out_river,
+        region = out_region,
+        govt = out_govt,
+        lat = out_lat,
         habitat = out_habitat,
         year = out_year,
         upstream = out_upstream,
         downstream = out_downstream,
         downstream_j = out_downstream_j,
-        region = out_region,
-        govt = out_govt,
         max_age = out_max_age,
         nM = out_nM,
         fM = out_fM,
