@@ -27,6 +27,7 @@ write_output <- function(){
     }
     colnames(out_pop) <- paste('pop_', 1:dim(out_pop)[2], sep = '')
     out_pop <- apply(out_pop, 2, round)
+    out_pop[is.na(out_pop)] <- 0
     pop <- rowSums(out_pop)
     
   # Unlist and spawner abundance
@@ -36,6 +37,7 @@ write_output <- function(){
     }
     out_spawners <- apply(out_spawners, 2, round)
     colnames(out_spawners) <- paste('spawners_', 1:dim(out_spawners)[2], sep = '')
+    out_spawners[is.na(out_spawners)] <- 0
     spawners <- rowSums(out_spawners)
     
   # Make a list of objects for export
