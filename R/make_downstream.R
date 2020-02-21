@@ -47,14 +47,8 @@ make_downstream <- function(habitat_data, river, downstream, upstream){
   # Calculate proportion of habitat in each segment of available
   units$p_habitat <- units$functional_upstream/sum(units$functional_upstream)
     
-  # Start with some number of fish
-  units$starting <- units$p_habitat*1e6
-    
-  # Calculate number surviving
-  units$ending <- units$starting*units$p_downstream
-    
   # The ratio is survival rate
-  s_downstream <- sum(units$ending)/sum(units$starting)
+  s_downstream <- sum(units$p_habitat*((downstream^units$dam_order)))
   
   return(s_downstream)
 }
