@@ -11,10 +11,24 @@ A character vector of rivers that are included in both
 \link{inventory} and \link{habitat}.
 }
 \description{
-Get rivers included in package. A function with no arguments.
+Get names of rivers included in package. A function with 
+no arguments.
 }
 \details{
 The primary uses of this function are (1) so the user can see 
 rivers that can be used for simulation, and (2) so the output can be passed 
-to a random sampler for use in stochastic simulation via parallel processing.
+to a random sampler for use in stochastic simulation via 
+parallel processing.
+}
+\examples{
+# Example usage
+\dontrun{
+  
+# Use get_rivers() to return names of rivers included in package
+get_rivers()
+
+# Sample a random river from those available
+get_rivers()[sample(length(get_rivers()), 1)]  
+  
+}
 }

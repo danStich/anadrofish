@@ -7,7 +7,7 @@
 lower95(x)
 }
 \arguments{
-\item{x}{A numeric vector or matrix}
+\item{x}{A numeric vector or matrix.}
 }
 \value{
 Numeric vector of length 1 containing 95% LCL for \code{x}.

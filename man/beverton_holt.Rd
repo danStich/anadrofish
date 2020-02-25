@@ -5,7 +5,7 @@
 \title{Beverton-Holt stock recruit curve}
 \usage{
 beverton_holt(a = 250000, S = 100, b = 0.340297, acres = 1,
-  error = "multiplicative", age_structured = FALSE)
+  error = c("multiplicative", "additive"), age_structured = FALSE)
 }
 \arguments{
 \item{a}{Ratio of recruits per spawner. Density independent parameter 
@@ -21,11 +21,12 @@ basis (will be divided by \code{acres} in function)}
 \item{acres}{Surface area (in acres) of habitat units.}
 
 \item{error}{Character string indicating whether to use 
-\code{'additive'} or \code{'multiplicative'} error structure.}
+\code{'multiplicative'} or \code{'additive'} error structure. Defaults
+to \code{error = 'multiplicative'}.}
 
 \item{age_structured}{Logical indicating whether to return age-structured,
 density-dependent recruitment from the Beverton-Holt curve. If \code{TRUE}
-then a vector of \code{length} = max age must be passed to \code{S}.}
+then a vector of \code{length = max age} must be passed to \code{S}.}
 }
 \value{
 A numeric vector with one or more elements representing 
@@ -34,12 +35,12 @@ age-1 recruits (downstream migrants in freshwater).
 \description{
 Beverton and Holt (1957) stock-recruit curve 
 with habitat constraints. Default parameter values are tuned to predict 
-age-1 recruitment assuming a carrying capacity for spawning adults of 
+larval recruitment assuming a carrying capacity for spawning adults of 
 100 fish per acre. See \code{details}.
 }
 \details{
 The primary use of this function in the \code{anadrofish} package 
-is to predict number of age-1 recruits in a river based on the number of 
+is to predict number of larval recruits in a river based on the number of 
 fish within a functional habitat unit, and the number of surface acres 
 of habitat in the same unit. However, the number of potential uses is 
 flexible. Passing a single value to each argument would 

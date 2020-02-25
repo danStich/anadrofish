@@ -18,7 +18,7 @@ A numeric vector of \code{length = length(pop)}
 }
 \description{
 The purpose of this function is to create an age-structured
-spawning population from an age-structured population by
+spawning population from an existing age-structured population by
 applying region- and age-specific spawning probabilities.
 }
 \examples{

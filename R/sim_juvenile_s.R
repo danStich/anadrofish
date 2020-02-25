@@ -8,7 +8,7 @@
 #' rates, daily survival, and cumulative survival during varying
 #' post-hatch periods. See \code{\link{crecco_1983}}.
 #' 
-# #' @example inst/examples/make_postspawn_ex.R
+#' @examples sim_juvenile(anadrofish::crecco_1983)
 #'
 #' @references Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates 
 #' of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut 

@@ -16,6 +16,10 @@ Function used to simulate juvenile (hatch-to-outmigrant)
 survival from daily rates reported by Crecco et al. (1983) from
 the Connecticut River, USA during 4 consecutive years.
 }
+\examples{
+sim_juvenile(anadrofish::crecco_1983)
+
+}
 \references{
 Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates 
 of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut 

@@ -1,7 +1,7 @@
 #' @title Calculate downstream survival given dam passage scenario.
 #'
-#' @description Function used to create population-level survival during
-#' out-migration through dams if downstream passage < 1.
+#' @description Function used to create population-level
+#' survival during out-migration through dams.
 #'
 #' @param habitat_data An internal data.frame in \code{\link{sim_pop}} 
 #' containing habitat estimates (km2) for the scenario and region selected.
@@ -21,15 +21,30 @@
 #' to all features in \code{habitat_data} corresponding to \code{river}.
 #' It then calculates the proportion of habitat in each 
 #' habitat segment, and weights downstream mortality at the catchment-scale
-#' by proportion of habitat. This implicitly assumes that fish are distributed 
+#' by proportiotn of habitat. This implicitly assumes that fish are distributed 
 #' throughout the river during spawning in proportion to available
 #' habitat.
 #' 
-# #' @example inst/examples/makefec_ex.R
+#' @example inst/examples/make_downstream_ex.R
 #' 
 #' @export
 #'
 make_downstream <- function(habitat_data, river, downstream, upstream){
+  if(missing(river)){
+    stop("
+    
+    Argument 'river' must be specified.
+    
+    To see a list of available rivers, run get_rivers()")    
+  }
+  
+  if(!river %in% get_rivers()){
+    stop("
+    
+    Argument 'river' must be one of those included in get_rivers().
+    
+    To see a list of available rivers, run get_rivers()")
+  }
   
   # Get termcode for river
   termcode <- shad_rivers$termcode[shad_rivers$system==river]

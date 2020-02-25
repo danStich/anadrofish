@@ -31,6 +31,7 @@ make_pop <- function(max_age, nM, fM, n_init){
   # Annual mortality rate (A) = 1-exp(-Z)
   # s = 1 - A
     s <- rep(1-(1-exp(-Z)), max_age)
+    s[1] <- s[1]^4
 
   # Multiply by an arbitrarily large
   # number to get a population

@@ -1,41 +1,51 @@
 #' @title Simulate population dynamics through time.
 #' 
-#' @description Use functions from \code{\link{anadrofish}} to simulate
-#' population change through time.
+#' @param nyears Number of years for simulation.
 #' 
-#' @param nyears Number of years for simulation(s).
+#' @description Use functions from \code{\link{anadrofish}} to simulate
+#' population change through time relative to upstream and downstream
+#' passage probabilities and uncertainty in life-history information.
 #' 
 #' @param river River basin. Available rivers implemented in package 
-#' can be viewed by calling \code{\link{get_rivers}}. Alternatively,
-#' the user can specify \code{rivers = sample(get_rivers, 1)} 
-#' to randomly sample river within larger simulation studies. Information
-#' about each river can be found in \code{\link{inventory}}, 
-#' \code{\link{shad_rivers}}, and \code{\link{habitat}} datasets.
+#' can be viewed by calling \code{\link{get_rivers}} with no arguments
+#' (e.g., get_rivers()). Alternatively, the user can specify 
+#' \code{rivers = sample(get_rivers, 1)} to randomly sample river 
+#' within larger simulation studies. Information about each river can be 
+#' found in \code{\link{inventory}}, \code{\link{shad_rivers}}, 
+#' and \code{\link{habitat}} datasets.
 #' 
 #' @param max_age Maximum age of fish in population. If \code{NULL}
 #' (default), then based on the maximum age of females for the
 #' corresponding region in the \code{\link{max_ages}} dataset.
 #' 
 #' @param nM Instantaneous natural mortality. If \code{NULL}
-#' (default), then based the average of males and females for the
+#' (default), then based on the average of males and females for the
 #' corresponding region in the \code{\link{mortality}} dataset.
 #' 
 #' @param fM Instantaneous fishing mortality. The default value is zero.
 #' 
 #' @param n_init Initial population seed (number of Age-1 individuals) 
-#' used to simulate the starting population.
+#' used to simulate the starting population. Default is to use a draw
+#' from a wide uniform distribution, but it may be beneficial to narrow
+#' once expectations for abundance at population stability are determined.
 #' 
-#' @param spawnRecruit Probability of recruitment to spawn at age. Numeric 
-#' vector with length \code{max_age}
+#' @param spawnRecruit Probability of recruitment to spawn at age. If 
+#' \code{NULL} (default), then probabilities are based on the mean of
+#' male and female recruitment to first spawn at age from the
+#' \code{\link{maturity}} dataset.
 #' 
 #' @param eggs Number of eggs per female. Can be a vector of length 1
 #' if eggs per female is age invariant, or can be vector of length 
 #' \code{max_age} if age-specific. If \code{NULL} (default) then 
-#' estimated based on regression relationships in \code{\link{make_eggs}}.
+#' estimated based on weight-batch fecundity regression relationships 
+#' for each life-history region in the \code{\link{olney_mcbride}}
+#' dataset (Olney and McBride 2003) and mean nmber of batches spawned
+#' (6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}}.
 #' 
 #' @param sr Sex ratio (expressed as percent female or P(female)).
 #' 
-#' @param s_prespawn Pre-spawn survival for spawners.
+#' @param s_prespawn Pre-spawn survival for spawners. No default
+#' value.
 #' 
 #' @param s_juvenile Survival from hatch to outmigrant. If NULL
 #' (default) then simulated from a (log) normal distribution using
@@ -51,8 +61,8 @@
 #' @param downstream_j Numeric of length 1 indicating proportional
 #' downstream survival through dams for juveniles.
 #' 
-#' @param output_years Level of detail provided in output. The default
-#' value of '\code{last}' returns the final year of simulation.
+#' @param output_years Temporal level of detail provided in output. 
+#' The default value of '\code{last}' returns the final year of simulation.
 #' Any value other than the default '\code{last}' will return
 #' data for all years of simulation. This is useful for testing.
 #' 
@@ -71,32 +81,39 @@
 #' 
 # #' NEED TO ADD COLUMN DESCRIPTIONS HERE
 #'
-# #' @example inst/examples/simpop_ex.R
+#' @example inst/examples/simpop_ex.R
 #' 
-#' @importFrom demogR leslie.matrix eigen.analysis
+#' @references Olney, J. E. and R. S. McBride. 2003. Intraspecific 
+#' variation in batch fecundity of American shad (*Alosa sapidissima*): 
+#' revisiting the paradigm of reciprocal latitudinal trends 
+#' in reproductive traits. American Fisheries Society 
+#' Symposium 35:185-192.
 #' 
 #' @export
 #' 
 sim_pop <- function(
-  nyears,
   river,
+  nyears = 50,  
   max_age = NULL,
   nM = NULL,
-  fM,
-  n_init,
+  fM = 0,
+  n_init = runif(1, 10e5, 80e7),
   spawnRecruit = NULL, 
   eggs = NULL,
-  sr,
-  s_prespawn,  
+  sr = 0.50,
+  s_prespawn = 1,  
   s_juvenile = NULL,
-  upstream,
-  downstream,  
-  downstream_j,
-  output_years = 'last',
+  upstream = 1,
+  downstream = 1,  
+  downstream_j = 1,
+  output_years = c('last', 'all'),
   age_structured_output = FALSE
 )
 
 {
+  # Argument matching for output_years
+    output_years <- match.arg(output_years)
+  
   # Get region for river system
     region <- inventory$region[inventory$system == river]
     
@@ -106,16 +123,16 @@ sim_pop <- function(
     
   # Get life-history parameters if not specified 
   # Instantaneous natural mortality - avg for M and F within region
-    if(is.null(nM)){ nM <- mean(mortality$M[mortality$region==region])}
+    if(is.null(nM)){ nM <- make_mortality(river)}
       
   # Maximum age if not specified 
-    if(is.null(max_age)){ max_age <- max(max_ages$maxage[max_ages$region==region])}
+    if(is.null(max_age)){ max_age <- make_maxage(river)}
     
   # Maturity schedule if not specified 
-    if(is.null(spawnRecruit)){ spawnRecruit <- as.numeric(maturity[maturity$region==region & maturity$sex=='F', 3:(2+max_age)])}
+    if(is.null(spawnRecruit)){ spawnRecruit <- make_spawnrecruit(river)}
     
   # Get estimated number of eggs per female if not specified 
-    if(is.null(eggs)){eggs <- make_eggs(region, max_age)}
+    if(is.null(eggs)){eggs <- make_eggs(river)}
     
   # Get hatch-to-outmigrant survival if not specified  
     if(is.null(s_juvenile)){s_juvenile <- sim_juvenile_s(crecco_1983)}
@@ -157,16 +174,17 @@ sim_pop <- function(
     # Apply prespawn survival to spawners  
       .sim_pop$spawners1 <- .sim_pop$spawners * s_prespawn  
     
-    # Make annual fecundity of spawners  
-      .sim_pop$fec <- make_fec(
+    # Make realized reproductive output of spawners 
+      .sim_pop$fec <- make_recruits(
         eggs = eggs,
-        sr = sr, s_juvenile = s_juvenile
+        sr = sr,
+        s_juvenile = s_juvenile
         )
      
-    # Calculate recruitment from Beverton-Holt curve   
+    # Calculate density-dependent recruitment from Beverton-Holt curve   
       .sim_pop$recruits_f_age <- beverton_holt(
         a = .sim_pop$fec,
-        S=.sim_pop$spawners1,
+        S = .sim_pop$spawners1,
         acres = .sim_pop$acres,
         age_structured = TRUE
         )
@@ -179,7 +197,7 @@ sim_pop <- function(
       .sim_pop$iteroparity <- make_iteroparity(.sim_pop$latitude)
       
     # Apply post-spawn survival
-      .sim_pop$s_postspawn <- make_postspawn(.sim_pop$iteroparity, nM)
+      .sim_pop$s_postspawn <- make_postspawn(river)
       .sim_pop$spawners2 <- .sim_pop$spawners1 * .sim_pop$s_postspawn      
 
     # Outmigrant survival

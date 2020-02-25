@@ -17,6 +17,22 @@
 #'
 make_habitat <- function(habitat_data, river, upstream){
   
+  if(missing(river)){
+    stop("
+    
+    Argument 'river' must be specified.
+    
+    To see a list of available rivers, run get_rivers()")    
+  }
+  
+  if(!river %in% get_rivers()){
+    stop("
+    
+    Argument 'river' must be one of those included in get_rivers().
+    
+    To see a list of available rivers, run get_rivers()")
+  }
+  
   # Get termcode for river
   termcode <- shad_rivers$termcode[shad_rivers$system==river]
   

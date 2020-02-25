@@ -5,7 +5,7 @@
 #' but is shorter and is easier to use in calls to \code{apply} family
 #' of functions.
 #' 
-#' @param x A numeric vector or matrix
+#' @param x A numeric vector or matrix.
 #'
 #' @return Numeric vector of length 1 containing 95% LCL for \code{x}.
 #' 

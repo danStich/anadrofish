@@ -4,18 +4,31 @@
 \alias{make_postspawn}
 \title{Post-spawning survival}
 \usage{
-make_postspawn(iteroparity, nM)
+make_postspawn(river = river, iteroparity = NULL, nM = NULL)
 }
 \arguments{
-\item{iteroparity}{Rate of iteroparity.}
+\item{river}{River for which post-spawn survival rate should be 
+returned. Required argument with no default value. Available rivers
+can be seen using \code{\link{get_rivers}}.}
 
-\item{nM}{Instantaneous annual mortality.}
+\item{iteroparity}{Optional argument for rate of iteroparity. Values from 
+\code{\link{make_iteroparity}} can be passed directly to this function, or
+a numeric vector of \code{length = 1}.}
+
+\item{nM}{Instantaneous annual mortality. Values for 
+natural mortality for life-history regions can be
+found in \code{\link{anadrofish::mortality}}, or
+a numeric vector of \code{length = 1}.}
 }
 \description{
 Function used to estimate post-spawn survival 
 from proportion of repeat spawners by latitude (Leggett and
 Cascardden 1978, Bailey and Zydlewski 2013) and natural mortality
 by life-history region.
+}
+\examples{
+make_postspawn(river = "Susquehanna")
+
 }
 \references{
 Bailey, M.M., and J. D. Zydlewski. 2013. To stock or not

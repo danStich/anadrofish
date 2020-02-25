@@ -14,3 +14,7 @@ make_lat(river)
 Function used to extract river-specific latitude
 from built-in data sets.
 }
+\examples{
+make_lat(river = 'Susquehanna')
+
+}

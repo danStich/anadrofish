@@ -18,9 +18,7 @@
 #'
 #' @return A numeric vector of age-structured abundance in time t + 1
 #'
-# #' @example inst/examples/makefec_ex.R
-#' 
-#' @importFrom demogR leslie.matrix
+#' @example inst/examples/projectpop_ex.R
 #' 
 #' @export
 #'
@@ -30,18 +28,14 @@ project_pop <- function(x, age0, nM, fM, max_age){
     Z <- nM + fM
 
   # Survival rate
-    s <- rep(1-(1-exp(-Z)), max_age+2)  
+    s <- rep(1-(1-exp(-Z)), max_age + 1)  
+    s[1] <- s[1]^3
       
-  # Make the projection matrix
-    les <- leslie.matrix(
-      lx = cumprod(c(s)),
-      mx = rep(1, length(s))
-      )  
-  
-  # Project population forward one time-step
-    tplus1 <- les %*% c(age0, x)[1:(length(c(age0, x)))]
-  
+  # Project population one time-step and drop
+  # any fish > max_age
+    tplus <- c(age0, x)*s
+    
   # Return the result to R
-    return(tplus1[2:length(tplus1)])
+    return(tplus[1:max_age])
 
 }

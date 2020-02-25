@@ -9,20 +9,29 @@ Bailey and Zydlewski (2013).}
 make_iteroparity(latitude)
 }
 \arguments{
-\item{latitude}{Latitude, in decimal degrees.}
+\item{latitude}{Latitude, in decimal degrees. Can be queried for
+each river using \code{\link{make_lat}}.}
+}
+\value{
+Probability of repeat spawning. A numeric vector 
+of \code{length = 1}.
 }
 \description{
 Function used to extract river-specific latitude
 from built-in data sets.
 }
+\examples{
+make_iteroparity( make_lat(river = 'Susquehanna') )
+
+}
 \references{
-Bailey, M.M., and J. D. Zydlewski. 2013. To stock or not
+Bailey, M.M., and J. D. Zydlewski. 2013. To stock or not 
 to stock? Assessing therestoration potential of a remnant 
 American shad spawning run with hatchery supplementation. North 
 American Journal of Fisheries Management 33:459–467.
 
 Leggett, W., and J. E. Cascardden. 1978. Latitudinal Variation in 
-Reproductive Characteristics of American Shad (Alosa sapidissima): 
-Evidence for Population Specific Life History Strategies in Fish.
+Reproductive Characteristics of American Shad (Alosa sapidissima):  
+Evidence for Population Specific Life History Strategies in Fish. 
 Journal of the Fisheries Research Board of Canada 35:1469-1478.
 }
