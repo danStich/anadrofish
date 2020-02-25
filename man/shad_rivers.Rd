@@ -3,7 +3,7 @@
 \docType{data}
 \name{shad_rivers}
 \alias{shad_rivers}
-\title{U.S. Altantic Coast American shad Rivers}
+\title{Altantic Coast American shad Rivers in North America}
 \format{A data frame with 65 observations of 6 variables:
 \describe{
 
@@ -21,7 +21,7 @@ region, state of outlet, and HUC code.}
 
 \code{count}{ Count of habitat segments per system}
 
-\code{total}{ Sum of habitat segments (sq. km) in system}
+\code{total}{ Sum of habitat segments (sqaure km) in system}
 }}
 \source{
 Atlantic States Marine Fisheries Commission
@@ -30,7 +30,7 @@ Atlantic States Marine Fisheries Commission
 shad_rivers
 }
 \description{
-A dataset containing the names U.S
+A dataset containing the names of North American
 Atlantic coast rivers identified as historical American
 shad habitat. Derived from \code{inventory}. Used to relate 
 user-specified river(s) to amount of habitat in each system 

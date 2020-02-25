@@ -1,4 +1,4 @@
-#' @title American shad habitat
+#' @title Daily mortality of juvenile American shad
 #'
 #' @description A built-in dataset containing estimated daily 
 #' mortality rates for larval and juvenile American shad in the

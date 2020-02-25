@@ -2,7 +2,7 @@
 #'
 #' @description Beverton and Holt (1957) stock-recruit curve 
 #' with habitat constraints. Default parameter values are tuned to predict 
-#' age-1 recruitment assuming a carrying capacity for spawning adults of 
+#' larval recruitment assuming a carrying capacity for spawning adults of 
 #' 100 fish per acre. See \code{details}.
 #'
 #' @param a Ratio of recruits per spawner. Density independent parameter 
@@ -18,14 +18,15 @@
 #' @param acres Surface area (in acres) of habitat units.
 #'
 #' @param error Character string indicating whether to use 
-#' \code{'additive'} or \code{'multiplicative'} error structure.
+#' \code{'multiplicative'} or \code{'additive'} error structure. Defaults
+#' to \code{error = 'multiplicative'}.
 #'  
 #' @param age_structured Logical indicating whether to return age-structured,
 #' density-dependent recruitment from the Beverton-Holt curve. If \code{TRUE}
-#' then a vector of \code{length} = max age must be passed to \code{S}.
+#' then a vector of \code{length = max age} must be passed to \code{S}.
 #'
 #' @details The primary use of this function in the \code{anadrofish} package 
-#' is to predict number of age-1 recruits in a river based on the number of 
+#' is to predict number of larval recruits in a river based on the number of 
 #' fish within a functional habitat unit, and the number of surface acres 
 #' of habitat in the same unit. However, the number of potential uses is 
 #' flexible. Passing a single value to each argument would 
@@ -50,15 +51,17 @@
 #'
 #' @export
 #'
-beverton_holt <- function(a = 2.5e5,
-                          S = 100,
-                          b = 0.340297,
-                          acres = 1,
-                          error='multiplicative',
-                          age_structured = FALSE
-                          )
-  {
+beverton_holt <- function(
+  a = 2.5e5,
+  S = 100,
+  b = 0.340297,
+  acres = 1,
+  error = c("multiplicative", "additive"),
+  age_structured = FALSE
+  ){
 
+    error <- match.arg(error)
+  
     if(age_structured == FALSE){
       
       b <- b/acres
@@ -68,30 +71,20 @@ beverton_holt <- function(a = 2.5e5,
       b = b/(acres*(S/sum(S)))
       b[!is.finite(b)] <- 0
     }
-  
     
     if(error=='additive'){
     
       r <- a * S/(1 + b * S)
       return(r)
       
-    } else {
+    }
       
-      if(error=='multiplicative'){
-        
-        log_r <- log(a * S/(1 + b * S))
-        r <- exp(log_r)
-        return(r)         
-        
-      } else {
-        
-        stop('Invalid error specification. 
-             Must be character string indicating \"additive\" or 
-             \"multiplicative" error structure.
-             ')
-        
-      }
-     
+    if(error=='multiplicative'){
+      
+      log_r <- log(a * S/(1 + b * S))
+      r <- exp(log_r)
+      return(r)         
+      
     }
   
   }

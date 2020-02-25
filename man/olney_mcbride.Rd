@@ -17,7 +17,11 @@ SI = Southern iteroparous, SP = Semelparous}
 \code{beta}{ Slope}
 }}
 \source{
-Olney and McBride (2003)
+Olney, J. E. and R. S. McBride. 2003. Intraspecific 
+variation in batch fecundity of American shad (*Alosa sapidissima*): 
+revisiting the paradigm of reciprocal latitudinal trends 
+in reproductive traits. American Fisheries Society 
+Symposium 35:185-192.
 }
 \usage{
 olney_mcbride

@@ -14,9 +14,9 @@
 #' 
 #' \code{sex}{ Fish sex (gender)}
 #' 
-#' \code{ alpha}{ Intercept}
+#' \code{alpha}{ Intercept}
 #' 
-#' \code{ beta}{ Slope}
+#' \code{beta}{ Slope}
 #' }
 #' 
 #' @source Atlantic States Marine Fisheries Commission

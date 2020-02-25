@@ -3,7 +3,7 @@
 \docType{data}
 \name{crecco_1983}
 \alias{crecco_1983}
-\title{American shad habitat}
+\title{Daily mortality of juvenile American shad}
 \format{A data frame with 24 observations of 6 variables:
 \describe{
 \code{Year}{ Year of study}
