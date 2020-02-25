@@ -17,7 +17,7 @@ a numeric vector of \code{length = 1}.}
 
 \item{nM}{Instantaneous annual mortality. Values for 
 natural mortality for life-history regions can be
-found in \code{\link{anadrofish::mortality}}, or
+found in \code{\link{mortality}}, or
 a numeric vector of \code{length = 1}.}
 }
 \description{
