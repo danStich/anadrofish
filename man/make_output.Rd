@@ -4,11 +4,14 @@
 \alias{make_output}
 \title{Make output vectors}
 \usage{
-make_output()
+make_output(nyears)
+}
+\arguments{
+\item{nyears}{Number of years for simulation output.
+
+Not intended to be called directly.}
 }
 \description{
 Internal function to create output 
 vectors in \code{\link{sim_pop}}.
-
-Not intended to be called directly.
 }

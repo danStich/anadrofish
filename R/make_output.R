@@ -3,11 +3,13 @@
 #' @description Internal function to create output 
 #' vectors in \code{\link{sim_pop}}.
 #' 
+#' @param nyears Number of years for simulation output.
+#' 
 #' Not intended to be called directly.
 #' 
 #' @export
 #' 
-make_output <- function(){
+make_output <- function(nyears){
   
   out_river = vector(mode='character', length=nyears)
   out_region = vector(mode='character', length=nyears)

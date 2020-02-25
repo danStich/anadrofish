@@ -4,7 +4,12 @@
 \alias{fill_output}
 \title{Fill output vectors}
 \usage{
-fill_output()
+fill_output(.sim_pop)
+}
+\arguments{
+\item{.sim_pop}{A hidden environment in the calling frame 
+of \code{\link{sim_pop}}. Arbitrarily any named object with
+names matching those used in the function.}
 }
 \value{
 list of output vectors
@@ -13,5 +18,7 @@ list of output vectors
 Internal function to fill output vectors for default
 arguments in \code{sim_pop} and the output (\code{spawners}).
 
-Not intended to be called directly.
+For internal use in \code{\link{sim_pop}}. Not intended 
+to be called directly.
 }
+\keyword{Internal}

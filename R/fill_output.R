@@ -3,37 +3,43 @@
 #' @description Internal function to fill output vectors for default
 #' arguments in \code{sim_pop} and the output (\code{spawners}).
 #' 
-#' Not intended to be called directly.
+#' For internal use in \code{\link{sim_pop}}. Not intended 
+#' to be called directly.
 #' 
+#' @param .sim_pop A hidden environment in the calling frame 
+#' of \code{\link{sim_pop}}. Arbitrarily any named object with
+#' names matching those used in the function.
 #' @return list of output vectors
+#' 
+#' @keywords Internal
 #' 
 #' @export
 #' 
-fill_output <- function(){
+fill_output <- function(.sim_pop){
   
   # Collect parameters  
-    out_river[[t]] = river
-    out_region[[t]] = region
-    out_govt[[t]] = govt
-    out_lat[[t]] = latitude
-    out_habitat[[t]] = acres/247.105
-    out_upstream[[t]] = upstream
-    out_downstream[[t]] = downstream
-    out_downstream_j[[t]] = downstream_j
-    out_max_age[[t]] = max_age
-    out_nM[[t]] = nM
-    out_fM[[t]] = fM
-    out_n_init[[t]] = n_init
-    out_spawnRecruit[[t]] = spawnRecruit
-    out_eggs[[t]] = eggs
-    out_sr[[t]] = sr
-    out_s_juvenile[[t]] = s_juvenile
-    out_s_prespawn[[t]] = s_prespawn
-    out_s_postspawn[[t]] = s_postspawn
-    out_iteroparity[[t]] = iteroparity
-    out_spawners[[t]] = spawners
-    out_pop[[t]] = pop
-    out_year[[t]] = t
+    out_river[[t]] = .sim_pop$river
+    out_region[[t]] = .sim_pop$region
+    out_govt[[t]] = .sim_pop$govt
+    out_lat[[t]] = .sim_pop$latitude
+    out_habitat[[t]] = .sim_pop$acres/247.105
+    out_upstream[[t]] = .sim_pop$upstream
+    out_downstream[[t]] = .sim_pop$downstream
+    out_downstream_j[[t]] = .sim_pop$downstream_j
+    out_max_age[[t]] = .sim_pop$max_age
+    out_nM[[t]] = .sim_pop$nM
+    out_fM[[t]] = .sim_pop$fM
+    out_n_init[[t]] = .sim_pop$n_init
+    out_spawnRecruit[[t]] = .sim_pop$spawnRecruit
+    out_eggs[[t]] = .sim_pop$eggs
+    out_sr[[t]] = .sim_pop$sr
+    out_s_juvenile[[t]] = .sim_pop$s_juvenile
+    out_s_prespawn[[t]] = .sim_pop$s_prespawn
+    out_s_postspawn[[t]] = .sim_pop$s_postspawn
+    out_iteroparity[[t]] = .sim_pop$iteroparity
+    out_spawners[[t]] = .sim_pop$spawners
+    out_pop[[t]] = .sim_pop$pop
+    out_year[[t]] = .sim_pop$t
     
   # Return the result to the environment
     filled <- 

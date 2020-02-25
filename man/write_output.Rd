@@ -4,7 +4,12 @@
 \alias{write_output}
 \title{Write simulation results}
 \usage{
-write_output()
+write_output(.sim_pop)
+}
+\arguments{
+\item{.sim_pop}{A hidden environment in the calling frame 
+of \code{\link{sim_pop}}. Arbitrarily any named object with
+names matching those used in the function.}
 }
 \value{
 A list of results.
@@ -14,5 +19,7 @@ Internal function used to collect and
 return all model inputs and relevant model
 outputs (e.g., population size) from all years t.
 
-Not intended to be called directly.
+For internal use in \code{\link{sim_pop}}. Not intended 
+to be called directly.
 }
+\keyword{Internal}
