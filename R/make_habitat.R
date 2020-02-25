@@ -34,10 +34,12 @@ make_habitat <- function(habitat_data, river, upstream){
   }
   
   # Get termcode for river
-  termcode <- shad_rivers$termcode[shad_rivers$system==river]
+  termcode <- anadrofish::shad_rivers$termcode[
+    anadrofish::shad_rivers$system==river]
   
   # Select habitat units based on huc_code
-  units <- habitat[habitat$TERMCODE==termcode,]
+  units <- anadrofish::habitat[
+    anadrofish::habitat$TERMCODE==termcode,]
   
   # Calculate passage to habitat segment
   units$p_to_habitat <- upstream^units$dam_order

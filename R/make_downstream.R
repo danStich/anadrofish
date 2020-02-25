@@ -47,10 +47,10 @@ make_downstream <- function(habitat_data, river, downstream, upstream){
   }
   
   # Get termcode for river
-  termcode <- shad_rivers$termcode[shad_rivers$system==river]
+  termcode <- anadrofish::shad_rivers$termcode[anadrofish::shad_rivers$system==river]
   
   # Select habitat units based on huc_code
-  units <- habitat[habitat$TERMCODE==termcode, ]
+  units <- anadrofish::habitat[anadrofish::habitat$TERMCODE==termcode, ]
 
   # Assign cumulative downstream passage to feature
   units$p_downstream <- downstream^units$dam_order

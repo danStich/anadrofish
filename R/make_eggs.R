@@ -54,10 +54,13 @@ make_eggs <- function(river){
   }
   
   # Get region
-  region <- shad_rivers$region[shad_rivers$system==river]
+  region <- anadrofish::shad_rivers$region[
+    anadrofish::shad_rivers$system==river]
   
   # Get maximum age 
-  max_age <- max_ages$maxage[max_ages$region==region & max_ages$sex=='F']
+  max_age <- anadrofish::max_ages$maxage[
+    anadrofish::max_ages$region==region & 
+    anadrofish::max_ages$sex=='F']
   
   # Get growth params for region from built-in data
   growth_parms <- get(paste0('vbgf_', region))
@@ -75,15 +78,21 @@ make_eggs <- function(river){
   fl <- Linf * (1 - exp( -K*(ages-t0)))
   
   # Get length-weight regression parameters
-  alpha <- length_weight$alpha[length_weight$region==region & length_weight$sex=="F"]
-  beta <- length_weight$beta[length_weight$region==region & length_weight$sex=="F"]
+  alpha <- anadrofish::length_weight$alpha[
+    anadrofish::length_weight$region==region &
+    anadrofish::length_weight$sex=="F"]
+  beta <- anadrofish::length_weight$beta[
+    anadrofish::length_weight$region==region & 
+    anadrofish::length_weight$sex=="F"]
 
   # Predict mass (g) from fl (mm)
   mass <- alpha * fl^beta
 
   # Calculate number of eggs per batch based on Olney & McBride (2003)
-  fec_alpha = olney_mcbride$alpha[olney_mcbride$region==region]
-  fec_beta = olney_mcbride$beta[olney_mcbride$region==region]
+  fec_alpha = anadrofish::olney_mcbride$alpha[
+    anadrofish::olney_mcbride$region==region]
+  fec_beta = anadrofish::olney_mcbride$beta[
+    anadrofish::olney_mcbride$region==region]
   batch_size <- 10^(fec_alpha + fec_beta*log10(mass))
     
   # Draw number of batches based on McBride et al. (2016)  

@@ -39,12 +39,14 @@ make_spawnrecruit <- function(river, sex=c('male', 'female')){
     To see a list of available rivers, run get_rivers()")
   }  
   
-  region <- shad_rivers$region[shad_rivers$system==river]
+  region <- anadrofish::shad_rivers$region[
+    anadrofish::shad_rivers$system==river]
   
   if(missing(sex)){
     max_age <- make_maxage(river)
     probs <- as.numeric(
-      colMeans(maturity[maturity$region==region, 3:(2+max_age)])
+      colMeans(anadrofish::maturity[
+        anadrofish::maturity$region==region, 3:(2+max_age)])
     )
   }
   
@@ -54,13 +56,17 @@ make_spawnrecruit <- function(river, sex=c('male', 'female')){
     
     if(sex == 'female'){
     probs <- as.numeric(
-      maturity[maturity$region==region & maturity$sex=='F', 3:(2+max_age)]
+      anadrofish::maturity[
+        anadrofish::maturity$region==region & 
+          anadrofish::maturity$sex=='F', 3:(2+max_age)]
       )
     }
     
     if(sex == 'male'){
     probs <- as.numeric(
-      maturity[maturity$region==region & maturity$sex=='M', 3:(2+max_age)]
+      anadrofish::maturity[
+        anadrofish::maturity$region==region & 
+          anadrofish::maturity$sex=='M', 3:(2+max_age)]
       )
     }
   

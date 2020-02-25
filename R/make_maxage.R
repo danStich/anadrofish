@@ -38,19 +38,25 @@ make_maxage <- function(river, sex = c('female', 'male')){
     To see a list of available rivers, run get_rivers()")
   }  
   
-  region <- shad_rivers$region[shad_rivers$system==river]
+  region <- anadrofish::shad_rivers$region[
+    anadrofish::shad_rivers$system==river]
   
   if(missing(sex)){
-    max_age <- max(max_ages$maxage[max_ages$region==region])
+    max_age <- max(anadrofish::max_ages$maxage[
+      anadrofish::max_ages$region==region])
   }
   
   if(!missing(sex)){
     if(sex=='female'){
-      max_age <- max_ages$maxage[max_ages$region==region & max_ages$sex=='F']
+      max_age <- anadrofish::max_ages$maxage[
+        anadrofish::max_ages$region==region & 
+          anadrofish::max_ages$sex=='F']
     }  
   
     if(sex=='male'){
-      max_age <- max_ages$maxage[max_ages$region==region & max_ages$sex=='M']
+      max_age <- anadrofish::max_ages$maxage[
+        anadrofish::max_ages$region==region & 
+          anadrofish::max_ages$sex=='M']
     }
   }
   

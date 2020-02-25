@@ -17,6 +17,6 @@
 #'
 get_rivers <- function(){
   
-  return(sort(as.vector(shad_rivers$system)))
+  return(sort(as.vector(anadrofish::shad_rivers$system)))
   
   }

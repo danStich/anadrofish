@@ -29,10 +29,12 @@ make_lat <- function(river){
   }  
   
   # Get termcode for river
-  termcode <- shad_rivers$termcode[shad_rivers$system==river]
+  termcode <- anadrofish::shad_rivers$termcode[
+    anadrofish::shad_rivers$system==river]
   
   # Select habitat units based on HUC 10 watershed names
-  units <- habitat[habitat$TERMCODE == termcode,]
+  units <- anadrofish::habitat[
+    anadrofish::habitat$TERMCODE == termcode,]
   
   # Get latitude and longitude for the first downstream habitat unit
   latitude <- units$latitude[1]
