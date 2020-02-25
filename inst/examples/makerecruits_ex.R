@@ -7,6 +7,6 @@
   s_hatch = 0.10   
 
 # Calculate expected number of age-0 fish  
-  fec <- make_fec(eggs = eggs, sr = sr, s_hatch = s_hatch)
+  fec <- make_recruits(eggs = eggs, sr = sr, s_hatch = s_hatch)
   
 }
