@@ -17,7 +17,7 @@ survival from daily rates reported by Crecco et al. (1983) from
 the Connecticut River, USA during 4 consecutive years.
 }
 \examples{
-sim_juvenile(anadrofish::crecco_1983)
+sim_juvenile_s(anadrofish::crecco_1983)
 
 }
 \references{
