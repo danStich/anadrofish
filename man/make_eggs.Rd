@@ -8,10 +8,6 @@ make_eggs(river)
 }
 \arguments{
 \item{river}{The river for which eggs will be simulated.}
-
-\item{max_age}{The maximum age of fish in the population.
-A numeric vector of length 1. See \code{\link{sim_pop}} in 
-the event that the function is called internally from \code{sim_pop}}
 }
 \value{
 A vector containing age-specific potential annual 

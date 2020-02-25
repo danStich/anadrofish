@@ -6,10 +6,6 @@
 #'
 #' @param river The river for which eggs will be simulated.
 #'
-#' @param max_age The maximum age of fish in the population.
-#' A numeric vector of length 1. See \code{\link{sim_pop}} in 
-#' the event that the function is called internally from \code{sim_pop}
-#' 
 #' @section Details:
 #' The default uses predictive equations from Olney and McBride (2003) 
 #' to simulate batch fecundity from weight-fecundity relationships
