@@ -1,8 +1,7 @@
 #' @title Project population
 #'
 #' @description Function used to project population forward 
-#' one time step using matrix multiplication. Based on 
-#' modification of \code{project.leslie} in \link{demogR}
+#' one time step using vector multiplication.
 #'
 #' @param x An numeric vector containing age-specific 
 #' abundance at end of year t.

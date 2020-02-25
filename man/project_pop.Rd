@@ -24,8 +24,7 @@ A numeric vector of age-structured abundance in time t + 1
 }
 \description{
 Function used to project population forward 
-one time step using matrix multiplication. Based on 
-modification of \code{project.leslie} in \link{demogR}
+one time step using vector multiplication.
 }
 \examples{
 # Example usage
