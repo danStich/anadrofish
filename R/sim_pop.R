@@ -111,74 +111,90 @@ sim_pop <- function(
 )
 
 {
+  # Make a hidden environment to avoid
+  # cluttering .GlobalEnv
+    .sim_pop <- new.env()  
+  
+  # Unlist function args to internal environment
+    list2env(mget(names(formals(sim_pop))), envir=.sim_pop)
+    
   # Argument matching for output_years
-    output_years <- match.arg(output_years)
+    .sim_pop$output_years <- match.arg(output_years)
   
   # Get region for river system
-    region <- inventory$region[inventory$system == river]
+    .sim_pop$region <- anadrofish::inventory$region[
+      anadrofish::inventory$system == .sim_pop$river]
     
   # Get governmental unit
-    govt <- substr(inventory$termcode[inventory$system == river],
-                   start = 3, stop = 4)
+    .sim_pop$govt <- substr(anadrofish::inventory$termcode[
+      anadrofish::inventory$system == .sim_pop$river],
+      start = 3, stop = 4)
     
   # Get life-history parameters if not specified 
   # Instantaneous natural mortality - avg for M and F within region
-    if(is.null(nM)){ nM <- make_mortality(river)}
+    if(is.null(.sim_pop$nM)){ .sim_pop$nM <- make_mortality(.sim_pop$river)}
       
   # Maximum age if not specified 
-    if(is.null(max_age)){ max_age <- make_maxage(river)}
+    if(is.null(.sim_pop$max_age)){.sim_pop$max_age <- make_maxage(.sim_pop$river)}
     
   # Maturity schedule if not specified 
-    if(is.null(spawnRecruit)){ spawnRecruit <- make_spawnrecruit(river)}
+    if(is.null(.sim_pop$spawnRecruit)){ 
+      .sim_pop$spawnRecruit <- make_spawnrecruit(.sim_pop$river)
+      }
     
   # Get estimated number of eggs per female if not specified 
-    if(is.null(eggs)){eggs <- make_eggs(river)}
+    if(is.null(.sim_pop$eggs)){.sim_pop$eggs <- make_eggs(.sim_pop$river)}
     
   # Get hatch-to-outmigrant survival if not specified  
-    if(is.null(s_juvenile)){s_juvenile <- sim_juvenile_s(crecco_1983)}
-    
-  # Make a hidden environment to avoid
-  # cluttering .GlobalEnv
-    .sim_pop <- new.env()
+    if(is.null(.sim_pop$s_juvenile)){.sim_pop$s_juvenile <- 
+      sim_juvenile_s(anadrofish::crecco_1983)}
     
   # Make output vectors
     environment(make_output) <- .sim_pop
-    list2env(make_output(), envir = .sim_pop)
+    list2env(make_output(nyears = .sim_pop$nyears), envir = .sim_pop)
   
   # Make habitat from built-in data sets
-    .sim_pop$acres <- make_habitat(river = river, upstream=upstream)
+    .sim_pop$acres <- make_habitat(river = .sim_pop$river, upstream=.sim_pop$upstream)
     
   # Make downstream survival through dams
     .sim_pop$s_downstream <- make_downstream(
-      river = river, downstream=downstream, upstream=upstream)
+      river = .sim_pop$river, 
+      downstream = .sim_pop$downstream, 
+      upstream = .sim_pop$upstream
+      )
     .sim_pop$s_downstream_j <- make_downstream(
-      river = river, downstream=downstream_j, upstream=upstream)       
+      river = .sim_pop$river, 
+      downstream = .sim_pop$downstream_j, 
+      upstream = .sim_pop$upstream)       
     
   # Make the population
     environment(make_pop) <- .sim_pop
-    .sim_pop$pop <-  make_pop(max_age = max_age,
-                              nM = nM,
-                              fM = fM,
-                              n_init = n_init
+    .sim_pop$pop <-  make_pop(max_age = .sim_pop$max_age,
+                              nM = .sim_pop$nM,
+                              fM = .sim_pop$fM,
+                              n_init = .sim_pop$n_init
                               )
     
   # Simulate for nyears until population stabilizes.  
-  for(t in 1:nyears){    
-      
+  for(t in 1:.sim_pop$nyears){    
+    # Assign iterator to the hidden workspaces
+      .sim_pop$t <- t
+    
     # Make spawning population
-      .sim_pop$spawners <- make_spawners(.sim_pop$pop, probs = spawnRecruit)
+      .sim_pop$spawners <- make_spawners(
+        .sim_pop$pop, probs = .sim_pop$spawnRecruit)
       
     # Subtract the spawners from the ocean population
       .sim_pop$pop <- .sim_pop$pop - .sim_pop$spawners  
       
     # Apply prespawn survival to spawners  
-      .sim_pop$spawners1 <- .sim_pop$spawners * s_prespawn  
+      .sim_pop$spawners1 <- .sim_pop$spawners * .sim_pop$s_prespawn  
     
     # Make realized reproductive output of spawners 
       .sim_pop$fec <- make_recruits(
-        eggs = eggs,
-        sr = sr,
-        s_juvenile = s_juvenile
+        eggs = .sim_pop$eggs,
+        sr = .sim_pop$sr,
+        s_juvenile = .sim_pop$s_juvenile
         )
      
     # Calculate density-dependent recruitment from Beverton-Holt curve   
@@ -193,11 +209,11 @@ sim_pop <- function(
       .sim_pop$age0 <- sum(.sim_pop$recruits_f_age)    
       
     # Get rate of iteroparity from river based on latitude
-      .sim_pop$latitude <- make_lat(river)
+      .sim_pop$latitude <- make_lat(.sim_pop$river)
       .sim_pop$iteroparity <- make_iteroparity(.sim_pop$latitude)
       
     # Apply post-spawn survival
-      .sim_pop$s_postspawn <- make_postspawn(river)
+      .sim_pop$s_postspawn <- make_postspawn(.sim_pop$river)
       .sim_pop$spawners2 <- .sim_pop$spawners1 * .sim_pop$s_postspawn      
 
     # Outmigrant survival
@@ -208,18 +224,18 @@ sim_pop <- function(
       .sim_pop$pop <- project_pop(
         x = .sim_pop$pop + .sim_pop$spawners_down, 
         age0 = .sim_pop$age0_down,
-        nM = nM, 
-        fM = fM,
-        max_age = max_age)  
+        nM = .sim_pop$nM, 
+        fM = .sim_pop$fM,
+        max_age = .sim_pop$max_age)  
     
     # Fill the output vectors
       environment(fill_output) <- .sim_pop
-      list2env(fill_output(), envir =.sim_pop)    
+      list2env(fill_output(.sim_pop), envir =.sim_pop)    
       
   } # YEAR LOOP  
     
   # Write the results to an object
     environment(write_output) <- .sim_pop
-    write_output()
+    write_output(.sim_pop)
     
 }
