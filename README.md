@@ -13,11 +13,9 @@ To install `anadrofish`, you will need to have `devtools` installed ahead of tim
 ## Use
 The purpose of this package is to distribute code for modeling anadromous fish population responses to dam passage and fisheries in Atlantic coastal rivers of Canada and the United States. The main `sim_pop` function uses various helper functions (see `?anadrofish` in R) that links dam passage to habitat avalaibility and stochastic population models to simulate species-specific responses to dams and fisheries. 
 
-The model is currently implemented for 125 American shad rivers in eastern North America. The full list of rivers available for assessment can be viewed with `anadrofish::get_rivers()` once the package is installed.
-
 Existing models for each river can be implemented using the `sim_pop` function. New models can theoretically be constructed using the existing functions within `anadrofish` and appropriately structured habitat data.
 
-Currently, these models are available for American shad (*Alosa sapidissima*) in 48 Atlantic Coastal Rivers of the United States from Florida (St. Johns River) to Quebec (St. Lawrence drainage). 
+Currently, these models are available for American shad (*Alosa sapidissima*) in 125 Atlantic Coastal Rivers of the United States from Florida (St. Johns River) to Quebec (St. Lawrence drainage). The full list of rivers available for assessment can be viewed with `anadrofish::get_rivers()` once the package is installed.
 
 </br>
 
