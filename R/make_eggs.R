@@ -54,8 +54,8 @@ make_eggs <- function(river){
   }
   
   # Get region
-  region <- anadrofish::shad_rivers$region[
-    anadrofish::shad_rivers$system==river]
+  region <- unique(anadrofish::habitat$region[
+    anadrofish::habitat$system==river])
   
   # Get maximum age 
   max_age <- anadrofish::max_ages$maxage[

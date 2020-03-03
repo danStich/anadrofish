@@ -8,8 +8,7 @@
 #' to a random sampler for use in stochastic simulation via 
 #' parallel processing.
 #'
-#' @return A character vector of rivers that are included in both 
-#' \link{inventory} and \link{habitat}.
+#' @return A character vector of rivers that are included in \link{habitat}.
 #'
 #' @example inst/examples/get_rivers_ex.R
 #'
@@ -17,6 +16,6 @@
 #'
 get_rivers <- function(){
   
-  return(sort(as.vector(anadrofish::shad_rivers$system)))
+  return(sort(unique(anadrofish::habitat$system)))
   
   }

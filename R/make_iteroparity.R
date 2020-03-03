@@ -16,7 +16,7 @@
 #' @references Bailey, M.M., and J. D. Zydlewski. 2013. To stock or not 
 #' to stock? Assessing therestoration potential of a remnant 
 #' American shad spawning run with hatchery supplementation. North 
-#' American Journal of Fisheries Management 33:459–467.
+#' American Journal of Fisheries Management 33:459-467.
 #' 
 #' Leggett, W., and J. E. Cascardden. 1978. Latitudinal Variation in 
 #' Reproductive Characteristics of American Shad (Alosa sapidissima):  

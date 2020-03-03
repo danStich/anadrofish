@@ -8,11 +8,10 @@
 #' 
 #' @param river River basin. Available rivers implemented in package 
 #' can be viewed by calling \code{\link{get_rivers}} with no arguments
-#' (e.g., get_rivers()). Alternatively, the user can specify 
+#' (e.g., \code{get_rivers()}). Alternatively, the user can specify 
 #' \code{rivers = sample(get_rivers, 1)} to randomly sample river 
 #' within larger simulation studies. Information about each river can be 
-#' found in \code{\link{inventory}}, \code{\link{shad_rivers}}, 
-#' and \code{\link{habitat}} datasets.
+#' found in the \code{\link{habitat}} dataset.
 #' 
 #' @param max_age Maximum age of fish in population. If \code{NULL}
 #' (default), then based on the maximum age of females for the
@@ -122,13 +121,13 @@ sim_pop <- function(
     .sim_pop$output_years <- match.arg(output_years)
   
   # Get region for river system
-    .sim_pop$region <- anadrofish::inventory$region[
-      anadrofish::inventory$system == .sim_pop$river]
+    .sim_pop$region <- unique(anadrofish::habitat$region[
+      anadrofish::habitat$system == .sim_pop$river])
     
   # Get governmental unit
-    .sim_pop$govt <- substr(anadrofish::inventory$termcode[
-      anadrofish::inventory$system == .sim_pop$river],
-      start = 3, stop = 4)
+    .sim_pop$govt <- unique(substr(anadrofish::habitat$TERMCODE[
+      anadrofish::habitat$system == .sim_pop$river],
+      start = 3, stop = 4))
     
   # Get life-history parameters if not specified 
   # Instantaneous natural mortality - avg for M and F within region

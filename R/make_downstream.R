@@ -46,11 +46,8 @@ make_downstream <- function(habitat_data, river, downstream, upstream){
     To see a list of available rivers, run get_rivers()")
   }
   
-  # Get termcode for river
-  termcode <- anadrofish::shad_rivers$termcode[anadrofish::shad_rivers$system==river]
-  
   # Select habitat units based on huc_code
-  units <- anadrofish::habitat[anadrofish::habitat$TERMCODE==termcode, ]
+  units <- anadrofish::habitat[anadrofish::habitat$system==river, ]
 
   # Assign cumulative downstream passage to feature
   units$p_downstream <- downstream^units$dam_order

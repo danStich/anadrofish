@@ -39,8 +39,8 @@ make_mortality <- function(river, sex=c(NULL, 'female', 'male')){
     To see a list of available rivers, run get_rivers()")
   }  
   
-  region <- anadrofish::shad_rivers$region[
-    anadrofish::shad_rivers$system==river]
+  region <- unique(anadrofish::habitat$region[
+    anadrofish::habitat$system==river])
   
   if(missing(sex)){
     nM <- mean(anadrofish::mortality$M[

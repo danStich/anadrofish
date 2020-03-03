@@ -39,8 +39,8 @@ make_spawnrecruit <- function(river, sex=c('male', 'female')){
     To see a list of available rivers, run get_rivers()")
   }  
   
-  region <- anadrofish::shad_rivers$region[
-    anadrofish::shad_rivers$system==river]
+  region <- unique(anadrofish::habitat$region[
+    anadrofish::habitat$system==river])
   
   if(missing(sex)){
     max_age <- make_maxage(river)
