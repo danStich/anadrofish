@@ -13,11 +13,10 @@ sim_pop(river, nyears = 50, max_age = NULL, nM = NULL, fM = 0,
 \arguments{
 \item{river}{River basin. Available rivers implemented in package 
 can be viewed by calling \code{\link{get_rivers}} with no arguments
-(e.g., get_rivers()). Alternatively, the user can specify 
+(e.g., \code{get_rivers()}). Alternatively, the user can specify 
 \code{rivers = sample(get_rivers, 1)} to randomly sample river 
 within larger simulation studies. Information about each river can be 
-found in \code{\link{inventory}}, \code{\link{shad_rivers}}, 
-and \code{\link{habitat}} datasets.}
+found in the \code{\link{habitat}} dataset.}
 
 \item{nyears}{Number of years for simulation.}
 

@@ -7,8 +7,7 @@
 get_rivers()
 }
 \value{
-A character vector of rivers that are included in both 
-\link{inventory} and \link{habitat}.
+A character vector of rivers that are included in \link{habitat}.
 }
 \description{
 Get names of rivers included in package. A function with 
