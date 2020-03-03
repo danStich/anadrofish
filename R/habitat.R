@@ -6,9 +6,24 @@
 #'
 #' @format A data frame with 1015 observations of 16 variables:
 #' \describe{
+#' 
+#' \code{TERMCODE}{ code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.}
+#' 
+#' \code{system}{ name or name(s) of rivers included in catchment.}
+#' 
+#' \code{region}{ life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous)}
+#' 
+#' \code{huc_code}{ n-digit huc code for the huc identifier used in \code{TERMCODE}.}
+#' 
+#' \code{huc_level}{ watershed level used to determine \code{huc_code}.}
+#' 
+#' \code{count}{ number of habitat segments (features) included within \code{system}.}
+#' 
+#' \code{total}{ total historical habitat available in \code{system} (sq km).}
+#' 
 #' \code{UNIQUE_ID}{ unique value given to each dam and outlet feature.}
 #' 
-#' \code{type}{ type of feature, either\code{dam} or \code{outlet}.}
+#' \code{type}{ type of feature, either \code{dam} or \code{outlet}.}
 #' 
 #' \code{catchmentID}{ unique value of the coastal outlet in which the dam is located upstream.}
 #'
@@ -19,8 +34,6 @@
 #' \code{functional_habitatSegment_sqkm}{ the value of \code{habitatSegment_sqkm} multiplied by the compounded passage fraction from outlet up to the feature.}
 #'
 #' \code{PassageToHabitat}{ passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.}
-#'
-#' \code{TERMCODE}{ code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.}
 #'
 #' \code{terminal_name_huc10}{ name of HUC10 watershed of feature's outlet.}
 #'
