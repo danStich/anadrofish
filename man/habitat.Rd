@@ -4,7 +4,8 @@
 \name{habitat}
 \alias{habitat}
 \title{American shad habitat}
-\format{A data frame with 1015 observations of 16 variables:
+\format{
+A data frame with 1015 observations of 16 variables:
 \describe{
 
 \code{TERMCODE}{ code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.}
@@ -48,7 +49,8 @@
 \code{latitude/longitude}{ coordinates of feature.}
 
 \code{dam_order}{ order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.}
-}}
+}
+}
 \source{
 Samuel G. Roy: \url{https://github.com/samGroy/AmShadProject}
 }

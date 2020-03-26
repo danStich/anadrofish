@@ -4,8 +4,14 @@
 \alias{beverton_holt}
 \title{Beverton-Holt stock recruit curve}
 \usage{
-beverton_holt(a = 250000, S = 100, b = 0.340297, acres = 1,
-  error = c("multiplicative", "additive"), age_structured = FALSE)
+beverton_holt(
+  a = 250000,
+  S = 100,
+  b = 0.340297,
+  acres = 1,
+  error = c("multiplicative", "additive"),
+  age_structured = FALSE
+)
 }
 \arguments{
 \item{a}{Ratio of recruits per spawner. Density independent parameter 

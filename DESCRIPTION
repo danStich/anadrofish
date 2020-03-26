@@ -11,4 +11,4 @@ Encoding: UTF-8
 LazyData: true
 Depends: R(>= 3.5.0)
 Imports: truncnorm
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0

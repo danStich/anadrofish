@@ -4,7 +4,8 @@
 \name{maturity}
 \alias{maturity}
 \title{Sex-specific maturity schedules for American shad}
-\format{A data frame with 6 observations of 15 variables:
+\format{
+A data frame with 6 observations of 15 variables:
 \describe{
 
 \code{region}{ Life-history region}
@@ -12,7 +13,8 @@
 \code{sex}{ Fish sex (gender)}
 
 \code{age1, age2, ..., age13}{ Probability of maturing at age}
-}}
+}
+}
 \source{
 Atlantic States Marine Fisheries Commission
 }

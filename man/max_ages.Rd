@@ -4,7 +4,8 @@
 \name{max_ages}
 \alias{max_ages}
 \title{Sex-specific maximum ages of American shad}
-\format{A data frame with 6 observations of 3 variables:
+\format{
+A data frame with 6 observations of 3 variables:
 \describe{
 
 \code{region}{ Life-history region}
@@ -13,7 +14,8 @@
 
 \code{maxage}{ Maximum observed age}
 
-}}
+}
+}
 \source{
 Atlantic States Marine Fisheries Commission
 }

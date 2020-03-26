@@ -4,7 +4,8 @@
 \name{olney_mcbride}
 \alias{olney_mcbride}
 \title{Weight-batch fecundity relationships for American Shad}
-\format{A data frame with 3 observations of 4 variables:
+\format{
+A data frame with 3 observations of 4 variables:
 \describe{
 
 \code{system}{ Study system}
@@ -15,7 +16,8 @@ SI = Southern iteroparous, SP = Semelparous}
 \code{alpha}{ Intercept}
 
 \code{beta}{ Slope}
-}}
+}
+}
 \source{
 Olney, J. E. and R. S. McBride. 2003. Intraspecific 
 variation in batch fecundity of American shad (*Alosa sapidissima*): 

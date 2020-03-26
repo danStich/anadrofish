@@ -4,7 +4,8 @@
 \name{length_weight}
 \alias{length_weight}
 \title{Length-weight regression coefficients for American shad}
-\format{A data frame with 6 observations of 4 variables:
+\format{
+A data frame with 6 observations of 4 variables:
 \describe{
 
 \code{region}{ Life-history region}
@@ -14,7 +15,8 @@
 \code{alpha}{ Intercept}
 
 \code{beta}{ Slope}
-}}
+}
+}
 \source{
 Atlantic States Marine Fisheries Commission
 }

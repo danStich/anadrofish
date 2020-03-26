@@ -3,7 +3,6 @@
 \docType{package}
 \name{anadrofish}
 \alias{anadrofish}
-\alias{anadrofish-package}
 \title{anadrofish: Anadromous Fish Population Responses to Habitat Changes}
 \description{
 The anadrofish package is a collection of tools for running

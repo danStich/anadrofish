@@ -4,11 +4,24 @@
 \alias{sim_pop}
 \title{Simulate population dynamics through time.}
 \usage{
-sim_pop(river, nyears = 50, max_age = NULL, nM = NULL, fM = 0,
-  n_init = runif(1, 1e+06, 8e+08), spawnRecruit = NULL, eggs = NULL,
-  sr = 0.5, s_prespawn = 1, s_juvenile = NULL, upstream = 1,
-  downstream = 1, downstream_j = 1, output_years = c("last", "all"),
-  age_structured_output = FALSE)
+sim_pop(
+  river,
+  nyears = 50,
+  max_age = NULL,
+  nM = NULL,
+  fM = 0,
+  n_init = runif(1, 1e+06, 8e+08),
+  spawnRecruit = NULL,
+  eggs = NULL,
+  sr = 0.5,
+  s_prespawn = 1,
+  s_juvenile = NULL,
+  upstream = 1,
+  downstream = 1,
+  downstream_j = 1,
+  output_years = c("last", "all"),
+  age_structured_output = FALSE
+)
 }
 \arguments{
 \item{river}{River basin. Available rivers implemented in package 

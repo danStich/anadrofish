@@ -5,7 +5,8 @@
 \alias{vbgf_SP}
 \title{Sex-aggregate von Bertalanffy growth parameters for 
 Semelparous American shad}
-\format{A data frame with 1500 observations of 3 variables:
+\format{
+A data frame with 1500 observations of 3 variables:
 \describe{
 
 \code{Linf}{ Asymptotic length of fish}
@@ -13,7 +14,8 @@ Semelparous American shad}
 \code{K}{ Brody growth coefficient}
 
 \code{t0}{ Size at age zero}
-}}
+}
+}
 \source{
 Gilligan, E. K. 2019. Understanding influences of climate change
 on American Shad recovery, fisheries management, and dam impacts. Master's

@@ -4,7 +4,8 @@
 \name{crecco_1983}
 \alias{crecco_1983}
 \title{Daily mortality of juvenile American shad}
-\format{A data frame with 24 observations of 6 variables:
+\format{
+A data frame with 24 observations of 6 variables:
 \describe{
 \code{Year}{ Year of study}
 
@@ -23,7 +24,8 @@
 #' @references Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates 
 of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut 
 River with changes in year-class strength. Canadian Journal of 
-Fisheries and Aquatic Sciences 40:1719–1728.}
+Fisheries and Aquatic Sciences 40:1719–1728.
+}
 \usage{
 crecco_1983
 }
