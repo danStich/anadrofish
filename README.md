@@ -15,7 +15,7 @@ The purpose of this package is to distribute code for modeling anadromous fish p
 
 Existing models for each river can be implemented using the `sim_pop` function. New models can theoretically be constructed using the existing functions within `anadrofish` and appropriately structured habitat data.
 
-Currently, these models are available for American shad (*Alosa sapidissima*) in 125 Atlantic Coastal rivers of North America from Florida (St. Johns River) to Quebec (St. Lawrence drainage). The full list of rivers available for assessment can be viewed with `anadrofish::get_rivers()` once the package is installed.
+Currently, these models are available for American shad (*Alosa sapidissima*) in 167 Atlantic Coastal rivers of North America from Florida (St. Johns River) to Quebec (St. Lawrence drainage). The full list of rivers available for assessment can be viewed with `anadrofish::get_rivers()` once the package is installed.
 
 </br>
 
