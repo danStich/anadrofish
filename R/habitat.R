@@ -4,7 +4,7 @@
 #' shad habitat segments by feature (dam or outlet) in
 #' Atlantic coast drainages. 
 #'
-#' @format A data frame with 871 observations of 22 variables:
+#' @format A data frame with 868 observations of 22 variables:
 #' \describe{
 #' 
 #' \code{TERMCODE}{ code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.}
