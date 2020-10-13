@@ -42,6 +42,7 @@ write_output <- function(.sim_pop){
     if(ncol(out_spawners) < 13){
       out_spawners <- data.frame(out_spawners, matrix(0, nrow=nrow(out_spawners), ncol=(13-ncol(out_spawners)),))
     }
+    
     out_spawners <- apply(out_spawners, 2, round)
     colnames(out_spawners) <- paste('spawners_', 1:dim(out_spawners)[2], sep = '')
     out_spawners[is.na(out_spawners)] <- 0

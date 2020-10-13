@@ -23,9 +23,25 @@ fill_output <- function(.sim_pop){
     out_govt[[t]] = .sim_pop$govt
     out_lat[[t]] = .sim_pop$latitude
     out_habitat[[t]] = .sim_pop$acres/247.105
-    out_upstream[[t]] = .sim_pop$upstream
-    out_downstream[[t]] = .sim_pop$downstream
-    out_downstream_j[[t]] = .sim_pop$downstream_j
+    
+    if(length(.sim_pop$upstream) > 1){
+      out_upstream[[t]] = "dam specific: check your scenarios"
+    } else {
+      out_upstream[[t]] = .sim_pop$upstream
+    }
+    
+    if(length(.sim_pop$downstream) > 1){
+      out_downstream[[t]] <- "dam specific: check your scenarios"
+    } else {
+      out_downstream[[t]] <- .sim_pop$downstream
+    }
+    
+    if(length(.sim_pop$downstream_j) > 1){
+      out_downstream_j[[t]] <- "dam specific: check your scenarios"
+    } else {
+      out_downstream_j[[t]] <- .sim_pop$downstream_j
+    }    
+    
     out_max_age[[t]] = .sim_pop$max_age
     out_nM[[t]] = .sim_pop$nM
     out_fM[[t]] = .sim_pop$fM

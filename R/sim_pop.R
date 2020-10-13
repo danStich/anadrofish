@@ -75,6 +75,11 @@
 #' regardless of \code{max_age}, but all abundances for ages greater 
 #' than \code{max_age} are zero.
 #' 
+#' @param historical TESTING PARAM ONLY. Logical indicating whether this
+#' is an historical analysis. Default is FALSE. If TRUE, then use test 
+#' habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
+#' implimented for any other systems.
+#' 
 #' @return A data.frame containing simulation inputs (arguments
 #' to \code{sim_pop}) and output (number of spawners) by year.
 #' 
@@ -91,8 +96,8 @@
 #' @export
 #' 
 sim_pop <- function(
-  river,
   nyears = 50,  
+  river,
   max_age = NULL,
   nM = NULL,
   fM = 0,
@@ -106,7 +111,8 @@ sim_pop <- function(
   downstream = 1,  
   downstream_j = 1,
   output_years = c('last', 'all'),
-  age_structured_output = FALSE
+  age_structured_output = FALSE,
+  historical = FALSE
 )
 
 {
@@ -120,6 +126,9 @@ sim_pop <- function(
   # Argument matching for output_years
     .sim_pop$output_years <- match.arg(output_years)
   
+  # Argument matching for historical
+    # .sim_pop$historical
+    
   # Get region for river system
     .sim_pop$region <- unique(anadrofish::habitat$region[
       anadrofish::habitat$system == .sim_pop$river])
@@ -153,18 +162,24 @@ sim_pop <- function(
     list2env(make_output(nyears = .sim_pop$nyears), envir = .sim_pop)
   
   # Make habitat from built-in data sets
-    .sim_pop$acres <- make_habitat(river = .sim_pop$river, upstream=.sim_pop$upstream)
+    .sim_pop$acres <- make_habitat(river = .sim_pop$river, 
+                                   upstream = .sim_pop$upstream,
+                                   historical = .sim_pop$historical
+                                   )
     
   # Make downstream survival through dams
     .sim_pop$s_downstream <- make_downstream(
       river = .sim_pop$river, 
       downstream = .sim_pop$downstream, 
-      upstream = .sim_pop$upstream
+      upstream = .sim_pop$upstream,
+      historical = .sim_pop$historical
       )
     .sim_pop$s_downstream_j <- make_downstream(
       river = .sim_pop$river, 
       downstream = .sim_pop$downstream_j, 
-      upstream = .sim_pop$upstream)       
+      upstream = .sim_pop$upstream,
+      historical = .sim_pop$historical
+      )       
     
   # Make the population
     environment(make_pop) <- .sim_pop
@@ -176,7 +191,7 @@ sim_pop <- function(
     
   # Simulate for nyears until population stabilizes.  
   for(t in 1:.sim_pop$nyears){    
-    # Assign iterator to the hidden workspaces
+    # Assign iterator to the hidden work spaces
       .sim_pop$t <- t
     
     # Make spawning population

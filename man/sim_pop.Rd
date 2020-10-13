@@ -5,8 +5,8 @@
 \title{Simulate population dynamics through time.}
 \usage{
 sim_pop(
-  river,
   nyears = 50,
+  river,
   max_age = NULL,
   nM = NULL,
   fM = 0,
@@ -20,18 +20,19 @@ sim_pop(
   downstream = 1,
   downstream_j = 1,
   output_years = c("last", "all"),
-  age_structured_output = FALSE
+  age_structured_output = FALSE,
+  historical = FALSE
 )
 }
 \arguments{
+\item{nyears}{Number of years for simulation.}
+
 \item{river}{River basin. Available rivers implemented in package 
 can be viewed by calling \code{\link{get_rivers}} with no arguments
 (e.g., \code{get_rivers()}). Alternatively, the user can specify 
 \code{rivers = sample(get_rivers, 1)} to randomly sample river 
 within larger simulation studies. Information about each river can be 
 found in the \code{\link{habitat}} dataset.}
-
-\item{nyears}{Number of years for simulation.}
 
 \item{max_age}{Maximum age of fish in population. If \code{NULL}
 (default), then based on the maximum age of females for the
@@ -94,6 +95,10 @@ each age class. For the sake of managing outputs, abundances for
 \code{pop} and \code{spawners} are reported for all age classes 1-13 
 regardless of \code{max_age}, but all abundances for ages greater 
 than \code{max_age} are zero.}
+
+\item{historical}{Logical indicating whether this is an historical
+analysis. If yes, then use historical data set that contains dams
+not included in contemporary geospatial databases.}
 }
 \value{
 A data.frame containing simulation inputs (arguments

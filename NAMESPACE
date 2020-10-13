@@ -2,6 +2,7 @@
 
 export(beverton_holt)
 export(fill_output)
+export(get_dams)
 export(get_rivers)
 export(lower95)
 export(make_downstream)

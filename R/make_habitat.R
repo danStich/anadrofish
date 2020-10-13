@@ -1,4 +1,4 @@
-#' @title Project population
+#' @title Make cumulative habitat for river
 #'
 #' @description Function used to make habitat for rivers listed
 #' in \code{\link{get_rivers}} from the built-in 
@@ -15,7 +15,7 @@
 #' 
 #' @export
 #'
-make_habitat <- function(habitat_data, river, upstream){
+make_habitat <- function(river, upstream, historical){
   
   if(missing(river)){
     stop("
@@ -33,11 +33,25 @@ make_habitat <- function(habitat_data, river, upstream){
     To see a list of available rivers, run get_rivers()")
   }
   
-  # Select habitat units based on huc_code
+  # Select habitat units based on huc_code and whether
+  # this is an historical analysis (historical == FALSE
+  # by default)
+  # Contemporary habitat data subset
   units <- anadrofish::habitat[anadrofish::habitat$system==river,]
+  
+  # Historical habitat data subset
+  if(historical == TRUE){
+    units <- anadrofish::habitat_hist[anadrofish::habitat_hist$system==river,]
+    # units[with(units, order(dam_order)), ]
+    
+  }
   
   # Calculate passage to habitat segment
   units$p_to_habitat <- upstream^units$dam_order
+  if(historical == TRUE){
+    units$p_to_habitat <- cumprod(upstream)
+  }
+  
   units$functional_upstream <- units$habitatSegment_sqkm * units$p_to_habitat
   
   # Calculate habitat surface acres from the 

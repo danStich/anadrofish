@@ -2,17 +2,17 @@
 % Please edit documentation in R/make_habitat.R
 \name{make_habitat}
 \alias{make_habitat}
-\title{Project population}
+\title{Make cumulative habitat for river}
 \usage{
-make_habitat(habitat_data, river, upstream)
+make_habitat(river, upstream, historical = FALSE)
 }
 \arguments{
-\item{habitat_data}{A built-in data.frame containing habitat 
-estimates (km2) for the scenario and region selected.}
-
 \item{river}{Character string specifying river name}
 
 \item{upstream}{Proportional upstream passage through dams.}
+
+\item{habitat_data}{A built-in data.frame containing habitat 
+estimates (km2) for the scenario and region selected.}
 }
 \description{
 Function used to make habitat for rivers listed

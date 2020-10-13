@@ -3,9 +3,6 @@
 #' @description Function used to create population-level
 #' survival during out-migration through dams.
 #'
-#' @param habitat_data An internal data.frame in \code{\link{sim_pop}} 
-#' containing habitat estimates (km2) for the scenario and region selected.
-#'
 #' @param river Character string specifying river name.
 #' 
 #' @param downstream Numeric indicating proportional downstream survival 
@@ -13,6 +10,9 @@
 #' 
 #' @param upstream Numeric indicating proportional upstream passage 
 #' through a single dam.
+#' 
+#' @param historical Logical indicating whether to use contemporary or
+#' historical habitat data.
 #' 
 #' @return Numeric of length 1 representing catchment-scale 
 #' downstream migration mortality for juvenile or adult fish.
@@ -29,7 +29,7 @@
 #' 
 #' @export
 #'
-make_downstream <- function(habitat_data, river, downstream, upstream){
+make_downstream <- function(river, downstream, upstream, historical){
   if(missing(river)){
     stop("
     
@@ -46,14 +46,25 @@ make_downstream <- function(habitat_data, river, downstream, upstream){
     To see a list of available rivers, run get_rivers()")
   }
   
-  # Select habitat units based on huc_code
-  units <- anadrofish::habitat[anadrofish::habitat$system==river, ]
-
+  # Select habitat units based on huc_code and whether
+  # this is an historical analysis (historical == FALSE
+  # by default)
+  # Contemporary habitat data subset
+  units <- anadrofish::habitat[anadrofish::habitat$system==river,]
+  
+  # Historical habitat data subset
+  if(historical == TRUE){
+    units <- anadrofish::habitat_hist[anadrofish::habitat_hist$system==river,]
+  }
+  
   # Assign cumulative downstream passage to feature
   units$p_downstream <- downstream^units$dam_order
     
   # Calculate passage to habitat segment
   units$p_to_habitat <- upstream^units$dam_order
+  if(historical == TRUE){
+    units$p_to_habitat <- cumprod(upstream)
+  }
   units$functional_upstream <- units$habitatSegment_sqkm * units$p_to_habitat
   
   # Calculate proportion of habitat in each segment of available
@@ -61,6 +72,9 @@ make_downstream <- function(habitat_data, river, downstream, upstream){
     
   # The ratio is survival rate
   s_downstream <- sum(units$p_habitat*((downstream^units$dam_order)))
+    if(historical == TRUE){
+      units$s_downstream <- sum(units$p_habitat*(cumprod(downstream)))
+    }
   
   return(s_downstream)
 }
