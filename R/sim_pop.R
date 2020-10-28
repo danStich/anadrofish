@@ -38,13 +38,10 @@
 #' \code{max_age} if age-specific. If \code{NULL} (default) then 
 #' estimated based on weight-batch fecundity regression relationships 
 #' for each life-history region in the \code{\link{olney_mcbride}}
-#' dataset (Olney and McBride 2003) and mean nmber of batches spawned
+#' dataset (Olney and McBride 2003) and mean number of batches spawned
 #' (6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}}.
 #' 
 #' @param sr Sex ratio (expressed as percent female or P(female)).
-#' 
-#' @param s_prespawn Pre-spawn survival for spawners. No default
-#' value.
 #' 
 #' @param s_juvenile Survival from hatch to outmigrant. If NULL
 #' (default) then simulated from a (log) normal distribution using
@@ -105,7 +102,6 @@ sim_pop <- function(
   spawnRecruit = NULL, 
   eggs = NULL,
   sr = 0.50,
-  s_prespawn = 1,  
   s_juvenile = NULL,
   upstream = 1,
   downstream = 1,  
@@ -200,27 +196,24 @@ sim_pop <- function(
       
     # Subtract the spawners from the ocean population
       .sim_pop$pop <- .sim_pop$pop - .sim_pop$spawners  
-      
-    # Apply prespawn survival to spawners  
-      .sim_pop$spawners1 <- .sim_pop$spawners * .sim_pop$s_prespawn  
     
     # Make realized reproductive output of spawners 
       .sim_pop$fec <- make_recruits(
         eggs = .sim_pop$eggs,
-        sr = .sim_pop$sr,
-        s_juvenile = .sim_pop$s_juvenile
+        sr = .sim_pop$sr
         )
      
     # Calculate density-dependent recruitment from Beverton-Holt curve   
       .sim_pop$recruits_f_age <- beverton_holt(
         a = .sim_pop$fec,
-        S = .sim_pop$spawners1,
+        S = .sim_pop$spawners,
         acres = .sim_pop$acres,
         age_structured = TRUE
         )
-    
+      
+    # Apply density-independent mortality for 0-70 d
     # Sum recruits to get age0 fish  
-      .sim_pop$age0 <- sum(.sim_pop$recruits_f_age)    
+      .sim_pop$age0 <- sum(.sim_pop$recruits_f_age * .sim_pop$s_juvenile)    
       
     # Get rate of iteroparity from river based on latitude
       .sim_pop$latitude <- make_lat(.sim_pop$river)
@@ -228,7 +221,7 @@ sim_pop <- function(
       
     # Apply post-spawn survival
       .sim_pop$s_postspawn <- make_postspawn(.sim_pop$river)
-      .sim_pop$spawners2 <- .sim_pop$spawners1 * .sim_pop$s_postspawn      
+      .sim_pop$spawners2 <- .sim_pop$spawners * .sim_pop$s_postspawn      
 
     # Outmigrant survival
     .sim_pop$age0_down <- .sim_pop$age0 * .sim_pop$s_downstream_j

@@ -4,7 +4,7 @@
 \alias{make_habitat}
 \title{Make cumulative habitat for river}
 \usage{
-make_habitat(river, upstream, historical = FALSE)
+make_habitat(river, upstream, historical)
 }
 \arguments{
 \item{river}{Character string specifying river name}

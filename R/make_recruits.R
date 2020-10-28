@@ -1,15 +1,13 @@
 #' @title Make recruits
 #'
 #' @description Function used to calculate realized reproductive output 
-#' (to outmigrant stage) of female spawners without density-dependence
+#' (to larval stage) of female spawners without density-dependence
 #' in larval production.
 #'
 #' @param eggs The number of eggs an individual fish
 #' can produce (Potential annual fecundity, PAF).
 #' 
 #' @param sr Sex ratio
-#' 
-#' @param s_juvenile Larval-to-outmigrant survival
 #'
 #' @return Number of juvenile recruits. Numeric vector of
 #' \code{length(eggs}. May be a single value (vector of length 1)
@@ -20,10 +18,10 @@
 #' 
 #' @export
 #'
-make_recruits <- function(eggs, sr, s_juvenile){
+make_recruits <- function(eggs, sr){
 
-  # Multiply eggs (fecundity) by sex ratio and hatch success
-    recruits <- eggs * sr * s_juvenile
+  # Multiply eggs (PAF) by sex ratio and hatch success
+    recruits <- eggs * sr
   
   # Return the result to R
     return(recruits)

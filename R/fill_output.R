@@ -50,7 +50,6 @@ fill_output <- function(.sim_pop){
     out_eggs[[t]] = .sim_pop$eggs
     out_sr[[t]] = .sim_pop$sr
     out_s_juvenile[[t]] = .sim_pop$s_juvenile
-    out_s_prespawn[[t]] = .sim_pop$s_prespawn
     out_s_postspawn[[t]] = .sim_pop$s_postspawn
     out_iteroparity[[t]] = .sim_pop$iteroparity
     out_spawners[[t]] = .sim_pop$spawners
@@ -76,7 +75,6 @@ fill_output <- function(.sim_pop){
         out_eggs,
         out_sr,
         out_s_juvenile,
-        out_s_prespawn,
         out_s_postspawn,
         out_iteroparity,
         out_spawners,
@@ -101,7 +99,6 @@ fill_output <- function(.sim_pop){
         'out_eggs',
         'out_sr',
         'out_s_juvenile',
-        'out_s_prespawn',
         'out_s_postspawn',
         'out_iteroparity',
         'out_spawners',

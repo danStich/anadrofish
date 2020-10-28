@@ -27,7 +27,6 @@ make_output <- function(nyears){
   out_eggs = vector(mode='list', length=nyears)
   out_sr = vector(mode='numeric', length=nyears)
   out_s_juvenile = vector(mode='numeric', length=nyears)
-  out_s_prespawn = vector(mode='numeric', length=nyears)
   out_s_postspawn = vector(mode='numeric', length=nyears)
   out_iteroparity = vector(mode='numeric', length=nyears)
   out_spawners = vector(mode='list', length=nyears)
@@ -52,7 +51,6 @@ make_output <- function(nyears){
       out_eggs = out_eggs,
       out_sr = out_sr,
       out_s_juvenile = out_s_juvenile,
-      out_s_prespawn = out_s_prespawn,
       out_s_postspawn = out_s_postspawn,
       out_iteroparity = out_iteroparity,
       out_spawners = out_spawners,

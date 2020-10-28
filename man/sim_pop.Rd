@@ -14,7 +14,6 @@ sim_pop(
   spawnRecruit = NULL,
   eggs = NULL,
   sr = 0.5,
-  s_prespawn = 1,
   s_juvenile = NULL,
   upstream = 1,
   downstream = 1,
@@ -59,13 +58,10 @@ if eggs per female is age invariant, or can be vector of length
 \code{max_age} if age-specific. If \code{NULL} (default) then 
 estimated based on weight-batch fecundity regression relationships 
 for each life-history region in the \code{\link{olney_mcbride}}
-dataset (Olney and McBride 2003) and mean nmber of batches spawned
+dataset (Olney and McBride 2003) and mean number of batches spawned
 (6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}}.}
 
 \item{sr}{Sex ratio (expressed as percent female or P(female)).}
-
-\item{s_prespawn}{Pre-spawn survival for spawners. No default
-value.}
 
 \item{s_juvenile}{Survival from hatch to outmigrant. If NULL
 (default) then simulated from a (log) normal distribution using
@@ -96,9 +92,10 @@ each age class. For the sake of managing outputs, abundances for
 regardless of \code{max_age}, but all abundances for ages greater 
 than \code{max_age} are zero.}
 
-\item{historical}{Logical indicating whether this is an historical
-analysis. If yes, then use historical data set that contains dams
-not included in contemporary geospatial databases.}
+\item{historical}{TESTING PARAM ONLY. Logical indicating whether this
+is an historical analysis. Default is FALSE. If TRUE, then use test 
+habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
+implimented for any other systems.}
 }
 \value{
 A data.frame containing simulation inputs (arguments

@@ -4,15 +4,13 @@
 \alias{make_recruits}
 \title{Make recruits}
 \usage{
-make_recruits(eggs, sr, s_juvenile)
+make_recruits(eggs, sr)
 }
 \arguments{
 \item{eggs}{The number of eggs an individual fish
 can produce (Potential annual fecundity, PAF).}
 
 \item{sr}{Sex ratio}
-
-\item{s_juvenile}{Larval-to-outmigrant survival}
 }
 \value{
 Number of juvenile recruits. Numeric vector of
@@ -22,7 +20,7 @@ age-specific values are passed to \code{eggs}.
 }
 \description{
 Function used to calculate realized reproductive output 
-(to outmigrant stage) of female spawners without density-dependence
+(to larval stage) of female spawners without density-dependence
 in larval production.
 }
 \examples{
