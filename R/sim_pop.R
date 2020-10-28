@@ -75,7 +75,7 @@
 #' @param historical TESTING PARAM ONLY. Logical indicating whether this
 #' is an historical analysis. Default is FALSE. If TRUE, then use test 
 #' habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
-#' implimented for any other systems.
+#' implemented for any other systems.
 #' 
 #' @return A data.frame containing simulation inputs (arguments
 #' to \code{sim_pop}) and output (number of spawners) by year.
