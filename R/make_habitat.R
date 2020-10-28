@@ -4,12 +4,14 @@
 #' in \code{\link{get_rivers}} from the built-in 
 #' dataset(s)
 #'
-#' @param habitat_data A built-in data.frame containing habitat 
-#' estimates (km2) for the scenario and region selected.
-#'
 #' @param river Character string specifying river name
 #' 
 #' @param upstream Proportional upstream passage through dams.
+#' 
+#' @param historical TESTING PARAM ONLY. Logical indicating whether this
+#' is an historical analysis. Default is FALSE. If TRUE, then use test 
+#' habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
+#' implemented for any other systems.
 #' 
 # #' @example inst/examples/makehabitat_ex.R
 #' 

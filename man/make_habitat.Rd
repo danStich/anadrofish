@@ -11,8 +11,10 @@ make_habitat(river, upstream, historical)
 
 \item{upstream}{Proportional upstream passage through dams.}
 
-\item{habitat_data}{A built-in data.frame containing habitat 
-estimates (km2) for the scenario and region selected.}
+\item{historical}{TESTING PARAM ONLY. Logical indicating whether this
+is an historical analysis. Default is FALSE. If TRUE, then use test 
+habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
+implemented for any other systems.}
 }
 \description{
 Function used to make habitat for rivers listed
