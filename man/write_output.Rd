@@ -4,12 +4,15 @@
 \alias{write_output}
 \title{Write simulation results}
 \usage{
-write_output(.sim_pop)
+write_output(.sim_pop, sex_specific = FALSE)
 }
 \arguments{
 \item{.sim_pop}{A hidden environment in the calling frame 
 of \code{\link{sim_pop}}. Arbitrarily any named object with
 names matching those used in the function.}
+
+\item{sex_specific}{Logical inherited from \code{\link{sim_pop}}
+indicating whether to use sex-specific output.}
 }
 \value{
 A list of results.

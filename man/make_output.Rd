@@ -4,10 +4,13 @@
 \alias{make_output}
 \title{Make output vectors}
 \usage{
-make_output(nyears)
+make_output(nyears, sex_specific = FALSE)
 }
 \arguments{
-\item{nyears}{Number of years for simulation output.
+\item{nyears}{Number of years for simulation output.}
+
+\item{sex_specific}{Logical inherited from \code{\link{sim_pop}}
+indicating whether to use sex-specific output.
 
 Not intended to be called directly.}
 }

@@ -108,7 +108,8 @@ sim_pop <- function(
   downstream_j = 1,
   output_years = c('last', 'all'),
   age_structured_output = FALSE,
-  historical = FALSE
+  historical = FALSE,
+  sex_specific = FALSE
 )
 
 {
@@ -120,10 +121,7 @@ sim_pop <- function(
     list2env(mget(names(formals(sim_pop))), envir=.sim_pop)
     
   # Argument matching for output_years
-    .sim_pop$output_years <- match.arg(output_years)
-  
-  # Argument matching for historical
-    # .sim_pop$historical
+    .sim_pop$output_years <- output_years
     
   # Get region for river system
     .sim_pop$region <- unique(anadrofish::habitat$region[
@@ -134,28 +132,61 @@ sim_pop <- function(
       anadrofish::habitat$system == .sim_pop$river],
       start = 3, stop = 4))
     
-  # Get life-history parameters if not specified 
-  # Instantaneous natural mortality - avg for M and F within region
-    if(is.null(.sim_pop$nM)){ .sim_pop$nM <- make_mortality(.sim_pop$river)}
-      
-  # Maximum age if not specified 
-    if(is.null(.sim_pop$max_age)){.sim_pop$max_age <- make_maxage(.sim_pop$river)}
+  # Get whether sex specific
+    .sim_pop$sex_specific <- sex_specific
     
-  # Maturity schedule if not specified 
-    if(is.null(.sim_pop$spawnRecruit)){ 
-      .sim_pop$spawnRecruit <- make_spawnrecruit(.sim_pop$river)
+  # Get life-history parameters if not specified 
+    if(sex_specific == FALSE){
+    # Instantaneous natural mortality - avg for M and F within region
+      if(is.null(.sim_pop$nM)){ .sim_pop$nM <- make_mortality(.sim_pop$river)}
+        
+    # Maximum age if not specified 
+      if(is.null(.sim_pop$max_age)){.sim_pop$max_age <- make_maxage(.sim_pop$river)}
+      
+    # Maturity schedule if not specified 
+      if(is.null(.sim_pop$spawnRecruit)){ 
+        .sim_pop$spawnRecruit <- make_spawnrecruit(.sim_pop$river)
       }
+    }
+    
+  # If sex_specific == TRUE
+    if(sex_specific == TRUE){
+      
+    # Instantaneous natural mortality - avg for M and F within region
+      if(is.null(.sim_pop$nM_m)){ 
+        .sim_pop$nM_m <- make_mortality(.sim_pop$river, sex = "male")
+        .sim_pop$nM_f <- make_mortality(.sim_pop$river, sex = "female")
+      }
+      
+    # Fishing mortality 
+      .sim_pop$fM_m <- fM
+      .sim_pop$fM_f <- fM
+        
+    # Maximum age if not specified 
+      if(is.null(.sim_pop$max_age)){
+        .sim_pop$max_age_m <- make_maxage(.sim_pop$river, sex = "male")
+        .sim_pop$max_age_f <- make_maxage(.sim_pop$river, sex = "female")
+        }
+      
+    # Maturity schedule if not specified 
+      if(is.null(.sim_pop$spawnRecruit)){ 
+        .sim_pop$spawnRecruit_m <- make_spawnrecruit(.sim_pop$river, sex = "male")
+        .sim_pop$spawnRecruit_f <- make_spawnrecruit(.sim_pop$river, sex = "female")
+        }
+      
+    }
     
   # Get estimated number of eggs per female if not specified 
     if(is.null(.sim_pop$eggs)){.sim_pop$eggs <- make_eggs(.sim_pop$river)}
-    
+            
   # Get hatch-to-outmigrant survival if not specified  
     if(is.null(.sim_pop$s_juvenile)){.sim_pop$s_juvenile <- 
       sim_juvenile_s(anadrofish::crecco_1983)}
     
   # Make output vectors
     environment(make_output) <- .sim_pop
-    list2env(make_output(nyears = .sim_pop$nyears), envir = .sim_pop)
+    list2env(make_output(nyears = .sim_pop$nyears, sex_specific = sex_specific), 
+             envir = .sim_pop)
   
   # Make habitat from built-in data sets
     .sim_pop$acres <- make_habitat(river = .sim_pop$river, 
@@ -179,30 +210,67 @@ sim_pop <- function(
     
   # Make the population
     environment(make_pop) <- .sim_pop
-    .sim_pop$pop <-  make_pop(max_age = .sim_pop$max_age,
-                              nM = .sim_pop$nM,
-                              fM = .sim_pop$fM,
-                              n_init = .sim_pop$n_init
-                              )
+    if(sex_specific == FALSE){
+      .sim_pop$pop <-  make_pop(max_age = .sim_pop$max_age,
+                                nM = .sim_pop$nM,
+                                fM = .sim_pop$fM,
+                                n_init = .sim_pop$n_init
+                                )
+    }
+    if(sex_specific == TRUE){
+      .sim_pop$pop_m <-  make_pop(max_age = .sim_pop$max_age_m,
+                                nM = .sim_pop$nM_m,
+                                fM = .sim_pop$fM_m,
+                                n_init = .sim_pop$n_init * (1-.sim_pop$sr)
+                                )
+      .sim_pop$pop_f <-  make_pop(max_age = .sim_pop$max_age_f,
+                                nM = .sim_pop$nM_f,
+                                fM = .sim_pop$fM_f,
+                                n_init = .sim_pop$n_init * .sim_pop$sr
+                                )      
+    }    
+    
     
   # Simulate for nyears until population stabilizes.  
   for(t in 1:.sim_pop$nyears){    
     # Assign iterator to the hidden work spaces
       .sim_pop$t <- t
     
-    # Make spawning population
-      .sim_pop$spawners <- make_spawners(
-        .sim_pop$pop, probs = .sim_pop$spawnRecruit)
+    if(sex_specific == FALSE){
+      # Make spawning population
+        .sim_pop$spawners <- make_spawners(
+          .sim_pop$pop, probs = .sim_pop$spawnRecruit)
+        
+      # Subtract the spawners from the ocean population
+        .sim_pop$pop <- .sim_pop$pop - .sim_pop$spawners  
       
-    # Subtract the spawners from the ocean population
-      .sim_pop$pop <- .sim_pop$pop - .sim_pop$spawners  
-    
+    }
+      
+    if(sex_specific == TRUE){
+      # Make spawning population
+        # Males
+        .sim_pop$spawners_m <- make_spawners(
+          .sim_pop$pop_m, probs = .sim_pop$spawnRecruit_m)
+        # Females
+        .sim_pop$spawners_f <- make_spawners(
+          .sim_pop$pop_f, probs = .sim_pop$spawnRecruit_f)   
+        # Total
+        .sim_pop$spawners <- add_unequal_vectors(
+          .sim_pop$spawners_m,  
+          .sim_pop$spawners_f)
+        
+      # Subtract the spawners from the ocean population
+        .sim_pop$pop_m <- .sim_pop$pop_m - .sim_pop$spawners_m
+        .sim_pop$pop_f <- .sim_pop$pop_f - .sim_pop$spawners_f
+        .sim_pop$pop <- add_unequal_vectors(.sim_pop$pop_m, .sim_pop$pop_f)
+    }
+      
     # Make realized reproductive output of spawners 
       .sim_pop$fec <- make_recruits(
         eggs = .sim_pop$eggs,
         sr = .sim_pop$sr
         )
-     
+      
     # Calculate density-dependent recruitment from Beverton-Holt curve   
       .sim_pop$recruits_f_age <- beverton_holt(
         a = .sim_pop$fec,
@@ -220,29 +288,92 @@ sim_pop <- function(
       .sim_pop$iteroparity <- make_iteroparity(.sim_pop$latitude)
       
     # Apply post-spawn survival
-      .sim_pop$s_postspawn <- make_postspawn(.sim_pop$river)
-      .sim_pop$spawners2 <- .sim_pop$spawners * .sim_pop$s_postspawn      
+      if(sex_specific == FALSE){
+        
+        .sim_pop$s_postspawn <- make_postspawn(.sim_pop$river)
+        .sim_pop$spawners2 <- .sim_pop$spawners * .sim_pop$s_postspawn   
+        
+      }
+      
+      if(sex_specific == TRUE){
+        
+        .sim_pop$s_postspawn_m <- make_postspawn(
+          river = .sim_pop$river, 
+          nM = .sim_pop$nM_m)
+        .sim_pop$s_postspawn_f <- make_postspawn(
+          river = .sim_pop$river, 
+          nM = .sim_pop$nM_f)
+        
+        .sim_pop$spawners2_m <- .sim_pop$spawners_m * .sim_pop$s_postspawn_m
+        .sim_pop$spawners2_f <- .sim_pop$spawners_f * .sim_pop$s_postspawn_f
+        
+        .sim_pop$spawners2 <- add_unequal_vectors(
+          .sim_pop$spawners2_m,  
+          .sim_pop$spawners2_f)
+        
+      }      
+      
+      
+    # Calculate pre-spawn (fw survival) based on post-spawn and M
+      if(sex_specific == FALSE){
+        .sim_pop$s_prespawn <- make_prespawn(.sim_pop$nM, .sim_pop$s_postspawn)
+      }
+      
+      if(sex_specific == TRUE){
+        .sim_pop$s_prespawn_m <- make_prespawn(
+          nM = .sim_pop$nM_m,
+          s_postspawn = .sim_pop$s_postspawn_m)
+        .sim_pop$s_prespawn_f <- make_prespawn(
+          nM = .sim_pop$nM_f,
+          s_postspawn = .sim_pop$s_postspawn_f)
+      }      
 
     # Outmigrant survival
     .sim_pop$age0_down <- .sim_pop$age0 * .sim_pop$s_downstream_j
     .sim_pop$spawners_down <- .sim_pop$spawners2 * .sim_pop$s_downstream  
       
     # Project population into next time step
+    if(sex_specific == FALSE){
       .sim_pop$pop <- project_pop(
         x = .sim_pop$pop + .sim_pop$spawners_down, 
         age0 = .sim_pop$age0_down,
         nM = .sim_pop$nM, 
         fM = .sim_pop$fM,
-        max_age = .sim_pop$max_age)  
+        max_age = .sim_pop$max_age) 
+    }
+    if(sex_specific == TRUE){
+      .sim_pop$pop_m <- project_pop(
+        x = add_unequal_vectors(
+          .sim_pop$pop_m,
+          .sim_pop$spawners_down*(1-.sim_pop$sr))[1:.sim_pop$max_age_m], 
+        age0 = .sim_pop$age0_down*(1-.sim_pop$sr),
+        nM = .sim_pop$nM_m, 
+        fM = .sim_pop$fM_m,
+        max_age = .sim_pop$max_age_m) 
+      
+      .sim_pop$pop_f <- project_pop(
+        x = add_unequal_vectors(
+          .sim_pop$pop_f, .sim_pop$spawners_down*.sim_pop$sr), 
+        age0 = .sim_pop$age0_down*.sim_pop$sr,
+        nM = .sim_pop$nM_f, 
+        fM = .sim_pop$fM_f,
+        max_age = .sim_pop$max_age_f)       
+      
+        .sim_pop$pop <- add_unequal_vectors(
+          .sim_pop$pop_m,  
+          .sim_pop$pop_f)
+      
+    }    
     
     # Fill the output vectors
       environment(fill_output) <- .sim_pop
-      list2env(fill_output(.sim_pop), envir =.sim_pop)    
+      list2env(fill_output(.sim_pop, sex_specific = sex_specific), 
+               envir =.sim_pop)
       
   } # YEAR LOOP  
     
   # Write the results to an object
     environment(write_output) <- .sim_pop
-    write_output(.sim_pop)
+    write_output(.sim_pop, sex_specific = sex_specific)
     
 }

@@ -4,12 +4,15 @@
 \alias{fill_output}
 \title{Fill output vectors}
 \usage{
-fill_output(.sim_pop)
+fill_output(.sim_pop, sex_specific = FALSE)
 }
 \arguments{
 \item{.sim_pop}{A hidden environment in the calling frame 
 of \code{\link{sim_pop}}. Arbitrarily any named object with
 names matching those used in the function.}
+
+\item{sex_specific}{Logical inherited from \code{\link{sim_pop}}
+indicating whether to use sex-specific output.}
 }
 \value{
 list of output vectors

@@ -11,11 +11,14 @@
 #' names matching those used in the function.
 #' @return list of output vectors
 #' 
+#' @param sex_specific Logical inherited from \code{\link{sim_pop}}
+#' indicating whether to use sex-specific output.
+#' 
 #' @keywords Internal
 #' 
 #' @export
 #' 
-fill_output <- function(.sim_pop){
+fill_output <- function(.sim_pop, sex_specific = FALSE){
   
   # Collect parameters  
     out_river[[t]] = .sim_pop$river
@@ -42,69 +45,171 @@ fill_output <- function(.sim_pop){
       out_downstream_j[[t]] <- .sim_pop$downstream_j
     }    
     
-    out_max_age[[t]] = .sim_pop$max_age
-    out_nM[[t]] = .sim_pop$nM
-    out_fM[[t]] = .sim_pop$fM
-    out_n_init[[t]] = .sim_pop$n_init
-    out_spawnRecruit[[t]] = .sim_pop$spawnRecruit
-    out_eggs[[t]] = .sim_pop$eggs
-    out_sr[[t]] = .sim_pop$sr
-    out_s_juvenile[[t]] = .sim_pop$s_juvenile
-    out_s_postspawn[[t]] = .sim_pop$s_postspawn
-    out_iteroparity[[t]] = .sim_pop$iteroparity
-    out_spawners[[t]] = .sim_pop$spawners
-    out_pop[[t]] = .sim_pop$pop
-    out_year[[t]] = .sim_pop$t
+    # Fill vectors for sex-aggregate
+    if(sex_specific == FALSE){
     
-  # Return the result to the environment
-    filled <- 
-      list(
-        out_river,
-        out_region,
-        out_govt,
-        out_lat,
-        out_habitat,
-        out_upstream,
-        out_downstream,
-        out_downstream_j,
-        out_max_age,
-        out_nM,
-        out_fM,
-        out_n_init,
-        out_spawnRecruit,
-        out_eggs,
-        out_sr,
-        out_s_juvenile,
-        out_s_postspawn,
-        out_iteroparity,
-        out_spawners,
-        out_pop,
-        out_year
+      out_max_age[[t]] = .sim_pop$max_age
+      out_nM[[t]] = .sim_pop$nM
+      out_fM[[t]] = .sim_pop$fM
+      out_n_init[[t]] = .sim_pop$n_init
+      out_spawnRecruit[[t]] = .sim_pop$spawnRecruit
+      out_eggs[[t]] = .sim_pop$eggs
+      out_sr[[t]] = .sim_pop$sr
+      out_s_juvenile[[t]] = .sim_pop$s_juvenile
+      out_s_prespawn[[t]] = .sim_pop$s_prespawn
+      out_s_postspawn[[t]] = .sim_pop$s_postspawn
+      out_iteroparity[[t]] = .sim_pop$iteroparity
+      out_spawners[[t]] = .sim_pop$spawners
+      out_pop[[t]] = .sim_pop$pop
+      out_juveniles_out[[t]] = .sim_pop$age0_down
+      out_year[[t]] = .sim_pop$t
+      
+    # Return the result to the environment
+      filled <- 
+        list(
+          out_river,
+          out_region,
+          out_govt,
+          out_lat,
+          out_habitat,
+          out_upstream,
+          out_downstream,
+          out_downstream_j,
+          out_max_age,
+          out_nM,
+          out_fM,
+          out_n_init,
+          out_spawnRecruit,
+          out_eggs,
+          out_sr,
+          out_s_juvenile,
+          out_s_prespawn,
+          out_s_postspawn,
+          out_iteroparity,
+          out_spawners,
+          out_pop,
+          out_juveniles_out,
+          out_year
+        )
+      
+      names(filled) <- c(
+          'out_river',
+          'out_region',
+          'out_govt',
+          'out_lat',
+          'out_habitat',
+          'out_upstream',
+          'out_downstream',
+          'out_downstream_j',
+          'out_max_age',
+          'out_nM',
+          'out_fM',
+          'out_n_init',
+          'out_spawnRecruit',
+          'out_eggs',
+          'out_sr',
+          'out_s_juvenile',
+          'out_s_prespawn',
+          'out_s_postspawn',
+          'out_iteroparity',
+          'out_spawners',
+          'out_pop',
+          'out_juveniles_out',
+          'out_year'
       )
     
-    names(filled) <- c(
-        'out_river',
-        'out_region',
-        'out_govt',
-        'out_lat',
-        'out_habitat',
-        'out_upstream',
-        'out_downstream',
-        'out_downstream_j',
-        'out_max_age',
-        'out_nM',
-        'out_fM',
-        'out_n_init',
-        'out_spawnRecruit',
-        'out_eggs',
-        'out_sr',
-        'out_s_juvenile',
-        'out_s_postspawn',
-        'out_iteroparity',
-        'out_spawners',
-        'out_pop',
-        'out_year'
-    )
+    }  
+    
+    if(sex_specific == TRUE){
+      out_max_age_m[[t]] = .sim_pop$max_age_m
+      out_max_age_f[[t]] = .sim_pop$max_age_f
+      out_nM_m[[t]] = .sim_pop$nM_m
+      out_nM_f[[t]] = .sim_pop$nM_f
+      out_fM_m[[t]] = .sim_pop$fM_m
+      out_fM_f[[t]] = .sim_pop$fM_f
+      out_n_init[[t]] = .sim_pop$n_init
+      out_spawnRecruit_m[[t]] = .sim_pop$spawnRecruit_m
+      out_spawnRecruit_f[[t]] = .sim_pop$spawnRecruit_f
+      out_eggs[[t]] = .sim_pop$eggs
+      out_sr[[t]] = .sim_pop$sr
+      out_s_juvenile[[t]] = .sim_pop$s_juvenile
+      out_s_prespawn_m[[t]] = .sim_pop$s_prespawn_m
+      out_s_prespawn_f[[t]] = .sim_pop$s_prespawn_f      
+      out_s_postspawn_m[[t]] = .sim_pop$s_postspawn_m
+      out_s_postspawn_f[[t]] = .sim_pop$s_postspawn_f
+      out_iteroparity[[t]] = .sim_pop$iteroparity
+      out_spawners[[t]] = .sim_pop$spawners
+      out_pop[[t]] = .sim_pop$pop
+      out_juveniles_out[[t]] = .sim_pop$age0_down
+      out_year[[t]] = .sim_pop$t
+      
+    # Return the result to the environment
+      filled <- 
+        list(
+          out_river,
+          out_region,
+          out_govt,
+          out_lat,
+          out_habitat,
+          out_upstream,
+          out_downstream,
+          out_downstream_j,
+          out_max_age_m,
+          out_max_age_f,
+          out_nM_m,
+          out_nM_f,
+          out_fM_m,
+          out_fM_f,
+          out_n_init,
+          out_spawnRecruit_m,
+          out_spawnRecruit_f,
+          out_eggs,
+          out_sr,
+          out_s_juvenile,
+          out_s_prespawn_m,
+          out_s_prespawn_f,
+          out_s_postspawn_m,
+          out_s_postspawn_f,
+          out_iteroparity,
+          out_spawners,
+          out_pop,
+          out_juveniles_out,
+          out_year
+        )
+      
+      names(filled) <- c(
+          'out_river',
+          'out_region',
+          'out_govt',
+          'out_lat',
+          'out_habitat',
+          'out_upstream',
+          'out_downstream',
+          'out_downstream_j',
+          'out_max_age_m',
+          'out_max_age_f',
+          'out_nM_m',
+          'out_nM_f',
+          'out_fM_m',
+          'out_fM_d',
+          'out_n_init',
+          'out_spawnRecruit_m',
+          'out_spawnRecruit_f',
+          'out_eggs',
+          'out_sr',
+          'out_s_juvenile',
+          'out_s_prespawn_m',
+          'out_s_prespawn_f',
+          'out_s_postspawn_m',
+          'out_s_postspawn_f',
+          'out_iteroparity',
+          'out_spawners',
+          'out_pop',
+          'out_juveniles_out',
+          'out_year'
+      )      
+      
+    }
     
     return(filled)
 }
