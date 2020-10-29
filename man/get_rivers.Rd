@@ -4,7 +4,11 @@
 \alias{get_rivers}
 \title{Rivers included in package}
 \usage{
-get_rivers()
+get_rivers(habitat_data = habitat)
+}
+\arguments{
+\item{habitat_data}{A built-in habitat data set or a subset thereof. The 
+default is \code{anadrofish::habitat}.}
 }
 \value{
 A character vector of rivers that are included in \link{habitat}.
@@ -24,10 +28,10 @@ parallel processing.
 \dontrun{
   
 # Use get_rivers() to return names of rivers included in package
-get_rivers()
+get_rivers(anadrofish::habitat)
 
 # Sample a random river from those available
-get_rivers()[sample(length(get_rivers()), 1)]  
+get_rivers(anadrofish::habitat)[sample(length(get_rivers(anadrofish::habitat)), 1)]  
   
 }
 }

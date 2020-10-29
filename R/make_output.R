@@ -32,7 +32,7 @@ make_output <- function(nyears, sex_specific = FALSE){
     out_eggs = vector(mode='list', length=nyears)
     out_sr = vector(mode='numeric', length=nyears)
     out_s_juvenile = vector(mode='numeric', length=nyears)
-    out_s_prespawn = vector(mode='numeric', length=nyears)
+    out_s_spawn = vector(mode='numeric', length=nyears)
     out_s_postspawn = vector(mode='numeric', length=nyears)
     out_iteroparity = vector(mode='numeric', length=nyears)
     out_spawners = vector(mode='list', length=nyears)
@@ -58,7 +58,7 @@ make_output <- function(nyears, sex_specific = FALSE){
         out_eggs = out_eggs,
         out_sr = out_sr,
         out_s_juvenile = out_s_juvenile,
-        out_s_prespawn = out_s_prespawn,
+        out_s_spawn = out_s_spawn,
         out_s_postspawn = out_s_postspawn,
         out_iteroparity = out_iteroparity,
         out_spawners = out_spawners,
@@ -91,8 +91,8 @@ make_output <- function(nyears, sex_specific = FALSE){
     out_eggs = vector(mode='list', length=nyears)
     out_sr = vector(mode='numeric', length=nyears)
     out_s_juvenile = vector(mode='numeric', length=nyears)
-    out_s_prespawn_m = vector(mode='numeric', length=nyears)
-    out_s_prespawn_f = vector(mode='numeric', length=nyears)
+    out_s_spawn_m = vector(mode='numeric', length=nyears)
+    out_s_spawn_f = vector(mode='numeric', length=nyears)
     out_s_postspawn_m = vector(mode='numeric', length=nyears)
     out_s_postspawn_f = vector(mode='numeric', length=nyears)
     out_iteroparity = vector(mode='numeric', length=nyears)
@@ -123,8 +123,8 @@ make_output <- function(nyears, sex_specific = FALSE){
         out_eggs = out_eggs,
         out_sr = out_sr,
         out_s_juvenile = out_s_juvenile,
-        out_s_prespawn_m = out_s_prespawn_m,
-        out_s_prespawn_f = out_s_prespawn_f,        
+        out_s_spawn_m = out_s_spawn_m,
+        out_s_spawn_f = out_s_spawn_f,        
         out_s_postspawn_m = out_s_postspawn_m,
         out_s_postspawn_f = out_s_postspawn_f,
         out_iteroparity = out_iteroparity,

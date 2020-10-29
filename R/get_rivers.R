@@ -7,6 +7,9 @@
 #' rivers that can be used for simulation, and (2) so the output can be passed 
 #' to a random sampler for use in stochastic simulation via 
 #' parallel processing.
+#' 
+#' @param habitat_data A built-in habitat data set or a subset thereof. The 
+#' default is \code{anadrofish::habitat}.
 #'
 #' @return A character vector of rivers that are included in \link{habitat}.
 #'
@@ -14,8 +17,8 @@
 #'
 #' @export
 #'
-get_rivers <- function(){
+get_rivers <- function(habitat_data = habitat){
   
-  return(sort(unique(anadrofish::habitat$system)))
+  return(sort(unique(habitat_data$system)))
   
   }

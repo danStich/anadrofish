@@ -56,7 +56,7 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
       out_eggs[[t]] = .sim_pop$eggs
       out_sr[[t]] = .sim_pop$sr
       out_s_juvenile[[t]] = .sim_pop$s_juvenile
-      out_s_prespawn[[t]] = .sim_pop$s_prespawn
+      out_s_spawn[[t]] = .sim_pop$s_spawn
       out_s_postspawn[[t]] = .sim_pop$s_postspawn
       out_iteroparity[[t]] = .sim_pop$iteroparity
       out_spawners[[t]] = .sim_pop$spawners
@@ -83,7 +83,7 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
           out_eggs,
           out_sr,
           out_s_juvenile,
-          out_s_prespawn,
+          out_s_spawn,
           out_s_postspawn,
           out_iteroparity,
           out_spawners,
@@ -109,7 +109,7 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
           'out_eggs',
           'out_sr',
           'out_s_juvenile',
-          'out_s_prespawn',
+          'out_s_spawn',
           'out_s_postspawn',
           'out_iteroparity',
           'out_spawners',
@@ -133,8 +133,8 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
       out_eggs[[t]] = .sim_pop$eggs
       out_sr[[t]] = .sim_pop$sr
       out_s_juvenile[[t]] = .sim_pop$s_juvenile
-      out_s_prespawn_m[[t]] = .sim_pop$s_prespawn_m
-      out_s_prespawn_f[[t]] = .sim_pop$s_prespawn_f      
+      out_s_spawn_m[[t]] = .sim_pop$s_spawn_m
+      out_s_spawn_f[[t]] = .sim_pop$s_spawn_f      
       out_s_postspawn_m[[t]] = .sim_pop$s_postspawn_m
       out_s_postspawn_f[[t]] = .sim_pop$s_postspawn_f
       out_iteroparity[[t]] = .sim_pop$iteroparity
@@ -166,8 +166,8 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
           out_eggs,
           out_sr,
           out_s_juvenile,
-          out_s_prespawn_m,
-          out_s_prespawn_f,
+          out_s_spawn_m,
+          out_s_spawn_f,
           out_s_postspawn_m,
           out_s_postspawn_f,
           out_iteroparity,
@@ -198,8 +198,8 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
           'out_eggs',
           'out_sr',
           'out_s_juvenile',
-          'out_s_prespawn_m',
-          'out_s_prespawn_f',
+          'out_s_spawn_m',
+          'out_s_spawn_f',
           'out_s_postspawn_m',
           'out_s_postspawn_f',
           'out_iteroparity',

@@ -2,9 +2,9 @@
 \dontrun{
   
 # Use get_rivers() to return names of rivers included in package
-get_rivers()
+get_rivers(anadrofish::habitat)
 
 # Sample a random river from those available
-get_rivers()[sample(length(get_rivers()), 1)]  
+get_rivers(anadrofish::habitat)[sample(length(get_rivers(anadrofish::habitat)), 1)]  
   
 }

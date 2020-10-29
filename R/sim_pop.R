@@ -124,8 +124,8 @@ sim_pop <- function(
     .sim_pop$output_years <- output_years
     
   # Get region for river system
-    .sim_pop$region <- unique(anadrofish::habitat$region[
-      anadrofish::habitat$system == .sim_pop$river])
+    .sim_pop$region <- as.character(unique(anadrofish::habitat$region[
+      anadrofish::habitat$system == .sim_pop$river]))
     
   # Get governmental unit
     .sim_pop$govt <- unique(substr(anadrofish::habitat$TERMCODE[
@@ -316,14 +316,14 @@ sim_pop <- function(
       
     # Calculate pre-spawn (fw survival) based on post-spawn and M
       if(sex_specific == FALSE){
-        .sim_pop$s_prespawn <- make_prespawn(.sim_pop$nM, .sim_pop$s_postspawn)
+        .sim_pop$s_spawn <- make_s_spawn(.sim_pop$nM, .sim_pop$s_postspawn)
       }
       
       if(sex_specific == TRUE){
-        .sim_pop$s_prespawn_m <- make_prespawn(
+        .sim_pop$s_spawn_m <- make_s_spawn(
           nM = .sim_pop$nM_m,
           s_postspawn = .sim_pop$s_postspawn_m)
-        .sim_pop$s_prespawn_f <- make_prespawn(
+        .sim_pop$s_spawn_f <- make_s_spawn(
           nM = .sim_pop$nM_f,
           s_postspawn = .sim_pop$s_postspawn_f)
       }      
