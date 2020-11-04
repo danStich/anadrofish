@@ -54,7 +54,7 @@
 beverton_holt <- function(
   a = 2.5e5,
   S = 100,
-  b = 0.340297,
+  b = 0.21904,
   acres = 1,
   error = c("multiplicative", "additive"),
   age_structured = FALSE
