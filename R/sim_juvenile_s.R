@@ -19,10 +19,16 @@
 #'
 sim_juvenile_s <- function(crecco_1983){
   
-  jmean <- log(mean(crecco_1983$Sc[crecco_1983$Age==70]))
-  jsd <- sd(crecco_1983$Sc[crecco_1983$Age==70])*10
-  
-  juvenile_s <- exp(rnorm(1, jmean, jsd))
+  theta <- crecco_1983 %>%
+    filter(Age == 70 & Year != 1980) %>%
+    summarize(mean(Sc), sd(Sc))
+
+  juvenile_s <- rtruncnorm(n = 1,
+                           a = 0,
+                           b = 0.014,
+                           mean = theta[1],
+                           sd = theta[2]/2)
+
   return(juvenile_s)
   
 }
