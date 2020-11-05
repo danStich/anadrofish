@@ -16,19 +16,18 @@
 #' Fisheries and Aquatic Sciences 40:1719–1728.
 #' 
 #' @export
-#'
+#' 
 sim_juvenile_s <- function(crecco_1983){
   
-  theta <- crecco_1983 %>%
-    filter(Age == 70 & Year != 1980) %>%
-    summarize(mean(Sc), sd(Sc))
+  subs <- crecco_1983[crecco_1983$Age == 70 & crecco_1983$Year != 1980, ]
+  
+  theta <-c(mean(subs$Sc), sd(subs$Sc))
 
   juvenile_s <- rtruncnorm(n = 1,
                            a = 0,
                            b = 0.014,
                            mean = theta[1],
-                           sd = theta[2]/2)
-
+                           sd = theta[1]*0.2)
   return(juvenile_s)
   
 }

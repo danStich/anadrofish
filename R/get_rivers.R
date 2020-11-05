@@ -17,7 +17,7 @@
 #'
 #' @export
 #'
-get_rivers <- function(habitat_data = habitat){
+get_rivers <- function(habitat_data = anadrofish::habitat){
   
   return(sort(unique(habitat_data$system)))
   

@@ -60,5 +60,4 @@
 #' 
 #' @importFrom truncnorm rtruncnorm
 #' @importFrom stats quantile rnorm runif sd
-#' 
 NULL

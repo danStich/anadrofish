@@ -77,6 +77,8 @@
 #' habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
 #' implemented for any other systems.
 #' 
+#' @param sex_specific Whether to use sex-specific life-history data.
+#' 
 #' @return A data.frame containing simulation inputs (arguments
 #' to \code{sim_pop}) and output (number of spawners) by year.
 #' 
@@ -109,7 +111,7 @@ sim_pop <- function(
   output_years = c('last', 'all'),
   age_structured_output = FALSE,
   historical = FALSE,
-  sex_specific = FALSE
+  sex_specific = TRUE
 )
 
 {

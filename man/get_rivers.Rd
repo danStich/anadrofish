@@ -4,7 +4,7 @@
 \alias{get_rivers}
 \title{Rivers included in package}
 \usage{
-get_rivers(habitat_data = habitat)
+get_rivers(habitat_data = anadrofish::habitat)
 }
 \arguments{
 \item{habitat_data}{A built-in habitat data set or a subset thereof. The 

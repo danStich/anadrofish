@@ -77,7 +77,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           iteroparity = .sim_pop$out_iteroparity,
           out_spawners,
           out_pop,
-          out_juveniles_out
+          out_juveniles_out = .sim_pop$out_juveniles_out
         )
       }
       if(sex_specific == TRUE){
@@ -110,7 +110,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           iteroparity = .sim_pop$out_iteroparity,
           out_spawners,
           out_pop,
-          out_juveniles_out
+          out_juveniles_out = .sim_pop$out_juveniles_out
         )        
       }
       
@@ -140,7 +140,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           iteroparity = .sim_pop$out_iteroparity,
           spawners,
           pop,
-          out_juveniles_out
+          out_juveniles_out = .sim_pop$out_juveniles_out
         )   
       }
       if(sex_specific == TRUE){
@@ -172,7 +172,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           iteroparity = .sim_pop$out_iteroparity,
           spawners,
           pop,
-          out_juveniles_out
+          out_juveniles_out = .sim_pop$out_juveniles_out
         )   
       }      
       

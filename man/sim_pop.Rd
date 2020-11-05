@@ -21,7 +21,7 @@ sim_pop(
   output_years = c("last", "all"),
   age_structured_output = FALSE,
   historical = FALSE,
-  sex_specific = FALSE
+  sex_specific = TRUE
 )
 }
 \arguments{
@@ -97,6 +97,8 @@ than \code{max_age} are zero.}
 is an historical analysis. Default is FALSE. If TRUE, then use test 
 habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
 implemented for any other systems.}
+
+\item{sex_specific}{Whether to use sex-specific life-history data.}
 }
 \value{
 A data.frame containing simulation inputs (arguments

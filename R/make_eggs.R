@@ -97,13 +97,13 @@ make_eggs <- function(river){
     
   # Draw number of batches based on McBride et al. (2016)  
   if(region=='NI'){
-    n_batches <- rtruncnorm(1, a=0, b=Inf, mean=6.1, sd=2.1)
+    n_batches <- rtruncnorm(1, a=0, b=10, mean=6.1, sd=.5)
   }
   if(region=='SI'){
-    n_batches <- rtruncnorm(1, a=0, b=Inf, mean=6.1, sd=2.1)
+    n_batches <- rtruncnorm(1, a=0, b=12, mean=6.1, sd=.5)
   }
   if(region=='SP'){
-    n_batches <- rtruncnorm(1, a=0, b=Inf, mean=6.1, sd=2.1)
+    n_batches <- rtruncnorm(1, a=0, b=Inf, mean=6.1, sd=.5)
   }
     
     eggs <- batch_size * n_batches

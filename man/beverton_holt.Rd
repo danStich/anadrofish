@@ -7,7 +7,7 @@
 beverton_holt(
   a = 250000,
   S = 100,
-  b = 0.340297,
+  b = 0.21904,
   acres = 1,
   error = c("multiplicative", "additive"),
   age_structured = FALSE
