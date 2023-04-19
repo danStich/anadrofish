@@ -17,7 +17,7 @@
 #' 
 #' @export
 #'
-make_habitat <- function(river, upstream, historical){
+make_habitat <- function(river, upstream, historical, custom_habitat = NULL){
   
   if(missing(river)){
     stop("
@@ -54,11 +54,24 @@ make_habitat <- function(river, upstream, historical){
     units$p_to_habitat <- cumprod(upstream)
   }
   
+  # Add option for custom habitat
+  if(!is.null(custom_habitat)){
+    if(length(custom_habitat) != nrow(units)){
+      stop("
+           
+           length of custom_habitat must be equal to the number of rows in
+           get_dams(river)"
+      )
+    }
+    
+    units$habitatSegment_sqkm <- custom_habitat
+  }
+  
   units$functional_upstream <- units$habitatSegment_sqkm * units$p_to_habitat
   
   # Calculate habitat surface acres from the 
   # sum of functional habitat in the subset
-    acres <- 247.105 * sum(units$functional_upstream)
+  acres <- 247.105 * sum(units$functional_upstream)
   
   return(acres)
 }

@@ -29,7 +29,8 @@
 #' 
 #' @export
 #'
-make_downstream <- function(river, downstream, upstream, historical){
+make_downstream <- function(river, downstream, upstream, historical,
+                            custom_habitat = NULL){
   if(missing(river)){
     stop("
     
@@ -65,6 +66,19 @@ make_downstream <- function(river, downstream, upstream, historical){
   if(historical == TRUE){
     units$p_to_habitat <- cumprod(upstream)
   }
+  
+  # Add option for custom habitat
+  if(!is.null(custom_habitat)){
+    if(length(custom_habitat) != nrow(units)){
+      stop("
+           
+           length of custom_habitat must be equal to the number of rows in
+           get_dams(river)"
+      )
+    }
+    units$habitatSegment_sqkm <- custom_habitat
+  }  
+  
   units$functional_upstream <- units$habitatSegment_sqkm * units$p_to_habitat
   
   # Calculate proportion of habitat in each segment of available

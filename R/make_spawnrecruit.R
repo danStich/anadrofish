@@ -66,7 +66,7 @@ make_spawnrecruit <- function(river, sex=c('male', 'female')){
     probs <- as.numeric(
       anadrofish::maturity[
         anadrofish::maturity$region==region & 
-          anadrofish::maturity$sex=='M', 3:(2+max_age)]
+          anadrofish::maturity$sex=='M', 3:(2 + max_age)]
       )
     }
   

@@ -78,6 +78,11 @@
 #' implemented for any other systems.
 #' 
 #' @param sex_specific Whether to use sex-specific life-history data.
+#'
+#' @param custom_habitat A vector of habitat values corresponding to square km
+#' of habitat upstream of each feature and the next. Must be the same length
+#' as the number of rows in \code{habitat} for the selected River. Added for
+#' compatibility with historical management plan habitat estimates. 
 #' 
 #' @return A data.frame containing simulation inputs (arguments
 #' to \code{sim_pop}) and output (number of spawners) by year.
@@ -111,7 +116,8 @@ sim_pop <- function(
   output_years = c('last', 'all'),
   age_structured_output = FALSE,
   historical = FALSE,
-  sex_specific = TRUE
+  sex_specific = TRUE,
+  custom_habitat = NULL
 )
 
 {
@@ -193,21 +199,23 @@ sim_pop <- function(
   # Make habitat from built-in data sets
     .sim_pop$acres <- make_habitat(river = .sim_pop$river, 
                                    upstream = .sim_pop$upstream,
-                                   historical = .sim_pop$historical
-                                   )
+                                   historical = .sim_pop$historical,
+                                   custom_habitat = .sim_pop$custom_habitat)
     
   # Make downstream survival through dams
     .sim_pop$s_downstream <- make_downstream(
       river = .sim_pop$river, 
       downstream = .sim_pop$downstream, 
       upstream = .sim_pop$upstream,
-      historical = .sim_pop$historical
+      historical = .sim_pop$historical,
+      custom_habitat = .sim_pop$custom_habitat
       )
     .sim_pop$s_downstream_j <- make_downstream(
       river = .sim_pop$river, 
       downstream = .sim_pop$downstream_j, 
       upstream = .sim_pop$upstream,
-      historical = .sim_pop$historical
+      historical = .sim_pop$historical,
+      custom_habitat = .sim_pop$custom_habitat
       )       
     
   # Make the population
