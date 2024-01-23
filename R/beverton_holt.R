@@ -6,7 +6,7 @@
 #' 100 fish per acre. See \code{details}.
 #'
 #' @param a Ratio of recruits per spawner. Density independent parameter 
-#' equivelant to the slope near \code{S = 0}. By default specified as 
+#' equivalent to the slope near \code{S = 0}. By default specified as 
 #' potential annual fecundity.
 #'
 #' @param S Spawning stock abundance per acre.

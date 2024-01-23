@@ -3,11 +3,16 @@
 #' @description Function used to estimate post-spawn survival 
 #' from proportion of repeat spawners by latitude (Leggett and
 #' Cascardden 1978, Bailey and Zydlewski 2013) and natural mortality
-#' by life-history region.
+#' by life-history region ("AMS") or by iteroparity and natural mortality
+#' ("ALE" and "BBH").
 #'
 #' @param river River for which post-spawn survival rate should be 
 #' returned. Required argument with no default value. Available rivers
 #' can be seen using \code{\link{get_rivers}}.
+#' 
+#' @param species Species for which population dynamics will be simulated.
+#' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+#' blueback herring (\code{"BBH"}).
 #'
 #' @param iteroparity Optional argument for rate of iteroparity. Values from 
 #' \code{\link{make_iteroparity}} can be passed directly to this function, or
@@ -18,7 +23,7 @@
 #' found in \code{\link{mortality}}, or
 #' a numeric vector of \code{length = 1}.
 #' 
-#' @examples make_postspawn(river = "Susquehanna")
+#' @examples make_postspawn(river = "Susquehanna", species = "AMS")
 #'
 #' @references Bailey, M.M., and J. D. Zydlewski. 2013. To stock or not
 #' to stock? Assessing the restoration potential of a remnant 
@@ -32,8 +37,25 @@
 #'   
 #' @export
 #'
-make_postspawn <- function(river = river, iteroparity = NULL, nM = NULL){
+make_postspawn <- function(river = river, 
+                           species = c("AMS", "ALE", "BBH"),
+                           iteroparity = NULL, 
+                           nM = NULL){
+  # Error handling
+  # Species error handling
+  if(missing(species)){
+    stop("
+    
+    Argument 'species' must be one of 'ALE', 'AMS', or 'BBH'.")   
+  }
   
+  if(!species %in% c('ALE', 'AMS', 'BBH')){
+    stop("
+         
+    Argument 'species' must be one of 'ALE', 'AMS', or 'BBH'.") 
+  }
+  
+  # River error handling  
    if(missing(river)){
       stop("
       
@@ -42,7 +64,7 @@ make_postspawn <- function(river = river, iteroparity = NULL, nM = NULL){
       To see a list of available rivers, run get_rivers()")    
     }
     
-    if(!river %in% get_rivers()){
+    if(!river %in% get_rivers(species)){
       stop("
       
       Argument 'river' must be one of those included in get_rivers().
@@ -50,16 +72,20 @@ make_postspawn <- function(river = river, iteroparity = NULL, nM = NULL){
       To see a list of available rivers, run get_rivers()")
     }    
   
-  if(is.null(iteroparity)) iteroparity <- make_iteroparity(make_lat(river))
-  if(is.null(nM)) nM <- make_mortality(river)
+  if(species == "AMS"){
+    if(is.null(iteroparity)) iteroparity <- make_iteroparity(
+      make_lat(river, species = "AMS"))
+  }
+  
+  if(is.null(nM)) nM <- make_mortality(river = river, species = species)
   
   A <- 1 - exp(-nM)
   S <- 1 - A
-  I <- iteroparity
-  post_spawn_s <- I/S
   
-  if(post_spawn_s < 0){post_spawn_s <- 0}
-  if(post_spawn_s > 1){post_spawn_s <- 1}
+  post_spawn_s <- iteroparity/S
+  
+  post_spawn_s[post_spawn_s < 0] <- 0
+  post_spawn_s[post_spawn_s > 1] <- 1
   
   return(post_spawn_s)
   

@@ -5,6 +5,10 @@
 #'
 #' @param river Character string specifying river name.
 #' 
+#' @param species Species for which population dynamics will be simulated.
+#' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+#' blueback herring (\code{"BBH"}).
+#'
 #' @param downstream Numeric indicating proportional downstream survival 
 #' through a single dam.
 #' 
@@ -14,14 +18,17 @@
 #' @param historical Logical indicating whether to use contemporary or
 #' historical habitat data.
 #' 
+#' @param custom_habitat Numeric vector of habitat areas corresponding to 
+#' production units between features in \code{\link{habitat}} for \code{river}.
+#' 
 #' @return Numeric of length 1 representing catchment-scale 
 #' downstream migration mortality for juvenile or adult fish.
 #' 
 #' @details This function assigns cumulative downstream passage values 
-#' to all features in \code{habitat_data} corresponding to \code{river}.
+#' to all features in \code{\link{habitat}} corresponding to \code{river}.
 #' It then calculates the proportion of habitat in each 
-#' habitat segment, and weights downstream mortality at the catchment-scale
-#' by proportiotn of habitat. This implicitly assumes that fish are distributed 
+#' habitat segment of a river, and weights downstream mortality at the catchment-scale
+#' by proportion of habitat. This implicitly assumes that fish are distributed 
 #' throughout the river during spawning in proportion to available
 #' habitat.
 #' 
@@ -29,8 +36,27 @@
 #' 
 #' @export
 #'
-make_downstream <- function(river, downstream, upstream, historical,
+make_downstream <- function(river, 
+                            species = c("AMS", "ALE", "BBH"), 
+                            downstream, 
+                            upstream, 
+                            historical = FALSE,
                             custom_habitat = NULL){
+  # Error handling
+  # Species error handling
+  if(missing(species)){
+    stop("
+    
+    Argument 'species' must be one of 'ALE', 'AMS', or 'BBH'.")   
+  }
+  
+  if(!species %in% c('ALE', 'AMS', 'BBH')){
+    stop("
+         
+    Argument 'species' must be one of 'ALE', 'AMS', or 'BBH'.") 
+  }
+  
+  # River error handling  
   if(missing(river)){
     stop("
     
@@ -39,7 +65,7 @@ make_downstream <- function(river, downstream, upstream, historical,
     To see a list of available rivers, run get_rivers()")    
   }
   
-  if(!river %in% get_rivers()){
+  if(!river %in% get_rivers(species)){
     stop("
     
     Argument 'river' must be one of those included in get_rivers().
@@ -47,38 +73,41 @@ make_downstream <- function(river, downstream, upstream, historical,
     To see a list of available rivers, run get_rivers()")
   }
   
-  # Select habitat units based on huc_code and whether
-  # this is an historical analysis (historical == FALSE
-  # by default)
-  # Contemporary habitat data subset
-  units <- anadrofish::habitat[anadrofish::habitat$system==river,]
-  
-  # Historical habitat data subset
-  if(historical == TRUE){
-    units <- anadrofish::habitat_hist[anadrofish::habitat_hist$system==river,]
-  }
-  
-  # Assign cumulative downstream passage to feature
-  units$p_downstream <- downstream^units$dam_order
+  # American shad ----
+  if(species == "AMS"){
+    # Select habitat units based on huc_code and whether
+    # this is an historical analysis (historical == FALSE
+    # by default)
+    # Contemporary habitat data subset
+    units <- anadrofish::habitat[anadrofish::habitat$system==river,]
     
-  # Calculate passage to habitat segment
-  units$p_to_habitat <- upstream^units$dam_order
-  if(historical == TRUE){
-    units$p_to_habitat <- cumprod(upstream)
-  }
-  
-  # Add option for custom habitat
-  if(!is.null(custom_habitat)){
-    if(length(custom_habitat) != nrow(units)){
-      stop("
-           
-           length of custom_habitat must be equal to the number of rows in
-           get_dams(river)"
-      )
+    # Historical habitat data subset
+    if(historical == TRUE){
+      units <- anadrofish::habitat_hist[anadrofish::habitat_hist$system==river,]
     }
-    units$habitatSegment_sqkm <- custom_habitat
-  }  
-  
+    
+    # Assign cumulative downstream passage to feature
+    units$p_downstream <- downstream^units$dam_order
+      
+    # Calculate passage to habitat segment
+    units$p_to_habitat <- upstream^units$dam_order
+    
+    if(historical == TRUE){
+      units$p_to_habitat <- cumprod(upstream)
+    }
+    
+    # Add option for custom habitat
+    if(!is.null(custom_habitat)){
+      if(length(custom_habitat) != nrow(units)){
+        stop("
+             
+             length of custom_habitat must be equal to the number of rows in
+             get_dams(river)"
+        )
+      }
+      units$habitatSegment_sqkm <- custom_habitat
+    }  
+
   units$functional_upstream <- units$habitatSegment_sqkm * units$p_to_habitat
   
   # Calculate proportion of habitat in each segment of available
@@ -87,8 +116,77 @@ make_downstream <- function(river, downstream, upstream, historical,
   # The ratio is survival rate
   s_downstream <- sum(units$p_habitat*((downstream^units$dam_order)))
     if(historical == TRUE){
-      units$s_downstream <- sum(units$p_habitat*(cumprod(downstream)))
+      s_downstream <- sum(units$p_habitat*(cumprod(downstream)))
     }
+  }
+  
+  # Alewife ----
+  if(species == "ALE"){
+    # Select habitat units based on huc_code
+    units <- anadrofish::habitat_ale[anadrofish::habitat_ale$River_huc==river,]
+    
+    # Assign cumulative downstream passage to feature
+    units$p_downstream <- downstream^units$DamOrder
+    
+    # Add option for custom habitat
+    if(!is.null(custom_habitat)){
+      if(length(custom_habitat) != nrow(units)){
+        stop("
+             
+             length of custom_habitat must be equal to the number of rows in
+             get_dams(river)"
+        )
+      }
+      units$Hab_sqkm <- custom_habitat
+    }  
+    
+    # Calculate passage to habitat segment
+    units$p_to_habitat <- upstream^units$DamOrder
+    
+    # Available habitat
+    units$functional_upstream <- units$Hab_sqkm * units$p_to_habitat
+    
+    # Calculate proportion of habitat in each segment of available
+    units$p_habitat <- units$functional_upstream/
+      sum(units$functional_upstream, na.rm = TRUE)
+    
+    # The ratio is survival rate
+    s_downstream <- sum(units$p_habitat*((downstream^units$DamOrder)),
+                        na.rm = TRUE)
+  }  
+  
+  # Blueback herring ----
+  if(species == "BBH"){
+    # Select habitat units based on huc_code
+    units <- anadrofish::habitat_bbh[anadrofish::habitat_bbh$River_huc==river,]
+    
+    # Assign cumulative downstream passage to feature
+    units$p_downstream <- downstream^units$DamOrder
+    
+    # Add option for custom habitat
+    if(!is.null(custom_habitat)){
+      if(length(custom_habitat) != nrow(units)){
+        stop("
+             
+             length of custom_habitat must be equal to the number of rows in
+             get_dams(river)"
+        )
+      }
+      units$Hab_sqkm <- custom_habitat
+    }      
+    
+    # Calculate passage to habitat segment
+    units$p_to_habitat <- upstream^units$DamOrder
+    
+    # Available habitat
+    units$functional_upstream <- units$Hab_sqkm * units$p_to_habitat
+    
+    # Calculate proportion of habitat in each segment of available
+    units$p_habitat <- units$functional_upstream/sum(units$functional_upstream)
+    
+    # The ratio is survival rate
+    s_downstream <- sum(units$p_habitat*((downstream^units$DamOrder)))
+  }    
   
   return(s_downstream)
 }

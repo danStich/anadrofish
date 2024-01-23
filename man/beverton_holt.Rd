@@ -15,7 +15,7 @@ beverton_holt(
 }
 \arguments{
 \item{a}{Ratio of recruits per spawner. Density independent parameter 
-equivelant to the slope near \code{S = 0}. By default specified as 
+equivalent to the slope near \code{S = 0}. By default specified as 
 potential annual fecundity.}
 
 \item{S}{Spawning stock abundance per acre.

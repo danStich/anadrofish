@@ -49,15 +49,15 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
     if(sex_specific == FALSE){
     
       out_max_age[[t]] = .sim_pop$max_age
-      out_nM[[t]] = .sim_pop$nM
-      out_fM[[t]] = .sim_pop$fM
+      out_nM[[t]] = mean(.sim_pop$nM, na.rm = TRUE)
+      out_fM[[t]] = mean(.sim_pop$fM[.sim_pop$fM!=0], na.rm = TRUE)
       out_n_init[[t]] = .sim_pop$n_init
       out_spawnRecruit[[t]] = .sim_pop$spawnRecruit
       out_eggs[[t]] = .sim_pop$eggs
       out_sr[[t]] = .sim_pop$sr
       out_s_juvenile[[t]] = .sim_pop$s_juvenile
-      out_s_spawn[[t]] = .sim_pop$s_spawn
-      out_s_postspawn[[t]] = .sim_pop$s_postspawn
+      out_s_spawn[[t]] = mean(.sim_pop$s_spawn, na.rm = TRUE)
+      out_s_postspawn[[t]] = mean(.sim_pop$s_postspawn, na.rm = TRUE)
       out_iteroparity[[t]] = .sim_pop$iteroparity
       out_spawners[[t]] = .sim_pop$spawners
       out_pop[[t]] = .sim_pop$pop
@@ -123,20 +123,19 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
     if(sex_specific == TRUE){
       out_max_age_m[[t]] = .sim_pop$max_age_m
       out_max_age_f[[t]] = .sim_pop$max_age_f
-      out_nM_m[[t]] = .sim_pop$nM_m
-      out_nM_f[[t]] = .sim_pop$nM_f
-      out_fM_m[[t]] = .sim_pop$fM_m
-      out_fM_f[[t]] = .sim_pop$fM_f
+      out_nM_m[[t]] = mean(.sim_pop$nM_m, na.rm = TRUE)
+      out_nM_f[[t]] = mean(.sim_pop$nM_f, na.rm = TRUE)
+      out_fM[[t]] = mean(.sim_pop$fM[.sim_pop$fM!=0], na.rm = TRUE)
       out_n_init[[t]] = .sim_pop$n_init
       out_spawnRecruit_m[[t]] = .sim_pop$spawnRecruit_m
       out_spawnRecruit_f[[t]] = .sim_pop$spawnRecruit_f
       out_eggs[[t]] = .sim_pop$eggs
       out_sr[[t]] = .sim_pop$sr
       out_s_juvenile[[t]] = .sim_pop$s_juvenile
-      out_s_spawn_m[[t]] = .sim_pop$s_spawn_m
-      out_s_spawn_f[[t]] = .sim_pop$s_spawn_f      
-      out_s_postspawn_m[[t]] = .sim_pop$s_postspawn_m
-      out_s_postspawn_f[[t]] = .sim_pop$s_postspawn_f
+      out_s_spawn_m[[t]] = mean(.sim_pop$s_spawn_m, na.rm = TRUE)
+      out_s_spawn_f[[t]] = mean(.sim_pop$s_spawn_f, na.rm = TRUE)      
+      out_s_postspawn_m[[t]] = mean(.sim_pop$s_postspawn_m, na.rm = TRUE)
+      out_s_postspawn_f[[t]] = mean(.sim_pop$s_postspawn_f, na.rm = TRUE)
       out_iteroparity[[t]] = .sim_pop$iteroparity
       out_spawners[[t]] = .sim_pop$spawners
       out_pop[[t]] = .sim_pop$pop
@@ -158,8 +157,7 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
           out_max_age_f,
           out_nM_m,
           out_nM_f,
-          out_fM_m,
-          out_fM_f,
+          out_fM,
           out_n_init,
           out_spawnRecruit_m,
           out_spawnRecruit_f,
@@ -190,8 +188,7 @@ fill_output <- function(.sim_pop, sex_specific = FALSE){
           'out_max_age_f',
           'out_nM_m',
           'out_nM_f',
-          'out_fM_m',
-          'out_fM_d',
+          'out_fM',
           'out_n_init',
           'out_spawnRecruit_m',
           'out_spawnRecruit_f',

@@ -77,7 +77,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           iteroparity = .sim_pop$out_iteroparity,
           out_spawners,
           out_pop,
-          out_juveniles_out = .sim_pop$out_juveniles_out
+          juveniles_out = .sim_pop$out_juveniles_out
         )
       }
       if(sex_specific == TRUE){
@@ -95,8 +95,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           max_age_f = .sim_pop$out_max_age_f,
           nM_m = .sim_pop$out_nM_m,
           nM_f = .sim_pop$out_nM_f,
-          fM_m = .sim_pop$out_fM_m,
-          fM_f = .sim_pop$out_fM_f,
+          fM = .sim_pop$out_fM,
           n_init = .sim_pop$out_n_init,
           # spawnrecruit_m = .sim_pop$out_spawnRecruit_m,
           # spawnrecruit_f = .sim_pop$out_spawnRecruit_f,
@@ -110,7 +109,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           iteroparity = .sim_pop$out_iteroparity,
           out_spawners,
           out_pop,
-          out_juveniles_out = .sim_pop$out_juveniles_out
+          juveniles_out = .sim_pop$out_juveniles_out
         )        
       }
       
@@ -140,7 +139,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           iteroparity = .sim_pop$out_iteroparity,
           spawners,
           pop,
-          out_juveniles_out = .sim_pop$out_juveniles_out
+          juveniles_out = .sim_pop$out_juveniles_out
         )   
       }
       if(sex_specific == TRUE){
@@ -158,8 +157,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           max_age_f = .sim_pop$out_max_age_f,
           nM_m = .sim_pop$out_nM_m,
           nM_f = .sim_pop$out_nM_f,
-          fM_m = .sim_pop$out_fM_m,
-          fM_f = .sim_pop$out_fM_f,
+          fM = .sim_pop$out_fM,
           n_init = .sim_pop$out_n_init,
           # spawnrecruit = .sim_pop$out_spawnRecruit,
           # eggs = .sim_pop$out_eggs,
@@ -172,7 +170,7 @@ write_output <- function(.sim_pop, sex_specific = FALSE){
           iteroparity = .sim_pop$out_iteroparity,
           spawners,
           pop,
-          out_juveniles_out = .sim_pop$out_juveniles_out
+          juveniles_out = .sim_pop$out_juveniles_out
         )   
       }      
       

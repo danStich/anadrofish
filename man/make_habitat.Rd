@@ -4,20 +4,32 @@
 \alias{make_habitat}
 \title{Make cumulative habitat for river}
 \usage{
-make_habitat(river, upstream, historical)
+make_habitat(
+  river,
+  species = c("AMS", "ALE", "BBH"),
+  upstream,
+  historical = FALSE,
+  custom_habitat = NULL
+)
 }
 \arguments{
 \item{river}{Character string specifying river name}
 
+\item{species}{Species for which population dynamics will be simulated.
+Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+blueback herring (\code{"BBH"}).}
+
 \item{upstream}{Proportional upstream passage through dams.}
 
-\item{historical}{TESTING PARAM ONLY. Logical indicating whether this
+\item{historical}{Testing parameter only. Logical indicating whether this
 is an historical analysis. Default is FALSE. If TRUE, then use test 
-habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
-implemented for any other systems.}
+habitat data for Merrimack, Presumpscot, or Salmon Falls rivers for
+American shad. Not implemented for any other systems or species.}
+
+\item{custom_habitat}{Numeric vector of habitat areas corresponding to 
+production units between features in \code{\link{habitat}} for \code{river}.}
 }
 \description{
 Function used to make habitat for rivers listed
-in \code{\link{get_rivers}} from the built-in 
-dataset(s)
+in \code{\link{get_rivers}} from the built-in dataset(s)
 }

@@ -2,9 +2,9 @@
 % Please edit documentation in R/make_lat.R
 \name{make_lat}
 \alias{make_lat}
-\title{Retrieve latitude for shad rivers.}
+\title{Retrieve latitude for American shad rivers.}
 \usage{
-make_lat(river)
+make_lat(river, species = c("AMS", "ALE", "BBH"))
 }
 \arguments{
 \item{river}{Character string specifying river name. See 
@@ -12,7 +12,7 @@ make_lat(river)
 }
 \description{
 Function used to extract river-specific latitude
-from built-in data sets.
+from built-in data sets for American shad. Not implemented for river herring.
 }
 \examples{
 make_lat(river = 'Susquehanna')

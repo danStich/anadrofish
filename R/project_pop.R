@@ -14,6 +14,10 @@
 #' @param fM Instantaneous fishing mortality.
 #' 
 #' @param max_age Maximum age of spawning fish.
+#' 
+#' @param species Species for which population dynamics will be simulated.
+#' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+#' blueback herring (\code{"BBH"}).
 #'
 #' @return A numeric vector of age-structured abundance in time t + 1
 #'
@@ -21,20 +25,42 @@
 #' 
 #' @export
 #'
-project_pop <- function(x, age0, nM, fM, max_age){
+project_pop <- function(x, age0, nM, fM, max_age, 
+                        species = c("AMS", "ALE", "BBH")){
+  
+  # Error handling
+  # Species error handling
+  if(missing(species)){
+    stop("
+    
+    Argument 'species' must be one of 'ALE', 'AMS', or 'BBH'.")   
+  }
+  
+  if(!species %in% c('ALE', 'AMS', 'BBH')){
+    stop("
+         
+    Argument 'species' must be one of 'ALE', 'AMS', or 'BBH'.") 
+  }  
   
   # Calculate total mortality
-    Z <- nM + fM
+  Z <- nM + fM
 
   # Survival rate
-    s <- rep(1-(1-exp(-Z)), max_age + 1)  
-    s[1] <- s[1]^3
+  if(species == "AMS"){
+    s <- rep(1 - (1 - exp(-Z)), max_age)  
+    s[1] <- (1 - (1 - exp(-nM))) ^ 3 
+
+  }
+  
+  if(species %in% c("ALE", "BBH")){
+    s <- 1 - (1 - exp(-Z))  
+  }
       
   # Project population one time-step and drop
   # any fish > max_age
-    tplus <- c(age0, x)*s
+  tplus <- c(age0, x[1:(max_age-1)]) * s    
     
   # Return the result to R
-    return(tplus[1:max_age])
+  return(tplus[1:max_age])
 
 }

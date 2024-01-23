@@ -4,12 +4,21 @@
 \alias{make_postspawn}
 \title{Post-spawning survival}
 \usage{
-make_postspawn(river = river, iteroparity = NULL, nM = NULL)
+make_postspawn(
+  river = river,
+  species = c("AMS", "ALE", "BBH"),
+  iteroparity = NULL,
+  nM = NULL
+)
 }
 \arguments{
 \item{river}{River for which post-spawn survival rate should be 
 returned. Required argument with no default value. Available rivers
 can be seen using \code{\link{get_rivers}}.}
+
+\item{species}{Species for which population dynamics will be simulated.
+Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+blueback herring (\code{"BBH"}).}
 
 \item{iteroparity}{Optional argument for rate of iteroparity. Values from 
 \code{\link{make_iteroparity}} can be passed directly to this function, or
@@ -24,10 +33,11 @@ a numeric vector of \code{length = 1}.}
 Function used to estimate post-spawn survival 
 from proportion of repeat spawners by latitude (Leggett and
 Cascardden 1978, Bailey and Zydlewski 2013) and natural mortality
-by life-history region.
+by life-history region ("AMS") or by iteroparity and natural mortality
+("ALE" and "BBH").
 }
 \examples{
-make_postspawn(river = "Susquehanna")
+make_postspawn(river = "Susquehanna", species = "AMS")
 
 }
 \references{
