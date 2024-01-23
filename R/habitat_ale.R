@@ -8,8 +8,11 @@
 #' \describe{
 #' 
 #' \code{Names}{ NEED TO ADD DESCRIPTIONS}
-#' 
 #' }
+#' 
+#' @examples print(habitat_ale)
+#' 
+#' 
 #' 
 #' @source Shawn Snyder
 "habitat_ale"
