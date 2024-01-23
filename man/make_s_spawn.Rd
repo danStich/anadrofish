@@ -8,7 +8,9 @@ make_s_spawn(nM, s_postspawn)
 }
 \arguments{
 \item{nM}{Instantaneous natural mortality rate. 
-A numeric vector of length 1.}
+A numeric vector containing either an age-invariant natural mortality
+rate of length 1 or an age-specific natural mortality rate with 
+length = max_age.}
 
 \item{s_postspawn}{Post spawning mortality calculated from the
 output of make_iteroparity and nM.}

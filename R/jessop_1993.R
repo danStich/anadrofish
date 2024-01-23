@@ -1,0 +1,29 @@
+#' @title Fork length-fecundity relationships for alewife
+#'
+#' @description A dataset containing fork length-fecundity relationships for
+#' blueback herring from several spawning groups in New Brunswick and
+#' Nova Scotia, Canada. Parameters are for equations of the form
+#' log10(fec/1000) = alpha + beta*log10(FL)
+#' 
+#' @format A data frame with 4 observations of 6 variables:
+#' \describe{
+#' 
+#' \code{ reference}{ Reference for study (in case others are added)}
+#' 
+#' \code{system}{ Study system}
+#' 
+#' \code{alpha}{ Intercept}
+#' 
+#' \code{alpha.se}{ Standard error of the intercept}
+#' 
+#' \code{beta}{ Slope}
+#' 
+#' \code{beta.se}{ Standard error of the slope}
+#' 
+#' }
+#' 
+#' @source Jessop, B. M. 1993. Fecundity of anadromous alewives and blueback
+#' herring in New Brunswick and Nova Scotia. Transactions of the American
+#' Fisheries Society 122:85-98.
+#' 
+"jessop_1993"

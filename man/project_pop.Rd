@@ -4,7 +4,7 @@
 \alias{project_pop}
 \title{Project population}
 \usage{
-project_pop(x, age0, nM, fM, max_age)
+project_pop(x, age0, nM, fM, max_age, species = c("AMS", "ALE", "BBH"))
 }
 \arguments{
 \item{x}{An numeric vector containing age-specific 
@@ -18,6 +18,10 @@ at end of year t.}
 \item{fM}{Instantaneous fishing mortality.}
 
 \item{max_age}{Maximum age of spawning fish.}
+
+\item{species}{Species for which population dynamics will be simulated.
+Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+blueback herring (\code{"BBH"}).}
 }
 \value{
 A numeric vector of age-structured abundance in time t + 1

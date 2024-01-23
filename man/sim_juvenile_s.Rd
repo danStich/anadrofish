@@ -4,20 +4,17 @@
 \alias{sim_juvenile_s}
 \title{Juvenile (hatch-to-outmigrant) survival}
 \usage{
-sim_juvenile_s(crecco_1983)
+sim_juvenile_s(species = c("AMS", "ALE", "BBH"))
 }
 \arguments{
-\item{crecco_1983}{built-in dataset containing daily mortality 
-rates, daily survival, and cumulative survival during varying
-post-hatch periods. See \code{\link{crecco_1983}}.}
+\item{species}{Species used for simulation ("AMS", "ALE", or "BBH")}
 }
 \description{
 Function used to simulate juvenile (hatch-to-outmigrant) 
-survival from daily rates reported by Crecco et al. (1983) from
-the Connecticut River, USA during 4 consecutive years.
+survival from daily rates of A
 }
 \examples{
-sim_juvenile_s(anadrofish::crecco_1983)
+sim_juvenile_s()
 
 }
 \references{
@@ -25,4 +22,10 @@ Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates
 of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut 
 River with changes in year-class strength. Canadian Journal of 
 Fisheries and Aquatic Sciences 40:1719–1728.
+
+Overton et al. (2012)
+
+Stich et al. (in press)
+
+Hook et al. (2007)
 }

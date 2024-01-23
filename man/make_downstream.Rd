@@ -4,10 +4,21 @@
 \alias{make_downstream}
 \title{Calculate downstream survival given dam passage scenario.}
 \usage{
-make_downstream(river, downstream, upstream, historical)
+make_downstream(
+  river,
+  species = c("AMS", "ALE", "BBH"),
+  downstream,
+  upstream,
+  historical = FALSE,
+  custom_habitat = NULL
+)
 }
 \arguments{
 \item{river}{Character string specifying river name.}
+
+\item{species}{Species for which population dynamics will be simulated.
+Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+blueback herring (\code{"BBH"}).}
 
 \item{downstream}{Numeric indicating proportional downstream survival 
 through a single dam.}
@@ -17,6 +28,9 @@ through a single dam.}
 
 \item{historical}{Logical indicating whether to use contemporary or
 historical habitat data.}
+
+\item{custom_habitat}{Numeric vector of habitat areas corresponding to 
+production units between features in \code{\link{habitat}} for \code{river}.}
 }
 \value{
 Numeric of length 1 representing catchment-scale 
@@ -28,10 +42,10 @@ survival during out-migration through dams.
 }
 \details{
 This function assigns cumulative downstream passage values 
-to all features in \code{habitat_data} corresponding to \code{river}.
+to all features in \code{\link{habitat}} corresponding to \code{river}.
 It then calculates the proportion of habitat in each 
-habitat segment, and weights downstream mortality at the catchment-scale
-by proportiotn of habitat. This implicitly assumes that fish are distributed 
+habitat segment of a river, and weights downstream mortality at the catchment-scale
+by proportion of habitat. This implicitly assumes that fish are distributed 
 throughout the river during spawning in proportion to available
 habitat.
 }

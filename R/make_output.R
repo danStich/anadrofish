@@ -83,8 +83,7 @@ make_output <- function(nyears, sex_specific = FALSE){
     out_max_age_f = vector(mode='numeric', length=nyears)
     out_nM_m = vector(mode='numeric', length=nyears)
     out_nM_f = vector(mode='numeric', length=nyears)
-    out_fM_m = vector(mode='numeric', length=nyears)
-    out_fM_f = vector(mode='numeric', length=nyears)
+    out_fM = vector(mode='numeric', length=nyears)
     out_n_init = vector(mode='numeric', length=nyears)
     out_spawnRecruit_m = vector(mode='list', length=nyears)
     out_spawnRecruit_f = vector(mode='list', length=nyears)
@@ -115,8 +114,7 @@ make_output <- function(nyears, sex_specific = FALSE){
         out_max_age_f = out_max_age_f,
         out_nM_m = out_nM_m,
         out_nM_f = out_nM_f,
-        out_fM_m = out_fM_m,
-        out_fM_f = out_fM_f,
+        out_fM = out_fM,
         out_n_init = out_n_init,
         out_spawnRecruit_m = out_spawnRecruit_m,
         out_spawnRecruit_f = out_spawnRecruit_f,

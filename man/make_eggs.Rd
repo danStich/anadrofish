@@ -4,10 +4,14 @@
 \alias{make_eggs}
 \title{Simulate number of eggs per fish}
 \usage{
-make_eggs(river)
+make_eggs(river, species = c("AMS", "ALE", "BBH"))
 }
 \arguments{
 \item{river}{The river for which eggs will be simulated.}
+
+\item{species}{Species for which population dynamics will be simulated.
+Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+blueback herring (\code{"BBH"}).}
 }
 \value{
 A vector containing age-specific potential annual 
@@ -20,12 +24,14 @@ for rivers included in \code{\link{get_rivers}}.
 }
 \section{Details}{
 
-The default uses predictive equations from Olney and McBride (2003) 
-to simulate batch fecundity from weight-fecundity relationships
+The default method for American shad uses predictive equations from Olney and
+McBride (2003) to simulate batch fecundity from weight-fecundity relationships
 using coefficients in \code{\link{olney_mcbride}} for the life-history region
 corresponding to the specified river. Number of batches for this
 approach is currently drawn from a random normal distribution
 with a mean of 6.7 and a standard deviation of 2.1 (McBride et al. 2016).
+
+I need to add details for default methods for ALE and BBH...
 }
 
 \examples{

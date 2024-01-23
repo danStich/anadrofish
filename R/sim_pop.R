@@ -46,7 +46,7 @@
 #' @param s_juvenile Survival from hatch to outmigrant. If NULL
 #' (default) then simulated from a (log) normal distribution using
 #' mean and sd of \code{Sc} through \code{70 d} for 1979-1982 from
-#' Crecco et al. (1983).
+#' Crecco et al. (1983) in \code{\link{crecco_1983}}.
 #' 
 #' @param upstream Numeric of length 1 representing proportional 
 #' upstream passage through dams.
@@ -63,7 +63,7 @@
 #' data for all years of simulation. This is useful for testing.
 #' 
 #' @param age_structured_output Should population and spawner abundance
-#' in the output data.frame be age-structured? If \code{FALSE} (default),
+#' in the output dataframe be age-structured? If \code{FALSE} (default),
 #' then \code{pop} (non-spawning population) and \code{spawners} (spawning
 #' population) are summed across all age classes for each year of simulation.
 #' If \code{TRUE} then \code{pop} and \code{spawners} are returned for
@@ -81,10 +81,10 @@
 #'
 #' @param custom_habitat A vector of habitat values corresponding to square km
 #' of habitat upstream of each feature and the next. Must be the same length
-#' as the number of rows in \code{habitat} for the selected River. Added for
-#' compatibility with historical management plan habitat estimates. 
+#' as the number of rows in \code{\link{habitat}} for the selected \code{river}. 
+#' Added for compatibility with historical management plan habitat estimates. 
 #' 
-#' @return A data.frame containing simulation inputs (arguments
+#' @return A dataframe containing simulation inputs (arguments
 #' to \code{sim_pop}) and output (number of spawners) by year.
 #' 
 # #' NEED TO ADD COLUMN DESCRIPTIONS HERE
@@ -165,10 +165,6 @@ sim_pop <- function(
         .sim_pop$nM_m <- make_mortality(.sim_pop$river, sex = "male")
         .sim_pop$nM_f <- make_mortality(.sim_pop$river, sex = "female")
       }
-      
-    # Fishing mortality 
-      .sim_pop$fM_m <- fM
-      .sim_pop$fM_f <- fM
         
     # Maximum age if not specified 
       if(is.null(.sim_pop$max_age)){
@@ -230,12 +226,12 @@ sim_pop <- function(
     if(sex_specific == TRUE){
       .sim_pop$pop_m <-  make_pop(max_age = .sim_pop$max_age_m,
                                 nM = .sim_pop$nM_m,
-                                fM = .sim_pop$fM_m,
+                                fM = .sim_pop$fM,
                                 n_init = .sim_pop$n_init * (1-.sim_pop$sr)
                                 )
       .sim_pop$pop_f <-  make_pop(max_age = .sim_pop$max_age_f,
                                 nM = .sim_pop$nM_f,
-                                fM = .sim_pop$fM_f,
+                                fM = .sim_pop$fM,
                                 n_init = .sim_pop$n_init * .sim_pop$sr
                                 )      
     }    
@@ -358,7 +354,7 @@ sim_pop <- function(
           .sim_pop$spawners_down*(1-.sim_pop$sr))[1:.sim_pop$max_age_m], 
         age0 = .sim_pop$age0_down*(1-.sim_pop$sr),
         nM = .sim_pop$nM_m, 
-        fM = .sim_pop$fM_m,
+        fM = .sim_pop$fM,
         max_age = .sim_pop$max_age_m) 
       
       .sim_pop$pop_f <- project_pop(
@@ -366,7 +362,7 @@ sim_pop <- function(
           .sim_pop$pop_f, .sim_pop$spawners_down*.sim_pop$sr), 
         age0 = .sim_pop$age0_down*.sim_pop$sr,
         nM = .sim_pop$nM_f, 
-        fM = .sim_pop$fM_f,
+        fM = .sim_pop$fM,
         max_age = .sim_pop$max_age_f)       
       
         .sim_pop$pop <- add_unequal_vectors(

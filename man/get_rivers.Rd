@@ -2,20 +2,20 @@
 % Please edit documentation in R/get_rivers.R
 \name{get_rivers}
 \alias{get_rivers}
-\title{Rivers included in package}
+\title{Rivers included in habitat data by species}
 \usage{
-get_rivers(habitat_data = anadrofish::habitat)
+get_rivers(species = c("ALE", "AMS", "BBH"))
 }
 \arguments{
-\item{habitat_data}{A built-in habitat data set or a subset thereof. The 
-default is \code{anadrofish::habitat}.}
+\item{species}{Species for which rivers are returned
+Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+blueback herring (\code{"BBH"}).}
 }
 \value{
-A character vector of rivers that are included in \link{habitat}.
+A character vector of rivers that are implemented for \code{species}.
 }
 \description{
-Get names of rivers included in package. A function with 
-no arguments.
+Get names of rivers included in package for each species.
 }
 \details{
 The primary uses of this function are (1) so the user can see 
