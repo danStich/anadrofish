@@ -54,9 +54,9 @@
 #'   }
 #'
 #'
-#' @docType package
+"_PACKAGE"
 #' 
-#' @name anadrofish
+#' @aliases anadrofish-package
 #' 
 #' @importFrom truncnorm rtruncnorm
 #' @importFrom stats quantile rnorm runif sd

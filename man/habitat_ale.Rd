@@ -5,7 +5,7 @@
 \alias{habitat_ale}
 \title{Alewife habitat}
 \format{
-A data frame with 132218 observations of 26 variables:
+A data frame with 246,259 observations of 26 variables:
 \describe{
 
 \code{Names}{ NEED TO ADD DESCRIPTIONS}

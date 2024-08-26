@@ -4,7 +4,7 @@
 #' habitat segments by feature (dam or outlet) in
 #' Atlantic coast drainages. 
 #'
-#' @format A data frame with 31859 observations of 24 variables:
+#' @format A data frame with 274,726 observations of 16 variables:
 #' \describe{
 #' 
 #' \code{Names}{ NEED TO ADD DESCRIPTIONS}

@@ -131,7 +131,6 @@ make_eggs_rh <- function(river, species = c("ALE", "BBH")){
       eggs[[i]] <- (10 ^ (alpha_fec[i] + beta_fec[i]*log10(fl)))*1000
     }
     
-    ### Batch spawning test!!!
     eggs <- apply(do.call(rbind, eggs), 2, mean)*sample(1:3, 1, replace = FALSE)
       
   }  
