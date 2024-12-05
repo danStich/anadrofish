@@ -6,3 +6,4 @@ notcommit/
 ^docs$
 ^pkgdown$
 ^\.github$
+^CITATION\.cff$
