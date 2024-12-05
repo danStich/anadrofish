@@ -8,7 +8,6 @@ make_habitat(
   river,
   species = c("AMS", "ALE", "BBH"),
   upstream,
-  historical = FALSE,
   custom_habitat = NULL
 )
 }
@@ -21,13 +20,8 @@ blueback herring (\code{"BBH"}).}
 
 \item{upstream}{Proportional upstream passage through dams.}
 
-\item{historical}{Testing parameter only. Logical indicating whether this
-is an historical analysis. Default is FALSE. If TRUE, then use test 
-habitat data for Merrimack, Presumpscot, or Salmon Falls rivers for
-American shad. Not implemented for any other systems or species.}
-
-\item{custom_habitat}{Numeric vector of habitat areas corresponding to 
-production units between features in \code{\link{habitat}} for \code{river}.}
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \description{
 Function used to make habitat for rivers listed

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_dams.R
 \name{get_dams}
 \alias{get_dams}
-\title{Get dams for specified river}
+\title{Get dams for specified river from American shad habitat data}
 \usage{
 get_dams(river)
 }
@@ -16,5 +16,9 @@ latitude and longitude, and dam order in the watershed
 \description{
 Function used to get dams for rivers listed
 in \code{\link{get_rivers}} from the built-in 
-data set(s)
+data set(s) for American shad. Not implemented for river herring
+}
+\examples{
+get_dams("Penobscot")
+
 }

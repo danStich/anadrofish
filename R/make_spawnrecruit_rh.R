@@ -10,26 +10,27 @@
 #' from the Maki (YEAR) method in ASMFC (2024).
 #' 
 #' @param species A character indicating species of river herring, either
-#' \code{"ALE" for alewife or "BBH" for blueback herring}.
+#' \code{"ALE"} for alewife or \code{"BBH"} for blueback herring.
 #'
-#' @param region A character indicating genetic stock groupings for 
-#' alewife (one of "MAT", "SNE", or "NNE") or blueback herring (one of
-#' one of "SAT", "MAT", "SNE", "MNE", or "CAN-NNE") in 
-#' in \code{anadrofish::maki_pars}.
-#'
+#' @param river River for which maximum age is needed.
+#' 
 #' @param sex A character indicating \code{"male"}, \code{"female"},
 #' or \code{"Pooled"} sex for fish.
 #'
+#' @param custom_habitat A dataframe containing columns corresponding to the
+#' those in the output from \code{\link{custom_habitat_template}}.
+#' 
 #' @return A numeric vector containing a single realization for proportion
 #' of mature fish at each age, from age 1 to maximum age.
 #'
-#' @example inst/examples/make_spawnrecruit_rh_ex.R
+#' @examples make_spawnrecruit_rh(river = "Upper Hudson", species = "BBH", sex = "female")
 #'
 #' @export
 #'
 make_spawnrecruit_rh <- function(river,
                                  sex = c('male', 'female'),
-                                 species = c('ALE', 'BBH')){
+                                 species = c('ALE', 'BBH'),
+                                 custom_habitat = NULL){
   
   # Error handling ----
   # Require sex to be specified from vector of choices
@@ -38,19 +39,32 @@ make_spawnrecruit_rh <- function(river,
   # Require species to be specified from vector of choices
   if(!missing(species)) species <- match.arg(species, c('ALE', 'BBH'))
   
+  # River error handling
   if(missing(river)){
     stop("
     
     Argument 'river' must be specified.
     
-    To see a list of available regions use get_rivers()") 
+    To see a list of available rivers, run get_rivers() or specify river name
+    in custom_habitat if used.")    
   }
   
-  # Get region for river
-  region <- get_region(river = river, species = species)  
+  if(!river %in% get_rivers(species) & is.null(custom_habitat)){
+    stop("
+    
+    Argument 'river' must be one of those included in get_rivers() or in
+    custom_habitat if used.
+    
+    To see a list of available rivers, run get_rivers()")
+  } 
+  
+  # Get region
+  region <- get_region(river = river, species = species, 
+                       custom_habitat = custom_habitat) 
   
   # Get max age for river and species
-  max_age <- make_maxage(river = river, sex = sex, species = species)
+  max_age <- make_maxage(river = river, sex = sex, species = species,
+                         custom_habitat = custom_habitat)
   
   # Probability of virgin recruitment to spawn ----
   # Subset the parameter table to include only species, region,

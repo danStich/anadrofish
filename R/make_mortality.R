@@ -14,10 +14,13 @@
 #' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 #' blueback herring (\code{"BBH"}).
 #'
+#' @param custom_habitat A dataframe containing columns corresponding to the
+#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
+#' 
 #' @return A numeric vector of \code{length = 1} containing
 #' natural instantaneous mortality of fish in population.
 #'
-#' @examples make_mortality(river = "Susquehanna", species = "BBH")
+#' @examples make_mortality(river = "Penobscot", species = "BBH")
 #' 
 #' @references Atlantic States Marine Fisheries Commission
 #' 
@@ -25,30 +28,37 @@
 #'
 make_mortality <- function(river, 
                            sex = c(NULL, "female", "male"),
-                           species = c("AMS", "ALE", "BBH")){
+                           species = c("AMS", "ALE", "BBH"),
+                           custom_habitat = NULL){
   
   if(!missing(species)) species <- match.arg(species) 
   
   if(!missing(sex)) sex <- match.arg(sex)
   
+  # River error handling
   if(missing(river)){
     stop("
     
     Argument 'river' must be specified.
     
-    To see a list of available rivers, run get_rivers()")    
+    To see a list of available rivers, run get_rivers() or specify river name
+    in custom_habitat if used.")    
   }
   
-  if(!river %in% get_rivers(species)){
+  if(!river %in% get_rivers(species) & is.null(custom_habitat)){
     stop("
     
-    Argument 'river' must be one of those included in get_rivers().
+    Argument 'river' must be one of those included in get_rivers() or in
+    custom_habitat if used.
     
     To see a list of available rivers, run get_rivers()")
-  }  
+  }
   
-  region <- get_region(river = river, species = species)
+  # Get region
+  region <- get_region(river = river, species = species, 
+                       custom_habitat = custom_habitat) 
   
+  # Get natural mortality
   if(species == "AMS"){
     if(missing(sex)){
       nM <- mean(anadrofish::mortality$M[

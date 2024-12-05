@@ -15,10 +15,13 @@
 #' blueback herring (\code{"BBH"}). If species is "ALE" or "BBH" then this 
 #' function calls \code{\link{make_spawnrecruit_rh}}.
 #'
+#' @param custom_habitat A dataframe containing columns corresponding to the
+#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
+#' 
 #' @return A numeric vector of \code{length = length(max_age)} depending
 #' on maximum age in the selected river (by life-history region and species).
 #'
-#' @examples make_spawnrecruit(river = "Hudson", species = "BBH")
+#' @examples make_spawnrecruit(river = "Upper Hudson", species = "BBH")
 #' 
 #' @references Atlantic States Marine Fisheries Commission
 #' 
@@ -26,35 +29,41 @@
 #'
 make_spawnrecruit <- function(river, 
                               sex = c('male', 'female'),
-                              species = c("ALE", "AMS", "BBH")){
+                              species = c("ALE", "AMS", "BBH"),
+                              custom_habitat = NULL){
   
   # Error handling
   # Argument matching
   if(!missing(sex)) sex <- match.arg(sex)
   if(!missing(species)) species <- match.arg(species)
   
+  # River error handling
   if(missing(river)){
     stop("
     
     Argument 'river' must be specified.
     
-    To see a list of available rivers, run get_rivers()")    
+    To see a list of available rivers, run get_rivers() or specify river name
+    in custom_habitat if used.")    
   }
   
-  if(!river %in% get_rivers(species)){
+  if(!river %in% get_rivers(species) & is.null(custom_habitat)){
     stop("
     
-    Argument 'river' must be one of those included in get_rivers().
+    Argument 'river' must be one of those included in get_rivers() or in
+    custom_habitat if used.
     
     To see a list of available rivers, run get_rivers()")
-  }  
+  } 
   
   if(species == "AMS"){
-    region <- unique(anadrofish::habitat$region[
-      anadrofish::habitat$system==river])
+    
+    # Get region
+    region <- get_region(river = river, species = species, 
+                         custom_habitat = custom_habitat) 
     
     if(missing(sex)){
-      max_age <- make_maxage(river)
+      max_age <- make_maxage(river, custom_habitat = custom_habitat)
       probs <- as.numeric(
         colMeans(anadrofish::maturity[
           anadrofish::maturity$region == region, 3:(2+max_age)])
@@ -63,7 +72,8 @@ make_spawnrecruit <- function(river,
     
     if(!missing(sex)){
     
-      max_age <- make_maxage(river = river, sex = sex, species = "AMS")
+      max_age <- make_maxage(river = river, sex = sex, species = "AMS", 
+                             custom_habitat = custom_habitat)
       
       if(sex == 'female'){
       probs <- as.numeric(
@@ -85,7 +95,8 @@ make_spawnrecruit <- function(river,
   }
   
   if(species %in% c("ALE", "BBH")){
-    probs = make_spawnrecruit_rh(river = river, sex = sex, species = species)
+    probs = make_spawnrecruit_rh(river = river, sex = sex, species = species,
+                                 custom_habitat = custom_habitat)
   }
   
   return(probs)

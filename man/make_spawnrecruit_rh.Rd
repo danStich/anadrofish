@@ -7,20 +7,21 @@
 make_spawnrecruit_rh(
   river,
   sex = c("male", "female"),
-  species = c("ALE", "BBH")
+  species = c("ALE", "BBH"),
+  custom_habitat = NULL
 )
 }
 \arguments{
+\item{river}{River for which maximum age is needed.}
+
 \item{sex}{A character indicating \code{"male"}, \code{"female"},
 or \code{"Pooled"} sex for fish.}
 
 \item{species}{A character indicating species of river herring, either
-\code{"ALE" for alewife or "BBH" for blueback herring}.}
+\code{"ALE"} for alewife or \code{"BBH"} for blueback herring.}
 
-\item{region}{A character indicating genetic stock groupings for 
-alewife (one of "MAT", "SNE", or "NNE") or blueback herring (one of
-one of "SAT", "MAT", "SNE", "MNE", or "CAN-NNE") in 
-in \code{anadrofish::maki_pars}.}
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from \code{\link{custom_habitat_template}}.}
 }
 \value{
 A numeric vector containing a single realization for proportion
@@ -38,15 +39,6 @@ region-specific probabilities of maturation at each age estimated
 from the Maki (YEAR) method in ASMFC (2024).
 }
 \examples{
-# Example usage
-\dontrun{
-  
-  # Use make_spawnrecruit_rh() to simulate proportion of mature
-  # fish at each age
-  spawn_recruit_vector <- make_spawnrecruit_rh(
-    species = "ALE", region = "NNE", sex = "Male")
-  
-  plot(spawn_recruit_vector, type = "l")
-  
-}
+make_spawnrecruit_rh(river = "Upper Hudson", species = "BBH", sex = "female")
+
 }

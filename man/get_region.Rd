@@ -4,7 +4,7 @@
 \alias{get_region}
 \title{Get region for specified river by species}
 \usage{
-get_region(river, species = c("ALE", "AMS", "BBH"))
+get_region(river, species = c("ALE", "AMS", "BBH"), custom_habitat = NULL)
 }
 \arguments{
 \item{river}{Character string specifying river name}
@@ -12,10 +12,12 @@ get_region(river, species = c("ALE", "AMS", "BBH"))
 \item{species}{Character string specifying species for simulation.
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
+
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \value{
-a data.frame with 4 variables containing dam name,
-latitude and longitude, and dam order in the watershed
+a character vector with stock- and species-specific region
 }
 \description{
 Function used to get region for rivers listed

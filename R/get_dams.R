@@ -1,15 +1,15 @@
-#' @title Get dams for specified river
+#' @title Get dams for specified river from American shad habitat data
 #'
 #' @description Function used to get dams for rivers listed
 #' in \code{\link{get_rivers}} from the built-in 
-#' data set(s)
+#' data set(s) for American shad. Not implemented for river herring
 #'
 #' @param river Character string specifying river name
 #' 
 #' @return a data.frame with 4 variables containing dam name,
 #' latitude and longitude, and dam order in the watershed
 #' 
-# #' @example inst/examples/makehabitat_ex.R
+#' @examples get_dams("Penobscot")
 #' 
 #' @export
 #'
@@ -20,15 +20,15 @@ get_dams <- function(river){
     
     Argument 'river' must be specified.
     
-    To see a list of available rivers, run get_rivers()")    
+    To see a list of available rivers, run get_rivers(species = 'AMS')")    
   }
   
-  if(!river %in% get_rivers()){
+  if(!river %in% get_rivers(species = 'AMS')){
     stop("
     
     Argument 'river' must be one of those included in get_rivers().
     
-    To see a list of available rivers, run get_rivers()")
+    To see a list of available rivers, run get_rivers(species = 'AMS')")
   }
   
   # Select habitat units based on huc_code

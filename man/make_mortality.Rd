@@ -7,7 +7,8 @@
 make_mortality(
   river,
   sex = c(NULL, "female", "male"),
-  species = c("AMS", "ALE", "BBH")
+  species = c("AMS", "ALE", "BBH"),
+  custom_habitat = NULL
 )
 }
 \arguments{
@@ -19,6 +20,9 @@ of male and female estimates is used.}
 \item{species}{Species for which population dynamics will be simulated.
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
+
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \value{
 A numeric vector of \code{length = 1} containing
@@ -31,7 +35,7 @@ for the selected river from built-in data set containing
 region-specific \code{\link{mortality}} and.
 }
 \examples{
-make_mortality(river = "Susquehanna", species = "BBH")
+make_mortality(river = "Penobscot", species = "BBH")
 
 }
 \references{

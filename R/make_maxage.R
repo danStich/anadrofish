@@ -9,11 +9,18 @@
 #' @param sex Sex of fish. If not specified, then mean of
 #' male and female maximum ages is returned for American shad,
 #' or pooled sex data used for river_herring.
+#' 
+#' @param species Species for which population dynamics will be simulated.
+#' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+#' blueback herring (\code{"BBH"}).
 #'
+#' @param custom_habitat A dataframe containing columns corresponding to the
+#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
+#' 
 #' @return A numeric vector of \code{length = 1} containing
 #' maximum age of fish in population.
 #'
-#' @examples make_maxage(river = "Susquehanna River", species = "ALE")
+#' @examples make_maxage(river = "Susquehanna", species = "AMS")
 #' 
 #' @references Atlantic States Marine Fisheries Commission
 #' 
@@ -21,7 +28,8 @@
 #'
 make_maxage <- function(river, 
                         sex = c('female', 'male'),
-                        species = c("AMS", "ALE", "BBH")){
+                        species = c("AMS", "ALE", "BBH"),
+                        custom_habitat = NULL){
  
   # Required argument matching
   if(!missing(sex)) sex <- match.arg(sex)
@@ -33,6 +41,7 @@ make_maxage <- function(river,
     stop("
          
     Argument 'species' must be one of 'ALE', 'AMS', or 'BBH'.") 
+    
   }
   
   # River error handling
@@ -41,19 +50,24 @@ make_maxage <- function(river,
     
     Argument 'river' must be specified.
     
-    To see a list of available rivers, run get_rivers()")    
+    To see a list of available rivers, run get_rivers() or specify river name
+    in custom_habitat if used.")    
   }
   
-  if(!river %in% get_rivers(species)){
+  if(!river %in% get_rivers(species) & is.null(custom_habitat)){
     stop("
     
-    Argument 'river' must be one of those included in get_rivers().
+    Argument 'river' must be one of those included in get_rivers() or in
+    custom_habitat if used.
     
     To see a list of available rivers, run get_rivers()")
-  }  
+  }
  
-  region <- get_region(river = river, species = species)  
-   
+  # Get region
+  region <- get_region(river = river, species = species, 
+                       custom_habitat = custom_habitat) 
+  
+  # Get maximum age
   if(species == "AMS"){
     
     if(missing(sex)){

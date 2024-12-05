@@ -7,7 +7,8 @@
 make_spawnrecruit(
   river,
   sex = c("male", "female"),
-  species = c("ALE", "AMS", "BBH")
+  species = c("ALE", "AMS", "BBH"),
+  custom_habitat = NULL
 )
 }
 \arguments{
@@ -20,6 +21,9 @@ male and female spawn recruit probabilities are returned.}
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}). If species is "ALE" or "BBH" then this 
 function calls \code{\link{make_spawnrecruit_rh}}.}
+
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \value{
 A numeric vector of \code{length = length(max_age)} depending
@@ -32,7 +36,7 @@ using built-in data sets for region-specific \code{\link{max_ages}} and
 \code{\link{maturity}}.
 }
 \examples{
-make_spawnrecruit(river = "Hudson", species = "BBH")
+make_spawnrecruit(river = "Upper Hudson", species = "BBH")
 
 }
 \references{

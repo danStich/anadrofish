@@ -4,13 +4,16 @@
 \alias{make_eggs_rh}
 \title{Simulate number of eggs per fish for river herring}
 \usage{
-make_eggs_rh(river, species = c("ALE", "BBH"))
+make_eggs_rh(river, species = c("ALE", "BBH"), custom_habitat = NULL)
 }
 \arguments{
 \item{river}{The river for which eggs will be simulated.}
 
 \item{species}{Species for which population dynamics will be simulated.
 Choices include alewife (\code{"ALE"}), and blueback herring (\code{"BBH"}).}
+
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \value{
 A vector containing age-specific potential annual 
@@ -26,7 +29,7 @@ rivers included in \code{\link{get_rivers}}.
 }
 
 \examples{
-make_eggs_rh(river = "Susquehanna", species = "BBH")
+make_eggs_rh(river = "Upper Susquehanna", species = "BBH")
 
 }
 \references{

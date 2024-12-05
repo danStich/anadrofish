@@ -14,7 +14,7 @@ Function used to simulate juvenile (hatch-to-outmigrant)
 survival from daily rates of A
 }
 \examples{
-sim_juvenile_s()
+sim_juvenile_s(species = "ALE")
 
 }
 \references{

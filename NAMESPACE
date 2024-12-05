@@ -2,6 +2,7 @@
 
 export(add_unequal_vectors)
 export(beverton_holt)
+export(custom_habitat_template)
 export(fill_output)
 export(get_dams)
 export(get_govt)

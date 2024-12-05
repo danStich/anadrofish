@@ -83,17 +83,10 @@
 #' regardless of \code{max_age}, but all abundances for ages greater 
 #' than \code{max_age} are zero.
 #' 
-#' @param historical TESTING PARAM ONLY. Logical indicating whether this
-#' is an historical analysis. Default is FALSE. If TRUE, then use test 
-#' habitat data for Merrimack, Presumpscot, or Salmon Falls rivers. Not 
-#' implemented for any other systems.
-#' 
 #' @param sex_specific Whether to use sex-specific life-history data.
 #'
-#' @param custom_habitat A vector of habitat values corresponding to square km
-#' of habitat upstream of each feature and the next. Must be the same length
-#' as the number of rows in \code{\link{habitat}} for the selected \code{river}. 
-#' Added for compatibility with historical management plan habitat estimates. 
+#' @param custom_habitat A dataframe containing columns corresponding to the
+#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
 #' 
 #' @return A dataframe containing simulation inputs (arguments
 #' to \code{sim_pop}) and output (number of spawners) by year.
@@ -128,7 +121,6 @@ sim_pop <- function(
   downstream_j = 1,
   output_years = c('last', 'all'),
   age_structured_output = FALSE,
-  historical = FALSE,
   sex_specific = TRUE,
   custom_habitat = NULL){
  
@@ -153,17 +145,18 @@ sim_pop <- function(
     
     Argument 'river' must be specified.
     
-    To see a list of available rivers, run get_rivers()")    
+    To see a list of available rivers, run get_rivers() or specify river name
+    in custom_habitat if used.")    
   }
   
-  if(!river %in% get_rivers(species)){
+  if(!river %in% get_rivers(species) & is.null(custom_habitat)){
     stop("
     
-    Argument 'river' must be one of those included in get_rivers().
+    Argument 'river' must be one of those included in get_rivers() or in
+    custom_habitat if used.
     
     To see a list of available rivers, run get_rivers()")
   }
-  
   
   # Make a hidden environment so it is easier
   # to pass output to fill_output() and write_output()
@@ -177,10 +170,12 @@ sim_pop <- function(
   
   # Get region for river system
   .sim_pop$region <- get_region(river = .sim_pop$river, 
-                                species = .sim_pop$species)
+                                species = .sim_pop$species,
+                                custom_habitat = .sim_pop$custom_habitat)
     
   # Get governmental unit
-  .sim_pop$govt <- get_govt(.sim_pop$river, .sim_pop$species)
+  .sim_pop$govt <- get_govt(.sim_pop$river, .sim_pop$species,
+                            custom_habitat = .sim_pop$custom_habitat)
 
   # Get life-history parameters if not specified 
   if(sex_specific == FALSE){
@@ -188,19 +183,23 @@ sim_pop <- function(
     if(is.null(.sim_pop$nM)){ 
       .sim_pop$nM <- make_mortality(river = .sim_pop$river, 
                                     sex = NULL,
-                                    species = .sim_pop$species)}
+                                    species = .sim_pop$species,
+                                    custom_habitat = .sim_pop$custom_habitat)}
         
     # Maximum age if not specified 
     ### ASMFC (2024) assumed age 10, but we have mort estimates through age
-    ### 12 for some systems - will need to make a decision here.
+    ### 12 for some systems
     if(is.null(.sim_pop$max_age)){
       .sim_pop$max_age <- make_maxage(river = .sim_pop$river,
-                                      species = .sim_pop$species)}
+                                      species = .sim_pop$species,
+                                      custom_habitat = .sim_pop$custom_habitat)}
       
     # Maturity schedule if not specified 
     if(is.null(.sim_pop$spawnRecruit)){ 
-      .sim_pop$spawnRecruit <- make_spawnrecruit(river = .sim_pop$river,
-                                                 species = .sim_pop$species)
+      .sim_pop$spawnRecruit <- make_spawnrecruit(
+        river = .sim_pop$river,
+        species = .sim_pop$species,
+        custom_habitat = .sim_pop$custom_habitat)
     }
   }
     
@@ -211,37 +210,48 @@ sim_pop <- function(
     if(is.null(.sim_pop$nM_m)){ 
       .sim_pop$nM_m <- make_mortality(river = .sim_pop$river, 
                                       sex = "male",
-                                      species = .sim_pop$species)
+                                      species = .sim_pop$species,
+                                      custom_habitat = .sim_pop$custom_habitat)
       .sim_pop$nM_f <- make_mortality(river = .sim_pop$river, 
                                       sex = "female",
-                                      species = .sim_pop$species)
+                                      species = .sim_pop$species,
+                                      custom_habitat = .sim_pop$custom_habitat)
     }
         
     # Maximum age if not specified 
     if(is.null(.sim_pop$max_age)){
-      .sim_pop$max_age_m <- make_maxage(river = .sim_pop$river, 
-                                        sex = "male",
-                                        species = .sim_pop$species)
-      .sim_pop$max_age_f <- make_maxage(river = .sim_pop$river, 
-                                        sex = "female",
-                                        species = .sim_pop$species)
+      .sim_pop$max_age_m <- make_maxage(
+        river = .sim_pop$river, 
+        sex = "male",
+        species = .sim_pop$species,
+        custom_habitat = .sim_pop$custom_habitat)
+      .sim_pop$max_age_f <- make_maxage(
+        river = .sim_pop$river, 
+        sex = "female",
+        species = .sim_pop$species,
+        custom_habitat = .sim_pop$custom_habitat)
       }
       
     # Maturity schedule if not specified 
     if(is.null(.sim_pop$spawnRecruit)){ 
-      .sim_pop$spawnRecruit_m <- make_spawnrecruit(.sim_pop$river, 
-                                                   sex = "male",
-                                                   species = .sim_pop$species)
-      .sim_pop$spawnRecruit_f <- make_spawnrecruit(.sim_pop$river, 
-                                                   sex = "female",
-                                                   species = .sim_pop$species)
+      .sim_pop$spawnRecruit_m <- make_spawnrecruit(
+        .sim_pop$river, 
+        sex = "male",
+        species = .sim_pop$species,
+        custom_habitat = .sim_pop$custom_habitat)
+      .sim_pop$spawnRecruit_f <- make_spawnrecruit(
+        .sim_pop$river, 
+        sex = "female",
+        species = .sim_pop$species,
+        custom_habitat = .sim_pop$custom_habitat)
       }
       
   }
   
   # Get estimated number of eggs per female if not specified 
   if(is.null(.sim_pop$eggs)){
-    .sim_pop$eggs <- make_eggs(.sim_pop$river, species = .sim_pop$species)}
+    .sim_pop$eggs <- make_eggs(.sim_pop$river, species = .sim_pop$species,
+                               custom_habitat = .sim_pop$custom_habitat)}
             
   # Get hatch-to-outmigrant survival if not specified  
   if(is.null(.sim_pop$s_juvenile)){.sim_pop$s_juvenile <- 
@@ -256,7 +266,6 @@ sim_pop <- function(
   .sim_pop$acres <- make_habitat(river = .sim_pop$river, 
                                  species = .sim_pop$species,
                                  upstream = .sim_pop$upstream,
-                                 historical = .sim_pop$historical,
                                  custom_habitat = .sim_pop$custom_habitat)
     
   # Make downstream survival through dams
@@ -266,7 +275,6 @@ sim_pop <- function(
     species = .sim_pop$species,
     downstream = .sim_pop$downstream, 
     upstream = .sim_pop$upstream,
-    historical = .sim_pop$historical,
     custom_habitat = .sim_pop$custom_habitat
     )
   
@@ -276,7 +284,6 @@ sim_pop <- function(
     species = .sim_pop$species, 
     downstream = .sim_pop$downstream_j, 
     upstream = .sim_pop$upstream,
-    historical = .sim_pop$historical,
     custom_habitat = .sim_pop$custom_habitat
     )       
     
@@ -362,7 +369,8 @@ sim_pop <- function(
       
       # Get latitude for river by species
       .sim_pop$latitude <- make_lat(river = .sim_pop$river, 
-                                    species = .sim_pop$species)
+                                    species = .sim_pop$species,
+                                    custom_habitat = .sim_pop$custom_habitat)
       
       # Get rate of iteroparity from river based on latitude for American shad
       # or assume a value of 1 (for now) for river herring      
@@ -377,7 +385,8 @@ sim_pop <- function(
           river = .sim_pop$river, 
           species = .sim_pop$species,
           iteroparity = .sim_pop$iteroparity,
-          nM = .sim_pop$nM)
+          nM = .sim_pop$nM,
+          custom_habitat = .sim_pop$custom_habitat)
         
         .sim_pop$spawners2 <- .sim_pop$spawners * .sim_pop$s_postspawn   
       }
@@ -388,12 +397,14 @@ sim_pop <- function(
           river = .sim_pop$river, 
           species = .sim_pop$species,
           iteroparity = .sim_pop$iteroparity,
-          nM = .sim_pop$nM_m)
+          nM = .sim_pop$nM_m,
+          custom_habitat = .sim_pop$custom_habitat)
         .sim_pop$s_postspawn_f <- make_postspawn(
           river = .sim_pop$river, 
           species = .sim_pop$species,
           iteroparity = .sim_pop$iteroparity, 
-          nM = .sim_pop$nM_f)
+          nM = .sim_pop$nM_f,
+          custom_habitat = .sim_pop$custom_habitat)
         
         .sim_pop$spawners2_m <- .sim_pop$spawners_m * .sim_pop$s_postspawn_m
         .sim_pop$spawners2_f <- .sim_pop$spawners_f * .sim_pop$s_postspawn_f

@@ -8,7 +8,8 @@ make_postspawn(
   river = river,
   species = c("AMS", "ALE", "BBH"),
   iteroparity = NULL,
-  nM = NULL
+  nM = NULL,
+  custom_habitat = NULL
 )
 }
 \arguments{
@@ -28,6 +29,9 @@ a numeric vector of \code{length = 1}.}
 natural mortality for life-history regions can be
 found in \code{\link{mortality}}, or
 a numeric vector of \code{length = 1}.}
+
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \description{
 Function used to estimate post-spawn survival 

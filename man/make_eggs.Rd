@@ -4,7 +4,7 @@
 \alias{make_eggs}
 \title{Simulate number of eggs per fish}
 \usage{
-make_eggs(river, species = c("AMS", "ALE", "BBH"))
+make_eggs(river, species = c("AMS", "ALE", "BBH"), custom_habitat = NULL)
 }
 \arguments{
 \item{river}{The river for which eggs will be simulated.}
@@ -12,6 +12,9 @@ make_eggs(river, species = c("AMS", "ALE", "BBH"))
 \item{species}{Species for which population dynamics will be simulated.
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
+
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \value{
 A vector containing age-specific potential annual 
@@ -35,7 +38,7 @@ I need to add details for default methods for ALE and BBH...
 }
 
 \examples{
-make_eggs(river="Susquehanna")
+make_eggs(river="Susquehanna", species = "AMS")
 
 }
 \references{

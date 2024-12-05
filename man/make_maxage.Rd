@@ -4,7 +4,12 @@
 \alias{make_maxage}
 \title{Make maximum age for population using built-in data sets.}
 \usage{
-make_maxage(river, sex = c("female", "male"), species = c("AMS", "ALE", "BBH"))
+make_maxage(
+  river,
+  sex = c("female", "male"),
+  species = c("AMS", "ALE", "BBH"),
+  custom_habitat = NULL
+)
 }
 \arguments{
 \item{river}{River for which maximum age is needed.}
@@ -12,6 +17,13 @@ make_maxage(river, sex = c("female", "male"), species = c("AMS", "ALE", "BBH"))
 \item{sex}{Sex of fish. If not specified, then mean of
 male and female maximum ages is returned for American shad,
 or pooled sex data used for river_herring.}
+
+\item{species}{Species for which population dynamics will be simulated.
+Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
+blueback herring (\code{"BBH"}).}
+
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \value{
 A numeric vector of \code{length = 1} containing
@@ -23,7 +35,7 @@ in the selected river from built-in data set containing
 region-specific \code{\link{max_ages}} and.
 }
 \examples{
-make_maxage(river = "Susquehanna River", species = "ALE")
+make_maxage(river = "Susquehanna", species = "AMS")
 
 }
 \references{

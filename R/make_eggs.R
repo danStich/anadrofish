@@ -10,6 +10,9 @@
 #' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 #' blueback herring (\code{"BBH"}).
 #'
+#' @param custom_habitat A dataframe containing columns corresponding to the
+#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
+#' 
 #' @section Details:
 #' The default method for American shad uses predictive equations from Olney and
 #' McBride (2003) to simulate batch fecundity from weight-fecundity relationships
@@ -23,7 +26,7 @@
 #' @return A vector containing age-specific potential annual 
 #' fecundity with \code{length = max_age}. 
 #'
-#' @examples make_eggs(river="Susquehanna")
+#' @examples make_eggs(river="Susquehanna", species = "AMS")
 #'
 #' @references Olney, J. E. and R. S. McBride. 2003. Intraspecific 
 #' variation in batch fecundity of American shad (Alosa sapidissima): 
@@ -41,28 +44,37 @@
 #'
 #' @importFrom truncnorm rtruncnorm
 #' 
-make_eggs <- function(river, species = c("AMS", "ALE", "BBH")){
+make_eggs <- function(river, species = c("AMS", "ALE", "BBH"),
+                      custom_habitat = NULL){
   
+  # Error handling ----
+  # Require species to be specified from vector of choices
+  if(!missing(species)) species <- match.arg(species, c('AMS', 'ALE', 'BBH'))
+  
+  # River error handling
   if(missing(river)){
     stop("
     
     Argument 'river' must be specified.
     
-    To see a list of available rivers, run get_rivers()")    
+    To see a list of available rivers, run get_rivers() or specify river name
+    in custom_habitat if used.")    
   }
   
-  if(!river %in% get_rivers(species)){
+  if(!river %in% get_rivers(species) & is.null(custom_habitat)){
     stop("
     
-    Argument 'river' must be one of those included in get_rivers().
+    Argument 'river' must be one of those included in get_rivers() or in
+    custom_habitat if used.
     
     To see a list of available rivers, run get_rivers()")
   }
   
   if(species == "AMS"){
+    
     # Get region
-    region <- unique(anadrofish::habitat$region[
-      anadrofish::habitat$system==river])
+    region <- get_region(river = river, species = species, 
+                         custom_habitat = custom_habitat) 
     
     # Get maximum age 
     max_age <- anadrofish::max_ages$maxage[
@@ -118,7 +130,8 @@ make_eggs <- function(river, species = c("AMS", "ALE", "BBH")){
   }
   
   if(species %in% c("ALE", "BBH")){
-    eggs <- anadrofish::make_eggs_rh(river = river, species = species)
+    eggs <- anadrofish::make_eggs_rh(river = river, species = species,
+                                     custom_habitat = custom_habitat)
   }
   
   return(eggs)

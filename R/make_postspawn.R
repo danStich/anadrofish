@@ -22,6 +22,9 @@
 #' natural mortality for life-history regions can be
 #' found in \code{\link{mortality}}, or
 #' a numeric vector of \code{length = 1}.
+#'
+#' @param custom_habitat A dataframe containing columns corresponding to the
+#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
 #' 
 #' @examples make_postspawn(river = "Susquehanna", species = "AMS")
 #'
@@ -40,7 +43,8 @@
 make_postspawn <- function(river = river, 
                            species = c("AMS", "ALE", "BBH"),
                            iteroparity = NULL, 
-                           nM = NULL){
+                           nM = NULL,
+                           custom_habitat = NULL){
   # Error handling
   # Species error handling
   if(missing(species)){
@@ -55,29 +59,32 @@ make_postspawn <- function(river = river,
     Argument 'species' must be one of 'ALE', 'AMS', or 'BBH'.") 
   }
   
-  # River error handling  
-   if(missing(river)){
-      stop("
-      
-      Argument 'river' must be specified.
-      
-      To see a list of available rivers, run get_rivers()")    
-    }
+  # River error handling
+  if(missing(river)){
+    stop("
     
-    if(!river %in% get_rivers(species)){
-      stop("
-      
-      Argument 'river' must be one of those included in get_rivers().
-      
-      To see a list of available rivers, run get_rivers()")
-    }    
+    Argument 'river' must be specified.
+    
+    To see a list of available rivers, run get_rivers() or specify river name
+    in custom_habitat if used.")    
+  }
+  
+  if(!river %in% get_rivers(species)  & is.null(custom_habitat)){
+    stop("
+    
+    Argument 'river' must be one of those included in get_rivers() or in
+    custom_habitat if used.
+    
+    To see a list of available rivers, run get_rivers()")
+  }
   
   if(species == "AMS"){
     if(is.null(iteroparity)) iteroparity <- make_iteroparity(
-      make_lat(river, species = "AMS"))
+      make_lat(river, species = "AMS", custom_habitat = custom_habitat))
   }
   
-  if(is.null(nM)) nM <- make_mortality(river = river, species = species)
+  if(is.null(nM)) nM <- make_mortality(river = river, species = species,
+                                       custom_habitat = custom_habitat)
   
   A <- 1 - exp(-nM)
   S <- 1 - A

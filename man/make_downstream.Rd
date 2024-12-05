@@ -29,8 +29,8 @@ through a single dam.}
 \item{historical}{Logical indicating whether to use contemporary or
 historical habitat data.}
 
-\item{custom_habitat}{Numeric vector of habitat areas corresponding to 
-production units between features in \code{\link{habitat}} for \code{river}.}
+\item{custom_habitat}{A dataframe containing columns corresponding to the
+those in the output from custom_habitat_template(). NEED TO ADD LINK.}
 }
 \value{
 Numeric of length 1 representing catchment-scale 

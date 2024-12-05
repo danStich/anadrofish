@@ -5,7 +5,7 @@
 #'
 #' @param species Species used for simulation ("AMS", "ALE", or "BBH")
 #' 
-#' @examples sim_juvenile_s()
+#' @examples sim_juvenile_s(species = "ALE")
 #'
 #' @references Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates 
 #' of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut 
