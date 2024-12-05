@@ -9,7 +9,7 @@ Authors@R: c(
     person("S. D.", "Snyder", role = "aut"),
     person("J. D.", "Zydlewski", role = "aut"))
 Description: Stochastic estimation of anadromous fish population response to changes in habitat.
-License: use_gpl3_license()
+License: gpl-3.0-or-later
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
