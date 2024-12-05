@@ -72,3 +72,21 @@ The following built-in datasets are included:
   }
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://danstich.github.io/anadrofish/}
+}
+
+}
+\author{
+\strong{Maintainer}: Daniel S. Stich \email{daniel.stich@oneonta.edu} (\href{https://orcid.org/0000-0002-8946-1115}{ORCID})
+
+Authors:
+\itemize{
+  \item S. G. Roy
+  \item S. D. Snyder
+  \item J. D. Zydlewski
+}
+
+}
