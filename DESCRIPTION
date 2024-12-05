@@ -3,8 +3,11 @@ Type: Package
 Title: Anadromous Fish Population Responses to Habitat Changes
 Version: 2.1.0
 Date: 2024
-Author: D. S. Stich, S. G. Roy, S. Snyder, J. D. Zydlewski
-Maintainer: Daniel S. Stich <daniel.stich@oneonta.edu>
+Authors@R: c(
+    person("Daniel S.", "Stich", email = "daniel.stich@oneonta.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8946-1115")),
+    person("S. G.", "Roy", role = "aut"),
+    person("S. D.", "Snyder", role = "aut"),
+    person("J. D.", "Zydlewski", role = "aut"))
 Description: Stochastic estimation of anadromous fish population response to changes in habitat.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8

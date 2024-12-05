@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 tester.R
 notcommit/
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
