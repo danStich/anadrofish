@@ -62,7 +62,9 @@ blueback herring (<code>"BBH"</code>).</p></dd>
 
 <dt id="arg-custom-habitat">custom_habitat<a class="anchor" aria-label="anchor" href="#arg-custom-habitat"></a></dt>
 <dd><p>A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.</p></dd>
+those in the output from <code><a href="custom_habitat_template.html">custom_habitat_template</a></code>. The default,
+<code>NULL</code> uses the default habitat data set for a given combination of
+<code>species</code> and <code>river</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -80,7 +82,8 @@ using coefficients in <code><a href="olney_mcbride.html">olney_mcbride</a></code
 corresponding to the specified river. Number of batches for this
 approach is currently drawn from a random normal distribution
 with a mean of 6.7 and a standard deviation of 2.1 (McBride et al. 2016).</p>
-<p>I need to add details for default methods for ALE and BBH...</p>
+<p>The default method for river herring calls <code><a href="make_eggs_rh.html">make_eggs_rh</a></code> with
+simulation methods and references described therein.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

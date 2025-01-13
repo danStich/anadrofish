@@ -56,7 +56,8 @@ length = max_age.</p></dd>
 
 <dt id="arg-s-postspawn">s_postspawn<a class="anchor" aria-label="anchor" href="#arg-s-postspawn"></a></dt>
 <dd><p>Post spawning mortality calculated from the
-output of make_iteroparity and nM.</p></dd>
+output of <code><a href="make_iteroparity.html">make_iteroparity</a></code> and <code>nM</code>, or alternatively a
+numeric vector for each.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -64,6 +65,13 @@ output of make_iteroparity and nM.</p></dd>
     <p>A vector of length one containing pre-spawn survival.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">make_s_spawn</span><span class="op">(</span><span class="fl">0.68</span>, <span class="fl">0.92</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8214248</span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

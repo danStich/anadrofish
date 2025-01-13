@@ -61,7 +61,9 @@ Choices include alewife (<code>"ALE"</code>), and blueback herring (<code>"BBH"<
 
 <dt id="arg-custom-habitat">custom_habitat<a class="anchor" aria-label="anchor" href="#arg-custom-habitat"></a></dt>
 <dd><p>A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.</p></dd>
+those in the output from <code><a href="custom_habitat_template.html">custom_habitat_template</a></code>. The default,
+<code>NULL</code> uses the default habitat data set for a given combination of
+<code>species</code> and <code>river</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -71,11 +73,23 @@ fecundity with <code>length = max_age</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>NEED TO ADD DETAILS.</p>
+
+
+<p>The default methods of alewife and blueback herring uses a stochastic,
+MCMC sampling approach to draw correlated sets of von Bertalanffy growth
+parameters from built-in <code>vbgf_...</code> datasets,
+length-weight regression parameters in <code>link{lw_pars_rh}</code>, and
+length-fecundity relationships from Sullivan et al. (2019) to simulate the
+number of eggs per female within genetic reporting groups (<code>region</code>).</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Sullivan et al. (2019), Jessop (1993)</p>
+    <p>Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA.
+URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf</p>
+<p>Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019. Digital Image Analysis
+as a Technique for Alewife Fecundity Estimation in a New Hampshire River.
+North American Journal of Fisheries Management 39:353-361.</p>
     </div>
 
     <div class="section level2">
