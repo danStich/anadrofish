@@ -7,7 +7,7 @@
 #' @param eggs The number of eggs an individual fish
 #' can produce (Potential annual fecundity, PAF).
 #' 
-#' @param sr Sex ratio
+#' @param sr Sex ratio of spawning adults.
 #'
 #' @return Number of juvenile recruits. Numeric vector of
 #' \code{length(eggs}. May be a single value (vector of length 1)

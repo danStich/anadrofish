@@ -10,7 +10,7 @@ A data frame with 30 observations of 7 variables:
 
 \code{Species}{ species of river herring ("ALE" or "BBH")}
 
-\code{sex}{ Fish sex}
+\code{sex}{ Fish sex: \code{"Female"}, \code{"Male"}, or \code{"Pooled"}}
 
 \code{alpha}{ Intercept}
 
@@ -32,5 +32,10 @@ lw_pars_rh
 A dataset containing sex-specific regression
 coefficients of log10length-log10weight relationships
 for each genetic reporting group of river herring.
+}
+\references{
+Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }
 \keyword{datasets}

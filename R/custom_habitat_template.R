@@ -2,7 +2,7 @@
 #' river of interest
 #'
 #' @description Function used to make habitat for rivers listed
-#' in \code{\link{get_rivers}} from the built-in dataset(s)
+#' in \code{\link{get_rivers}} from the built-in datasets.
 #'
 #' @param species Species for which population dynamics will be simulated.
 #' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
@@ -11,14 +11,35 @@
 #' @param built_in A logical indicating whether the custom habitat template is a
 #' a subset of built-in habitat datasets for the \code{species} indicated.
 #'
-#' @param river Character string specifying river name or NULL for custom river.
-#' If making custom habitat from an existing river in \code{\link{habitat}} (American
-#' shad), \code{\link{habitat_ale}} (Alewife), or \code{\link{habitat_bbh}} (Blueback herring), 
-#' then river must be included in rivers from \code{\link{get_rivers}} for the target 
-#' species. Otherwise, an arbitrary character string identifying river name 
-#' is acceptable.
+#' @param river Character string specifying river name or \code{NULL} 
+#' for custom river. If making custom habitat from an existing river 
+#' in \code{\link{habitat}} (American shad), \code{\link{habitat_ale}} 
+#' (Alewife), or \code{\link{habitat_bbh}} (Blueback herring), 
+#' then river must be included in rivers from \code{\link{get_rivers}} for 
+#' the target species. Otherwise, an arbitrary character string identifying 
+#' river name is acceptable.
 #' 
-# #' @example inst/examples/custom_habitat_template.R
+#' @return A data.frame with zero or more observations of 8 variables:
+#'
+#' \itemize{
+#'     \item \code{river} Name of river
+#'     \item \code{region} Regional grouping, see \code{\link{get_region}}
+#'     \item \code{govt} Governmental unit at downstream terminus of habitat unit
+#'     \item \code{lat} Latitude at downstream terminus of habitat unit
+#'     \item \code{lon} Longitude at downstream terminus of habitat unit
+#'     \item \code{dam_name} Name of dam (if available) at downstream terminus of habitat unit 
+#'     \item \code{dam_order} Order of dam at downstream terminus of habitat unit. Cumulatively assigned such that all habitat units upstream of a given dam all have dam_order >= 1. 
+#'     \item \code{Hab_sqkm} Square kilometers of habitat within a habitat unit
+#' }
+#' 
+#' @examples 
+#' # Select a subset of habitat from a single river
+#' custom_habitat_template(species = "AMS", river = "Hudson")
+#' 
+#' # Create a template heading that can be used to generate new habitat data
+#' custom_habitat_template(species = "BBH", 
+#'   built_in = FALSE, 
+#'   river = "A fake river")
 #' 
 #' @export
 #'

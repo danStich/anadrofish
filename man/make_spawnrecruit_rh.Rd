@@ -21,7 +21,9 @@ or \code{"Pooled"} sex for fish.}
 \code{"ALE"} for alewife or \code{"BBH"} for blueback herring.}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the
-those in the output from \code{\link{custom_habitat_template}}.}
+those in the output from \code{\link{custom_habitat_template}}. The default,
+\code{NULL} uses the default habitat data set for a given combination of
+\code{species} and \code{river}.}
 }
 \value{
 A numeric vector containing a single realization for proportion
@@ -41,4 +43,9 @@ from the Maki (YEAR) method in ASMFC (2024).
 \examples{
 make_spawnrecruit_rh(river = "Upper Hudson", species = "BBH", sex = "female")
 
+}
+\references{
+Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }

@@ -9,7 +9,7 @@
 #' 
 #' \code{Species}{ species of river herring ("ALE" or "BBH")}
 #' 
-#' \code{sex}{ Fish sex}
+#' \code{sex}{ Fish sex: \code{"Female"}, \code{"Male"}, or \code{"Pooled"}}
 #' 
 #' \code{alpha}{ Intercept}
 #' 
@@ -20,6 +20,10 @@
 #' \code{beta.se}{ Standard error for the slope}
 #' 
 #' }
-#' 
+#'
+#' @references Atlantic States Marine Fisheries Commission. 2024. River herring
+#' benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+#' URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
+#'
 #' @source Atlantic States Marine Fisheries Commission
 "lw_pars_rh"

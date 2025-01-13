@@ -10,7 +10,7 @@ make_recruits(eggs, sr)
 \item{eggs}{The number of eggs an individual fish
 can produce (Potential annual fecundity, PAF).}
 
-\item{sr}{Sex ratio}
+\item{sr}{Sex ratio of spawning adults.}
 }
 \value{
 Number of juvenile recruits. Numeric vector of

@@ -19,7 +19,7 @@ list of output vectors
 }
 \description{
 Internal function to fill output vectors for default
-arguments in \code{sim_pop} and the output (\code{spawners}).
+arguments in \code{\link{sim_pop}} and the output (\code{spawners}).
 
 For internal use in \code{\link{sim_pop}}. Not intended 
 to be called directly.

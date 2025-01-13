@@ -7,21 +7,27 @@
 get_govt(river, species = c("ALE", "AMS", "BBH"), custom_habitat = NULL)
 }
 \arguments{
-\item{river}{Character string specifying river name}
+\item{river}{Character string specifying river name.}
 
-\item{species}{Character string specifying species
+\item{species}{Character string specifying species.
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.}
+those in the output from \code{\link{custom_habitat_template}}. The default,
+\code{NULL} uses the default habitat data set for a given combination of
+\code{species} and \code{river}.}
 }
 \value{
 A character string indicating governmental district corresponding
-to river
+to selected river.
 }
 \description{
 Function used to get governmental unit for rivers listed
 in output of \code{\link{get_rivers}} from the built-in 
-habitat data sets
+habitat data sets.
+}
+\examples{
+get_govt(river = "Hudson", species = "AMS")
+
 }

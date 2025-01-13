@@ -22,13 +22,19 @@ A data frame with 816,000 observations of 5 variables:
 }
 }
 \source{
-ASMFC (2024)
+Atlantic States Marine Fisheries Commission
 }
 \usage{
 vbgf_bbh
 }
 \description{
 A dataset containing sex-specific estimates of von Bertalanffy
-growth parameters for blueback herring from the 2024 ASMFC stock assessment.
+growth parameters for blueback herring from the 2024 ASMFC river herring 
+benchmark stock assessment (ASMFC 2024).
+}
+\references{
+Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }
 \keyword{datasets}

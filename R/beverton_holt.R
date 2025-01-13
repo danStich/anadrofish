@@ -3,7 +3,8 @@
 #' @description Beverton and Holt (1957) stock-recruit curve 
 #' with habitat constraints. Default parameter values are tuned to predict 
 #' larval recruitment assuming a carrying capacity for spawning adults of 
-#' 100 fish per acre. See \code{details}.
+#' 100 fish per acre for American shad or 500 fish per acre for river herring
+#' species. See \code{details}.
 #'
 #' @param a Ratio of recruits per spawner. Density independent parameter 
 #' equivalent to the slope near \code{S = 0}. By default specified as 
@@ -41,7 +42,7 @@
 #' under a boot-strapping, or Monte Carlo approach.
 #'
 #' @return A numeric vector with one or more elements representing 
-#' age-1 recruits (downstream migrants in freshwater).
+#' number of age-1 recruits (downstream migrants in freshwater).
 #'  
 #' @example inst/examples/bevholt_ex.R
 #'

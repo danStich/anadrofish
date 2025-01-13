@@ -10,7 +10,8 @@ upper95(x)
 \item{x}{A numeric vector or matrix.}
 }
 \value{
-Numeric vector of length 1 containing 95% UCL for \code{x}.
+Numeric vector of length 1 containing 97.5th percentile for sampling 
+distribution of \code{x}.
 }
 \description{
 Function with a short name to calculate 97.5th percentile

@@ -43,7 +43,8 @@
 #' estimated based on weight-batch fecundity regression relationships 
 #' for each life-history region in the \code{\link{olney_mcbride}}
 #' dataset (Olney and McBride 2003) and mean number of batches spawned
-#' (6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}}.
+#' (6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}} for 
+#' American shad or parameters from Sullivan et al. (2019) for river herring.
 #' 
 #' @param sr Sex ratio (expressed as percent female or P(female)).
 #' 
@@ -84,18 +85,60 @@
 #' than \code{max_age} are zero.
 #' 
 #' @param sex_specific Whether to use sex-specific life-history data.
-#'
+#' 
 #' @param custom_habitat A dataframe containing columns corresponding to the
-#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
+#' those in the output from \code{\link{custom_habitat_template}}. The default,
+#' \code{NULL} uses the default habitat data set for a given combination of
+#' \code{species} and \code{river}.
 #' 
 #' @return A dataframe containing simulation inputs (arguments
-#' to \code{sim_pop}) and output (number of spawners) by year.
+#' to \code{sim_pop}) and outputs (number of spawners) by year, minimally 
+#' including the following variables:
 #' 
-# #' NEED TO ADD COLUMN DESCRIPTIONS HERE
+#' \itemize{
+#'     \item \code{river} Name of river.
+#'     \item \code{region} Regional grouping, see \code{\link{get_region}}.
+#'     \item \code{govt} Governmental unit at downstream terminus of habitat unit.
+#'     \item \code{lat} Latitude at downstream terminus of habitat unit.
+#'     \item \code{habitat} Amount of accessible habitat given upstream passage and river.
+#'     \item \code{year} year of simulation. If \code{output_years = "last"} then \code{nyears}.
+#'     \item \code{upstream} upstream passage through dams. Currently a single value.
+#'     \item \code{downstream} adult downstream survival through dams. Currently a single value.
+#'     \item \code{downstream_j} adult downstream survival through dams. Currently a single value.
+#'     \item \code{max_age_m} maximum age of males in population.
+#'     \item \code{max_age_m} maximum age of females in population.
+#'     \item \code{nM_m} instantaneous natural mortality of males.
+#'     \item \code{nM_f} instantaneous natural mortality of females.
+#'     \item \code{fM} instantaneous fishing mortality rate in population.
+#'     \item \code{n_init} number of adult fish used to seed population.
+#'     \item \code{sr} sex ratio of adults.
+#'     \item \code{s_juvenile} survival of juveniles from hatch to outmigrant.
+#'     \item \code{s_spawn_m} survival of males during upstream spawning migration.
+#'     \item \code{s_spawn_f} survival of females during upstream spawning migration.
+#'     \item \code{s_postspawn_m} survival of males after spawning.
+#'     \item \code{s_postspawn_f} survival of females after spawning.
+#'     \item \code{iteroparity} probability of repeat spawning.
+#'     \item \code{spawners} number of spawning adults entering river each year.
+#'     \item \code{pop} total population abundance prior to spawning each year.
+#'     \item \code{juveniles_out} number of juveniles exiting river each year.
+#' }
+#'
+#' Additional columns and years are included depending on the values passed to
+#' \code{ouput_years}, \code{age_structured_output}.
 #'
 #' @example inst/examples/simpop_ex.R
 #' 
-#' @references Olney, J. E. and R. S. McBride. 2003. Intraspecific 
+#' @references Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019.
+#' Digital Image Analysis as a Technique for Alewife Fecundity Estimation in a 
+#' New Hampshire River. North American Journal of Fisheries Management 39:353-361.
+#' 
+#' McBride, R. S., R. Ferreri, E. K. Towle, J. M. Boucher, and 
+#' G. Basilone, G. 2016. Yolked oocyte dynamics support agreement 
+#' between determinate- and indeterminate-method estimates of annual 
+#' fecundity for a northeastern United States population of 
+#' American shad. PLoS ONE 11(10):10.1371/journal.pone.0164203
+#' 
+#' Olney, J. E. and R. S. McBride. 2003. Intraspecific 
 #' variation in batch fecundity of American shad (*Alosa sapidissima*): 
 #' revisiting the paradigm of reciprocal latitudinal trends 
 #' in reproductive traits. American Fisheries Society 
@@ -124,7 +167,6 @@ sim_pop <- function(
   sex_specific = TRUE,
   custom_habitat = NULL){
  
-  
   # Error handling
   # Species error handling
   if(missing(species)){

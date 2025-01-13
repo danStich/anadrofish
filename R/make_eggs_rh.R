@@ -8,18 +8,32 @@
 #' 
 #' @param species Species for which population dynamics will be simulated.
 #' Choices include alewife (\code{"ALE"}), and blueback herring (\code{"BBH"}).
-#'
-#' @param custom_habitat A dataframe containing columns corresponding to the
-#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
 #' 
-#' @section Details: NEED TO ADD DETAILS.
-#'
+#' @param custom_habitat A dataframe containing columns corresponding to the
+#' those in the output from \code{\link{custom_habitat_template}}. The default,
+#' \code{NULL} uses the default habitat data set for a given combination of
+#' \code{species} and \code{river}.
+#' 
+#' @section Details: 
+#' The default methods of alewife and blueback herring uses a stochastic,
+#' MCMC sampling approach to draw correlated sets of von Bertalanffy growth
+#' parameters from built-in \code{vbgf_...} datasets, 
+#' length-weight regression parameters in \code{link{lw_pars_rh}}, and
+#' length-fecundity relationships from Sullivan et al. (2019) to simulate the
+#' number of eggs per female within genetic reporting groups (\code{region}).
+#' 
 #' @return A vector containing age-specific potential annual 
 #' fecundity with \code{length = max_age}. 
 #'
 #' @examples make_eggs_rh(river = "Upper Susquehanna", species = "BBH")
 #'
-#' @references Sullivan et al. (2019), Jessop (1993)
+#' @references Atlantic States Marine Fisheries Commission. 2024. River herring
+#' benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+#' URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
+#'
+#' Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019. Digital Image Analysis
+#' as a Technique for Alewife Fecundity Estimation in a New Hampshire River. 
+#' North American Journal of Fisheries Management 39:353-361.
 #' 
 #' @export
 #' 

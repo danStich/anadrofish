@@ -14,12 +14,14 @@
 #' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 #' blueback herring (\code{"BBH"}). If species is "ALE" or "BBH" then this 
 #' function calls \code{\link{make_spawnrecruit_rh}}.
-#'
+#' 
 #' @param custom_habitat A dataframe containing columns corresponding to the
-#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
+#' those in the output from \code{\link{custom_habitat_template}}. The default,
+#' \code{NULL} uses the default habitat data set for a given combination of
+#' \code{species} and \code{river}.
 #' 
 #' @return A numeric vector of \code{length = length(max_age)} depending
-#' on maximum age in the selected river (by life-history region and species).
+#' on maximum age in the selected river by region and species.
 #'
 #' @examples make_spawnrecruit(river = "Upper Hudson", species = "BBH")
 #' 

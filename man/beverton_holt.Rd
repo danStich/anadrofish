@@ -36,13 +36,14 @@ then a vector of \code{length = max age} must be passed to \code{S}.}
 }
 \value{
 A numeric vector with one or more elements representing 
-age-1 recruits (downstream migrants in freshwater).
+number of age-1 recruits (downstream migrants in freshwater).
 }
 \description{
 Beverton and Holt (1957) stock-recruit curve 
 with habitat constraints. Default parameter values are tuned to predict 
 larval recruitment assuming a carrying capacity for spawning adults of 
-100 fish per acre. See \code{details}.
+100 fish per acre for American shad or 500 fish per acre for river herring
+species. See \code{details}.
 }
 \details{
 The primary use of this function in the \code{anadrofish} package 

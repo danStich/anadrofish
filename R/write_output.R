@@ -22,14 +22,6 @@
 #' 
 write_output <- function(.sim_pop, sex_specific = FALSE){
 
-  # # Unlist and recruitment to spawn probabilities
-  #   out_spawnRecruit <- do.call("rbind", lapply(.sim_pop$out_spawnRecruit, unlist))
-  #   colnames(out_spawnRecruit) <- paste('spawnRecruit_', 1:dim(out_spawnRecruit)[2], sep = '')
-  # 
-  # # Unlist and stack eggs per female by age class
-  #   out_eggs <- do.call("rbind", lapply(.sim_pop$out_eggs, unlist))
-  #   colnames(out_eggs) <- paste('eggs_', 1:dim(out_eggs)[2], sep = '')
-  #     
   # Unlist and stack population size
     out_pop <- do.call("rbind", lapply(.sim_pop$out_pop, unlist))
     if(ncol(out_pop) < 13){

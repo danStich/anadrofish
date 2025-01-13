@@ -1,22 +1,32 @@
 #' @title Juvenile (hatch-to-outmigrant) survival
 #'
 #' @description Function used to simulate juvenile (hatch-to-outmigrant) 
-#' survival from daily rates of A
+#' survival from daily rates.
 #'
-#' @param species Species used for simulation ("AMS", "ALE", or "BBH")
+#' @param species Species used for simulation ("AMS", "ALE", or "BBH").
+#' 
+#' @return A numeric vector of length 1.
 #' 
 #' @examples sim_juvenile_s(species = "ALE")
 #'
 #' @references Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates 
 #' of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut 
 #' River with changes in year-class strength. Canadian Journal of 
-#' Fisheries and Aquatic Sciences 40:1719–1728.
+#' Fisheries and Aquatic Sciences 40:1719-1728.
 #' 
-#' Overton et al. (2012)
+#' Overton A. S., N. A. Jones, and R. Rulifson. 2012. Spatial and temporal 
+#' variability in instantaneous growth, mortality, and recruitment of larval 
+#' river herring in the Tar-Pamlico River, North Carolina. Marine and Coastal 
+#' Fisheries: Dynamics, Management, and Ecosystem Science 4:218-227.
 #' 
-#' Stich et al. (in press)
+#' Stich, D. S., W. E. Eakin, and G. Kenney. 2024. Population Responses of 
+#' Blueback Herring to Dam Passage Standards and Additive Mortality Sources.
+#' Journal of Fish and Wildlife Management 15(1):31-48.
 #' 
-#' Hook et al. (2007)
+#' Hook, T. O., E. S. Rutherford, D. M. Mason, and G. S. Carter. 2007. Hatch 
+#' Dates, Growth, Survival, and Overwinter Mortality of Age-0 Alewives in 
+#' Lake Michigan: Implications for Habitat-Specific Recruitment Success.
+#' Transactions of the American Fisheries Society 136:1298-1312.
 #' 
 #' @importFrom truncnorm rtruncnorm
 #' 

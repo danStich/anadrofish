@@ -3,23 +3,23 @@
 #' @description Function used to project population forward 
 #' one time step using vector multiplication.
 #'
-#' @param x An numeric vector containing age-specific 
+#' @param x A numeric vector containing age-specific 
 #' abundance at end of year t.
 #' 
-#' @param age0 A vector of length one containing number of new recruits 
+#' @param age0 A numeric vector of length one containing number of new recruits 
 #' at end of year t.
 #' 
-#' @param nM Instantaneous natural mortality.
+#' @param nM Numeric vector of instantaneous natural mortality.
 #' 
-#' @param fM Instantaneous fishing mortality.
+#' @param fM Numeric vector of instantaneous fishing mortality.
 #' 
-#' @param max_age Maximum age of spawning fish.
+#' @param max_age Numeric indicating maximum age of spawning fish.
 #' 
 #' @param species Species for which population dynamics will be simulated.
 #' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 #' blueback herring (\code{"BBH"}).
 #'
-#' @return A numeric vector of age-structured abundance in time t + 1
+#' @return A numeric vector of age-structured abundance in time t + 1.
 #'
 #' @example inst/examples/projectpop_ex.R
 #' 

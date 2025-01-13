@@ -1,7 +1,8 @@
 #' @title Calculate downstream survival given dam passage scenario.
 #'
 #' @description Function used to create population-level
-#' survival during out-migration through dams.
+#' survival through dams during seasonal downstream migration of 
+#' juveniles and adults.
 #'
 #' @param river Character string specifying river name.
 #' 
@@ -19,18 +20,20 @@
 #' historical habitat data.
 #' 
 #' @param custom_habitat A dataframe containing columns corresponding to the
-#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
+#' those in the output from \code{\link{custom_habitat_template}}. The default,
+#' \code{NULL} uses the default habitat data set for a given combination of
+#' \code{species} and \code{river}.
 #' 
-#' @return Numeric of length 1 representing catchment-scale 
+#' @return Numeric vector of length 1 representing weighted catchment-scale 
 #' downstream migration mortality for juvenile or adult fish.
 #' 
 #' @details This function assigns cumulative downstream passage values 
 #' to all features in \code{\link{habitat}} corresponding to \code{river}.
-#' It then calculates the proportion of habitat in each 
-#' habitat segment of a river, and weights downstream mortality at the catchment-scale
-#' by proportion of habitat. This implicitly assumes that fish are distributed 
-#' throughout the river during spawning in proportion to available
-#' habitat.
+#' It then calculates the proportion of habitat in each habitat segment of a
+#' river, and weights downstream mortality at the catchment-scale
+#' by proportion of habitat. This implicitly assumes that fish are 
+#' distributed throughout the river during spawning in proportion to 
+#' available habitat.
 #' 
 #' @example inst/examples/make_downstream_ex.R
 #' 

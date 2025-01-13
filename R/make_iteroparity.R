@@ -11,7 +11,7 @@
 #' @return Probability of repeat spawning. A numeric vector 
 #' of \code{length = 1}.
 #' 
-#' @examples make_iteroparity( make_lat(river = 'Susquehanna', species = 'AMS') )
+#' @examples make_iteroparity(make_lat(river = 'Susquehanna', species = 'AMS'))
 #' 
 #' @references Bailey, M.M., and J. D. Zydlewski. 2013. To stock or not 
 #' to stock? Assessing therestoration potential of a remnant 

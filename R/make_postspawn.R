@@ -20,11 +20,13 @@
 #' 
 #' @param nM Instantaneous annual mortality. Values for 
 #' natural mortality for life-history regions can be
-#' found in \code{\link{mortality}}, or
-#' a numeric vector of \code{length = 1}.
-#'
+#' from \code{\link{mortality}} for \code{"AMS"}, \code{\link{mortality_rh}} for 
+#' \code{"ALE"} and \code{"BBH"}, or a numeric vector of \code{length = 1}.
+#' 
 #' @param custom_habitat A dataframe containing columns corresponding to the
-#' those in the output from custom_habitat_template(). NEED TO ADD LINK.
+#' those in the output from \code{\link{custom_habitat_template}}. The default,
+#' \code{NULL} uses the default habitat data set for a given combination of
+#' \code{species} and \code{river}.
 #' 
 #' @examples make_postspawn(river = "Susquehanna", species = "AMS")
 #'
@@ -37,7 +39,11 @@
 #' Reproductive Characteristics of American Shad (Alosa sapidissima): 
 #' Evidence for Population Specific Life History Strategies in Fish.
 #' Journal of the Fisheries Research Board of Canada 35:1469-1478.
-#'   
+#'
+#' Atlantic States Marine Fisheries Commission. 2024. River herring
+#' benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+#' URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
+#' 
 #' @export
 #'
 make_postspawn <- function(river = river, 

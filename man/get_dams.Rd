@@ -7,16 +7,17 @@
 get_dams(river)
 }
 \arguments{
-\item{river}{Character string specifying river name}
+\item{river}{Character string specifying river name. Must match one from
+\code{get_rivers(species = 'AMS')}.}
 }
 \value{
-a data.frame with 4 variables containing dam name,
-latitude and longitude, and dam order in the watershed
+A data.frame with 4 variables containing dam name,
+latitude and longitude, and dam order in the watershed.
 }
 \description{
 Function used to get dams for rivers listed
-in \code{\link{get_rivers}} from the built-in 
-data set(s) for American shad. Not implemented for river herring
+in \code{\link{get_rivers}} from the built-in \code{\link{habitat}}
+dataset for American shad. Not implemented for river herring.
 }
 \examples{
 get_dams("Penobscot")

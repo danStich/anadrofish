@@ -10,11 +10,10 @@ make_output(nyears, sex_specific = FALSE)
 \item{nyears}{Number of years for simulation output.}
 
 \item{sex_specific}{Logical inherited from \code{\link{sim_pop}}
-indicating whether to use sex-specific output.
-
-Not intended to be called directly.}
+indicating whether to use sex-specific output.}
 }
 \description{
 Internal function to create output 
-vectors in \code{\link{sim_pop}}.
+vectors in \code{\link{sim_pop}}. Not intended to be called directly.
 }
+\keyword{Internal}

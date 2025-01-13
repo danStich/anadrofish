@@ -11,7 +11,8 @@
 #' Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 #' blueback herring (\code{"BBH"}).
 #'
-#' @return A character vector of rivers that are implemented for \code{species}.
+#' @return A character vector of rivers that are included in 
+#' built-in habitat datasets for selected \code{species}.
 #'
 #' @example inst/examples/get_rivers_ex.R
 #'

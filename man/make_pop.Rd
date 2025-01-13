@@ -14,8 +14,8 @@ blueback herring (\code{"BBH"}).}
 \item{max_age}{The maximum age of fish in the population(s). A numeric vector of length 1.}
 
 \item{nM}{Instantaneous natural mortality rate. 
-A numeric vector of length for AMS or a vector of length max_age for
-BBH and ALE.}
+A numeric vector of length for (\code{"AMS"} or a vector of 
+length \code{max_age} for \code{"ALE"} and \code{"BBH"}.}
 
 \item{fM}{Instantaneous fishing mortality rate. 
 A numeric vector of length 1.}

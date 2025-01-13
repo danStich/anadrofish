@@ -13,7 +13,8 @@ rate of length 1 or an age-specific natural mortality rate with
 length = max_age.}
 
 \item{s_postspawn}{Post spawning mortality calculated from the
-output of make_iteroparity and nM.}
+output of \code{\link{make_iteroparity}} and \code{nM}, or alternatively a
+numeric vector for each.}
 }
 \value{
 A vector of length one containing pre-spawn survival.
@@ -21,4 +22,8 @@ A vector of length one containing pre-spawn survival.
 \description{
 Function used to derive total in-river adult survival during
 the spawning migration from annual mortality and post-spawn survival.
+}
+\examples{
+make_s_spawn(0.68, 0.92)
+
 }

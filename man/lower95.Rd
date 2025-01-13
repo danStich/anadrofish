@@ -10,7 +10,7 @@ lower95(x)
 \item{x}{A numeric vector or matrix.}
 }
 \value{
-Numeric vector of length 1 containing 95% LCL for \code{x}.
+Numeric vector of length 1 containing the 2.5th percentile of the sampling distribution for \code{x}.
 }
 \description{
 Function with a short name to calculate 2.5th percentile

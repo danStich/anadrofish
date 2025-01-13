@@ -7,10 +7,10 @@
 make_spawners(pop, probs)
 }
 \arguments{
-\item{pop}{Age-structured spawner abundance.}
+\item{pop}{Numeric vector containing age-structured spawner abundance.}
 
-\item{probs}{Vector of spawning probabilities. May be a single value or 
-multiple. If multiple values are passed as a vector, the length of 
+\item{probs}{Numeric vector of spawning probabilities. May be a single value 
+or multiple. If multiple values are passed as a vector, the length of 
 \code{probs} should correspond to the length of \code{pop}.}
 }
 \value{
@@ -51,7 +51,4 @@ applying region- and age-specific spawning probabilities.
   spawners
   
 }
-}
-\references{
-Atlantic States Marine Fisheries Commission
 }

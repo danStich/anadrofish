@@ -13,7 +13,7 @@
 #' 
 #' \code{Region}{ Genetic reporting group and general geographic region}
 #' 
-#' \code{Sex}{ Fish sex (gender)}
+#' \code{Sex}{ Fish sex}
 #' 
 #' \code{Age}{ Fish age (years)}
 #' 
@@ -21,6 +21,10 @@
 #' 
 #' \code{pMat.se}{ Standard error of estimated pMature from ASMFC (2024)}
 #' }
-#' 
-#' @source Atlantic States Marine Fisheries Commission (2024)
+#'
+#' @references Atlantic States Marine Fisheries Commission. 2024. River herring
+#' benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+#' URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
+#'
+#'@source Atlantic States Marine Fisheries Commission
 "maki_pars"

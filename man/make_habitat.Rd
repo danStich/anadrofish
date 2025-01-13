@@ -18,12 +18,24 @@ make_habitat(
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
 
-\item{upstream}{Proportional upstream passage through dams.}
+\item{upstream}{Proportional upstream passage through dams. A numeric vector
+of length 1 or length matching the number of rows in habitat data for
+selected \code{river} and \code{species}.}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.}
+those in the output from \code{\link{custom_habitat_template}}. The default,
+\code{NULL} uses the default habitat data set for a given combination of
+\code{species} and \code{river}.}
+}
+\value{
+A numeric vector containing amount of accessible habitat in
+acres.
 }
 \description{
 Function used to make habitat for rivers listed
 in \code{\link{get_rivers}} from the built-in dataset(s)
+}
+\examples{
+make_habitat(river = "Penobscot", species = "AMS", upstream = 0.9)
+
 }

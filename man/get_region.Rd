@@ -7,20 +7,23 @@
 get_region(river, species = c("ALE", "AMS", "BBH"), custom_habitat = NULL)
 }
 \arguments{
-\item{river}{Character string specifying river name}
+\item{river}{Character string specifying river name.}
 
-\item{species}{Character string specifying species for simulation.
+\item{species}{Character string specifying species.
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.}
-}
-\value{
-a character vector with stock- and species-specific region
+those in the output from \code{\link{custom_habitat_template}}. The default,
+\code{NULL} uses the default habitat data set for a given combination of
+\code{species} and \code{river}.}
 }
 \description{
 Function used to get region for rivers listed
 in output of \code{\link{get_rivers}} from the built-in 
-habitat data sets
+habitat data sets.
+}
+\examples{
+get_region(river = "Hudson", species = "AMS")
+
 }

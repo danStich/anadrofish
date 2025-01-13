@@ -21,7 +21,7 @@ Function used to extract river-specific latitude
 from built-in data sets.
 }
 \examples{
-make_iteroparity( make_lat(river = 'Susquehanna', species = 'AMS') )
+make_iteroparity(make_lat(river = 'Susquehanna', species = 'AMS'))
 
 }
 \references{

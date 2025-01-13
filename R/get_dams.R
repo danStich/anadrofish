@@ -1,13 +1,14 @@
 #' @title Get dams for specified river from American shad habitat data
 #'
 #' @description Function used to get dams for rivers listed
-#' in \code{\link{get_rivers}} from the built-in 
-#' data set(s) for American shad. Not implemented for river herring
+#' in \code{\link{get_rivers}} from the built-in \code{\link{habitat}}
+#' dataset for American shad. Not implemented for river herring.
 #'
-#' @param river Character string specifying river name
+#' @param river Character string specifying river name. Must match one from
+#' \code{get_rivers(species = 'AMS')}.
 #' 
-#' @return a data.frame with 4 variables containing dam name,
-#' latitude and longitude, and dam order in the watershed
+#' @return A data.frame with 4 variables containing dam name,
+#' latitude and longitude, and dam order in the watershed.
 #' 
 #' @examples get_dams("Penobscot")
 #' 

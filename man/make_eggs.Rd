@@ -14,7 +14,9 @@ Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.}
+those in the output from \code{\link{custom_habitat_template}}. The default,
+\code{NULL} uses the default habitat data set for a given combination of
+\code{species} and \code{river}.}
 }
 \value{
 A vector containing age-specific potential annual 
@@ -34,7 +36,8 @@ corresponding to the specified river. Number of batches for this
 approach is currently drawn from a random normal distribution
 with a mean of 6.7 and a standard deviation of 2.1 (McBride et al. 2016).
 
-I need to add details for default methods for ALE and BBH...
+The default method for river herring calls \code{\link{make_eggs_rh}} with
+simulation methods and references described therein.
 }
 
 \examples{

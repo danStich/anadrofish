@@ -1,14 +1,14 @@
 #' @title Make output vectors
 #' 
 #' @description Internal function to create output 
-#' vectors in \code{\link{sim_pop}}.
+#' vectors in \code{\link{sim_pop}}. Not intended to be called directly.
 #' 
 #' @param nyears Number of years for simulation output.
 #' 
 #' @param sex_specific Logical inherited from \code{\link{sim_pop}}
 #' indicating whether to use sex-specific output.
 #' 
-#' Not intended to be called directly.
+#' @keywords Internal
 #' 
 #' @export
 #' 

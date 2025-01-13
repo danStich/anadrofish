@@ -10,7 +10,7 @@ A data frame with 6 observations of 4 variables:
 
 \code{region}{ Life-history region}
 
-\code{sex}{ Fish sex (gender)}
+\code{sex}{ Fish sex \code{F} is female and \code{M} is male}
 
 \code{alpha}{ Intercept}
 
@@ -29,6 +29,11 @@ coefficients of log10length-log10weight relationships
 for each life-history region (NI = Northern iteroparous,
 SI = Southern iteroparous, SP = Semelparous). Use to predict
 weight at age from length derived using region-specific
-vbgf parameters.
+von Bertalanffy growth parameters in built-in datasets.
+}
+\references{
+Atlantic States Marine Fisheries Commission (ASMFC). 2020. 
+American shad benchmark stock assessment and peer-review report. ASMFC, 
+Arlington, VA.
 }
 \keyword{datasets}

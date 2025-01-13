@@ -7,16 +7,22 @@
 add_unequal_vectors(x, y)
 }
 \arguments{
-\item{x}{First vector}
-
-\item{y}{Second vector}
+\item{x, y}{Paired numeric vectors of same or different length.}
 }
 \value{
 A vector of length one containing pre-spawn survival.
 }
 \description{
-Function used to add aligned vectors of unequal length. Used
-to combine male and female cohorts when max_ages are not equal.
+Function used to add aligned vectors of unequal length without 
+recycling elements of the shorter vector. Used to combine male and 
+female cohorts when \code{max_age} is not equal in 
+the \code{\link{max_ages}} dataset.
+}
+\examples{
+x <- c(1, 2)
+y <- c(1, 2, 3)
+add_unequal_vectors(x, y)
+
 }
 \references{
 https://stackoverflow.com/questions/2307443/how-to-add-two-vectors-without-repeating-in-r

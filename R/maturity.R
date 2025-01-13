@@ -10,10 +10,14 @@
 #' 
 #' \code{region}{ Life-history region}
 #' 
-#' \code{sex}{ Fish sex (gender)}
+#' \code{sex}{ Fish sex}
 #' 
-#' \code{age1, age2, ..., age13}{ Probability of maturing at age}
+#' \code{age1, age2, age3, ...}{ Probability of maturing at age}
 #' }
+#' 
+#' @references Atlantic States Marine Fisheries Commission (ASMFC). 2020. 
+#' American shad benchmark stock assessment and peer-review report. ASMFC, 
+#' Arlington, VA.
 #' 
 #' @source Atlantic States Marine Fisheries Commission
 "maturity"

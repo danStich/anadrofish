@@ -23,11 +23,13 @@ blueback herring (\code{"BBH"}). If species is "ALE" or "BBH" then this
 function calls \code{\link{make_spawnrecruit_rh}}.}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.}
+those in the output from \code{\link{custom_habitat_template}}. The default,
+\code{NULL} uses the default habitat data set for a given combination of
+\code{species} and \code{river}.}
 }
 \value{
 A numeric vector of \code{length = length(max_age)} depending
-on maximum age in the selected river (by life-history region and species).
+on maximum age in the selected river by region and species.
 }
 \description{
 The purpose of this function is to make age-specific

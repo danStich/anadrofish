@@ -21,13 +21,19 @@ A data frame with 1,116,000 observations of 5 variables:
 }
 }
 \source{
-ASMFC (2024)
+Atlantic States Marine Fisheries Commission
 }
 \usage{
 vbgf_ale
 }
 \description{
 A dataset containing sex-specific estimates of von Bertalanffy
-growth parameters for alewife from the 2024 ASMFC stock assessment.
+growth parameters for alewife from the 2024 ASMFC river herring benchmark
+stock assessment (ASMFC 2024).
+}
+\references{
+Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }
 \keyword{datasets}

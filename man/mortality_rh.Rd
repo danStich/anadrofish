@@ -29,4 +29,9 @@ mortality_rh
 A dataset containing sex- and age-specific instantaneous
 natural mortality estimates for each species and genetic reporting region
 }
+\references{
+Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
+}
 \keyword{datasets}

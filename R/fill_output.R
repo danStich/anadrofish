@@ -1,7 +1,7 @@
 #' @title Fill output vectors
 #' 
 #' @description Internal function to fill output vectors for default
-#' arguments in \code{sim_pop} and the output (\code{spawners}).
+#' arguments in \code{\link{sim_pop}} and the output (\code{spawners}).
 #' 
 #' For internal use in \code{\link{sim_pop}}. Not intended 
 #' to be called directly.
@@ -9,6 +9,7 @@
 #' @param .sim_pop A hidden environment in the calling frame 
 #' of \code{\link{sim_pop}}. Arbitrarily any named object with
 #' names matching those used in the function.
+#' 
 #' @return list of output vectors
 #' 
 #' @param sex_specific Logical inherited from \code{\link{sim_pop}}

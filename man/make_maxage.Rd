@@ -3,6 +3,9 @@
 \name{make_maxage}
 \alias{make_maxage}
 \title{Make maximum age for population using built-in data sets.}
+\source{
+Atlantic States Marine Fisheries Commission
+}
 \usage{
 make_maxage(
   river,
@@ -16,14 +19,16 @@ make_maxage(
 
 \item{sex}{Sex of fish. If not specified, then mean of
 male and female maximum ages is returned for American shad,
-or pooled sex data used for river_herring.}
+or pooled sex data used for river herring.}
 
 \item{species}{Species for which population dynamics will be simulated.
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.}
+those in the output from \code{\link{custom_habitat_template}}. The default,
+\code{NULL} uses the default habitat data set for a given combination of
+\code{species} and \code{river}.}
 }
 \value{
 A numeric vector of \code{length = 1} containing
@@ -39,5 +44,11 @@ make_maxage(river = "Susquehanna", species = "AMS")
 
 }
 \references{
-Atlantic States Marine Fisheries Commission
+Atlantic States Marine Fisheries Commission (ASMFC). 2020. 
+American shad benchmark stock assessment and peer-review report. ASMFC, 
+Arlington, VA.
+
+Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }

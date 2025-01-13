@@ -12,7 +12,7 @@ A data frame with 216 observations of 6 variables:
 
 \code{Region}{ Genetic reporting group and general geographic region}
 
-\code{Sex}{ Fish sex (gender)}
+\code{Sex}{ Fish sex}
 
 \code{Age}{ Fish age (years)}
 
@@ -22,7 +22,7 @@ A data frame with 216 observations of 6 variables:
 }
 }
 \source{
-Atlantic States Marine Fisheries Commission (2024)
+Atlantic States Marine Fisheries Commission
 }
 \usage{
 maki_pars
@@ -33,5 +33,10 @@ of maturation at age for each life-history region
 (SAT = Southern Atlantic, MAT = Mid Atlantic, 
 SNE = Southern New England, MNE = Mid New England,
 NNE = Northern New England, CAN-NNE = Canada and Northern New England)
+}
+\references{
+Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }
 \keyword{datasets}

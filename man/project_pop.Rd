@@ -7,24 +7,24 @@
 project_pop(x, age0, nM, fM, max_age, species = c("AMS", "ALE", "BBH"))
 }
 \arguments{
-\item{x}{An numeric vector containing age-specific 
+\item{x}{A numeric vector containing age-specific 
 abundance at end of year t.}
 
-\item{age0}{A vector of length one containing number of new recruits 
+\item{age0}{A numeric vector of length one containing number of new recruits 
 at end of year t.}
 
-\item{nM}{Instantaneous natural mortality.}
+\item{nM}{Numeric vector of instantaneous natural mortality.}
 
-\item{fM}{Instantaneous fishing mortality.}
+\item{fM}{Numeric vector of instantaneous fishing mortality.}
 
-\item{max_age}{Maximum age of spawning fish.}
+\item{max_age}{Numeric indicating maximum age of spawning fish.}
 
 \item{species}{Species for which population dynamics will be simulated.
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
 }
 \value{
-A numeric vector of age-structured abundance in time t + 1
+A numeric vector of age-structured abundance in time t + 1.
 }
 \description{
 Function used to project population forward 

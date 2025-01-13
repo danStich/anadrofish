@@ -7,7 +7,8 @@
 #' 
 #' @param x A numeric vector or matrix.
 #'
-#' @return Numeric vector of length 1 containing 95% UCL for \code{x}.
+#' @return Numeric vector of length 1 containing 97.5th percentile for sampling 
+#' distribution of \code{x}.
 #' 
 #' @example inst/examples/upper95_ex.R
 #' 

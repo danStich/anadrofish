@@ -66,7 +66,8 @@ if eggs per female is age invariant, or can be vector of length
 estimated based on weight-batch fecundity regression relationships 
 for each life-history region in the \code{\link{olney_mcbride}}
 dataset (Olney and McBride 2003) and mean number of batches spawned
-(6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}}.}
+(6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}} for 
+American shad or parameters from Sullivan et al. (2019) for river herring.}
 
 \item{sr}{Sex ratio (expressed as percent female or P(female)).}
 
@@ -109,11 +110,45 @@ than \code{max_age} are zero.}
 \item{sex_specific}{Whether to use sex-specific life-history data.}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the
-those in the output from custom_habitat_template(). NEED TO ADD LINK.}
+those in the output from \code{\link{custom_habitat_template}}. The default,
+\code{NULL} uses the default habitat data set for a given combination of
+\code{species} and \code{river}.}
 }
 \value{
 A dataframe containing simulation inputs (arguments
-to \code{sim_pop}) and output (number of spawners) by year.
+to \code{sim_pop}) and outputs (number of spawners) by year, minimally 
+including the following variables:
+
+\itemize{
+    \item \code{river} Name of river.
+    \item \code{region} Regional grouping, see \code{\link{get_region}}.
+    \item \code{govt} Governmental unit at downstream terminus of habitat unit.
+    \item \code{lat} Latitude at downstream terminus of habitat unit.
+    \item \code{habitat} Amount of accessible habitat given upstream passage and river.
+    \item \code{year} year of simulation. If \code{output_years = "last"} then \code{nyears}.
+    \item \code{upstream} upstream passage through dams. Currently a single value.
+    \item \code{downstream} adult downstream survival through dams. Currently a single value.
+    \item \code{downstream_j} adult downstream survival through dams. Currently a single value.
+    \item \code{max_age_m} maximum age of males in population.
+    \item \code{max_age_m} maximum age of females in population.
+    \item \code{nM_m} instantaneous natural mortality of males.
+    \item \code{nM_f} instantaneous natural mortality of females.
+    \item \code{fM} instantaneous fishing mortality rate in population.
+    \item \code{n_init} number of adult fish used to seed population.
+    \item \code{sr} sex ratio of adults.
+    \item \code{s_juvenile} survival of juveniles from hatch to outmigrant.
+    \item \code{s_spawn_m} survival of males during upstream spawning migration.
+    \item \code{s_spawn_f} survival of females during upstream spawning migration.
+    \item \code{s_postspawn_m} survival of males after spawning.
+    \item \code{s_postspawn_f} survival of females after spawning.
+    \item \code{iteroparity} probability of repeat spawning.
+    \item \code{spawners} number of spawning adults entering river each year.
+    \item \code{pop} total population abundance prior to spawning each year.
+    \item \code{juveniles_out} number of juveniles exiting river each year.
+}
+
+Additional columns and years are included depending on the values passed to
+\code{ouput_years}, \code{age_structured_output}.
 }
 \description{
 Use functions from \code{\link{anadrofish}} to simulate
@@ -124,220 +159,176 @@ passage probabilities and uncertainty in life-history information.
 # Example usage
 \dontrun{
   
-# Example 1. Simulate a single population one time for 50 years -----------
-
+# Example 1. Simulate a single population one time for 50 years ----------------
+  library(anadrofish)
+  library(ggplot2)
+  
+  # Set rng seed ----
+  set.seed(1)
+  
   # Simulate a single population for fifty years one time
-    res <- sim_pop(
-      river = 'Susquehanna',
-      nyears = 50,
-      max_age = NULL,
-      nM = NULL,
-      fM = 0,
-      n_init = runif(1, 10e5, 50e7),
-      spawnRecruit = NULL,
-      eggs = NULL,
-      sr = rbeta(1, 100, 100),
-      s_prespawn = rbeta(1, 90, 10),  
-      s_juvenile = NULL,
-      upstream = 1,
-      downstream = 1,
-      downstream_j = 1,
-      output_years = 'all',
-      age_structured_output = FALSE
-      )
+  res <- sim_pop(
+    species = "AMS",
+    nyears = 50,
+    river = 'Susquehanna',
+    fM = 0,
+    n_init = runif(1, 10e5, 50e6),
+    sr = rbeta(1, 100, 100),
+    upstream = 1,
+    downstream = 1,
+    downstream_j = 1,
+    output_years = 'all',
+    age_structured_output = FALSE)
   
   # Plot the output - the result will be different for each
   # simulated model run above
-    plot(x = res$year, y = res$spawners, type = 'l',
-         xlab = 'Year of simulation',
-         ylab = 'Spawner abundance')    
+  ggplot(res, aes(x = year, y = spawners)) +
+    geom_line() +
+    xlab("Year") +
+    ylab("Number of spawners")
    
 
 # Example 2. Simulate a single population 100 times in parallel ----------------
   # Package load ----
-    library(snowfall)
-    library(anadrofish)
-    library(plyr)
+  library(snowfall)
+  library(parallel)
+  library(anadrofish)
+  library(tidyverse)
+  
+  # Set rng seed ----
+  set.seed(1)
   
   # Parallel settings ----
   # Get number of cores
-    args <- commandArgs(trailingOnly = TRUE);
-    ncpus <- args[1];
-    ncpus <- 7 # Uncomment to run on local workstation
+  ncpus = parallel::detectCores() - 1
   
   # Initialize snowfall
-    sfInit(parallel = TRUE, cpus=ncpus, type="SOCK")
+  sfInit(parallel = TRUE, cpus = ncpus, type="SOCK")
   
   # Wrapper function ----
-    sim <- function(x){
-    
-    # . Get cpu ids ----  
-      workerId <- paste(Sys.info()[['nodename']],
-                        Sys.getpid(),
-                        sep='-'
-                        )
-      
-    # . Call simulation ----
-    # Run with a single set of upstream and downstream
-    # dam passage probabilities
-      res <- sim_pop(
-        river = 'Susquehanna',
-        nyears = 50,
-        max_age = NULL,
-        nM = NULL,
-        fM = 0,
-        n_init = runif(1, 10e5, 80e7),
-        spawnRecruit = NULL,
-        eggs = NULL,
-        sr = rbeta(1, 100, 100),
-        s_prespawn = rbeta(1, 90, 10),  
-        s_juvenile = NULL,
-        upstream = 1,
-        downstream = 1,
-        downstream_j = 1,
-        output_years = 'all',
-        age_structured_output = FALSE
-        )
-    
-    # . Define the output lists ----
-        retlist <- list(
-          worker=workerId,
-          res=res)      
-        
-        return(retlist)    
-    }  
-    
+  sim <- function(x){
+
+  # . Call simulation ----
+  # Run with a single set of upstream and downstream
+  # dam passage probabilities
+  res <- sim_pop(
+    species = "AMS",
+    nyears = 50,
+    river = 'Susquehanna',
+    fM = 0,
+    n_init = runif(1, 8e6, 50e6),
+    sr = rbeta(1, 100, 100),
+    upstream = 1,
+    downstream = 1,
+    downstream_j = 1,
+    output_years = 'all',
+    age_structured_output = FALSE)
   
+  # . Define the output lists ----
+  retlist <- list(res=res)      
+  
+  return(retlist)    
+  
+  }  
+    
   # Parallel execution ----
   # . Load libraries on workers -----
-    sfLibrary(anadrofish)
+  sfLibrary(anadrofish)
   
   # . Distribute to workers -----
   # Number of simulations to run
-    niterations <- 100
+  niterations <- 1000
   
   # . Run the simulation ----
-    start <- Sys.time()
-    
-    result <- sfLapply(1:niterations, sim) 
-    
-    Sys.time()-start
+  start <- Sys.time()
+  
+  result <- sfLapply(1:niterations, sim) 
+  
+  total_time <- Sys.time() - start
+  total_time
   
   # . Stop snowfall ----
-    sfStop()
+  sfStop()
   
   # Results ----
   # 'result' is a list of lists. Save this:
   # save(result, file = "sim_result.rda")
   
   # Extract results dataframes by string and rbind them
-    res <- lapply(result, function(x) x[[c('res')]])
-    library(data.table)
-    resdf <- data.frame(rbindlist(res))
+  res <- lapply(result, function(x) x[[c('res')]])
+  library(data.table)
+  resdf <- data.frame(rbindlist(res))
+  
+  glimpse(resdf)
+  
+  # Results summary
+  plotter <- resdf \%>\% 
+    group_by(year) \%>\% 
+    summarize(fit = mean(spawners),
+              lwr = quantile(spawners, 0.025),
+              upr = quantile(spawners, 0.975))
     
-  # Calculate mean  
-    mean(resdf$spawners)
-      
-  # Summarize spawner abundance by year
-    sums <- ddply(resdf, .(year), summarize, means=mean(spawners),
-                  lci=quantile(spawners, probs=c(0.025)),
-                  uci=quantile(spawners, probs=c(0.975))
-                  ) 
+  # Plotting
+  ggplot(plotter, aes(x = year, y = fit)) +
+    geom_line() +
+    geom_ribbon(aes(xmax = year, ymin = lwr, ymax = upr,
+                    color = NULL), alpha = 0.40)
     
-  # Plot the result 
-    par(mar=c(4,6,1,1))
-    maxes <- max(sums$uci[sums$year==50]+max(sums$uci[sums$year==50])*.20)
-    plot(x=sums$year,
-         y = sums$means,
-         type='l', col=NA,
-         ylim=c(0, maxes),
-         xlab = 'Year',
-         ylab = '',
-         yaxt='n'
-         )
-    axis(2, at=seq(0,maxes,round(maxes/5, -5)),
-         labels=sprintf(seq(0, maxes, round(maxes/5,-5)), fmt = '\%.0f'),
-         las=2
-         )
-    polygon(x=c(sums$year, rev(sums$year)),
-            y=c(sums$lci, rev(sums$uci)),
-            col='gray87', border = NA
-            )
-    lines(x=sums$year, y=sums$means, lty=1, lwd=1, col='black')
-    lines(sums$year, sums$lci, lty=2)
-    lines(sums$year, sums$uci, lty=2)
-    mtext('Spawner abundance', side = 2, line=5)
-    box()  
-    
-
-# Example 3. Multi-river simulation ---------------------------------------
+  
+# Example 3. Multi-river simulation --------------------------------------------
 # Simulate population size for randomly
 # selected rivers and randomly chosen passage
 # probabilities from a pre-defined list.
     
 # Run simulations in parallel, saving age-structured
 # output, but only for the final year of simulation
-    
   # Package load ----
-    library(snowfall)
-    library(anadrofish)
+  library(snowfall)
+  library(parallel)
+  library(anadrofish)
+  library(tidyverse)
+  
+  # Set rng seed ----
+  set.seed(1)
   
   # Parallel settings ----
   # Get number of cores
-    args <- commandArgs(trailingOnly = TRUE);
-    ncpus <- args[1];
-    ncpus <- 7 # Uncomment to run on local workstation
+  ncpus = parallel::detectCores() - 1
   
   # Initialize snowfall
-    sfInit(parallel = TRUE, cpus=ncpus, type="SOCK")
+  sfInit(parallel = TRUE, cpus = ncpus, type="SOCK")
   
   # Wrapper function ----
-    sim <- function(x){
-    
-    # . Get cpu ids ----  
-      workerId <- paste(Sys.info()[['nodename']],
-                        Sys.getpid(),
-                        sep='-'
-                        )
-    
+  sim <- function(x){
+  
     # . Call simulation ----
     # Define passage scenarios (ASFMC 2020) 
-      passages <- list(
-        c(0,0,0),
-        c(1,1,1),
-        c(0.4, 0.80, 0.95)
-      )
-      passage <- unlist(sample(passages, 1))  
+    passages <- list(
+      c(0,0,0),
+      c(1,1,1),
+      c(0.4, 0.80, 0.95))
+    passage <- unlist(sample(passages, 1))  
       
     # Run the sim  
-      res <- sim_pop(
-        river = get_rivers()[sample(1:length(get_rivers()), 1)],
-        nyears = 50,    
-        max_age = NULL,
-        nM = NULL,
-        fM = 0,
-        n_init = MASS::rnegbin(1, 4e5, 1),
-        spawnRecruit = NULL,
-        eggs = NULL,
-        sr = rbeta(1, 100, 100),
-        s_prespawn = rbeta(1, 90, 10),  
-        s_juvenile = NULL,
-        upstream = passage[1],
-        downstream = passage[2],
-        downstream_j = passage[3],
-        output_years = 'last',
-        age_structured_output = TRUE
-        )
-              
+    res <- sim_pop(
+      species = "AMS",
+      nyears = 50,
+      river = get_rivers(species = "AMS")[sample(1:length(get_rivers(species = "AMS")), 1)],    
+      fM = 0,
+      n_init = runif(1, 10e5, 50e6),
+      sr = rbeta(1, 100, 100),
+      upstream = passage[1],
+      downstream = passage[2],
+      downstream_j = passage[3],
+      output_years = 'last',
+      age_structured_output = TRUE
+      )
     
     # . Define the output lists ----
-        retlist <- list(
-          worker=workerId,
-          res=res)      
-        
-        return(retlist)    
-    }  
-    
+    retlist <- list(res = res)      
+  
+    return(retlist)      
+  }  
   
   # Parallel execution ----
   # . Load libraries on workers -----
@@ -348,76 +339,88 @@ passage probabilities and uncertainty in life-history information.
   niterations <- 1000
   
   # . Run the simulation ----
-    start <- Sys.time()
-    
-    result <- sfLapply(1:niterations, sim) 
-    
-    Sys.time()-start
+  start <- Sys.time()
+  
+  result <- sfLapply(1:niterations, sim) 
+  
+  total_time <- Sys.time() - start
+  total_time
   
   # . Stop snowfall ----
-    sfStop()
+  sfStop()
   
   # Results ----
   # 'result' is a list of lists. Save this:
   # save(result, file = "sim_result.rda")
   
   # Extract results dataframes by string and rbind them
-    res <- lapply(result, function(x) x[[c('res')]])
-    library(data.table)
-    resdf <- rbindlist(res)
+  res <- lapply(result, function(x) x[[c('res')]])
+  library(data.table)
+  resdf <- rbindlist(res)
   
   # . Summary statistics by passage scenario -----
-    resdf$river <- as.character(resdf$river)
-    library(dplyr)
+  resdf$river <- as.character(resdf$river)
   
   # Sum population size and spawners across age groups
-    resdf$spawners <- resdf \%>\%
-      select(grep("spawners", colnames(resdf))) \%>\%
-      rowSums 
-    resdf$pop <- resdf \%>\%
-      select(grep("pop", colnames(resdf))) \%>\%
-      rowSums 
-    
+  resdf$spawners <- resdf \%>\%
+    select(grep("spawners", colnames(resdf))) \%>\%
+    rowSums 
+  resdf$pop <- resdf \%>\%
+    select(grep("pop", colnames(resdf))) \%>\%
+    rowSums 
+  
   # Assign scenarios based on upstream passage
-    resdf$scenario <- 'No dams'
-    resdf$scenario[resdf$upstream==0] <- 'No passage'
-    resdf$scenario[resdf$upstream==.40] <- 'Current condition'
+  resdf$scenario <- 'No dams'
+  resdf$scenario[resdf$upstream==0] <- 'No passage'
+  resdf$scenario[resdf$upstream==.40] <- 'Current condition'
   
-  # System-specific summaries
-    total <- resdf[ , list(n = length(spawners),
-                           mean=mean(spawners),
-                           lower=quantile(spawners, .25, na.rm=TRUE),
-                           upper=quantile(spawners, .75, na.rm=TRUE)),
-                         by=c(names(resdf)[c(1:4,ncol(resdf),5)])]
-    summary_stats <- total[with(total, order(river, scenario)), ]
+  # . System-specific summaries ----
+  rivers <- resdf \%>\% 
+    group_by(region, river, scenario) \%>\% 
+    summarize(fit = mean(spawners),
+              lwr = quantile(spawners, 0.025),
+              upr = quantile(spawners, 0.975))
+  
 
-  # Coastal summary ----
-    coastal <- summary_stats[ , list(mean=sum(mean),
-                                     lower = sum(lower),
-                                     upper = sum(upper)),
-                                by = c('scenario')]
-    coastal <- coastal[with(coastal, order(scenario)), ]
-    coastal <- coastal[c(3, 1, 2), ]
+  # . Coastal summary ----
+  coastal <- rivers \%>\% 
+    group_by(scenario) \%>\% 
+    summarize(fit = sum(fit),
+              lwr = sum(lwr),
+              upr = sum(upr))
   
-  # . Coastal output plots ----
-    par(mar=c(5, 5, 1, 1))
-    plot(x = c(1.5, 2.5, 3.5),
-         y = unlist(coastal[c(1,2,3), 2]), pch=21, bg='black', cex=1.5,
-         ylim = c(0, max(coastal[,2:4])), yaxt='n',
-         ylab='Coast-wide spawners (millions)',
-         xlim = c(1,4), xaxt='n', xlab = ''
-         )
-    axis(side = 1, at = seq(1.5,3.5,1), c("No Passage", "Current Condition", "No Dams"))
-    axis(side = 2, at=seq(0, 10e7, 1e7), labels = seq(0, 100, 10), las=2)
-    mtext("Scenario", side = 1, line = 3.5)
-    segments(x0 = seq(1.5, 3.5, 1), x1=seq(1.5, 3.5, 1),
-             y0=unlist(coastal[c(1,2,3), 3]),
-             y1=unlist(coastal[c(1,2,3), 4])
-             )
+  # . River plot ----
+  rivers \%>\% 
+    filter(region == "SI") \%>\% 
+    ggplot(aes(x = river, y = fit, color = scenario, fill = scenario)) +
+      geom_col() +
+      coord_flip() +
+      xlab("River") +
+      ylab("Number of spawning adults") +
+      ggtitle("Southern Iteroparous Region") +
+      theme(plot.title = element_text(hjust = 0.5))
+  
+  # . Coastal plot ----
+  ggplot(coastal, aes(x = scenario, y = fit)) +
+    geom_point(size = 4) +
+    geom_linerange(aes(xmax = scenario, ymin = lwr, ymax = upr),
+                   linewidth = 1) +
+    xlab("Scenario") +
+    ylab("Number of spawning adults")
 
 }
 }
 \references{
+Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019.
+Digital Image Analysis as a Technique for Alewife Fecundity Estimation in a 
+New Hampshire River. North American Journal of Fisheries Management 39:353-361.
+
+McBride, R. S., R. Ferreri, E. K. Towle, J. M. Boucher, and 
+G. Basilone, G. 2016. Yolked oocyte dynamics support agreement 
+between determinate- and indeterminate-method estimates of annual 
+fecundity for a northeastern United States population of 
+American shad. PLoS ONE 11(10):10.1371/journal.pone.0164203
+
 Olney, J. E. and R. S. McBride. 2003. Intraspecific 
 variation in batch fecundity of American shad (*Alosa sapidissima*): 
 revisiting the paradigm of reciprocal latitudinal trends 

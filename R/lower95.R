@@ -7,7 +7,7 @@
 #' 
 #' @param x A numeric vector or matrix.
 #'
-#' @return Numeric vector of length 1 containing 95% LCL for \code{x}.
+#' @return Numeric vector of length 1 containing the 2.5th percentile of the sampling distribution for \code{x}.
 #' 
 #' @example inst/examples/lower95_ex.R
 #' 
