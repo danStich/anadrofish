@@ -4,7 +4,7 @@ R package for modeling anadromous fish population responses to habitat changes
 
 [![DOI](https://zenodo.org/badge/186272264.svg)](https://doi.org/10.5281/zenodo.14285894)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
+[![R-CMD-check](https://github.com/danStich/anadrofish/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/danStich/anadrofish/actions/workflows/R-CMD-check.yaml)
 
 ## Table of Contents
 - [Overview](#overview)
