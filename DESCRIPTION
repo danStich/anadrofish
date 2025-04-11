@@ -21,6 +21,7 @@ RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,
+    vctrs,
     testthat (>= 3.0.0)
 URL: https://danstich.github.io/anadrofish/
 Config/testthat/edition: 3
