@@ -7,3 +7,7 @@ notcommit/
 ^pkgdown$
 ^\.github$
 ^CITATION\.cff$
+paper.md
+paper.bib
+Contributing.md
+^LICENSE\.md$
