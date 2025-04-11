@@ -48,21 +48,21 @@ comprising habitat units in Atlantic coast drainages.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A data frame with 246,259 observations of 7 variables:</p><dl>
+    <p>A data frame with 255,133 observations of 7 variables:</p><dl>
 
-REACHCODE code used to identify individual habitat units
+REACHCODE Code used to identify individual habitat units
 
-Hab_sqkm surface area of habitat in square kilometers
+Hab_sqkm Surface area of habitat in square kilometers
 
-Latitude latitude at downstream terminus of habitat unit
+Latitude Latitude at downstream terminus of habitat unit
 
-State governmental unit at downstream terminus of habitat unit
+State Governmental unit at downstream terminus of habitat unit
 
-River_huc name of river to which habitat unit belongs, derived from hydrologic unit codes
+River_huc Name of river to which habitat unit belongs, derived from hydrologic unit codes
 
-POP genetic reporting group geographic region within which habitat unit falls
+POP Genetic reporting group geographic region within which habitat unit falls
 
-DamOrder order of dam at downstream terminus of habitat unit. Cumulatively assigned such that all habitat units upstream of a given dam all have dam_order &gt;= 1
+DamOrder Order of dam at downstream terminus of habitat unit. Cumulatively assigned such that all habitat units upstream of a given dam all have dam_order &gt;= 1
 
 
 </dl></div>
@@ -74,20 +74,13 @@ DamOrder order of dam at downstream terminus of habitat unit. Cumulatively assig
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">habitat_ale</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   REACHCODE    Hab_sqkm Latitude State                           River_huc POP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  2.04E+12 0.008199607 41.12328    NJ                      Upper Delaware MAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2.04E+12 0.010045756 39.88029    PA                      Lower Delaware MAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  1.09E+12 0.016462307 42.12254    MA Massachusetts-Rhode Island Coastal. SNE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1.10E+12 0.141209610 41.38672    CT                 Connecticut Coastal SNE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2.02E+12 0.006305018 41.30567    NY                        Upper Hudson MAT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  1.09E+12 0.000186516 42.27801    MA Massachusetts-Rhode Island Coastal. SNE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   DamOrder</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   REACHCODE    Hab_sqkm Latitude State         River_huc POP DamOrder</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     USA-1 0.122412805 44.06767    ME Abagadasset River NNE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     USA-2 0.018098687 44.01012    ME Abagadasset River NNE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     USA-3 0.003016216 44.10005    ME Abagadasset River NNE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     USA-4 0.146205559 44.15900    ME Abagadasset River NNE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     USA-5 0.001310855 44.09282    ME Abagadasset River NNE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     USA-6 0.016050529 44.09014    ME Abagadasset River NNE        0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

@@ -50,49 +50,49 @@ Atlantic coast drainages of North America.</p>
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
     <p>A data frame with 868 observations of 22 variables:</p><dl>
 
-TERMCODE code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.
+TERMCODE Code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.
 
-system name or name(s) of rivers included in catchment.
+system Name or name(s) of rivers included in catchment.
 
-region life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous)
+region Life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous)
 
-huc_code n-digit huc code for the huc identifier used in <code>TERMCODE</code>.
+huc_code n-digit huc code for the huc identifier used in TERMCODE.
 
-huc_level watershed level used to determine <code>huc_code</code>.
+huc_level Watershed level used to determine huc_code.
 
-count number of habitat segments (features) included within <code>system</code>.
+count Number of habitat segments (features) included within system.
 
-total total historical habitat available in <code>system</code> (sq km).
+total Total historical habitat available in system (sq km).
 
-UNIQUE_ID unique value given to each dam and outlet feature.
+UNIQUE_ID Unique value given to each dam and outlet feature.
 
-type type of feature, either <code>dam</code> or <code>outlet</code>.
+type Type of feature, either dam or outlet.
 
-catchmentID unique value of the coastal outlet in which the dam is located upstream.
+catchmentID Unique value of the coastal outlet in which the dam is located upstream.
 
-habitat_sqkm total habitat upstream, given in square kilometers of river area.
+habitat_sqkm Total habitat upstream, given in square kilometers of river area.
 
-habitatSegment_sqkm amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.
+habitatSegment_sqkm Amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.
 
-functional_habitatSegment_sqkm the value of <code>habitatSegment_sqkm</code> multiplied by the compounded passage fraction from outlet up to the feature.
+functional_habitatSegment_sqkm The value of habitatSegment_sqkm multiplied by the compounded passage fraction from outlet up to the feature.
 
-PassageToHabitat passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.
+PassageToHabitat Passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.
 
-terminal_name_huc10 name of HUC10 watershed of feature's outlet.
+terminal_name_huc10 Name of HUC10 watershed of feature's outlet.
 
-terminal_name_huc8 name of HUC8 watershed of feature's outlet.
+terminal_name_huc8 Name of HUC8 watershed of feature's outlet.
 
-terminal_name_huc6 name of HUC6 watershed of feature's outlet.
+terminal_name_huc6 Name of HUC6 watershed of feature's outlet.
 
-terminal_name_huc4 name of HUC4 watershed of feature's outlet.
+terminal_name_huc4 Name of HUC4 watershed of feature's outlet.
 
-dam_name name of dam feature, "n/a" if <code>outlet</code>.
+dam_name Name of dam feature, "n/a" if outlet.
 
 latitude Latitudinal coordinate of feature centroid.
 
 longitude Longitudinal coordinate of feature centroid.
 
-dam_order order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.
+dam_order Order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.
 
 </dl></div>
     <div class="section level2">
