@@ -1,22 +1,24 @@
 Package: anadrofish
 Type: Package
 Title: Anadromous Fish Population Responses to Habitat Changes
-Version: 2.1.0
-Date: 2024
+Version: 2.2.0
+Date: 2025
 Authors@R: c(
     person("Daniel S.", "Stich", email = "daniel.stich@oneonta.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8946-1115")),
     person("S. G.", "Roy", role = "aut"),
     person("S. D.", "Snyder", role = "aut"),
     person("J. D.", "Zydlewski", role = "aut"))
 Description: Stochastic estimation of anadromous fish population response to changes in habitat.
-License: GPL-3.0 + LICENSE
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
 Depends: R(>= 3.5.0)
 Imports: truncnorm
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 URL: https://danstich.github.io/anadrofish/
+Config/testthat/edition: 3
+License: GPL (>= 3)
