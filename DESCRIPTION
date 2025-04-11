@@ -8,7 +8,7 @@ Authors@R: c(
     person("J. D.", "Hardesty", role = "aut", comment = c(ORCID = "0009-0009-0280-1999")),
     person("N. T.", "Jordan", role = "aut", comment = c(ORCID = "0009-0009-8632-6979")),
     person("S. G.", "Roy", role = "aut", comment = c(ORCID = "0000-0002-2491-948X")),
-    person("T. F.", "Sheehan", role = "aut", comment = c(ORCID = "0000-0002-9689-1180"))
+    person("T. F.", "Sheehan", role = "aut", comment = c(ORCID = "0000-0002-9689-1180")),
     person("S. D.", "Snyder", role = "aut", comment = c(ORCID = "0000-0003-3286-4957")),
     person("J. D.", "Zydlewski", role = "aut"), comment = c(ORCID = "0000-0002-2255-2303"))
 Description: Stochastic estimation of anadromous fish population response to changes in habitat.
