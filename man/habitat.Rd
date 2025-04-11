@@ -8,49 +8,49 @@
 A data frame with 868 observations of 22 variables:
 \describe{
 
-\code{TERMCODE}{ code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.}
+\code{TERMCODE} Code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.
 
-\code{system}{ name or name(s) of rivers included in catchment.}
+\code{system} Name or name(s) of rivers included in catchment.
 
-\code{region}{ life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous)}
+\code{region} Life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous)
 
-\code{huc_code}{ n-digit huc code for the huc identifier used in \code{TERMCODE}.}
+\code{huc_code} n-digit huc code for the huc identifier used in \code{TERMCODE}.
 
-\code{huc_level}{ watershed level used to determine \code{huc_code}.}
+\code{huc_level} Watershed level used to determine \code{huc_code}.
 
-\code{count}{ number of habitat segments (features) included within \code{system}.}
+\code{count} Number of habitat segments (features) included within \code{system}.
 
-\code{total}{ total historical habitat available in \code{system} (sq km).}
+\code{total} Total historical habitat available in \code{system} (sq km).
 
-\code{UNIQUE_ID}{ unique value given to each dam and outlet feature.}
+\code{UNIQUE_ID} Unique value given to each dam and outlet feature.
 
-\code{type}{ type of feature, either \code{dam} or \code{outlet}.}
+\code{type} Type of feature, either \code{dam} or \code{outlet}.
 
-\code{catchmentID}{ unique value of the coastal outlet in which the dam is located upstream.}
+\code{catchmentID} Unique value of the coastal outlet in which the dam is located upstream.
 
-\code{habitat_sqkm}{ total habitat upstream, given in square kilometers of river area.}
+\code{habitat_sqkm} Total habitat upstream, given in square kilometers of river area.
 
-\code{habitatSegment_sqkm}{ amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.}
+\code{habitatSegment_sqkm} Amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.
 
-\code{functional_habitatSegment_sqkm}{ the value of \code{habitatSegment_sqkm} multiplied by the compounded passage fraction from outlet up to the feature.}
+\code{functional_habitatSegment_sqkm} The value of \code{habitatSegment_sqkm} multiplied by the compounded passage fraction from outlet up to the feature.
 
-\code{PassageToHabitat}{ passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.}
+\code{PassageToHabitat} Passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.
 
-\code{terminal_name_huc10}{ name of HUC10 watershed of feature's outlet.}
+\code{terminal_name_huc10} Name of HUC10 watershed of feature's outlet.
 
-\code{terminal_name_huc8}{ name of HUC8 watershed of feature's outlet.}
+\code{terminal_name_huc8} Name of HUC8 watershed of feature's outlet.
 
-\code{terminal_name_huc6}{ name of HUC6 watershed of feature's outlet.}
+\code{terminal_name_huc6} Name of HUC6 watershed of feature's outlet.
 
-\code{terminal_name_huc4}{ name of HUC4 watershed of feature's outlet.}
+\code{terminal_name_huc4} Name of HUC4 watershed of feature's outlet.
 
-\code{dam_name}{ name of dam feature, "n/a" if \code{outlet}.}
+\code{dam_name} Name of dam feature, "n/a" if \code{outlet}.
 
-\code{latitude}{ Latitudinal coordinate of feature centroid.}
+\code{latitude} Latitudinal coordinate of feature centroid.
 
-\code{longitude}{ Longitudinal coordinate of feature centroid.}
+\code{longitude} Longitudinal coordinate of feature centroid.
 
-\code{dam_order}{ order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.}
+\code{dam_order} Order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.
 }
 }
 \source{

@@ -7,17 +7,17 @@
 \format{
 A data frame with 24 observations of 6 variables:
 \describe{
-\code{Year}{ Year of study}
+\code{Year} Year of study
 
-\code{Age}{ Fish age (d)}
+\code{Age} Fish age (d)
 
-\code{Md}{ Daily mortality}
+\code{Md} Daily mortality
 
-\code{Sd}{ Daily survival}
+\code{Sd} Daily survival
 
-\code{Si}{ Interval survival}
+\code{Si} Interval survival
 
-\code{Sc}{ Cumulative survival}
+\code{Sc} Cumulative survival
 
 }
 

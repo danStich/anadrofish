@@ -9,11 +9,11 @@ Southern Iteroparous American shad}
 A data frame with 1500 observations of 3 variables:
 \describe{
 
-\code{Linf}{ Asymptotic length of fish}
+\code{Linf} Asymptotic length of fish
 
-\code{K}{ Brody growth coefficient}
+\code{K} Brody growth coefficient
 
-\code{t0}{ Size at age zero}
+\code{t0} Size at age zero
 }
 }
 \source{

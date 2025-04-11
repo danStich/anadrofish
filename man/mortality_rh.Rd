@@ -8,15 +8,15 @@
 A data frame with 300 observations of 5 variables:
 \describe{
 
-\code{region}{ Genetic reporting group region}
+\code{region} Genetic reporting group region
 
-\code{sex}{ Sex of fish}
+\code{sex} Sex of fish
 
-\code{age}{ Age in years}
+\code{age} Age in years
 
-\code{M}{ Instantaneous natural mortality}
+\code{M} Instantaneous natural mortality
 
-\code{species}{ Species}
+\code{species} Species
 }
 }
 \source{

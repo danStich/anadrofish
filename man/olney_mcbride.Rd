@@ -8,14 +8,14 @@
 A data frame with 3 observations of 4 variables:
 \describe{
 
-\code{system}{ Study system}
+\code{system} Study system
 
-\code{region}{ Life-history region: NI = Northern iteroparous,
-SI = Southern iteroparous, SP = Semelparous}
+\code{region} Life-history region: NI = Northern iteroparous,
+SI = Southern iteroparous, SP = Semelparous
 
-\code{alpha}{ Intercept}
+\code{alpha} Intercept
 
-\code{beta}{ Slope}
+\code{beta} Slope
 }
 }
 \source{

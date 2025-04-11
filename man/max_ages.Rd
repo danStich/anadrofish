@@ -8,11 +8,11 @@
 A data frame with 6 observations of 3 variables:
 \describe{
 
-\code{region}{ Life-history region}
+\code{region} Life-history region
 
-\code{sex}{ Fish sex}
+\code{sex} Fish sex
 
-\code{maxage}{ Maximum observed age}
+\code{maxage} Maximum observed age
 
 }
 }

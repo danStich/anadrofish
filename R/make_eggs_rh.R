@@ -25,7 +25,7 @@
 #' @return A vector containing age-specific potential annual 
 #' fecundity with \code{length = max_age}. 
 #'
-#' @examples make_eggs_rh(river = "Upper Susquehanna", species = "BBH")
+#' @examples make_eggs_rh(river = "Susquehanna", species = "BBH")
 #'
 #' @references Atlantic States Marine Fisheries Commission. 2024. River herring
 #' benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 

@@ -41,7 +41,7 @@ region-specific probabilities of maturation at each age estimated
 from the Maki (YEAR) method in ASMFC (2024).
 }
 \examples{
-make_spawnrecruit_rh(river = "Upper Hudson", species = "BBH", sex = "female")
+make_spawnrecruit_rh(river = "Hudson", species = "BBH", sex = "female")
 
 }
 \references{

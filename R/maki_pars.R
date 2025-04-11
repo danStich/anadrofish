@@ -9,17 +9,17 @@
 #' @format A data frame with 216 observations of 6 variables:
 #' \describe{
 #' 
-#' \code{species}{ Species of fish}
+#' \code{species} Species of fish
 #' 
-#' \code{Region}{ Genetic reporting group and general geographic region}
+#' \code{Region} Genetic reporting group and general geographic region
 #' 
-#' \code{Sex}{ Fish sex}
+#' \code{Sex} Fish sex
 #' 
-#' \code{Age}{ Fish age (years)}
+#' \code{Age} Fish age (years)
 #' 
-#' \code{pMature}{ Probability of maturation at age}
+#' \code{pMature} Probability of maturation at age
 #' 
-#' \code{pMat.se}{ Standard error of estimated pMature from ASMFC (2024)}
+#' \code{pMat.se} Standard error of estimated pMature from ASMFC (2024)
 #' }
 #'
 #' @references Atlantic States Marine Fisheries Commission. 2024. River herring

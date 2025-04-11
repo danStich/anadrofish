@@ -29,7 +29,7 @@
 #' benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
 #' URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 #'
-#' @examples make_spawnrecruit_rh(river = "Upper Hudson", species = "BBH", sex = "female")
+#' @examples make_spawnrecruit_rh(river = "Hudson", species = "BBH", sex = "female")
 #'
 #' @export
 #'

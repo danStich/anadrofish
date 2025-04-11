@@ -23,7 +23,7 @@
 #' @return A numeric vector of \code{length = length(max_age)} depending
 #' on maximum age in the selected river by region and species.
 #'
-#' @examples make_spawnrecruit(river = "Upper Hudson", species = "BBH")
+#' @examples make_spawnrecruit(river = "Hudson", species = "BBH")
 #' 
 #' @references Atlantic States Marine Fisheries Commission
 #' 

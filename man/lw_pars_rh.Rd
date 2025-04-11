@@ -8,17 +8,17 @@
 A data frame with 30 observations of 7 variables:
 \describe{
 
-\code{Species}{ species of river herring ("ALE" or "BBH")}
+\code{Species} Species of river herring ("ALE" or "BBH")
 
-\code{sex}{ Fish sex: \code{"Female"}, \code{"Male"}, or \code{"Pooled"}}
+\code{sex} Fish sex: \code{"Female"}, \code{"Male"}, or \code{"Pooled"}
 
-\code{alpha}{ Intercept}
+\code{alpha} Intercept
 
-\code{alpha.se}{ Standard error for the intercept}
+\code{alpha.se} Standard error for the intercept
 
-\code{beta}{ Slope}
+\code{beta} Slope
 
-\code{beta.se}{ Standard error for the slope}
+\code{beta.se} Standard error for the slope
 
 }
 }

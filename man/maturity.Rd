@@ -8,11 +8,11 @@
 A data frame with 6 observations of 15 variables:
 \describe{
 
-\code{region}{ Life-history region}
+\code{region} Life-history region
 
-\code{sex}{ Fish sex}
+\code{sex} Fish sex
 
-\code{age1, age2, age3, ...}{ Probability of maturing at age}
+\code{age1, age2, age3, ...} Probability of maturing at age
 }
 }
 \source{

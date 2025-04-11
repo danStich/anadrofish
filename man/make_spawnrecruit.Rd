@@ -38,7 +38,7 @@ using built-in data sets for region-specific \code{\link{max_ages}} and
 \code{\link{maturity}}.
 }
 \examples{
-make_spawnrecruit(river = "Upper Hudson", species = "BBH")
+make_spawnrecruit(river = "Hudson", species = "BBH")
 
 }
 \references{

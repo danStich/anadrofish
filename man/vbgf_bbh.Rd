@@ -9,15 +9,15 @@ blueback herring}
 A data frame with 816,000 observations of 5 variables:
 \describe{
 
-\code{Region}{ Genetic reporting group}
+\code{Region} Genetic reporting group
 
-\code{Sex}{ Sex of fish}
+\code{Sex} Sex of fish
 
-\code{Linf}{ Asymptotic length of fish}
+\code{Linf} Asymptotic length of fish
 
-\code{K}{ Brody growth coefficient}
+\code{K} Brody growth coefficient
 
-\code{t0}{ Size at age zero}
+\code{t0} Size at age zero
 
 }
 }

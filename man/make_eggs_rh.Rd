@@ -37,7 +37,7 @@ number of eggs per female within genetic reporting groups (\code{region}).
 }
 
 \examples{
-make_eggs_rh(river = "Upper Susquehanna", species = "BBH")
+make_eggs_rh(river = "Susquehanna", species = "BBH")
 
 }
 \references{

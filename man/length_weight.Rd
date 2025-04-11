@@ -8,13 +8,13 @@
 A data frame with 6 observations of 4 variables:
 \describe{
 
-\code{region}{ Life-history region}
+\code{region} Life-history region
 
-\code{sex}{ Fish sex \code{F} is female and \code{M} is male}
+\code{sex} Fish sex \code{F} is female and \code{M} is male
 
-\code{alpha}{ Intercept}
+\code{alpha} Intercept
 
-\code{beta}{ Slope}
+\code{beta} Slope
 }
 }
 \source{

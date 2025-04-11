@@ -8,17 +8,17 @@
 A data frame with 4 observations of 6 variables:
 \describe{
 
-\code{ reference}{ Reference for study (in case others are added)}
+\code{ reference} Reference for study (in case others are added)
 
-\code{system}{ Study system}
+\code{system} Study system
 
-\code{alpha}{ Intercept}
+\code{alpha} Intercept
 
-\code{alpha.se}{ Standard error of the intercept}
+\code{alpha.se} Standard error of the intercept
 
-\code{beta}{ Slope}
+\code{beta} Slope
 
-\code{beta.se}{ Standard error of the slope}
+\code{beta.se} Standard error of the slope
 
 }
 }
