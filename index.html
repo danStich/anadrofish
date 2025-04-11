@@ -47,15 +47,17 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="anadrofish">anadrofish<a class="anchor" aria-label="anchor" href="#anadrofish"></a>
 </h1></div>
-<p>R package for modeling anadromous fish population responses to freshwater habitat changes</p>
-<p><a href="https://doi.org/10.5281/zenodo.14285894" class="external-link"><img src="https://zenodo.org/badge/186272264.svg" alt="DOI"></a></p>
+<p>R package for modeling anadromous fish population responses to habitat changes</p>
+<p><a href="https://doi.org/10.5281/zenodo.14285894" class="external-link"><img src="https://zenodo.org/badge/186272264.svg" alt="DOI"></a> <a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></p>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+<h2 id="table-of-contents">Table of Contents<a class="anchor" aria-label="anchor" href="#table-of-contents"></a>
 </h2>
-<p>This package can be installed with the <a href="https://www.rstudio.com/products/rpackages/devtools/" class="external-link"><code>devtools</code></a> package in R using the repository url:</p>
-<p><code>devtools::install_github("danStich/anadrofish")</code></p>
-<p>To install <code>anadrofish</code>, you will need to have <code>devtools</code> installed ahead of time in R, but that requires some special tools. To install on <strong>Windows</strong>, you will need to download and install the appropriate version of <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>. To install on <strong>Mac</strong>, you will need to have the <a href="http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/" class="external-link">XCode command-line tools</a> installed. And, if running from <strong>Linux</strong>, you will need to install the developer version of R (<code>r-base-dev</code>) if you have not already. For users working on agency networked computers, you will need to work with your IT specialists or someone with administrative privileges if you do not have them.</p>
-<p></p>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#directories">Directories</a></li>
+<li><a href="#references">References</a></li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
@@ -63,21 +65,27 @@
 <div class="section level3">
 <h3 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
 </h3>
-<p>The purpose of this package is to distribute code and provide a user interface for modeling anadromous fish population responses to dam passage and fisheries in Atlantic coastal rivers of Canada and the United States. The main <code><a href="reference/sim_pop.html">sim_pop()</a></code> function uses various helper functions (see <code><a href="reference/anadrofish-package.html">?anadrofish</a></code> in R) that links dam passage to habitat availability and stochastic population models to simulate species-specific responses to dams and fisheries. Habitat datasets are currently derived separately for each species based on best available knowledge and expert opinion from state and federal fishery biologists, managers, and scientists. Likewise, all species-specific life-history parameters (size at age, age at maturity, natural mortality) are derived directly from interstate stock assessments or informed by empirical estimates from the fisheries literature. The application of these models is described in <a href="https://asmfc.org/uploads/file/63d8437dAmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf" class="external-link">ASMFC 2020</a>, <a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2021.734213/full" class="external-link">Zydlewski et al. 2021</a>, and <a href="https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf" class="external-link">ASMFC 2024</a>.</p>
-<p>Existing population models for each species can be implemented using the <code><a href="reference/sim_pop.html">sim_pop()</a></code> function. New models can theoretically be constructed using the existing functions within <code>anadrofish</code> and appropriately structured habitat data. <strong>As of version 2.1.0</strong> (2024-11-26), we implemented the <code><a href="reference/custom_habitat_template.html">custom_habitat_template()</a></code> function. This allows use of default habitat data sets, modifying habitat data based on built-in datasets, querying custom habitat datasets ranging from the single stream segment to regional stock scales for each species, or constructing completely custom habitat configurations including completely fabricated (i.e., theoretical) hydrosystem configurations for optimization studies.</p>
+<p>The purpose of this package is to distribute code and provide a user interface for modeling anadromous fish population responses to dam passage, fisheries, or restoration activities in Atlantic coastal rivers of Canada and the United States. The main <code><a href="reference/sim_pop.html">sim_pop()</a></code> function uses various helper functions (see <code><a href="reference/anadrofish-package.html">?anadrofish</a></code> in R) that links dam passage to habitat availability and stochastic population models to simulate species-specific responses to dams and fisheries across marine and freshwater habitats. Built-in habitat datasets are currently derived separately for each species based on best available knowledge and expert opinion from state and federal fishery biologists, managers, and scientists. Likewise, all species-specific life-history parameters (size at age, age at maturity, natural mortality) are derived directly from interstate stock assessments or informed by empirical estimates from the fisheries literature. The application of these models is described in <a href="https://asmfc.org/uploads/file/63d8437dAmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf" class="external-link">ASMFC 2020</a>, <a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2021.734213/full" class="external-link">Zydlewski et al. 2021</a>, and <a href="https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf" class="external-link">ASMFC 2024</a>.</p>
+<p>Existing (built-in) population models for each species can be implemented using the <code><a href="reference/sim_pop.html">sim_pop()</a></code> function. New models can be constructed using the existing helper functions within <code>anadrofish</code> and appropriately structured habitat data. <strong>As of version 2.1.0</strong> (2024-11-26), we implemented the <code><a href="reference/custom_habitat_template.html">custom_habitat_template()</a></code> function. This allows use of default habitat data sets, modifying habitat data based on built-in datasets, querying custom habitat datasets ranging from the single stream segment to regional stock scales for each species, or constructing completely custom habitat configurations including completely fabricated (i.e., theoretical) hydrosystem configurations for optimization studies.</p>
 </div>
 <div class="section level3">
 <h3 id="species">Species<a class="anchor" aria-label="anchor" href="#species"></a>
 </h3>
-<p>These models are available for American shad (<em>Alosa sapidissima</em>) in 167 Atlantic Coastal rivers of North America from Florida (St. Johns River) to Quebec (St. Lawrence drainage). The full list of rivers available for assessment can be viewed with <code>anadrofish::get_rivers(...)</code> once the package is installed.</p>
-<p>River herring population models are available for 56 populations of alewife (<em>Alosa pseudoharengus</em>) and 49 blueback herring (<em>Alosa aestivalis</em>) populations. River herring models and underlying data were peer-reviewed during development and application to the <a href="https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf" class="external-link">2024 Atlantic States Marine Fisheries Commission (ASMFC) River Herring Benchmark Stock Assessment</a>. We are currently delineating smaller stock units for defaults to provide greater utility and flexibility for local managers.</p>
-</div>
-<div class="section level3">
-<h3 id="ongoing-development">Ongoing development<a class="anchor" aria-label="anchor" href="#ongoing-development"></a>
-</h3>
-<p>Finally, the code and documentation for all of these models are currently being updated in preparation for additional peer-review and thus may be updated at any time. After that, our hope is to submit the R package to CRAN with the hope of providing a stable, backward-compatible version of the software moving forward.</p>
+<p>These models are available for American shad (<em>Alosa sapidissima</em>) in 167 populations, 222 populations of alewife (<em>Alosa pseudoharengus</em>) and 238 blueback herring (<em>Alosa aestivalis</em>) populations in Atlantic Coastal rivers of North America from Florida (St. Johns River) to Quebec (St. Lawrence drainage). American shad models and data were peer-reviewed during the <a href="https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf" class="external-link">2020 Atlantic States Marine Fisheries Commission (ASMFC) American Shad Benchmark Stock Assessment</a>. River herring models and underlying data were peer-reviewed during development and application to the <a href="https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf" class="external-link">2024 ASMFC River Herring Benchmark Stock Assessment</a>.</p>
+<p>The full list of rivers available for each species can be viewed with <code><a href="reference/get_rivers.html">get_rivers()</a></code> once the package is installed.</p>
+<p>We are currently working with collaborators to extend built-in model routines to multiple additional species. Please contact us with requests, post an issue, or see <a href="https://github.com/danStich/anadrofish/blob/master/Contributing.md" class="external-link">Contributing.md</a> for details about contributing directly if there are other species you’d like added!</p>
 <p></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>This package can be installed with the <a href="https://www.rstudio.com/products/rpackages/devtools/" class="external-link"><code>devtools</code></a> package in R using the repository url:</p>
+<p><code>devtools::install_github("danStich/anadrofish")</code></p>
+<p>Specific releases can be installed by referencing the release tag, like this:</p>
+<p><code>devtools::install_github("danStich/anadrofish@v2.1.0")</code></p>
+<p>To install <code>anadrofish</code>, you will need to have <code>devtools</code> installed ahead of time in R, but that requires some special tools. To install on <strong>Windows</strong>, you will need to download and install the appropriate version of <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>. To install on <strong>Mac</strong>, you will need to have the <a href="http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/" class="external-link">XCode command-line tools</a> installed. And, if running from <strong>Linux</strong>, you will need to install the developer version of R (<code>r-base-dev</code>) if you have not already. For users working on agency networked computers, you will need to work with your IT specialists or someone with administrative privileges if you do not have them.</p>
+<p></p>
 </div>
 <div class="section level2">
 <h2 id="directories">Directories<a class="anchor" aria-label="anchor" href="#directories"></a>
@@ -86,12 +94,15 @@
 <p><code>inst/examples/</code> Examples for those requiring more than a one-liner</p>
 <p><code>man/</code> Help files and documentation</p>
 <p><code>R/</code> R functions in scripts</p>
+<p><code>tests/</code> Function tests and checks using the <code>testhat</code> package</p>
+<p></p>
 </div>
 <div class="section level2">
-<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>We encourage contributions from the community and welcome collaborations for extension to other species and systems!</p>
-<p>You can ask questions or submit bug reports at any time through the <a href="https://github.com/danStich/anadrofish/issues" class="external-link">issues page</a>. Please check to see whether a similar issue already exists before submitting a new issue. If you would like to contribute improvements or modifications directly to the repository, you can fork the repository and submit a merge request so those contributions can be reviewed.</p>
+<p>ASMFC (Atlantic States Marine Fisheries Commission). 2020. American Shad Benchmark Stock Assessment and Peer-Review Report. Atlantic States Marine Fisheries Commission. <a href="https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf" class="external-link">https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf</a>.</p>
+<p>ASMFC (Atlantic States Marine Fisheries Commission). 2024. River Herring Benchmark Stock Assessment and Peer-Review Report. Atlantic States Marine Fisheries Commission. <a href="https://asmfc.org/wp-content/uploads/2025/01/RiverHerringAssessment_PeerReviewReport_2024.pdf" class="external-link">https://asmfc.org/wp-content/uploads/2025/01/RiverHerringAssessment_PeerReviewReport_2024.pdf</a>.</p>
+<p>Zydlewski, J., D. S. Stich, S. Roy, M. Bailey, T. Sheehan, and K. Sprankle. 2021. What Have We Lost? Modeling Dam Impacts on American Shad Populations Through Their Native Range. Frontiers in Marine Science 8. <a href="https://doi.org/10.3389/fmars.2021.734213" class="external-link">https://doi.org/10.3389/fmars.2021.734213</a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
