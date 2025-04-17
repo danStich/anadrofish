@@ -1,26 +1,34 @@
-# --------------------------------------------
-# CITATION file created with {cffr} R package
-# See also: https://docs.ropensci.org/cffr/
-# --------------------------------------------
- 
 cff-version: 1.2.0
 message: 'To cite package "anadrofish" in publications use:'
 type: software
-title: 'anadrofish: Anadromous Fish Population Responses to Habitat Changes'
-version: 2.1.0
-abstract: Stochastic estimation of anadromous fish population response to changes in habitat.
 license: GPL-3.0-or-later
+title: 'anadrofish: Anadromous Fish Population Responses to Habitat Changes'
+version: 2.2.0
+abstract: Stochastic estimation of anadromous fish population response to changes
+  in habitat.
 authors:
 - family-names: Stich
   given-names: Daniel S.
   email: daniel.stich@oneonta.edu
   orcid: https://orcid.org/0000-0002-8946-1115
+- family-names: Hardesty
+  given-names: J. D.
+  orcid: https://orcid.org/0009-0009-0280-1999
+- family-names: Jordan
+  given-names: N. T.
+  orcid: https://orcid.org/0009-0009-8632-6979
 - family-names: Roy
   given-names: S. G.
+  orcid: https://orcid.org/0000-0002-2491-948X
+- family-names: Sheehan
+  given-names: T. F.
+  orcid: https://orcid.org/0000-0002-9689-1180
 - family-names: Snyder
   given-names: S. D.
+  orcid: https://orcid.org/0000-0003-3286-4957
 - family-names: Zydlewski
   given-names: J. D.
+  orcid: https://orcid.org/0000-0002-2255-2303
 url: https://danstich.github.io/anadrofish/
 contact:
 - family-names: Stich
@@ -37,7 +45,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
   version: '>= 3.5.0'
 - type: software
   title: truncnorm
@@ -55,7 +63,7 @@ references:
     given-names: Detlef
   - family-names: Bornkamp
     given-names: Björn
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.truncnorm
 - type: software
   title: knitr
@@ -68,7 +76,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: rmarkdown
@@ -79,36 +87,69 @@ references:
   authors:
   - family-names: Allaire
     given-names: JJ
-    email: jj@rstudio.com
+    email: jj@posit.co
   - family-names: Xie
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@posit.co
+    orcid: https://orcid.org/0000-0003-4474-2498
   - family-names: McPherson
     given-names: Jonathan
-    email: jonathan@rstudio.com
+    email: jonathan@posit.co
   - family-names: Luraschi
     given-names: Javier
-    email: javier@rstudio.com
   - family-names: Ushey
     given-names: Kevin
-    email: kevin@rstudio.com
+    email: kevin@posit.co
   - family-names: Atkins
     given-names: Aron
-    email: aron@rstudio.com
+    email: aron@posit.co
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
   - family-names: Cheng
     given-names: Joe
-    email: joe@rstudio.com
+    email: joe@posit.co
   - family-names: Chang
     given-names: Winston
-    email: winston@rstudio.com
+    email: winston@posit.co
   - family-names: Iannone
     given-names: Richard
-    email: rich@rstudio.com
+    email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.rmarkdown
-
+- type: software
+  title: vctrs
+  abstract: 'vctrs: Vector Helpers'
+  notes: Suggests
+  url: https://vctrs.r-lib.org/
+  repository: https://CRAN.R-project.org/package=vctrs
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.vctrs
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.testthat
+  version: '>= 3.0.0'
