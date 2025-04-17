@@ -84,9 +84,12 @@ Useful links:
 
 Authors:
 \itemize{
-  \item S. G. Roy
-  \item S. D. Snyder
-  \item J. D. Zydlewski
+  \item J. D. Hardesty (\href{https://orcid.org/0009-0009-0280-1999}{ORCID})
+  \item N. T. Jordan (\href{https://orcid.org/0009-0009-8632-6979}{ORCID})
+  \item S. G. Roy (\href{https://orcid.org/0000-0002-2491-948X}{ORCID})
+  \item T. F. Sheehan (\href{https://orcid.org/0000-0002-9689-1180}{ORCID})
+  \item S. D. Snyder (\href{https://orcid.org/0000-0003-3286-4957}{ORCID})
+  \item J. D. Zydlewski (\href{https://orcid.org/0000-0002-2255-2303}{ORCID})
 }
 
 }

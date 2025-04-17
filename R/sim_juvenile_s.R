@@ -28,8 +28,6 @@
 #' Lake Michigan: Implications for Habitat-Specific Recruitment Success.
 #' Transactions of the American Fisheries Society 136:1298-1312.
 #' 
-#' @importFrom truncnorm rtruncnorm
-#' 
 #' @export
 #' 
 sim_juvenile_s <- function(species = c("AMS", "ALE", "BBH")){
@@ -54,23 +52,23 @@ sim_juvenile_s <- function(species = c("AMS", "ALE", "BBH")){
     
     theta <-c(mean(subs$Sc), sd(subs$Sc))
     
-    juvenile_s <- truncnorm::rtruncnorm(n = 1,
-                                        a = 0,
-                                        b = 0.014,
-                                        mean = theta[1],
-                                        sd = theta[1]*0.2)    
+    juvenile_s <- rtrunc_norm(n = 1,
+                              a = 0,
+                              b = 0.014,
+                              mean = theta[1],
+                              sd = theta[1]*0.2)    
   }
   
   if(species == "BBH"){
     #  30-d S based on daily Z estimatesFrom Overton et al. (2012)
-    Zd <- truncnorm::rtruncnorm(n = 1, a = 0, mean = 0.21, sd = 0.038^2)
+    Zd <- rtrunc_norm(n = 1, a = 0, mean = 0.21, sd = 0.038^2)
     juvenile_s <- exp(-Zd*30)
   }
   
   if(species == "ALE"){
     # 30-d S based on daily Z estimates from Hook et al. (2007) and 
     # Overton et al. (2012)
-    Zd <- truncnorm::rtruncnorm(n = 1, a = 0, mean = 0.205, sd = 0.048^2)
+    Zd <- rtrunc_norm(n = 1, a = 0, mean = 0.205, sd = 0.048^2)
     juvenile_s <- exp(-Zd*30)
   } 
   

@@ -44,8 +44,6 @@
 #' American shad. PLoS ONE 11(10): 10.1371/journal.pone.0164203
 #' 
 #' @export
-#'
-#' @importFrom truncnorm rtruncnorm
 #' 
 make_eggs <- function(river, species = c("AMS", "ALE", "BBH"),
                       custom_habitat = NULL){
@@ -119,13 +117,13 @@ make_eggs <- function(river, species = c("AMS", "ALE", "BBH"),
       
     # Draw number of batches based on McBride et al. (2016)  
     if(region=='NI'){
-      n_batches <- rtruncnorm(1, a=0, b=10, mean=6.1, sd=.5)
+      n_batches <- rtrunc_norm(1, a=0, b=10, mean=6.1, sd=.5)
     }
     if(region=='SI'){
-      n_batches <- rtruncnorm(1, a=0, b=12, mean=6.1, sd=.5)
+      n_batches <- rtrunc_norm(1, a=0, b=12, mean=6.1, sd=.5)
     }
     if(region=='SP'){
-      n_batches <- rtruncnorm(1, a=0, b=Inf, mean=6.1, sd=.5)
+      n_batches <- rtrunc_norm(1, a=0, b=Inf, mean=6.1, sd=.5)
     }
       
     eggs <- batch_size * n_batches
