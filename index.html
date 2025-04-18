@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">anadrofish</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,7 @@
 <li><a href="#overview">Overview</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#directories">Directories</a></li>
+<li><a href="#examples">Examples</a></li>
 <li><a href="#references">References</a></li>
 </ul>
 </div>
@@ -80,12 +81,29 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>This package can be installed with the <a href="https://www.rstudio.com/products/rpackages/devtools/" class="external-link"><code>devtools</code></a> package in R using the repository url:</p>
+<div class="section level3">
+<h3 id="versions-230-and-later">Versions 2.3.0 and later<a class="anchor" aria-label="anchor" href="#versions-230-and-later"></a>
+</h3>
+<p>As of version 2.3.0 the <code>anadrofish</code> package no longer requires compilation and can therefore be installed using the <code>remotes</code> package (Csardi et al. 2021) in R. Once you have installed the <code>remotes</code> package, <code>anadrofish</code> can be installed like this:</p>
+<p><code>remotes::install_github("danStich/anadrofish")</code></p>
+<p>Specific releases can be installed by referencing the release tag, like this:</p>
+<p><code>remotes::install_github("danStich/anadrofish@v2.3.0")</code></p>
+<p>The <code>remotes</code> package can be installed directly from CRAN or from GitHub following instructions in the repository <a href="https://github.com/r-lib/remotes#readme" class="external-link">https://github.com/r-lib/remotes#readme</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="versions-220-and-earlier">Versions 2.20 and earlier<a class="anchor" aria-label="anchor" href="#versions-220-and-earlier"></a>
+</h3>
+<p>Earlier versions of this package can be installed with the <a href="https://www.rstudio.com/products/rpackages/devtools/" class="external-link"><code>devtools</code></a> package in R using the repository url:</p>
 <p><code>devtools::install_github("danStich/anadrofish")</code></p>
 <p>Specific releases can be installed by referencing the release tag, like this:</p>
 <p><code>devtools::install_github("danStich/anadrofish@v2.1.0")</code></p>
 <p>To install <code>anadrofish</code>, you will need to have <code>devtools</code> installed ahead of time in R, but that requires some special tools. To install on <strong>Windows</strong>, you will need to download and install the appropriate version of <a href="https://cran.r-project.org/bin/windows/Rtools/" class="external-link">Rtools</a>. To install on <strong>Mac</strong>, you will need to have the <a href="http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/" class="external-link">XCode command-line tools</a> installed. And, if running from <strong>Linux</strong>, you will need to install the developer version of R (<code>r-base-dev</code>) if you have not already. You may need to work with your IT specialists or someone with administrative privileges if you do not have them to install these utilities.</p>
 <p></p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h2>
 </div>
 <div class="section level2">
 <h2 id="directories">Directories<a class="anchor" aria-label="anchor" href="#directories"></a>
@@ -102,6 +120,7 @@
 </h2>
 <p>ASMFC (Atlantic States Marine Fisheries Commission). 2020. American Shad Benchmark Stock Assessment and Peer-Review Report. Atlantic States Marine Fisheries Commission. <a href="https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf" class="external-link">https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf</a>.</p>
 <p>ASMFC (Atlantic States Marine Fisheries Commission). 2024. River Herring Benchmark Stock Assessment and Peer-Review Report. Atlantic States Marine Fisheries Commission. <a href="https://asmfc.org/wp-content/uploads/2025/01/RiverHerringAssessment_PeerReviewReport_2024.pdf" class="external-link">https://asmfc.org/wp-content/uploads/2025/01/RiverHerringAssessment_PeerReviewReport_2024.pdf</a>.</p>
+<p>Csardi G., J. Hester J, H. Wickham, W. Chang, M. Morgan, and D. Tenenbaum. 2024. remotes: R Package Installation from Remote Repositories, Including ‘GitHub’. R package version 2.5.0, <a href="https://CRAN.R-project.org/package=remotes" class="external-link">https://CRAN.R-project.org/package=remotes</a>.</p>
 <p>Zydlewski, J., D. S. Stich, S. Roy, M. Bailey, T. Sheehan, and K. Sprankle. 2021. What Have We Lost? Modeling Dam Impacts on American Shad Populations Through Their Native Range. Frontiers in Marine Science 8. <a href="https://doi.org/10.3389/fmars.2021.734213" class="external-link">https://doi.org/10.3389/fmars.2021.734213</a>.</p>
 </div>
 </div>
