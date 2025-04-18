@@ -1,7 +1,7 @@
 Package: anadrofish
 Type: Package
 Title: Anadromous Fish Population Responses to Habitat Changes
-Version: 2.2.0
+Version: 2.3.0
 Date: 2025
 Authors@R: c(
     person("Daniel S.", "Stich", email = "daniel.stich@oneonta.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-8946-1115")),

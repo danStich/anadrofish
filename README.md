@@ -11,8 +11,8 @@ R package for modeling anadromous fish population responses to habitat changes
 - [Overview](#overview)
 - [Installation](#installation)
 - [Directories](#directories)
+- [Examples](#examples)
 - [References](#references)
-
 
 ## Overview
 ### Purpose
@@ -30,7 +30,19 @@ We are currently working with collaborators to extend to multiple additional spe
 </br>
 
 ## Installation
-This package can be installed with the [`devtools`](https://www.rstudio.com/products/rpackages/devtools/) package in R using the repository url:
+### Versions 2.3.0 and later
+As of version 2.3.0 the `anadrofish` package no longer requires compilation and can therefore be installed using the `remotes` package (Csardi et al. 2021) in R. Once you have installed the `remotes` package, `anadrofish` can be installed like this: 
+
+`remotes::install_github("danStich/anadrofish")`
+
+Specific releases can be installed by referencing the release tag, like this:
+
+`remotes::install_github("danStich/anadrofish@v2.3.0")`
+
+The `remotes` package can be installed directly from CRAN or from GitHub following instructions in the repository [https://github.com/r-lib/remotes#readme](https://github.com/r-lib/remotes#readme).
+
+### Versions 2.20 and earlier
+Earlier versions of this package can be installed with the [`devtools`](https://www.rstudio.com/products/rpackages/devtools/) package in R using the repository url:
 
 `devtools::install_github("danStich/anadrofish")`
 
@@ -41,6 +53,9 @@ Specific releases can be installed by referencing the release tag, like this:
 To install `anadrofish`, you will need to have `devtools` installed ahead of time in R, but that requires some special tools. To install on **Windows**, you will need to download and install the appropriate version of [Rtools](https://cran.r-project.org/bin/windows/Rtools/). To install on **Mac**, you will need to have the [XCode command-line tools](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/) installed. And, if running from **Linux**, you will need to install the developer version of R (`r-base-dev`) if you have not already. You may need to work with your IT specialists or someone with administrative privileges if you do not have them to install these utilities.
 
 </br>
+
+## Examples
+
 
 
 ## Directories
@@ -62,6 +77,9 @@ To install `anadrofish`, you will need to have `devtools` installed ahead of tim
 ASMFC (Atlantic States Marine Fisheries Commission). 2020. American Shad Benchmark Stock Assessment and Peer-Review Report. Atlantic States Marine Fisheries Commission. [https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf](https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf).
 
 ASMFC (Atlantic States Marine Fisheries Commission). 2024. River Herring Benchmark Stock Assessment and Peer-Review Report. Atlantic States Marine Fisheries Commission. [https://asmfc.org/wp-content/uploads/2025/01/RiverHerringAssessment_PeerReviewReport_2024.pdf](https://asmfc.org/wp-content/uploads/2025/01/RiverHerringAssessment_PeerReviewReport_2024.pdf).
+
+Csardi G., J. Hester J, H. Wickham, W. Chang, M. Morgan, and D. Tenenbaum. 2024. remotes: R Package Installation from Remote Repositories, Including 'GitHub'. R package version 2.5.0,
+[https://CRAN.R-project.org/package=remotes](https://CRAN.R-project.org/package=remotes).
 
 Zydlewski, J., D. S. Stich, S. Roy, M. Bailey, T. Sheehan, and K. Sprankle. 2021. What Have We Lost? Modeling Dam Impacts on American Shad Populations Through Their Native Range. Frontiers in Marine Science 8. [https://doi.org/10.3389/fmars.2021.734213](https://doi.org/10.3389/fmars.2021.734213).
 

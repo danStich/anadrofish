@@ -3,7 +3,7 @@ message: 'To cite package "anadrofish" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'anadrofish: Anadromous Fish Population Responses to Habitat Changes'
-version: 2.2.0
+version: 2.3.0
 abstract: Stochastic estimation of anadromous fish population response to changes
   in habitat.
 authors:
@@ -62,7 +62,7 @@ references:
   - family-names: Steuer
     given-names: Detlef
   - family-names: Bornkamp
-    given-names: Björn
+    given-names: Bjorn
   year: '2025'
   doi: 10.32614/CRAN.package.truncnorm
 - type: software
