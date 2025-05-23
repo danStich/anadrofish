@@ -61,7 +61,7 @@ To install `anadrofish`, you will need to have `devtools` installed ahead of tim
 
 ## Examples
 ### Running one scenario for one river many times in parallel
-This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River in 20xx. Aproximately 1-5 million spawning alewife have passed upstream of Benton Falls since then.
+This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls since then.
 
 The data set is in the `inst/data` folder on the GitHub repo but is ignored during R package install.
 
