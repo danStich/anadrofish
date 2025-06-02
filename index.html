@@ -112,7 +112,7 @@
 <div class="section level3">
 <h3 id="running-one-scenario-for-one-river-many-times-in-parallel">Running one scenario for one river many times in parallel<a class="anchor" aria-label="anchor" href="#running-one-scenario-for-one-river-many-times-in-parallel"></a>
 </h3>
-<p>This example uses alewife in the Sebasticook River, ME, USA <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292" class="external-link">Wipplehauser 2021</a> to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls since then.</p>
+<p>This example uses alewife in the Sebasticook River, ME, USA <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292" class="external-link">Wipplehauser 2021</a> to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls annually since then.</p>
 <p>The data set is in the <code>inst/data</code> folder on the GitHub repo but is ignored during R package install.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Package load ----</span></span>
@@ -231,6 +231,8 @@
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">plotter</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_ribbon</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xmax <span class="op">=</span> <span class="va">year</span>, ymin <span class="op">=</span> <span class="va">lci</span>, ymax <span class="op">=</span> <span class="va">uci</span>, color <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span></code></pre></div>
+<p><img src="inst/images/seb_ale.jpg?raw=true"></p>
+<p> </p>
 </div>
 <div class="section level3">
 <h3 id="running-multiple-scenarios-for-one-river-many-times-in-parallel">Running multiple scenarios for one river many times in parallel<a class="anchor" aria-label="anchor" href="#running-multiple-scenarios-for-one-river-many-times-in-parallel"></a>
@@ -375,6 +377,7 @@
 <span>    strip.background <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    strip.text.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
+<p><img src="inst/images/ct_shad.jpg?raw=true"></p>
 <p> </p>
 </div>
 <div class="section level3">
@@ -572,7 +575,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
