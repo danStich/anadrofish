@@ -63,6 +63,8 @@ To install `anadrofish`, you will need to have `devtools` installed ahead of tim
 ### Running one scenario for one river many times in parallel
 This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls annually since then.
 
+In this example, we return output from `sim_pop()` using `years = "all"` to also demonstrate the number of years needed for a stable population estimate under this scenario. If we wanted to model changes over time, we would run different scenarios for each year and return only the final year of simulations using `years = "last"`.
+
 The data set is in the `inst/data` folder on the GitHub repo but is ignored during R package install.
 
 ```r
@@ -474,12 +476,166 @@ ggplot(plotter, aes(x = scenario, y = pop)) +
 
 ```
 
+![](inst/images/coastal_bbh.jpg?raw=true)
+
+
+</br>
+</br>
+
+
+### Creating a custom population
+In this example, we create a custom population for alewife using the names from the custom_habitat_template() to build a dataframe with a novel habitat configuration.
+
+```r
+# Package load ----
+  library(snowfall)
+  library(anadrofish)
+  library(tidyverse)
+  library(data.table)
+  library(parallel)
+
+# Set a seed for random number generators for reproducibility ----
+set.seed(12345)
+
+# Parallel settings ----
+# Get number of cores for simulation using parallel package
+ncpus <- detectCores() - 1
+
+# Initialize snowfall socket cluster
+sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
+
+# Wrapper function ----
+sim <- function(x){
+  
+  # Define a novel hydrosystem in the mid-Atlantic region
+  # using `custom_habitat_template()` or by creating a template
+  # using the same columns. You could export this in a .csv
+  # for manual entry, use an external dataset with matching
+  # variables (columns) as the template, or just use the names
+  # of the columns to make your own dataframe in R
+  novel_config <- custom_habitat_template(
+    species = "ALE",
+    built_in = FALSE,
+    river = "new_config"
+  )
+  
+  # Check out the names so we can build a simple,
+  # in-line example for demonstration
+  names(novel_config)
+  
+  # Heavily commented novel habitat definition
+  novel_config <- data.frame(
+    # Can be anything
+    river = "new_config",
+    # Must be from pre-defined within species (biological basis for this)
+    region = "MAT", 
+    # Can be anything, not actually used in biological models
+    govt = "NY",
+    # Used for latitudinal trends in life-history traits for American shad only
+    lat = NA,
+    # Not actually used in the models, but could be useful for data querying 
+    # in the future
+    lon = NA,
+    # Number of dams from each element back to first. This example has two
+    # dams that are each the first dam within their "migration route". That 
+    # means at least one of the dams is on a tributary in this configuration 
+    dam_order = c(0, 1, 1),
+    # Amount of habitat (surface area in square km)
+    Hab_sqkm <- c(0, 1, 1)    
+    )
+
+  # Choose a species
+  species <- "ALE"
+  
+# . Call simulation ----
+  res <- sim_pop(
+    species = species,
+    river = "new_config",
+    nyears = 50,    
+    n_init = runif(1, 1e4, 2e6),
+    sr = rbeta(1, 100, 100),
+    b = 0.05,
+    upstream = c(1, 0.5, 1),
+    downstream = 1,
+    downstream_j = 1,
+    custom_habitat = novel_config,
+    output_years = "last"
+    )
+
+# . Define the output lists ----
+  
+  retlist <- list(
+    res=res)      
+  
+  return(retlist)    
+}  
+  
+
+# Parallel execution ----
+# . Load libraries on workers -----
+sfLibrary(anadrofish)
+sfLibrary(tidyverse)
+
+
+# . Distribute to workers -----
+# Number of simulations to run
+# You will need to run this MANY more times (1 million+) to stabilize results 
+niterations <- 1e2
+
+# Run the simulation ----
+# Assign starting time
+start <- Sys.time()
+
+# Run the sim
+result <- sfLapply(1:niterations, sim) 
+
+# Calculate and print run time
+total_time <- Sys.time()-start
+total_time
+
+# . Stop snowfall ----
+sfStop()
+
+# Results ----
+# 'result' is a list of lists. 
+
+# Extract results dataframes by string and rbind them
+res <- lapply(result, function(x) x[[c('res')]])
+resdf <- data.frame(rbindlist(res))
+
+# . Quick summary statistics ----
+mean(resdf$spawners)
+
+# . Plot ----
+custom_plot <- ggplot(resdf, aes(spawners)) +
+  geom_histogram() +
+  xlab("Spawning adults") +
+  ylab("Count")
+
+custom_plot
+
+jpeg(filename = "custom_ale.jpg",
+     width = 2400,
+     height = 1800,
+     res = 300)
+custom_plot
+dev.off()
+```
+
+![](inst/images/custom_ale.jpg?raw=true)
+
+</br>
+</br>
 
 ## Directories
 
 `data/` Built-in data sets for the package
 
 `inst/examples/` Examples for those requiring more than a one-liner
+
+`inst/data/` Example dataset for `README.md`. Included in `.Rbuildignore`.
+
+`inst/images/` Figures from examples in `README.md`. Included in `.Rbuildignore`.
 
 `man/` Help files and documentation
 
@@ -494,6 +650,8 @@ ggplot(plotter, aes(x = scenario, y = pop)) +
 ASMFC (Atlantic States Marine Fisheries Commission). 2020. American Shad Benchmark Stock Assessment and Peer-Review Report. Atlantic States Marine Fisheries Commission. [https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf](https://asmfc.org/wp-content/uploads/2025/01/AmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf).
 
 ASMFC (Atlantic States Marine Fisheries Commission). 2024. River Herring Benchmark Stock Assessment and Peer-Review Report. Atlantic States Marine Fisheries Commission. [https://asmfc.org/wp-content/uploads/2025/01/RiverHerringAssessment_PeerReviewReport_2024.pdf](https://asmfc.org/wp-content/uploads/2025/01/RiverHerringAssessment_PeerReviewReport_2024.pdf).
+
+Bell, C. E., and B. Kynard. 1985. Mortality of Adult American Shad Passing Through a 17-Megawatt Kaplan Turbine at a Low-Head Hydroelectric Dam. North American Journal of Fisheries Management 5:33-38.[ 10.1577/1548-8659(1985)5<33:MOAASP>2.0.CO;2](https://doi.org/10.1577/1548-8659(1985)5<33:MOAASP>2.0.CO;2)
 
 Csardi G., J. Hester J, H. Wickham, W. Chang, M. Morgan, and D. Tenenbaum. 2024. remotes: R Package Installation from Remote Repositories, Including 'GitHub'. R package version 2.5.0,
 [https://CRAN.R-project.org/package=remotes](https://CRAN.R-project.org/package=remotes).
