@@ -9,7 +9,8 @@
 #' \describe{
 #'     \item{\code{region}}{Life-history region}
 #'     \item{\code{sex}}{Fish sex}
-#'     \item{\code{age1, age2, age3, ...}}{Probability of maturing at age}
+#'     \item{\code{age1, age2, age3, age4, age5, age6, 
+#'     age7, age8, age9, age10, age11, age12, age13}}{Probability of maturing at age}
 #' }
 #' 
 #' @references Atlantic States Marine Fisheries Commission (ASMFC). 2020. 

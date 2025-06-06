@@ -8,7 +8,7 @@
 A data frame with 216 observations of 6 variables:
 \describe{
 
-    \item{\code{species}}{Species of fish}
+    \item{\code{Species}}{Species of fish}
     \item{\code{Region}}{Genetic reporting group and general geographic region}
     \item{\code{Sex}}{Fish sex}
     \item{\code{Age}}{Fish age (years)}

@@ -8,7 +8,8 @@
 A data frame with 30 observations of 7 variables:
 \describe{
     \item{\code{Species}}{Species of river herring ("ALE" or "BBH")}
-    \item{\code{sex}}{Fish sex: \code{"Female"}, \code{"Male"}, or \code{"Pooled"}}
+    \item{\code{Region}}{Genetic reporting group region}
+    \item{\code{Sex}}{Fish sex: \code{"Female"}, \code{"Male"}, or \code{"Pooled"}}
     \item{\code{alpha}}{Intercept}
     \item{\code{alpha.se}}{Standard error for the intercept}
     \item{\code{beta}}{Slope}

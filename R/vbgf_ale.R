@@ -9,7 +9,7 @@
 #'     \item{\code{Region}}{Genetic reporting group}
 #'     \item{\code{Sex}}{Sex of fish}
 #'     \item{\code{Linf}}{Asymptotic length of fish}
-#'     \item{\code{K}}{Brody growth coefficient}
+#'     \item{\code{k}}{Brody growth coefficient}
 #'     \item{\code{t0}}{Size at age zero}
 #' }
 #'
