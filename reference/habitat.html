@@ -48,51 +48,72 @@ Atlantic coast drainages of North America.</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A data frame with 868 observations of 22 variables:</p><dl>
+    <p>A data frame with 868 observations of 22 variables:</p><dl><dt><code>TERMCODE</code></dt>
+<dd><p>Code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.</p></dd>
 
-TERMCODE Code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.
+    <dt><code>system</code></dt>
+<dd><p>Name or name(s) of rivers included in catchment.</p></dd>
 
-system Name or name(s) of rivers included in catchment.
+    <dt><code>region</code></dt>
+<dd><p>Life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous).</p></dd>
 
-region Life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous)
+    <dt><code>huc_code</code></dt>
+<dd><p>n-digit huc code for the huc identifier used in <code>TERMCODE</code>.</p></dd>
 
-huc_code n-digit huc code for the huc identifier used in TERMCODE.
+    <dt><code>huc_level</code></dt>
+<dd><p>Watershed level used to determine <code>huc_code</code>.</p></dd>
 
-huc_level Watershed level used to determine huc_code.
+    <dt><code>count</code></dt>
+<dd><p>Number of habitat segments (features) included within <code>system</code>.</p></dd>
 
-count Number of habitat segments (features) included within system.
+    <dt><code>total</code></dt>
+<dd><p>Total historical habitat available in <code>system</code> (sq km).</p></dd>
 
-total Total historical habitat available in system (sq km).
+    <dt><code>UNIQUE_ID</code></dt>
+<dd><p>Unique value given to each dam and outlet feature.</p></dd>
 
-UNIQUE_ID Unique value given to each dam and outlet feature.
+    <dt><code>type</code></dt>
+<dd><p>Type of feature, either <code>dam</code> or <code>outlet</code>.</p></dd>
 
-type Type of feature, either dam or outlet.
+    <dt><code>catchmentID</code></dt>
+<dd><p>Unique value of the coastal outlet in which the dam is located upstream.</p></dd>
 
-catchmentID Unique value of the coastal outlet in which the dam is located upstream.
+    <dt><code>habitat_sqkm</code></dt>
+<dd><p>Total habitat upstream, given in square kilometers of river area.</p></dd>
 
-habitat_sqkm Total habitat upstream, given in square kilometers of river area.
+    <dt><code>habitatSegment_sqkm</code></dt>
+<dd><p>Amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.</p></dd>
 
-habitatSegment_sqkm Amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.
+    <dt><code>functional_habitatSegment_sqkm</code></dt>
+<dd><p>The value of <code>habitatSegment_sqkm</code> multiplied by the compounded passage fraction from outlet up to the feature.</p></dd>
 
-functional_habitatSegment_sqkm The value of habitatSegment_sqkm multiplied by the compounded passage fraction from outlet up to the feature.
+    <dt><code>PassageToHabitat</code></dt>
+<dd><p>Passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.</p></dd>
 
-PassageToHabitat Passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.
+    <dt><code>terminal_name_huc10</code></dt>
+<dd><p>Name of HUC10 watershed of feature's outlet.</p></dd>
 
-terminal_name_huc10 Name of HUC10 watershed of feature's outlet.
+    <dt><code>terminal_name_huc8</code></dt>
+<dd><p>Name of HUC8 watershed of feature's outlet.</p></dd>
 
-terminal_name_huc8 Name of HUC8 watershed of feature's outlet.
+    <dt><code>terminal_name_huc6</code></dt>
+<dd><p>Name of HUC6 watershed of feature's outlet.</p></dd>
 
-terminal_name_huc6 Name of HUC6 watershed of feature's outlet.
+    <dt><code>terminal_name_huc4</code></dt>
+<dd><p>Name of HUC4 watershed of feature's outlet.</p></dd>
 
-terminal_name_huc4 Name of HUC4 watershed of feature's outlet.
+    <dt><code>dam_name</code></dt>
+<dd><p>Name of dam feature, "n/a" if <code>outlet</code>.</p></dd>
 
-dam_name Name of dam feature, "n/a" if outlet.
+    <dt><code>latitude</code></dt>
+<dd><p>Latitudinal coordinate of feature centroid.</p></dd>
 
-latitude Latitudinal coordinate of feature centroid.
+    <dt><code>longitude</code></dt>
+<dd><p>Longitudinal coordinate of feature centroid.</p></dd>
 
-longitude Longitudinal coordinate of feature centroid.
+    <dt><code>dam_order</code></dt>
+<dd><p>Order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.</p></dd>
 
-dam_order Order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.
 
 </dl></div>
     <div class="section level2">
