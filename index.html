@@ -520,7 +520,7 @@
 <div class="section level3">
 <h3 id="creating-a-custom-population">Creating a custom population<a class="anchor" aria-label="anchor" href="#creating-a-custom-population"></a>
 </h3>
-<p>In this example, we create a custom population for alewife using the names from the custom_habitat_template() to build a dataframe with a novel habitat configuration.</p>
+<p>In this example, we create a custom population for alewife using the names from the custom_habitat_template() to build a dataframe with a novel habitat configuration. This simple example also demonstrates use of dam-specific upstream passage efficiencies. It is important to note that in more complex systems (e.g., with multiple upstream migration paths), dam-specific passage rates are not currently supported. For example, if we had a fourth dam with <code>dam_order</code> of <code>2</code> in our example below, it would not be explicitly upstream of either of the two dams with <code>dam_order</code> of <code>1</code>. We are currently working to implement matrix-based operations for custom habitat datasets that will allow for dam-specific fish passage rates in more complex systems. Until then, catchment-wide passage efficiencies can be applied in those complex systems, or the systems can be simplified using <code><a href="reference/custom_habitat_template.html">custom_habitat_template()</a></code> to address dam-specific questions.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Package load ----</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">snowfall</span><span class="op">)</span></span>
@@ -647,14 +647,7 @@
 <span>  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Spawning adults"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Count"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">custom_plot</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">jpeg</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"custom_ale.jpg"</span>,</span>
-<span>     width <span class="op">=</span> <span class="fl">2400</span>,</span>
-<span>     height <span class="op">=</span> <span class="fl">1800</span>,</span>
-<span>     res <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></span>
-<span><span class="va">custom_plot</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">custom_plot</span></span></code></pre></div>
 <p><img src="inst/images/custom_ale.jpg?raw=true"></p>
 <p> </p>
 </div>
