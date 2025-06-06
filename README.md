@@ -47,7 +47,7 @@ Specific releases can be installed by referencing the release tag, like this:
 The `remotes` package can be installed directly from CRAN or from GitHub following instructions in the repository [https://github.com/r-lib/remotes#readme](https://github.com/r-lib/remotes#readme).
 
 ### Versions 2.20 and earlier
-Earlier versions of this package can be installed with the [`devtools`](https://www.rstudio.com/products/rpackages/devtools/) package in R using the repository url:
+Earlier versions of this package can be installed with the [`devtools`](https://www.rstudio.com/products/rpackages/devtools/) package (Wickam et al. 2022) in R using the repository url:
 
 `devtools::install_github("danStich/anadrofish")`
 
@@ -63,7 +63,7 @@ To install `anadrofish`, you will need to have `devtools` installed ahead of tim
 ### Running one scenario for one river many times in parallel
 This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls annually since then.
 
-In this example, we return output from `sim_pop()` using `years = "all"` to also demonstrate the number of years needed for a stable population estimate under this scenario. If we wanted to model changes over time, we would run different scenarios for each year and return only the final year of simulations using `years = "last"`.
+In this example, we return output from `sim_pop()` using `years = "all"` to also demonstrate the number of years needed for a stable population estimate under this scenario. If we wanted to model changes over time, we would run different scenarios for each year and return only the final year of simulations using `years = "last"`. In theory, this approach could also be used to identify stable population sizes for seeding the initial population in temporal studies, but this has not been validated.
 
 The data set is in the `inst/data` folder on the GitHub repo but is ignored during R package install.
 
@@ -649,9 +649,8 @@ Bell, C. E., and B. Kynard. 1985. Mortality of Adult American Shad Passing Throu
 Csardi G., J. Hester J, H. Wickham, W. Chang, M. Morgan, and D. Tenenbaum. 2024. remotes: R Package Installation from Remote Repositories, Including 'GitHub'. R package version 2.5.0,
 [https://CRAN.R-project.org/package=remotes](https://CRAN.R-project.org/package=remotes).
 
+Wickham H., J. Hester, W. Chang, and J. Bryan. 2022. devtools: Tools to Make Developing R Packages Easier.R package version 2.4.5. [https://CRAN.R-project.org/package=devtools](https://CRAN.R-project.org/package=devtools).
+
 Wipplehauser, G. 2021. Recovery of Diadromous Fishes: A Kennebec River Case Study. Transactions of the American Fisheries Society 150:277-290. [https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292)
 
 Zydlewski, J., D. S. Stich, S. Roy, M. Bailey, T. Sheehan, and K. Sprankle. 2021. What Have We Lost? Modeling Dam Impacts on American Shad Populations Through Their Native Range. Frontiers in Marine Science 8. [https://doi.org/10.3389/fmars.2021.734213](https://doi.org/10.3389/fmars.2021.734213).
-
-
-
