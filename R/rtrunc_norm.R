@@ -31,10 +31,10 @@
 rtrunc_norm <- function(n, a = -Inf, b = Inf, mean, sd) {
   
   # Get quantiles corresponding to lower and upper bounds
-  p_low <- pnorm(a, mean, sd)
-  p_high <- pnorm(b, mean, sd)
+  p_low <- stats::pnorm(a, mean, sd)
+  p_high <- stats::pnorm(b, mean, sd)
   
   # Draw quantiles uniformly between bounds and pass to qnorm().
-  qnorm(runif(n, p_low, p_high), mean, sd)
+  stats::qnorm(stats::runif(n, p_low, p_high), mean, sd)
   
 }
