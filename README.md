@@ -484,7 +484,7 @@ ggplot(plotter, aes(x = scenario, y = pop)) +
 
 
 ### Creating a custom population
-In this example, we create a custom population for alewife using the names from the custom_habitat_template() to build a dataframe with a novel habitat configuration.
+In this example, we create a custom population for alewife using the names from the custom_habitat_template() to build a dataframe with a novel habitat configuration. This simple example also demonstrates use of dam-specific upstream passage efficiencies. It is important to note that in more complex systems (e.g., with multiple upstream migration paths), dam-specific passage rates are not currently supported. For example, if we had a fourth dam with `dam_order` of `2` in our example below, it would not be explicitly upstream of either of the two dams with `dam_order` of `1`. We are currently working to implement matrix-based operations for custom habitat datasets that will allow for dam-specific fish passage rates in more complex systems. Until then, catchment-wide passage efficiencies can be applied in those complex systems, or the systems can be simplified using `custom_habitat_template()` to address dam-specific questions.
 
 ```r
 # Package load ----
@@ -613,13 +613,6 @@ custom_plot <- ggplot(resdf, aes(spawners)) +
   ylab("Count")
 
 custom_plot
-
-jpeg(filename = "custom_ale.jpg",
-     width = 2400,
-     height = 1800,
-     res = 300)
-custom_plot
-dev.off()
 ```
 
 ![](inst/images/custom_ale.jpg?raw=true)
