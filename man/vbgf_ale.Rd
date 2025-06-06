@@ -9,7 +9,7 @@ A data frame with 1,116,000 observations of 5 variables:
 \describe{
     \item{\code{Region}}{Genetic reporting group}
     \item{\code{Sex}}{Sex of fish}
-    \item{\code{Linf}}{Asymptotic length of fish}
+    \item{\code{linf}}{Asymptotic length of fish}
     \item{\code{k}}{Brody growth coefficient}
     \item{\code{t0}}{Size at age zero}
 }
