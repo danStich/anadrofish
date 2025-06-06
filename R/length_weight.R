@@ -9,14 +9,10 @@
 #'
 #' @format A data frame with 6 observations of 4 variables:
 #' \describe{
-#' 
-#' \code{region} Life-history region
-#' 
-#' \code{sex} Fish sex \code{F} is female and \code{M} is male
-#' 
-#' \code{alpha} Intercept
-#' 
-#' \code{beta} Slope
+#'     \item{\code{region}}{Life-history region}
+#'     \item{\code{sex}}{Fish sex \code{F} is female and \code{M} is male}
+#'     \item{\code{alpha}}{Intercept}
+#'     \item{\code{beta}}{Slope}
 #' }
 #' 
 #' @references Atlantic States Marine Fisheries Commission (ASMFC). 2020. 

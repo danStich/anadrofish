@@ -6,18 +6,12 @@
 #' 
 #' @format A data frame with 24 observations of 6 variables:
 #' \describe{
-#' \code{Year} Year of study
-#' 
-#' \code{Age} Fish age (d)
-#' 
-#' \code{Md} Daily mortality
-#'
-#' \code{Sd} Daily survival
-#'
-#' \code{Si} Interval survival
-#'
-#' \code{Sc} Cumulative survival
-#'
+#'     \item{\code{Year}}{Year of study}
+#'     \item{\code{Age}}{Fish age (d)}
+#'     \item{\code{Md}}{Daily mortality}
+#'     \item{\code{Sd}}{Daily survival}
+#'     \item{\code{Si}}{Interval survival}
+#'     \item{\code{Sc}}{Cumulative survival}
 #' }
 #' 
 #' #' @references Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates 

@@ -7,15 +7,10 @@
 #' 
 #' @format A data frame with 3 observations of 4 variables:
 #' \describe{
-#' 
-#' \code{system} Study system
-#' 
-#' \code{region} Life-history region: NI = Northern iteroparous,
-#' SI = Southern iteroparous, SP = Semelparous
-#' 
-#' \code{alpha} Intercept
-#' 
-#' \code{beta} Slope
+#'     \item{\code{system}}{Study system}
+#'     \item{\code{region}}{Life-history region: NI = Northern iteroparous, SI = Southern iteroparous, SP = Semelparous}
+#'     \item{\code{alpha}}{Intercept}
+#'     \item{\code{beta}}{Slope}
 #' }
 #' 
 #' @source Olney, J. E. and R. S. McBride. 2003. Intraspecific 

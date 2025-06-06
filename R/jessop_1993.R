@@ -8,19 +8,12 @@
 #' 
 #' @format A data frame with 4 observations of 6 variables:
 #' \describe{
-#' 
-#' \code{ reference} Reference for study (in case others are added)
-#' 
-#' \code{system} Study system
-#' 
-#' \code{alpha} Intercept
-#' 
-#' \code{alpha.se} Standard error of the intercept
-#' 
-#' \code{beta} Slope
-#' 
-#' \code{beta.se} Standard error of the slope
-#' 
+#'     \item{\code{reference}}{Reference for study (in case others are added)}
+#'     \item{\code{system}}{Study system}
+#'     \item{\code{alpha}}{Intercept}
+#'     \item{\code{alpha.se}}{Standard error of the intercept}
+#'     \item{\code{beta}}{Slope}
+#'     \item{\code{beta.se}}{Standard error of the slope}
 #' }
 #' 
 #' @references Jessop, B. M. 1993. Fecundity of anadromous alewives and blueback

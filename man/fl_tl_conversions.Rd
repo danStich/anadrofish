@@ -7,17 +7,11 @@
 \format{
 A data frame with 2 observations of 5 variables:
 \describe{
-
-\code{species} Species of river herring ("ALE" or "BBH")
-
-\code{alpha} Intercept
-
-\code{alpha.se} Standard error of the intercept
-
-\code{beta} Slope
-
-\code{beta.se} Standard error of the slope
-
+    \item{\code{species}}{Species of river herring ("ALE" or "BBH")}
+    \item{\code{alpha}}{Intercept}
+    \item{\code{alpha.se}}{Standard error of the intercept}
+    \item{\code{beta}}{Slope}
+    \item{\code{beta.se}}{Standard error of the slope}
 }
 }
 \source{

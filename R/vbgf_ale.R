@@ -6,17 +6,11 @@
 #'
 #' @format A data frame with 1,116,000 observations of 5 variables:
 #' \describe{
-#' 
-#' \code{Region} Genetic reporting group
-#' 
-#' \code{Sex} Sex of fish
-#' 
-#' \code{Linf} Asymptotic length of fish
-#' 
-#' \code{K} Brody growth coefficient
-#' 
-#' \code{t0} Size at age zero
-#' 
+#'     \item{\code{Region}}{Genetic reporting group}
+#'     \item{\code{Sex}}{Sex of fish}
+#'     \item{\code{Linf}}{Asymptotic length of fish}
+#'     \item{\code{K}}{Brody growth coefficient}
+#'     \item{\code{t0}}{Size at age zero}
 #' }
 #'
 #' @references Atlantic States Marine Fisheries Commission. 2024. River herring

@@ -11,5 +11,5 @@ paper.md
 paper.bib
 Contributing.md
 ^LICENSE\.md$
-inst/images/*
-inst/data/*
+inst/images/
+inst/data/

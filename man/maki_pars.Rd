@@ -8,17 +8,12 @@
 A data frame with 216 observations of 6 variables:
 \describe{
 
-\code{species} Species of fish
-
-\code{Region} Genetic reporting group and general geographic region
-
-\code{Sex} Fish sex
-
-\code{Age} Fish age (years)
-
-\code{pMature} Probability of maturation at age
-
-\code{pMat.se} Standard error of estimated pMature from ASMFC (2024)
+    \item{\code{species}}{Species of fish}
+    \item{\code{Region}}{Genetic reporting group and general geographic region}
+    \item{\code{Sex}}{Fish sex}
+    \item{\code{Age}}{Fish age (years)}
+    \item{\code{pMature}}{Probability of maturation at age}
+    \item{\code{pMat.se}}{Standard error of estimated pMature from ASMFC (2024)}
 }
 }
 \source{

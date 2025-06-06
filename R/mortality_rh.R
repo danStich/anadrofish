@@ -5,16 +5,11 @@
 #'
 #' @format A data frame with 300 observations of 5 variables:
 #' \describe{
-#' 
-#' \code{region} Genetic reporting group region
-#' 
-#' \code{sex} Sex of fish
-#' 
-#' \code{age} Age in years
-#' 
-#' \code{M} Instantaneous natural mortality
-#' 
-#' \code{species} Species
+#'     \item{\code{region}}{Genetic reporting group region}
+#'     \item{\code{sex}}{Sex of fish}
+#'     \item{\code{age}}{Age in years}
+#'     \item{\code{M}}{Instantaneous natural mortality}
+#'     \item{\code{species}}{Species}
 #' }
 #'
 #' @references Atlantic States Marine Fisheries Commission. 2024. River herring

@@ -22,7 +22,7 @@ potential annual fecundity.}
 Numeric vector with one or more elements.}
 
 \item{b}{Density-dependent parameter. By default specified on a per-acre
-basis (will be divided by \code{acres} in function)}
+basis (will be divided by \code{acres} in function).}
 
 \item{acres}{Surface area (in acres) of habitat units.}
 

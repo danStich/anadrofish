@@ -7,50 +7,28 @@
 \format{
 A data frame with 868 observations of 22 variables:
 \describe{
-
-\code{TERMCODE} Code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.
-
-\code{system} Name or name(s) of rivers included in catchment.
-
-\code{region} Life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous)
-
-\code{huc_code} n-digit huc code for the huc identifier used in \code{TERMCODE}.
-
-\code{huc_level} Watershed level used to determine \code{huc_code}.
-
-\code{count} Number of habitat segments (features) included within \code{system}.
-
-\code{total} Total historical habitat available in \code{system} (sq km).
-
-\code{UNIQUE_ID} Unique value given to each dam and outlet feature.
-
-\code{type} Type of feature, either \code{dam} or \code{outlet}.
-
-\code{catchmentID} Unique value of the coastal outlet in which the dam is located upstream.
-
-\code{habitat_sqkm} Total habitat upstream, given in square kilometers of river area.
-
-\code{habitatSegment_sqkm} Amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.
-
-\code{functional_habitatSegment_sqkm} The value of \code{habitatSegment_sqkm} multiplied by the compounded passage fraction from outlet up to the feature.
-
-\code{PassageToHabitat} Passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.
-
-\code{terminal_name_huc10} Name of HUC10 watershed of feature's outlet.
-
-\code{terminal_name_huc8} Name of HUC8 watershed of feature's outlet.
-
-\code{terminal_name_huc6} Name of HUC6 watershed of feature's outlet.
-
-\code{terminal_name_huc4} Name of HUC4 watershed of feature's outlet.
-
-\code{dam_name} Name of dam feature, "n/a" if \code{outlet}.
-
-\code{latitude} Latitudinal coordinate of feature centroid.
-
-\code{longitude} Longitudinal coordinate of feature centroid.
-
-\code{dam_order} Order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.
+    \item{\code{TERMCODE}}{Code used to identify regional, state, or river units in which features are located, assists with subselecting features for analysis.}
+    \item{\code{system}}{Name or name(s) of rivers included in catchment.}
+    \item{\code{region}}{Life-history region within which river is located (NI = northern iteroparous, SI = southern iteroparous, SP = semelparous).}
+    \item{\code{huc_code}}{n-digit huc code for the huc identifier used in \code{TERMCODE}.}
+    \item{\code{huc_level}}{Watershed level used to determine \code{huc_code}.}
+    \item{\code{count}}{Number of habitat segments (features) included within \code{system}.}
+    \item{\code{total}}{Total historical habitat available in \code{system} (sq km).}
+    \item{\code{UNIQUE_ID}}{Unique value given to each dam and outlet feature.}
+    \item{\code{type}}{Type of feature, either \code{dam} or \code{outlet}.}
+    \item{\code{catchmentID}}{Unique value of the coastal outlet in which the dam is located upstream.}
+    \item{\code{habitat_sqkm}}{Total habitat upstream, given in square kilometers of river area.}
+    \item{\code{habitatSegment_sqkm}}{Amount of habitat in the segment upstream of the feature, between the feature and the next group of adjacent upstream features.}
+    \item{\code{functional_habitatSegment_sqkm}}{The value of \code{habitatSegment_sqkm} multiplied by the compounded passage fraction from outlet up to the feature.}
+    \item{\code{PassageToHabitat}}{Passage fraction at feature, compounded over this and all downstream features. Default dam passage is zero, default outlet passage is one. These values can be modified at start of model run.}
+    \item{\code{terminal_name_huc10}}{Name of HUC10 watershed of feature's outlet.}
+    \item{\code{terminal_name_huc8}}{Name of HUC8 watershed of feature's outlet.}
+    \item{\code{terminal_name_huc6}}{Name of HUC6 watershed of feature's outlet.}
+    \item{\code{terminal_name_huc4}}{Name of HUC4 watershed of feature's outlet.}
+    \item{\code{dam_name}}{Name of dam feature, "n/a" if \code{outlet}.}
+    \item{\code{latitude}}{Latitudinal coordinate of feature centroid.}
+    \item{\code{longitude}}{Longitudinal coordinate of feature centroid.}
+    \item{\code{dam_order}}{Order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.}
 }
 }
 \source{

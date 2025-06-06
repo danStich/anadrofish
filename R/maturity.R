@@ -7,12 +7,9 @@
 #'
 #' @format A data frame with 6 observations of 15 variables:
 #' \describe{
-#' 
-#' \code{region} Life-history region
-#' 
-#' \code{sex} Fish sex
-#' 
-#' \code{age1, age2, age3, ...} Probability of maturing at age
+#'     \item{\code{region}}{Life-history region}
+#'     \item{\code{sex}}{Fish sex}
+#'     \item{\code{age1, age2, age3, ...}}{Probability of maturing at age}
 #' }
 #' 
 #' @references Atlantic States Marine Fisheries Commission (ASMFC). 2020. 

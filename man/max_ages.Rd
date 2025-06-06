@@ -7,13 +7,9 @@
 \format{
 A data frame with 6 observations of 3 variables:
 \describe{
-
-\code{region} Life-history region
-
-\code{sex} Fish sex
-
-\code{maxage} Maximum observed age
-
+    \item{\code{region}}{Life-history region}
+    \item{\code{sex}}{Fish sex}
+    \item{\code{maxage}}{Maximum observed age}
 }
 }
 \source{
