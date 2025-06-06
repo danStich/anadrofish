@@ -38,9 +38,9 @@ affiliations:
   index: 1
 - name: Biological Field Station, State University of New York at Oneonta, Cooperstown, NY 13326 USA
   index: 2
-- name: National Oceanic and Atmospheric Administration, National Marine Fisheries Service, Northeast Fisheries Science Center, Woods Hole, MA 02543 USA
-  index: 3
 - name: Maine Geological Survey, Department of Agriculture, Conservation and Forestry, Augusta, ME, 04333 USA
+  index: 3  
+- name: National Oceanic and Atmospheric Administration, National Marine Fisheries Service, Northeast Fisheries Science Center, Woods Hole, MA 02543 USA
   index: 4
 - name: Department of Wildlife, Fisheries, and Conservation Biology, University of Maine, Orono, ME, 04469 USA
   index: 5
