@@ -2,9 +2,9 @@ name: Draft PDF
 on: 
   push:
     paths:
-    paper.md
-    paper.bib
-
+    - paper.md
+    - paper.bib
+    - .github/workflows/draft-pdf.yml
 jobs:
   paper:
     runs-on: ubuntu-latest
