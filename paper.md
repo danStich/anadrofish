@@ -26,7 +26,7 @@ authors:
     affiliation: "3"
   - name: Timothy F. Sheehan
     orcid: "0000-0002-9689-1180"  
-    affiliations: "4"
+    affiliation: "4"
   - name: Shawn D. Snyder
     orcid: "0000-0003-3286-4957"
     affiliation: "5"
