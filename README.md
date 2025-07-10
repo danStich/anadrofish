@@ -18,7 +18,7 @@ R package for modeling anadromous fish population responses to habitat changes
 ### Purpose
 The purpose of this package is to distribute code and provide a user interface for modeling anadromous fish population responses to dam passage, fisheries, or restoration activities in Atlantic coastal rivers of Canada and the United States. The main `sim_pop()` function uses various helper functions (see `?anadrofish` in R) that link dam passage to habitat availability and stochastic population models to simulate species-specific responses to dams and fisheries across marine and freshwater habitats (Figure 1 below). Built-in habitat datasets are currently derived separately for each species based on best available knowledge and expert opinion from state and federal fishery biologists, managers, and scientists. Likewise, all species-specific life-history parameters (size at age, age at maturity, natural mortality) are derived directly from interstate stock assessments or informed by empirical estimates from the fisheries literature. The application of these models is described in [ASMFC (2020)](https://asmfc.org/uploads/file/63d8437dAmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf), [Zydlewski et al. (2021)](https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2021.734213/full), and [ASMFC (2024)](https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf).
 
-![**Figure 1**: Graphical overview of the `anadrofish` workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the `sim_pop()` function along with built-in data sets to simulate anadromous fish populations.](inst/images/conceptual-model.jpg?raw=true)
+![**Figure 1**: Graphical overview of the `anadrofish` workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the `sim_pop()` function along with built-in data sets to simulate anadromous fish populations.](./inst/images/conceptual-model.jpg)
 
 </br>
 
@@ -186,7 +186,7 @@ ggplot(plotter, aes(x = year, y = pop)) +
   geom_ribbon(aes(xmax = year, ymin = lci, ymax = uci, color = NULL), alpha = 0.25)
 ```
 
-![](inst/images/seb_ale.jpg?raw=true)
+![](./inst/images/seb_ale.jpg?raw=true)
 
 </br>
 </br>
@@ -336,7 +336,7 @@ ggplot(plotter, aes(x = downstream_j, y = fit, color = downstream, fill = downst
   )
 ```
 
-![](inst/images/ct_shad.jpg?raw=true)
+![](./inst/images/ct_shad.jpg?raw=true)
 
 </br>
 </br>
@@ -476,7 +476,7 @@ ggplot(plotter, aes(x = scenario, y = pop)) +
 
 ```
 
-![](inst/images/coastal_bbh.jpg?raw=true)
+![](./inst/images/coastal_bbh.jpg?raw=true)
 
 
 </br>
@@ -615,7 +615,7 @@ custom_plot <- ggplot(resdf, aes(spawners)) +
 custom_plot
 ```
 
-![](inst/images/custom_ale.jpg?raw=true)
+![](./inst/images/custom_ale.jpg?raw=true)
 
 </br>
 </br>
