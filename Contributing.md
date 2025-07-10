@@ -59,8 +59,6 @@ If no existing issue matches your concern, create a new issue using the appropri
 ## 4. **Seeking Support**
 For general questions or help using the `anadrofish` package:
 - Check the [documentation](https://danstich.github.io/anadrofish).
-- Review the [FAQs](https://github.com/danStich/anadrofish/wiki/FAQs) (if available).
-- Post your question in the [Discussions](https://github.com/danStich/anadrofish/discussions) tab (if enabled).  
 
 ---
 
