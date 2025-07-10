@@ -3,7 +3,7 @@
 \docType{data}
 \name{vbgf_NI}
 \alias{vbgf_NI}
-\title{Sex-aggregate von Bertalanffy growth parameters for 
+\title{Sex-aggregate von Bertalanffy growth parameters for
 Northern Iteroparous American shad}
 \format{
 A data frame with 1500 observations of 3 variables:
@@ -23,7 +23,7 @@ vbgf_NI
 }
 \description{
 A dataset containing sex-aggregate estimates
-of von Bertalanffy growth parameters for Northern 
+of von Bertalanffy growth parameters for Northern
 Iteroparous life-history region. Data frame contains posterior
 draws from coast-wide growth models (Gilligan 2019).
 }

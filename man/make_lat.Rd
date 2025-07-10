@@ -7,7 +7,7 @@
 make_lat(river, species = c("AMS", "ALE", "BBH"), custom_habitat = NULL)
 }
 \arguments{
-\item{river}{Character string specifying river name. See 
+\item{river}{Character string specifying river name. See
 \code{\link{get_rivers}}.}
 
 \item{species}{Species for which population dynamics will be simulated.
@@ -22,6 +22,6 @@ Function used to extract river-specific latitude
 from built-in data sets for American shad. Not implemented for river herring.
 }
 \examples{
-make_lat(river = 'Susquehanna', species = 'AMS')
+make_lat(river = "Susquehanna", species = "AMS")
 
 }

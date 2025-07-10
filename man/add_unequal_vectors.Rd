@@ -13,9 +13,9 @@ add_unequal_vectors(x, y)
 A vector of length one containing pre-spawn survival.
 }
 \description{
-Function used to add aligned vectors of unequal length without 
-recycling elements of the shorter vector. Used to combine male and 
-female cohorts when \code{max_age} is not equal in 
+Function used to add aligned vectors of unequal length without
+recycling elements of the shorter vector. Used to combine male and
+female cohorts when \code{max_age} is not equal in
 the \code{\link{max_ages}} dataset.
 }
 \examples{

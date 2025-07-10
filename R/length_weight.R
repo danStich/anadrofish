@@ -14,10 +14,10 @@
 #'     \item{\code{alpha}}{Intercept}
 #'     \item{\code{beta}}{Slope}
 #' }
-#' 
-#' @references Atlantic States Marine Fisheries Commission (ASMFC). 2020. 
-#' American shad benchmark stock assessment and peer-review report. ASMFC, 
+#'
+#' @references Atlantic States Marine Fisheries Commission (ASMFC). 2020.
+#' American shad benchmark stock assessment and peer-review report. ASMFC,
 #' Arlington, VA.
-#' 
+#'
 #' @source Atlantic States Marine Fisheries Commission
 "length_weight"

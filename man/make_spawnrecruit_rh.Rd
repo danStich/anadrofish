@@ -36,7 +36,7 @@ in \code{\link{maki_pars}}.
 }
 \details{
 The primary use of this function is to simulate proportion of
-mature spawners at each age in a population of river-herring based on 
+mature spawners at each age in a population of river-herring based on
 region-specific probabilities of maturation at each age estimated
 from the Maki (YEAR) method in ASMFC (2024).
 }
@@ -46,6 +46,6 @@ make_spawnrecruit_rh(river = "Hudson", species = "BBH", sex = "female")
 }
 \references{
 Atlantic States Marine Fisheries Commission. 2024. River herring
-benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA.
 URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }

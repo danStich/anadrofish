@@ -1,16 +1,16 @@
 #' anadrofish: Anadromous Fish Population Responses to Habitat Changes
-#' 
+#'
 #' The anadrofish package is a collection of tools for running
 #' coastwide or river-specific population models for
 #' anadromous fish in response to habitat change from dams.
-#' 
+#'
 #' @section Functions called directly:
 #' The following functions can be called directly from anadrofish:
-#' 
+#'
 #'  \describe{
-#'  
+#'
 #'    \item{\code{\link{sim_pop}}}{main function used to simulate populations}
-#'    
+#'
 #'    \item{\code{\link{add_unequal_vectors}}}{add vectors of unequal length}
 #'    \item{\code{\link{beverton_holt}}}{Beverton-Holt recruitment with density dependence}
 #'    \item{\code{\link{custom_habitat_template}}}{make custom habitat for an existing river or a template for a new river of interest}
@@ -32,14 +32,14 @@
 #'    \item{\code{\link{make_spawnrecruit}}}{get region- and age-specific probabilities of recruitment to spawn}
 #'    \item{\code{\link{project_pop}}}{project population to next time step without reproduction}
 #'    \item{\code{\link{sim_juvenile_s}}}{simulate juvenile survival based on reported rates}
-#'    
+#'
 #'    \item{\code{\link{lower95}}}{convenience function for calculating upper 95\% CI}
 #'    \item{\code{\link{upper95}}}{convenience function for calculating lower 95\% CI}
 #'  }
-#'  
+#'
 #' @section Data:
 #' The following built-in datasets are included:
-#' 
+#'
 #'   \describe{
 #'     \item{\code{\link{crecco_1983}}}{Regression parameters for latitude-iteroparity relationship in American shad}
 #'     \item{\code{\link{fl_tl_conversions}}}{Fork length - total length conversions for river herring}
@@ -64,8 +64,8 @@
 #'
 #'
 "_PACKAGE"
-#' 
+#'
 #' @aliases anadrofish-package
-#' 
+#'
 #' @importFrom stats quantile rnorm runif sd
 NULL

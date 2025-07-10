@@ -19,7 +19,7 @@ male and female spawn recruit probabilities are returned.}
 
 \item{species}{Species for which rivers are returned
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
-blueback herring (\code{"BBH"}). If species is "ALE" or "BBH" then this 
+blueback herring (\code{"BBH"}). If species is "ALE" or "BBH" then this
 function calls \code{\link{make_spawnrecruit_rh}}.}
 
 \item{custom_habitat}{A dataframe containing columns corresponding to the

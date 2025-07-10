@@ -20,7 +20,7 @@ those in the output from \code{\link{custom_habitat_template}}. The default,
 }
 \description{
 Function used to get region for rivers listed
-in output of \code{\link{get_rivers}} from the built-in 
+in output of \code{\link{get_rivers}} from the built-in
 habitat data sets.
 }
 \examples{

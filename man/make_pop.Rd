@@ -13,17 +13,17 @@ blueback herring (\code{"BBH"}).}
 
 \item{max_age}{The maximum age of fish in the population(s). A numeric vector of length 1.}
 
-\item{nM}{Instantaneous natural mortality rate. 
-A numeric vector of length for (\code{"AMS"} or a vector of 
+\item{nM}{Instantaneous natural mortality rate.
+A numeric vector of length for (\code{"AMS"} or a vector of
 length \code{max_age} for \code{"ALE"} and \code{"BBH"}.}
 
-\item{fM}{Instantaneous fishing mortality rate. 
+\item{fM}{Instantaneous fishing mortality rate.
 A numeric vector of length 1.}
 
 \item{n_init}{Initial population abundance (includes all age classes).}
 }
 \value{
-A vector containing age-specific abundances 
+A vector containing age-specific abundances
 with \code{length = max_age}.
 }
 \description{
@@ -37,7 +37,7 @@ estimates, and maximum age to create a starting population.
 \dontrun{
   
 # Simulate a fish population at stable age distribution
-  pop = make_pop(max_age, nM, fM, n_init)
+pop <- make_pop(max_age, nM, fM, n_init)
   
 }
 }

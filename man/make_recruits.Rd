@@ -19,7 +19,7 @@ or a vector of \code{length = maximum age} depending on whether
 age-specific values are passed to \code{eggs}.
 }
 \description{
-Function used to calculate realized reproductive output 
+Function used to calculate realized reproductive output
 (to larval stage) of female spawners without density-dependence
 in larval production.
 }
@@ -28,12 +28,12 @@ in larval production.
 \dontrun{
   
 # Using values from Bailey and Zydlewski (2013)  
-  eggs <- c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724)
-  sr <- 0.50
-  s_hatch = 0.10   
+eggs <- c(0, 0, 0, 20654, 34674, 58210, 79433, 88480, 97724)
+sr <- 0.50
+s_hatch <- 0.10   
 
 # Calculate expected number of age-0 fish  
-  fec <- make_recruits(eggs = eggs, sr = sr, s_hatch = s_hatch)
+fec <- make_recruits(eggs = eggs, sr = sr, s_hatch = s_hatch)
   
 }
 }

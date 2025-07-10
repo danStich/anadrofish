@@ -38,13 +38,13 @@ Samuel G. Roy: \url{https://github.com/samGroy/AmShadProject}
 habitat
 }
 \description{
-A dataset containing the surface area of American 
+A dataset containing the surface area of American
 shad habitat segments by feature (dam or outlet) in
 Atlantic coast drainages of North America.
 }
 \references{
 Zydlewski, J., D. S. Stich, S. Roy, M. Bailey, T. Sheehan, and
-K. Sprankle. 2021. What Have We Lost? Modeling Dam Impacts on American Shad 
+K. Sprankle. 2021. What Have We Lost? Modeling Dam Impacts on American Shad
 Populations Through Their Native Range. Frontiers in Marine Science 8.
 DOI: https://doi.org/10.3389/fmars.2021.734213.
 }

@@ -20,10 +20,10 @@ make_downstream(
 Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
 
-\item{downstream}{Numeric indicating proportional downstream survival 
+\item{downstream}{Numeric indicating proportional downstream survival
 through a single dam.}
 
-\item{upstream}{Numeric indicating proportional upstream passage 
+\item{upstream}{Numeric indicating proportional upstream passage
 through a single dam.}
 
 \item{historical}{Logical indicating whether to use contemporary or
@@ -35,21 +35,21 @@ those in the output from \code{\link{custom_habitat_template}}. The default,
 \code{species} and \code{river}.}
 }
 \value{
-Numeric vector of length 1 representing weighted catchment-scale 
+Numeric vector of length 1 representing weighted catchment-scale
 downstream migration mortality for juvenile or adult fish.
 }
 \description{
 Function used to create population-level
-survival through dams during seasonal downstream migration of 
+survival through dams during seasonal downstream migration of
 juveniles and adults.
 }
 \details{
-This function assigns cumulative downstream passage values 
+This function assigns cumulative downstream passage values
 to all features in \code{\link{habitat}} corresponding to \code{river}.
 It then calculates the proportion of habitat in each habitat segment of a
 river, and weights downstream mortality at the catchment-scale
-by proportion of habitat. This implicitly assumes that fish are 
-distributed throughout the river during spawning in proportion to 
+by proportion of habitat. This implicitly assumes that fish are
+distributed throughout the river during spawning in proportion to
 available habitat.
 }
 \examples{
@@ -59,61 +59,58 @@ available habitat.
 # Example 1. ----  
 # Calculate population-level survival during outmigration
 # for fixed upstream and downstream dam passage probabilities
-s_down <- make_downstream(
-  habitat_data = habitat,
-  river = 'Susquehanna',
-  downstream = 0.95,
-  upstream = 0.80
-  )
+s_down <- make_downstream(habitat_data = habitat,
+                          river = 'Susquehanna',
+                          downstream = 0.95,
+                          upstream = 0.80)
   
 # Example 2. ----
 # Explore how upstream passage affects catchment-wide survival
 # during outmigration for a fixed downstream passage
-upstream_p <- seq(from=0, to=1, by=0.01)
-s_down <- vector(mode='numeric', length=length(upstream_p))
+upstream_p <- seq(from = 0, to = 1, by = 0.01)
+s_down <- vector(mode = 'numeric', length = length(upstream_p))
 for(i in 1:length(upstream_p)){
-  s_down[i] <- make_downstream(
-    habitat_data = habitat,
-    river = 'Susquehanna',
-    downstream = 0.5,
-    upstream = upstream_p[i]
-    )  
+  s_down[i] <- make_downstream(habitat_data = habitat,
+                               river = 'Susquehanna',
+                               downstream = 0.5,
+                               upstream = upstream_p[i])  
 } 
 
-Zd = 1 - s_down
+Zd <- 1 - s_down
 
-plot(x=upstream_p, y=Zd, type = 'l',
-     xlab='Upstream passage',
+plot(x = upstream_p, 
+     y = Zd, 
+     type = 'l',
+     xlab = 'Upstream passage',
      ylab = 'Total downstream mortality',
-     main = 'Susquehanna River'
-     )
+     main = 'Susquehanna River')
 
 # Example 3. ----
 # Explore interactions between upstream and downstream 
 # passage probabilities when both vary. This changes
 # drastically from one river to another depending on
 # habitat above and below dams, and number of dams.
-upstream_p <- seq(from=0, to=1, by=0.01)
-downstream_p <- seq(from=0, to=1, by=0.01)
-s_down <- matrix(data = NA, nrow=length(upstream_p), ncol = length(downstream_p))
+upstream_p <- seq(from = 0, to = 1, by = 0.01)
+downstream_p <- seq(from = 0, to = 1, by = 0.01)
+s_down <- matrix(data = NA, 
+                 nrow = length(upstream_p), 
+                 ncol = length(downstream_p))
 
 for(i in 1:length(upstream_p)){
   for(t in 1:length(downstream_p)){
-    s_down[i,t] <- make_downstream(
-      habitat_data = habitat,
-      river = 'Susquehanna',
-      downstream = downstream_p[t],
-      upstream = upstream_p[i]
-      )  
+    s_down[i,t] <- make_downstream(habitat_data = habitat,
+                                   river = 'Susquehanna',
+                                   downstream = downstream_p[t],
+                                   upstream = upstream_p[i])  
   }   
 }
 
 zd <- 1 - s_down
-filled.contour(x=upstream_p, y=downstream_p, z=zd,
+filled.contour(x = upstream_p, 
+               y = downstream_p, 
+               z = zd,
                xlab = 'Upstream passage probability',
                ylab = 'Downstream survival per dam',
-               main = 'Catchment-wide dam mortality'
-               )
-
+               main = 'Catchment-wide dam mortality')
 }
 }

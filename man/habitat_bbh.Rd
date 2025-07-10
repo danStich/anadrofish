@@ -24,7 +24,7 @@ habitat_bbh
 }
 \description{
 A dataset containing the surface area of blueback herring
-habitat and features for individual flow line segments 
+habitat and features for individual flow line segments
 comprising habitat units in Atlantic coast drainages.
 }
 \keyword{datasets}

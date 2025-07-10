@@ -7,13 +7,13 @@
 # default parameter settings.
   
 # Start by making a sequence of habitat amounts (acres)
-  acres = seq(0, 100, 1)
+acres <- seq(0, 100, 1)
   
 # Run the Beverton-Holt curve for 100 individuals
 # in varying habitats with default a and b parameters
-  recruits = beverton_holt(S=100, acres = seq(0,1000,10))
+recruits <- beverton_holt(S = 100, acres = seq(0, 1000, 10))
   
 # Plot the results
-  plot(x = acres, y = recruits, type='l')
+plot(x = acres, y = recruits, type='l')
   
 }

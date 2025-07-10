@@ -1,8 +1,8 @@
 #' @title American shad habitat
 #'
-#' @description A dataset containing the surface area of American 
+#' @description A dataset containing the surface area of American
 #' shad habitat segments by feature (dam or outlet) in
-#' Atlantic coast drainages of North America. 
+#' Atlantic coast drainages of North America.
 #'
 #' @format A data frame with 868 observations of 22 variables:
 #' \describe{
@@ -29,12 +29,12 @@
 #'     \item{\code{longitude}}{Longitudinal coordinate of feature centroid.}
 #'     \item{\code{dam_order}}{Order in which dam is located in river, starting from coastal outlet. Outlets have code = 0.}
 #' }
-#' 
+#'
 #' @source Samuel G. Roy: \url{https://github.com/samGroy/AmShadProject}
-#' 
+#'
 #' @references Zydlewski, J., D. S. Stich, S. Roy, M. Bailey, T. Sheehan, and
-#' K. Sprankle. 2021. What Have We Lost? Modeling Dam Impacts on American Shad 
+#' K. Sprankle. 2021. What Have We Lost? Modeling Dam Impacts on American Shad
 #' Populations Through Their Native Range. Frontiers in Marine Science 8.
-#' DOI: https://doi.org/10.3389/fmars.2021.734213. 
-#' 
+#' DOI: https://doi.org/10.3389/fmars.2021.734213.
+#'
 "habitat"

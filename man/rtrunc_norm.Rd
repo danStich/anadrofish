@@ -22,7 +22,7 @@ Simulate random draws from a truncated normal distribution based
 using inverse cumulative distribution function for normal distribution.
 }
 \details{
-This approach is an approximation based on the normal distribution 
+This approach is an approximation based on the normal distribution
 for case application to tested uses in the `anadrofish` package. It should
 not be considered a generalized solution. This function is used to replace
 the \code{rtruncnorm} function from the \code{truncnorm} package to eliminate

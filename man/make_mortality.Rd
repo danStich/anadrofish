@@ -34,9 +34,9 @@ A numeric vector of \code{length = 1} containing
 natural instantaneous mortality of fish in population.
 }
 \description{
-The purpose of this function is to query the 
-instantaneous natural mortality (regional estimates) 
-for the selected river from built-in data set containing 
+The purpose of this function is to query the
+instantaneous natural mortality (regional estimates)
+for the selected river from built-in data set containing
 region-specific \code{\link{mortality}} for American shad or
 \code{\link{mortality_rh}} for river herring.
 }
@@ -45,11 +45,11 @@ make_mortality(river = "Penobscot", species = "BBH")
 
 }
 \references{
-Atlantic States Marine Fisheries Commission (ASMFC). 2020. 
-American shad benchmark stock assessment and peer-review report. ASMFC, 
+Atlantic States Marine Fisheries Commission (ASMFC). 2020.
+American shad benchmark stock assessment and peer-review report. ASMFC,
 Arlington, VA.
 
 Atlantic States Marine Fisheries Commission. 2024. River herring
-benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA.
 URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }

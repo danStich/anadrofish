@@ -28,8 +28,8 @@ weight at age from length derived using region-specific
 von Bertalanffy growth parameters in built-in datasets.
 }
 \references{
-Atlantic States Marine Fisheries Commission (ASMFC). 2020. 
-American shad benchmark stock assessment and peer-review report. ASMFC, 
+Atlantic States Marine Fisheries Commission (ASMFC). 2020.
+American shad benchmark stock assessment and peer-review report. ASMFC,
 Arlington, VA.
 }
 \keyword{datasets}

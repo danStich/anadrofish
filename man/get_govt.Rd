@@ -24,7 +24,7 @@ to selected river.
 }
 \description{
 Function used to get governmental unit for rivers listed
-in output of \code{\link{get_rivers}} from the built-in 
+in output of \code{\link{get_rivers}} from the built-in
 habitat data sets.
 }
 \examples{

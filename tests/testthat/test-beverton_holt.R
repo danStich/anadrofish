@@ -1,5 +1,4 @@
 test_that("Recruitment function returns correct type", {
-  
   expect_type(
     beverton_holt(
       a = 250000,
@@ -11,5 +10,4 @@ test_that("Recruitment function returns correct type", {
     ),
     "double"
   )
-  
 })

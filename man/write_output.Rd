@@ -7,7 +7,7 @@
 write_output(.sim_pop, sex_specific = FALSE)
 }
 \arguments{
-\item{.sim_pop}{A hidden environment in the calling frame 
+\item{.sim_pop}{A hidden environment in the calling frame
 of \code{\link{sim_pop}}. Arbitrarily any named object with
 names matching those used in the function.}
 
@@ -22,7 +22,7 @@ Internal function used to collect and
 return all model inputs and relevant model
 outputs (e.g., population size) from all years t.
 
-For internal use in \code{\link{sim_pop}}. Not intended 
+For internal use in \code{\link{sim_pop}}. Not intended
 to be called directly.
 }
 \keyword{Internal}

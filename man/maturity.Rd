@@ -31,14 +31,14 @@ Atlantic States Marine Fisheries Commission
 maturity
 }
 \description{
-A dataset containing sex-specific probabilities 
-of maturation at age for each life-history region 
-(NI = Northern iteroparous, SI = Southern iteroparous, 
+A dataset containing sex-specific probabilities
+of maturation at age for each life-history region
+(NI = Northern iteroparous, SI = Southern iteroparous,
 SP = Semelparous)
 }
 \references{
-Atlantic States Marine Fisheries Commission (ASMFC). 2020. 
-American shad benchmark stock assessment and peer-review report. ASMFC, 
+Atlantic States Marine Fisheries Commission (ASMFC). 2020.
+American shad benchmark stock assessment and peer-review report. ASMFC,
 Arlington, VA.
 }
 \keyword{datasets}

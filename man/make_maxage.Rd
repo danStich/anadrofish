@@ -35,8 +35,8 @@ A numeric vector of \code{length = 1} containing
 maximum age of fish in population.
 }
 \description{
-The purpose of this function is to query the maximum age 
-in the selected river from built-in data set containing 
+The purpose of this function is to query the maximum age
+in the selected river from built-in data set containing
 region-specific \code{\link{max_ages}} and.
 }
 \examples{
@@ -44,11 +44,11 @@ make_maxage(river = "Susquehanna", species = "AMS")
 
 }
 \references{
-Atlantic States Marine Fisheries Commission (ASMFC). 2020. 
-American shad benchmark stock assessment and peer-review report. ASMFC, 
+Atlantic States Marine Fisheries Commission (ASMFC). 2020.
+American shad benchmark stock assessment and peer-review report. ASMFC,
 Arlington, VA.
 
 Atlantic States Marine Fisheries Commission. 2024. River herring
-benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA.
 URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 }

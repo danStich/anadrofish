@@ -19,11 +19,11 @@ those in the output from \code{\link{custom_habitat_template}}. The default,
 \code{species} and \code{river}.}
 }
 \value{
-A vector containing age-specific potential annual 
+A vector containing age-specific potential annual
 fecundity with \code{length = max_age}.
 }
 \description{
-Function used to simulate number of eggs 
+Function used to simulate number of eggs
 produced per female (potential annual fecundity, PAF),
 for rivers included in \code{\link{get_rivers}}.
 }
@@ -41,19 +41,19 @@ simulation methods and references described therein.
 }
 
 \examples{
-make_eggs(river="Susquehanna", species = "AMS")
+make_eggs(river = "Susquehanna", species = "AMS")
 
 }
 \references{
-Olney, J. E. and R. S. McBride. 2003. Intraspecific 
-variation in batch fecundity of American shad (Alosa sapidissima): 
-revisiting the paradigm of reciprocal latitudinal trends 
-in reproductive traits. American Fisheries Society 
+Olney, J. E. and R. S. McBride. 2003. Intraspecific
+variation in batch fecundity of American shad (Alosa sapidissima):
+revisiting the paradigm of reciprocal latitudinal trends
+in reproductive traits. American Fisheries Society
 Symposium 35:185-192.
 
-McBride, R. S., R. Ferreri, E. K. Towle, J. M. Boucher, and 
-G. Basilone, G. 2016. Yolked oocyte dynamics support agreement 
-between determinate- and indeterminate-method estimates of annual 
-fecundity for a northeastern United States population of 
+McBride, R. S., R. Ferreri, E. K. Towle, J. M. Boucher, and
+G. Basilone, G. 2016. Yolked oocyte dynamics support agreement
+between determinate- and indeterminate-method estimates of annual
+fecundity for a northeastern United States population of
 American shad. PLoS ONE 11(10): 10.1371/journal.pone.0164203
 }

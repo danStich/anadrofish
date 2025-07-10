@@ -18,19 +18,19 @@ those in the output from \code{\link{custom_habitat_template}}. The default,
 \code{species} and \code{river}.}
 }
 \value{
-A vector containing age-specific potential annual 
+A vector containing age-specific potential annual
 fecundity with \code{length = max_age}.
 }
 \description{
-Function used to simulate number of eggs 
+Function used to simulate number of eggs
 produced per female (total fecundity) for river herring in
 rivers included in \code{\link{get_rivers}}.
 }
 \section{Details}{
- 
+
 The default methods of alewife and blueback herring uses a stochastic,
 MCMC sampling approach to draw correlated sets of von Bertalanffy growth
-parameters from built-in \code{vbgf_...} datasets, 
+parameters from built-in \code{vbgf_...} datasets,
 length-weight regression parameters in \code{link{lw_pars_rh}}, and
 length-fecundity relationships from Sullivan et al. (2019) to simulate the
 number of eggs per female within genetic reporting groups (\code{region}).
@@ -42,10 +42,10 @@ make_eggs_rh(river = "Susquehanna", species = "BBH")
 }
 \references{
 Atlantic States Marine Fisheries Commission. 2024. River herring
-benchmark stock assessment and peer-review report. ASMFC, Arlington, VA. 
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA.
 URL: https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
 
 Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019. Digital Image Analysis
-as a Technique for Alewife Fecundity Estimation in a New Hampshire River. 
+as a Technique for Alewife Fecundity Estimation in a New Hampshire River.
 North American Journal of Fisheries Management 39:353-361.
 }

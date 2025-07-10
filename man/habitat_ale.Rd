@@ -31,13 +31,12 @@ Shawn Snyder
 habitat_ale
 }
 \description{
-A dataset containing the surface area of Alewife 
+A dataset containing the surface area of Alewife
 habitat and features for individual flow line segments or waterbodies (lakes)
 comprising habitat units in Atlantic coast drainages.
 }
 \examples{
 head(habitat_ale)
-
 
 }
 \keyword{datasets}

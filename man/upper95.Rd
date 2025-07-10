@@ -10,12 +10,12 @@ upper95(x)
 \item{x}{A numeric vector or matrix.}
 }
 \value{
-Numeric vector of length 1 containing 97.5th percentile for sampling 
+Numeric vector of length 1 containing 97.5th percentile for sampling
 distribution of \code{x}.
 }
 \description{
 Function with a short name to calculate 97.5th percentile
-of a distribution. Calls \code{stats::quantile}, 
+of a distribution. Calls \code{stats::quantile},
 but is shorter and is easier to use in calls to \code{apply} family
 of functions.
 }
@@ -23,9 +23,9 @@ of functions.
 # Example usage
 \dontrun{
   
- x <- rnorm(1e4, 0, 1)
+x <- rnorm(1e4, 0, 1)
  
- upper95(x)
+upper95(x)
   
 }
 }

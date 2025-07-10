@@ -14,8 +14,8 @@ beverton_holt(
 )
 }
 \arguments{
-\item{a}{Ratio of recruits per spawner. Density independent parameter 
-equivalent to the slope near \code{S = 0}. By default specified as 
+\item{a}{Ratio of recruits per spawner. Density independent parameter
+equivalent to the slope near \code{S = 0}. By default specified as
 potential annual fecundity.}
 
 \item{S}{Spawning stock abundance per acre.
@@ -26,7 +26,7 @@ basis (will be divided by \code{acres} in function).}
 
 \item{acres}{Surface area (in acres) of habitat units.}
 
-\item{error}{Character string indicating whether to use 
+\item{error}{Character string indicating whether to use
 \code{'multiplicative'} or \code{'additive'} error structure. Defaults
 to \code{error = 'multiplicative'}.}
 
@@ -35,30 +35,30 @@ density-dependent recruitment from the Beverton-Holt curve. If \code{TRUE}
 then a vector of \code{length = max age} must be passed to \code{S}.}
 }
 \value{
-A numeric vector with one or more elements representing 
+A numeric vector with one or more elements representing
 number of age-1 recruits (downstream migrants in freshwater).
 }
 \description{
-Beverton and Holt (1957) stock-recruit curve 
-with habitat constraints. Default parameter values are tuned to predict 
-larval recruitment assuming a carrying capacity for spawning adults of 
+Beverton and Holt (1957) stock-recruit curve
+with habitat constraints. Default parameter values are tuned to predict
+larval recruitment assuming a carrying capacity for spawning adults of
 100 fish per acre for American shad or 500 fish per acre for river herring
 species. See \code{details}.
 }
 \details{
-The primary use of this function in the \code{anadrofish} package 
-is to predict number of larval recruits in a river based on the number of 
-fish within a functional habitat unit, and the number of surface acres 
-of habitat in the same unit. However, the number of potential uses is 
-flexible. Passing a single value to each argument would 
-result in calculation of a single recruitment value. Alternatively, 
-passing a vector to one of the default arguments allows the user to 
-explore values of recruitment over a range of each input. 
+The primary use of this function in the \code{anadrofish} package
+is to predict number of larval recruits in a river based on the number of
+fish within a functional habitat unit, and the number of surface acres
+of habitat in the same unit. However, the number of potential uses is
+flexible. Passing a single value to each argument would
+result in calculation of a single recruitment value. Alternatively,
+passing a vector to one of the default arguments allows the user to
+explore values of recruitment over a range of each input.
 
 Under the current implementation, it is recommended that the user
 pass multiple values to only a single argument per call.
-Otherwise, we recommend conducting more in-depth sensitivity 
-explorations by use of single values applied 
+Otherwise, we recommend conducting more in-depth sensitivity
+explorations by use of single values applied
 under a boot-strapping, or Monte Carlo approach.
 }
 \examples{
@@ -71,19 +71,19 @@ under a boot-strapping, or Monte Carlo approach.
 # default parameter settings.
   
 # Start by making a sequence of habitat amounts (acres)
-  acres = seq(0, 100, 1)
+acres <- seq(0, 100, 1)
   
 # Run the Beverton-Holt curve for 100 individuals
 # in varying habitats with default a and b parameters
-  recruits = beverton_holt(S=100, acres = seq(0,1000,10))
+recruits <- beverton_holt(S = 100, acres = seq(0, 1000, 10))
   
 # Plot the results
-  plot(x = acres, y = recruits, type='l')
+plot(x = acres, y = recruits, type='l')
   
 }
 }
 \references{
-Beverton, R. J. H. and S. J. Holt. 1957. On the Dynamics 
-of Exploited Fish Populations, Fisheries Investigations (Series 2), 
+Beverton, R. J. H. and S. J. Holt. 1957. On the Dynamics
+of Exploited Fish Populations, Fisheries Investigations (Series 2),
 Volume 19. United Kingdom Ministry of Agriculture and Fisheries, 533 pp.
 }

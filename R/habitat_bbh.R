@@ -1,7 +1,7 @@
 #' @title Blueback herring habitat
 #'
 #' @description A dataset containing the surface area of blueback herring
-#' habitat and features for individual flow line segments 
+#' habitat and features for individual flow line segments
 #' comprising habitat units in Atlantic coast drainages.
 #'
 #' @format A data frame with 282,809 observations of 7 variables:
@@ -14,6 +14,6 @@
 #'     \item{\code{POP}}{Genetic reporting group geographic region within which habitat unit falls}
 #'     \item{\code{DamOrder}}{Order of dam at downstream terminus of habitat unit. Cumulatively assigned such that all habitat units upstream of a given dam all have dam_order >= 1}
 #' }
-#' 
+#'
 #' @source Shawn Snyder
 "habitat_bbh"

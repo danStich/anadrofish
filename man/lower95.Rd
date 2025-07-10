@@ -14,7 +14,7 @@ Numeric vector of length 1 containing the 2.5th percentile of the sampling distr
 }
 \description{
 Function with a short name to calculate 2.5th percentile
-of a distribution. Calls \code{stats::quantile(x)}, 
+of a distribution. Calls \code{stats::quantile(x)},
 but is shorter and is easier to use in calls to \code{apply} family
 of functions.
 }
@@ -22,9 +22,9 @@ of functions.
 # Example usage
 \dontrun{
   
- x <- rnorm(1e4, 0, 1)
- 
- lower95(x)
+x <- rnorm(1e4, 0, 1)
+
+lower95(x)
   
 }
 }

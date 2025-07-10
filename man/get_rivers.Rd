@@ -12,16 +12,16 @@ Choices include American shad (\code{"AMS"}), alewife (\code{"ALE"}), and
 blueback herring (\code{"BBH"}).}
 }
 \value{
-A character vector of rivers that are included in 
+A character vector of rivers that are included in
 built-in habitat datasets for selected \code{species}.
 }
 \description{
 Get names of rivers included in package for each species.
 }
 \details{
-The primary uses of this function are (1) so the user can see 
-rivers that can be used for simulation, and (2) so the output can be passed 
-to a random sampler for use in stochastic simulation via 
+The primary uses of this function are (1) so the user can see
+rivers that can be used for simulation, and (2) so the output can be passed
+to a random sampler for use in stochastic simulation via
 parallel processing.
 }
 \examples{
@@ -32,7 +32,8 @@ parallel processing.
 get_rivers(anadrofish::habitat)
 
 # Sample a random river from those available
-get_rivers(anadrofish::habitat)[sample(length(get_rivers(anadrofish::habitat)), 1)]  
+get_rivers(anadrofish::habitat)[sample(
+  length(get_rivers(anadrofish::habitat)), 1)]  
   
 }
 }

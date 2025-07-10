@@ -33,11 +33,11 @@ blueback herring (\code{"BBH"}).}
 
 \item{nyears}{Number of years for simulation.}
 
-\item{river}{River basin. Available rivers implemented in package 
+\item{river}{River basin. Available rivers implemented in package
 can be viewed by calling \code{\link{get_rivers}} with no arguments
-(e.g., \code{get_rivers()}). Alternatively, the user can specify 
-\code{rivers = sample(get_rivers, 1)} to randomly sample river 
-within larger simulation studies. Information about each river can be 
+(e.g., \code{get_rivers()}). Alternatively, the user can specify
+\code{rivers = sample(get_rivers, 1)} to randomly sample river
+within larger simulation studies. Information about each river can be
 found in the \code{\link{habitat}} dataset.}
 
 \item{max_age}{Maximum age of fish in population. If \code{NULL}
@@ -50,23 +50,23 @@ corresponding region in the \code{\link{mortality}} dataset.}
 
 \item{fM}{Instantaneous fishing mortality. The default value is zero.}
 
-\item{n_init}{Initial population seed (number of Age-1 individuals) 
+\item{n_init}{Initial population seed (number of Age-1 individuals)
 used to simulate the starting population. Default is to use a draw
 from a wide uniform distribution, but it may be beneficial to narrow
 once expectations for abundance at population stability are determined.}
 
-\item{spawnRecruit}{Probability of recruitment to spawn at age. If 
+\item{spawnRecruit}{Probability of recruitment to spawn at age. If
 \code{NULL} (default), then probabilities are based on the mean of
 male and female recruitment to first spawn at age from the
 \code{\link{maturity}} dataset.}
 
 \item{eggs}{Number of eggs per female. Can be a vector of length 1
-if eggs per female is age invariant, or can be vector of length 
-\code{max_age} if age-specific. If \code{NULL} (default) then 
-estimated based on weight-batch fecundity regression relationships 
+if eggs per female is age invariant, or can be vector of length
+\code{max_age} if age-specific. If \code{NULL} (default) then
+estimated based on weight-batch fecundity regression relationships
 for each life-history region in the \code{\link{olney_mcbride}}
 dataset (Olney and McBride 2003) and mean number of batches spawned
-(6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}} for 
+(6.1 +/- 2.1, McBride et al. 2016) using \code{\link{make_eggs}} for
 American shad or parameters from Sullivan et al. (2019) for river herring.}
 
 \item{sr}{Sex ratio (expressed as percent female or P(female)).}
@@ -74,8 +74,8 @@ American shad or parameters from Sullivan et al. (2019) for river herring.}
 \item{b}{Density-dependent parameter for the Beverton-Holt
 stock-recruitment relationship. The default value (\code{0.21904}) is used
 to approximate a larval carrying capacity at 100 adult fish per acre based
-on fecundity American shad and river herring. A value of about 0.05 
-approximates a carrying capacity that corresponds to about 500 adult fish 
+on fecundity American shad and river herring. A value of about 0.05
+approximates a carrying capacity that corresponds to about 500 adult fish
 per acre.}
 
 \item{s_juvenile}{Survival from hatch to outmigrant. If NULL
@@ -83,16 +83,16 @@ per acre.}
 mean and sd of \code{Sc} through \code{70 d} for 1979-1982 from
 Crecco et al. (1983) in \code{\link{crecco_1983}}.}
 
-\item{upstream}{Numeric of length 1 representing proportional 
+\item{upstream}{Numeric of length 1 representing proportional
 upstream passage through dams.}
 
-\item{downstream}{Numeric of length 1 indicating proportional 
+\item{downstream}{Numeric of length 1 indicating proportional
 downstream survival through dams.}
 
 \item{downstream_j}{Numeric of length 1 indicating proportional
 downstream survival through dams for juveniles.}
 
-\item{output_years}{Temporal level of detail provided in output. 
+\item{output_years}{Temporal level of detail provided in output.
 The default value of '\code{last}' returns the final year of simulation.
 Any value other than the default '\code{last}' will return
 data for all years of simulation. This is useful for testing.}
@@ -103,8 +103,8 @@ then \code{pop} (non-spawning population) and \code{spawners} (spawning
 population) are summed across all age classes for each year of simulation.
 If \code{TRUE} then \code{pop} and \code{spawners} are returned for
 each age class. For the sake of managing outputs, abundances for
-\code{pop} and \code{spawners} are reported for all age classes 1-13 
-regardless of \code{max_age}, but all abundances for ages greater 
+\code{pop} and \code{spawners} are reported for all age classes 1-13
+regardless of \code{max_age}, but all abundances for ages greater
 than \code{max_age} are zero.}
 
 \item{sex_specific}{Whether to use sex-specific life-history data.}
@@ -116,7 +116,7 @@ those in the output from \code{\link{custom_habitat_template}}. The default,
 }
 \value{
 A dataframe containing simulation inputs (arguments
-to \code{sim_pop}) and outputs (number of spawners) by year, minimally 
+to \code{sim_pop}) and outputs (number of spawners) by year, minimally
 including the following variables:
 
 \itemize{
@@ -157,273 +157,286 @@ passage probabilities and uncertainty in life-history information.
 }
 \examples{
 # Example usage
-\dontrun{
-  
+# \dontrun{
+
 # Example 1. Simulate a single population one time for 50 years ----------------
-  library(anadrofish)
-  library(ggplot2)
-  
-  # Set rng seed ----
-  set.seed(1)
-  
-  # Simulate a single population for fifty years one time
-  res <- sim_pop(
-    species = "AMS",
-    nyears = 50,
-    river = 'Susquehanna',
-    fM = 0,
-    n_init = runif(1, 10e5, 50e6),
-    sr = rbeta(1, 100, 100),
-    upstream = 1,
-    downstream = 1,
-    downstream_j = 1,
-    output_years = 'all',
-    age_structured_output = FALSE)
-  
-  # Plot the output - the result will be different for each
-  # simulated model run above
-  ggplot(res, aes(x = year, y = spawners)) +
-    geom_line() +
-    xlab("Year") +
-    ylab("Number of spawners")
-   
+library(anadrofish)
+library(ggplot2)
+
+# Set rng seed ----
+set.seed(1)
+
+# Simulate a single population for fifty years one time
+res <- sim_pop(
+  species = "AMS",
+  nyears = 50,
+  river = "Susquehanna",
+  fM = 0,
+  n_init = runif(1, 10e5, 50e6),
+  sr = rbeta(1, 100, 100),
+  upstream = 1,
+  downstream = 1,
+  downstream_j = 1,
+  output_years = "all",
+  age_structured_output = FALSE
+)
+
+# Plot the output - the result will be different for each
+# simulated model run above
+ggplot(res, aes(x = year, y = spawners)) +
+  geom_line() +
+  xlab("Year") +
+  ylab("Number of spawners")
 
 # Example 2. Simulate a single population 100 times in parallel ----------------
-  # Package load ----
-  library(snowfall)
-  library(parallel)
-  library(anadrofish)
-  library(tidyverse)
-  
-  # Set rng seed ----
-  set.seed(1)
-  
-  # Parallel settings ----
-  # Get number of cores
-  ncpus = parallel::detectCores() - 1
-  
-  # Initialize snowfall
-  sfInit(parallel = TRUE, cpus = ncpus, type="SOCK")
-  
-  # Wrapper function ----
-  sim <- function(x){
+# Package load ----
+library(snowfall)
+library(parallel)
+library(anadrofish)
+library(tidyverse)
 
+# Set rng seed ----
+set.seed(1)
+
+# Parallel settings ----
+# Get number of cores
+ncpus <- parallel::detectCores() - 1
+
+# Initialize snowfall
+sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
+
+# Wrapper function ----
+sim <- function(x) {
   # . Call simulation ----
   # Run with a single set of upstream and downstream
   # dam passage probabilities
   res <- sim_pop(
     species = "AMS",
     nyears = 50,
-    river = 'Susquehanna',
+    river = "Susquehanna",
     fM = 0,
     n_init = runif(1, 8e6, 50e6),
     sr = rbeta(1, 100, 100),
     upstream = 1,
     downstream = 1,
     downstream_j = 1,
-    output_years = 'all',
-    age_structured_output = FALSE)
-  
+    output_years = "all",
+    age_structured_output = FALSE
+  )
+
   # . Define the output lists ----
-  retlist <- list(res=res)      
-  
-  return(retlist)    
-  
-  }  
-    
-  # Parallel execution ----
-  # . Load libraries on workers -----
-  sfLibrary(anadrofish)
-  
-  # . Distribute to workers -----
-  # Number of simulations to run
-  niterations <- 1000
-  
-  # . Run the simulation ----
-  start <- Sys.time()
-  
-  result <- sfLapply(1:niterations, sim) 
-  
-  total_time <- Sys.time() - start
-  total_time
-  
-  # . Stop snowfall ----
-  sfStop()
-  
-  # Results ----
-  # 'result' is a list of lists. Save this:
-  # save(result, file = "sim_result.rda")
-  
-  # Extract results dataframes by string and rbind them
-  res <- lapply(result, function(x) x[[c('res')]])
-  library(data.table)
-  resdf <- data.frame(rbindlist(res))
-  
-  glimpse(resdf)
-  
-  # Results summary
-  plotter <- resdf \%>\% 
-    group_by(year) \%>\% 
-    summarize(fit = mean(spawners),
-              lwr = quantile(spawners, 0.025),
-              upr = quantile(spawners, 0.975))
-    
-  # Plotting
-  ggplot(plotter, aes(x = year, y = fit)) +
-    geom_line() +
-    geom_ribbon(aes(xmax = year, ymin = lwr, ymax = upr,
-                    color = NULL), alpha = 0.40)
-    
-  
+  retlist <- list(res = res)
+
+  return(retlist)
+}
+
+# Parallel execution ----
+# . Load libraries on workers -----
+sfLibrary(anadrofish)
+
+# . Distribute to workers -----
+# Number of simulations to run
+niterations <- 1000
+
+# . Run the simulation ----
+start <- Sys.time()
+
+result <- sfLapply(1:niterations, sim)
+
+total_time <- Sys.time() - start
+total_time
+
+# . Stop snowfall ----
+sfStop()
+
+# Results ----
+# 'result' is a list of lists. Save this:
+# save(result, file = "sim_result.rda")
+
+# Extract results dataframes by string and rbind them
+res <- lapply(result, function(x) x[[c("res")]])
+library(data.table)
+resdf <- data.frame(rbindlist(res))
+
+glimpse(resdf)
+
+# Results summary
+plotter <- resdf \%>\%
+  group_by(year) \%>\%
+  summarize(
+    fit = mean(spawners),
+    lwr = quantile(spawners, 0.025),
+    upr = quantile(spawners, 0.975)
+  )
+
+# Plotting
+ggplot(plotter, aes(x = year, y = fit)) +
+  geom_line() +
+  geom_ribbon(
+    aes(
+      xmax = year,
+      ymin = lwr,
+      ymax = upr,
+      color = NULL
+    ),
+    alpha = 0.40
+  )
+
+
 # Example 3. Multi-river simulation --------------------------------------------
 # Simulate population size for randomly
 # selected rivers and randomly chosen passage
 # probabilities from a pre-defined list.
-    
+
 # Run simulations in parallel, saving age-structured
 # output, but only for the final year of simulation
-  # Package load ----
-  library(snowfall)
-  library(parallel)
-  library(anadrofish)
-  library(tidyverse)
-  
-  # Set rng seed ----
-  set.seed(1)
-  
-  # Parallel settings ----
-  # Get number of cores
-  ncpus = parallel::detectCores() - 1
-  
-  # Initialize snowfall
-  sfInit(parallel = TRUE, cpus = ncpus, type="SOCK")
-  
-  # Wrapper function ----
-  sim <- function(x){
-  
-    # . Call simulation ----
-    # Define passage scenarios (ASFMC 2020) 
-    passages <- list(
-      c(0,0,0),
-      c(1,1,1),
-      c(0.4, 0.80, 0.95))
-    passage <- unlist(sample(passages, 1))  
-      
-    # Run the sim  
-    res <- sim_pop(
-      species = "AMS",
-      nyears = 50,
-      river = get_rivers(species = "AMS")[sample(1:length(get_rivers(species = "AMS")), 1)],    
-      fM = 0,
-      n_init = runif(1, 10e5, 50e6),
-      sr = rbeta(1, 100, 100),
-      upstream = passage[1],
-      downstream = passage[2],
-      downstream_j = passage[3],
-      output_years = 'last',
-      age_structured_output = TRUE
-      )
-    
-    # . Define the output lists ----
-    retlist <- list(res = res)      
-  
-    return(retlist)      
-  }  
-  
-  # Parallel execution ----
-  # . Load libraries on workers -----
-  sfLibrary(anadrofish)
-  
-  # . Distribute to workers -----
-  # Number of simulations to run
-  niterations <- 1000
-  
-  # . Run the simulation ----
-  start <- Sys.time()
-  
-  result <- sfLapply(1:niterations, sim) 
-  
-  total_time <- Sys.time() - start
-  total_time
-  
-  # . Stop snowfall ----
-  sfStop()
-  
-  # Results ----
-  # 'result' is a list of lists. Save this:
-  # save(result, file = "sim_result.rda")
-  
-  # Extract results dataframes by string and rbind them
-  res <- lapply(result, function(x) x[[c('res')]])
-  library(data.table)
-  resdf <- rbindlist(res)
-  
-  # . Summary statistics by passage scenario -----
-  resdf$river <- as.character(resdf$river)
-  
-  # Sum population size and spawners across age groups
-  resdf$spawners <- resdf \%>\%
-    select(grep("spawners", colnames(resdf))) \%>\%
-    rowSums 
-  resdf$pop <- resdf \%>\%
-    select(grep("pop", colnames(resdf))) \%>\%
-    rowSums 
-  
-  # Assign scenarios based on upstream passage
-  resdf$scenario <- 'No dams'
-  resdf$scenario[resdf$upstream==0] <- 'No passage'
-  resdf$scenario[resdf$upstream==.40] <- 'Current condition'
-  
-  # . System-specific summaries ----
-  rivers <- resdf \%>\% 
-    group_by(region, river, scenario) \%>\% 
-    summarize(fit = mean(spawners),
-              lwr = quantile(spawners, 0.025),
-              upr = quantile(spawners, 0.975))
-  
+# Package load ----
+library(snowfall)
+library(parallel)
+library(anadrofish)
+library(tidyverse)
 
-  # . Coastal summary ----
-  coastal <- rivers \%>\% 
-    group_by(scenario) \%>\% 
-    summarize(fit = sum(fit),
-              lwr = sum(lwr),
-              upr = sum(upr))
-  
-  # . River plot ----
-  rivers \%>\% 
-    filter(region == "SI") \%>\% 
-    ggplot(aes(x = river, y = fit, color = scenario, fill = scenario)) +
-      geom_col() +
-      coord_flip() +
-      xlab("River") +
-      ylab("Number of spawning adults") +
-      ggtitle("Southern Iteroparous Region") +
-      theme(plot.title = element_text(hjust = 0.5))
-  
-  # . Coastal plot ----
-  ggplot(coastal, aes(x = scenario, y = fit)) +
-    geom_point(size = 4) +
-    geom_linerange(aes(xmax = scenario, ymin = lwr, ymax = upr),
-                   linewidth = 1) +
-    xlab("Scenario") +
-    ylab("Number of spawning adults")
+# Set rng seed ----
+set.seed(1)
 
+# Parallel settings ----
+# Get number of cores
+ncpus <- parallel::detectCores() - 1
+
+# Initialize snowfall
+sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
+
+# Wrapper function ----
+sim <- function(x) {
+  # . Call simulation ----
+  # Define passage scenarios (ASFMC 2020)
+  passages <- list(
+    c(0, 0, 0),
+    c(1, 1, 1),
+    c(0.4, 0.80, 0.95)
+  )
+  passage <- unlist(sample(passages, 1))
+
+  # Run the sim
+  res <- sim_pop(
+    species = "AMS",
+    nyears = 50,
+    river = get_rivers(species = "AMS")[sample(1:length(get_rivers(species = "AMS")), 1)],
+    fM = 0,
+    n_init = runif(1, 10e5, 50e6),
+    sr = rbeta(1, 100, 100),
+    upstream = passage[1],
+    downstream = passage[2],
+    downstream_j = passage[3],
+    output_years = "last",
+    age_structured_output = TRUE
+  )
+
+  # . Define the output lists ----
+  retlist <- list(res = res)
+
+  return(retlist)
 }
+
+# Parallel execution ----
+# . Load libraries on workers -----
+sfLibrary(anadrofish)
+
+# . Distribute to workers -----
+# Number of simulations to run
+niterations <- 1000
+
+# . Run the simulation ----
+start <- Sys.time()
+
+result <- sfLapply(1:niterations, sim)
+
+total_time <- Sys.time() - start
+total_time
+
+# . Stop snowfall ----
+sfStop()
+
+# Results ----
+# 'result' is a list of lists. Save this:
+# save(result, file = "sim_result.rda")
+
+# Extract results dataframes by string and rbind them
+res <- lapply(result, function(x) x[[c("res")]])
+library(data.table)
+resdf <- rbindlist(res)
+
+# . Summary statistics by passage scenario -----
+resdf$river <- as.character(resdf$river)
+
+# Sum population size and spawners across age groups
+resdf$spawners <- resdf \%>\%
+  select(grep("spawners", colnames(resdf))) \%>\%
+  rowSums()
+resdf$pop <- resdf \%>\%
+  select(grep("pop", colnames(resdf))) \%>\%
+  rowSums()
+
+# Assign scenarios based on upstream passage
+resdf$scenario <- "No dams"
+resdf$scenario[resdf$upstream == 0] <- "No passage"
+resdf$scenario[resdf$upstream == .40] <- "Current condition"
+
+# . System-specific summaries ----
+rivers <- resdf \%>\%
+  group_by(region, river, scenario) \%>\%
+  summarize(
+    fit = mean(spawners),
+    lwr = quantile(spawners, 0.025),
+    upr = quantile(spawners, 0.975)
+  )
+
+
+# . Coastal summary ----
+coastal <- rivers \%>\%
+  group_by(scenario) \%>\%
+  summarize(
+    fit = sum(fit),
+    lwr = sum(lwr),
+    upr = sum(upr)
+  )
+
+# . River plot ----
+rivers \%>\%
+  filter(region == "SI") \%>\%
+  ggplot(aes(x = river, y = fit, color = scenario, fill = scenario)) +
+  geom_col() +
+  coord_flip() +
+  xlab("River") +
+  ylab("Number of spawning adults") +
+  ggtitle("Southern Iteroparous Region") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# . Coastal plot ----
+ggplot(coastal, aes(x = scenario, y = fit)) +
+  geom_point(size = 4) +
+  geom_linerange(aes(xmax = scenario, ymin = lwr, ymax = upr),
+    linewidth = 1
+  ) +
+  xlab("Scenario") +
+  ylab("Number of spawning adults")
+
+# }
 }
 \references{
 Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019.
-Digital Image Analysis as a Technique for Alewife Fecundity Estimation in a 
+Digital Image Analysis as a Technique for Alewife Fecundity Estimation in a
 New Hampshire River. North American Journal of Fisheries Management 39:353-361.
 
-McBride, R. S., R. Ferreri, E. K. Towle, J. M. Boucher, and 
-G. Basilone, G. 2016. Yolked oocyte dynamics support agreement 
-between determinate- and indeterminate-method estimates of annual 
-fecundity for a northeastern United States population of 
+McBride, R. S., R. Ferreri, E. K. Towle, J. M. Boucher, and
+G. Basilone, G. 2016. Yolked oocyte dynamics support agreement
+between determinate- and indeterminate-method estimates of annual
+fecundity for a northeastern United States population of
 American shad. PLoS ONE 11(10):10.1371/journal.pone.0164203
 
-Olney, J. E. and R. S. McBride. 2003. Intraspecific 
-variation in batch fecundity of American shad (*Alosa sapidissima*): 
-revisiting the paradigm of reciprocal latitudinal trends 
-in reproductive traits. American Fisheries Society 
+Olney, J. E. and R. S. McBride. 2003. Intraspecific
+variation in batch fecundity of American shad (*Alosa sapidissima*):
+revisiting the paradigm of reciprocal latitudinal trends
+in reproductive traits. American Fisheries Society
 Symposium 35:185-192.
 }

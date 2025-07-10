@@ -13,7 +13,7 @@ make_output(nyears, sex_specific = FALSE)
 indicating whether to use sex-specific output.}
 }
 \description{
-Internal function to create output 
+Internal function to create output
 vectors in \code{\link{sim_pop}}. Not intended to be called directly.
 }
 \keyword{Internal}
