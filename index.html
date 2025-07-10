@@ -68,7 +68,7 @@
 </h3>
 <p>The purpose of this package is to distribute code and provide a user interface for modeling anadromous fish population responses to dam passage, fisheries, or restoration activities in Atlantic coastal rivers of Canada and the United States. The main <code><a href="reference/sim_pop.html">sim_pop()</a></code> function uses various helper functions (see <code><a href="reference/anadrofish-package.html">?anadrofish</a></code> in R) that link dam passage to habitat availability and stochastic population models to simulate species-specific responses to dams and fisheries across marine and freshwater habitats (Figure 1 below). Built-in habitat datasets are currently derived separately for each species based on best available knowledge and expert opinion from state and federal fishery biologists, managers, and scientists. Likewise, all species-specific life-history parameters (size at age, age at maturity, natural mortality) are derived directly from interstate stock assessments or informed by empirical estimates from the fisheries literature. The application of these models is described in <a href="https://asmfc.org/uploads/file/63d8437dAmShadBenchmarkStockAssessment_PeerReviewReport_2020_web.pdf" class="external-link">ASMFC (2020)</a>, <a href="https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2021.734213/full" class="external-link">Zydlewski et al. (2021)</a>, and <a href="https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf" class="external-link">ASMFC (2024)</a>.</p>
 <div class="float">
-<img src="reference/figures/conceptual-model.jpg" alt="Figure 1: Graphical overview of the anadrofish workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the sim_pop() function along with built-in data sets to simulate anadromous fish populations."><div class="figcaption">
+<img src="https://github.com/danStich/anadrofish/blob/master/inst/images/conceptual-model.jpg?raw=true" alt="Figure 1: Graphical overview of the anadrofish workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the sim_pop() function along with built-in data sets to simulate anadromous fish populations."><div class="figcaption">
 <strong>Figure 1</strong>: Graphical overview of the <code>anadrofish</code> workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the <code><a href="reference/sim_pop.html">sim_pop()</a></code> function along with built-in data sets to simulate anadromous fish populations.</div>
 </div>
 <p></p>
@@ -232,7 +232,9 @@
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">plotter</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_ribbon</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>xmax <span class="op">=</span> <span class="va">year</span>, ymin <span class="op">=</span> <span class="va">lci</span>, ymax <span class="op">=</span> <span class="va">uci</span>, color <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/seb_ale.jpg?raw=true"></p>
+<div class="float">
+<img src="https://github.com/danStich/anadrofish/blob/master/inst/images/seb_ale.jpg?raw=true" alt="Figure 2: Example result from Sebasticook River simulation"><div class="figcaption">Figure 2: Example result from Sebasticook River simulation</div>
+</div>
 <p> </p>
 </div>
 <div class="section level3">
@@ -378,7 +380,7 @@
 <span>    strip.background <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    strip.text.x <span class="op">=</span> <span class="fu">element_blank</span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/ct_shad.jpg?raw=true"></p>
+<p><img src="./inst/images/ct_shad.jpg?raw=true"></p>
 <p> </p>
 </div>
 <div class="section level3">
@@ -514,7 +516,7 @@
 <span>    legend.position <span class="op">=</span> <span class="st">"top"</span>,</span>
 <span>    legend.box <span class="op">=</span> <span class="st">"horizontal"</span>,</span>
 <span>    legend.margin <span class="op">=</span> <span class="fu">margin</span><span class="op">(</span><span class="fu">unit</span><span class="op">(</span><span class="fl">.5</span>, units <span class="op">=</span> <span class="st">"npc"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/coastal_bbh.jpg?raw=true"></p>
+<p><img src="./inst/images/coastal_bbh.jpg?raw=true"></p>
 <p> </p>
 </div>
 <div class="section level3">
@@ -648,7 +650,7 @@
 <span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Count"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">custom_plot</span></span></code></pre></div>
-<p><img src="reference/figures/custom_ale.jpg?raw=true"></p>
+<p><img src="./inst/images/custom_ale.jpg?raw=true"></p>
 <p> </p>
 </div>
 </div>
@@ -658,7 +660,8 @@
 <p><code>data/</code> Built-in data sets for the package</p>
 <p><code>inst/examples/</code> Examples for those requiring more than a one-liner</p>
 <p><code>inst/data/</code> Example dataset for <code>README.md</code>. Included in <code>.Rbuildignore</code>.</p>
-<p><code>man/</code> Help files and documentation, including figures for examples</p>
+<p><code>inst/images/</code> Figures from examples in <code>README.md</code>. Included in <code>.Rbuildignore</code>.</p>
+<p><code>man/</code> Help files and documentation</p>
 <p><code>R/</code> R functions in scripts</p>
 <p><code>tests/</code> Function tests and checks using the <code>testhat</code> package</p>
 <p></p>
