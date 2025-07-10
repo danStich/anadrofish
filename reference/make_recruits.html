@@ -73,12 +73,12 @@ age-specific values are passed to <code>eggs</code>.</p>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span><span class="co"># Using values from Bailey and Zydlewski (2013)  </span></span></span>
-<span class="r-in"><span>  <span class="va">eggs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">20654</span>, <span class="fl">34674</span>, <span class="fl">58210</span>, <span class="fl">79433</span>, <span class="fl">88480</span>, <span class="fl">97724</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">sr</span> <span class="op">&lt;-</span> <span class="fl">0.50</span></span></span>
-<span class="r-in"><span>  <span class="va">s_hatch</span> <span class="op">=</span> <span class="fl">0.10</span>   </span></span>
+<span class="r-in"><span><span class="va">eggs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">20654</span>, <span class="fl">34674</span>, <span class="fl">58210</span>, <span class="fl">79433</span>, <span class="fl">88480</span>, <span class="fl">97724</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sr</span> <span class="op">&lt;-</span> <span class="fl">0.50</span></span></span>
+<span class="r-in"><span><span class="va">s_hatch</span> <span class="op">&lt;-</span> <span class="fl">0.10</span>   </span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Calculate expected number of age-0 fish  </span></span></span>
-<span class="r-in"><span>  <span class="va">fec</span> <span class="op">&lt;-</span> <span class="fu">make_recruits</span><span class="op">(</span>eggs <span class="op">=</span> <span class="va">eggs</span>, sr <span class="op">=</span> <span class="va">sr</span>, s_hatch <span class="op">=</span> <span class="va">s_hatch</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fec</span> <span class="op">&lt;-</span> <span class="fu">make_recruits</span><span class="op">(</span>eggs <span class="op">=</span> <span class="va">eggs</span>, sr <span class="op">=</span> <span class="va">sr</span>, s_hatch <span class="op">=</span> <span class="va">s_hatch</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>

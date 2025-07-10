@@ -85,19 +85,19 @@ blueback herring (<code>"BBH"</code>).</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example usage</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  </span></span>
-<span class="r-in"><span> <span class="co"># Simulate a population</span></span></span>
-<span class="r-in"><span> <span class="va">n_init</span> <span class="op">=</span> <span class="fl">1e5</span>  </span></span>
-<span class="r-in"><span> <span class="va">max_age</span> <span class="op">=</span> <span class="fl">13</span></span></span>
-<span class="r-in"><span> <span class="va">nM</span> <span class="op">=</span> <span class="fl">.505</span></span></span>
-<span class="r-in"><span> <span class="va">fM</span> <span class="op">=</span> <span class="fl">0</span></span></span>
-<span class="r-in"><span> <span class="va">pop</span> <span class="op">=</span> <span class="fu"><a href="make_pop.html">make_pop</a></span><span class="op">(</span>max_age<span class="op">=</span><span class="va">max_age</span>, nM<span class="op">=</span><span class="va">nM</span>, fM<span class="op">=</span><span class="va">fM</span>, n_init<span class="op">=</span><span class="va">n_init</span><span class="op">)</span></span></span>
-<span class="r-in"><span> </span></span>
-<span class="r-in"><span> <span class="co"># Project one time-step without reproduction</span></span></span>
-<span class="r-in"><span> <span class="va">new_pop</span> <span class="op">=</span> <span class="fu">project_pop</span><span class="op">(</span>x<span class="op">=</span><span class="va">pop</span>, age0<span class="op">=</span><span class="fl">1e5</span>, nM<span class="op">=</span><span class="fl">.505</span>, fM<span class="op">=</span><span class="fl">0</span>, <span class="va">max_age</span><span class="op">)</span></span></span>
-<span class="r-in"><span> </span></span>
-<span class="r-in"><span> <span class="co"># Difference should be about zero </span></span></span>
-<span class="r-in"><span> <span class="co"># because age0 - n_init</span></span></span>
-<span class="r-in"><span> <span class="va">new_pop</span> <span class="op">-</span> <span class="va">pop</span></span></span>
+<span class="r-in"><span><span class="co"># Simulate a population</span></span></span>
+<span class="r-in"><span><span class="va">n_init</span> <span class="op">&lt;-</span> <span class="fl">1e5</span>  </span></span>
+<span class="r-in"><span><span class="va">max_age</span> <span class="op">&lt;-</span> <span class="fl">13</span></span></span>
+<span class="r-in"><span><span class="va">nM</span> <span class="op">&lt;-</span> <span class="fl">.505</span></span></span>
+<span class="r-in"><span><span class="va">fM</span> <span class="op">&lt;-</span> <span class="fl">0</span></span></span>
+<span class="r-in"><span><span class="va">pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_pop.html">make_pop</a></span><span class="op">(</span>max_age <span class="op">=</span> <span class="va">max_age</span>, nM <span class="op">=</span> <span class="va">nM</span>, fM <span class="op">=</span> <span class="va">fM</span>, n_init <span class="op">=</span> <span class="va">n_init</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Project one time-step without reproduction</span></span></span>
+<span class="r-in"><span><span class="va">new_pop</span> <span class="op">&lt;-</span> <span class="fu">project_pop</span><span class="op">(</span>x <span class="op">=</span> <span class="va">pop</span>, age0 <span class="op">=</span> <span class="fl">1e5</span>, nM <span class="op">=</span> <span class="fl">.505</span>, fM <span class="op">=</span> <span class="fl">0</span>, <span class="va">max_age</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Difference should be about zero </span></span></span>
+<span class="r-in"><span><span class="co"># because age0 - n_init</span></span></span>
+<span class="r-in"><span><span class="va">new_pop</span> <span class="op">-</span> <span class="va">pop</span></span></span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>

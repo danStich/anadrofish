@@ -113,62 +113,59 @@ available habitat.</p>
 <span class="r-in"><span><span class="co"># Example 1. ----  </span></span></span>
 <span class="r-in"><span><span class="co"># Calculate population-level survival during outmigration</span></span></span>
 <span class="r-in"><span><span class="co"># for fixed upstream and downstream dam passage probabilities</span></span></span>
-<span class="r-in"><span><span class="va">s_down</span> <span class="op">&lt;-</span> <span class="fu">make_downstream</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  habitat_data <span class="op">=</span> <span class="va">habitat</span>,</span></span>
-<span class="r-in"><span>  river <span class="op">=</span> <span class="st">'Susquehanna'</span>,</span></span>
-<span class="r-in"><span>  downstream <span class="op">=</span> <span class="fl">0.95</span>,</span></span>
-<span class="r-in"><span>  upstream <span class="op">=</span> <span class="fl">0.80</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s_down</span> <span class="op">&lt;-</span> <span class="fu">make_downstream</span><span class="op">(</span>habitat_data <span class="op">=</span> <span class="va">habitat</span>,</span></span>
+<span class="r-in"><span>                          river <span class="op">=</span> <span class="st">'Susquehanna'</span>,</span></span>
+<span class="r-in"><span>                          downstream <span class="op">=</span> <span class="fl">0.95</span>,</span></span>
+<span class="r-in"><span>                          upstream <span class="op">=</span> <span class="fl">0.80</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span><span class="co"># Example 2. ----</span></span></span>
 <span class="r-in"><span><span class="co"># Explore how upstream passage affects catchment-wide survival</span></span></span>
 <span class="r-in"><span><span class="co"># during outmigration for a fixed downstream passage</span></span></span>
-<span class="r-in"><span><span class="va">upstream_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0</span>, to<span class="op">=</span><span class="fl">1</span>, by<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">s_down</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span>mode<span class="op">=</span><span class="st">'numeric'</span>, length<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">upstream_p</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">upstream_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s_down</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">'numeric'</span>, length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">upstream_p</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">upstream_p</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="va">s_down</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">make_downstream</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    habitat_data <span class="op">=</span> <span class="va">habitat</span>,</span></span>
-<span class="r-in"><span>    river <span class="op">=</span> <span class="st">'Susquehanna'</span>,</span></span>
-<span class="r-in"><span>    downstream <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
-<span class="r-in"><span>    upstream <span class="op">=</span> <span class="va">upstream_p</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span>  </span></span>
+<span class="r-in"><span>  <span class="va">s_down</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">make_downstream</span><span class="op">(</span>habitat_data <span class="op">=</span> <span class="va">habitat</span>,</span></span>
+<span class="r-in"><span>                               river <span class="op">=</span> <span class="st">'Susquehanna'</span>,</span></span>
+<span class="r-in"><span>                               downstream <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
+<span class="r-in"><span>                               upstream <span class="op">=</span> <span class="va">upstream_p</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>  </span></span>
 <span class="r-in"><span><span class="op">}</span> </span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">Zd</span> <span class="op">=</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">s_down</span></span></span>
+<span class="r-in"><span><span class="va">Zd</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">s_down</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">upstream_p</span>, y<span class="op">=</span><span class="va">Zd</span>, type <span class="op">=</span> <span class="st">'l'</span>,</span></span>
-<span class="r-in"><span>     xlab<span class="op">=</span><span class="st">'Upstream passage'</span>,</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">upstream_p</span>, </span></span>
+<span class="r-in"><span>     y <span class="op">=</span> <span class="va">Zd</span>, </span></span>
+<span class="r-in"><span>     type <span class="op">=</span> <span class="st">'l'</span>,</span></span>
+<span class="r-in"><span>     xlab <span class="op">=</span> <span class="st">'Upstream passage'</span>,</span></span>
 <span class="r-in"><span>     ylab <span class="op">=</span> <span class="st">'Total downstream mortality'</span>,</span></span>
-<span class="r-in"><span>     main <span class="op">=</span> <span class="st">'Susquehanna River'</span></span></span>
-<span class="r-in"><span>     <span class="op">)</span></span></span>
+<span class="r-in"><span>     main <span class="op">=</span> <span class="st">'Susquehanna River'</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 3. ----</span></span></span>
 <span class="r-in"><span><span class="co"># Explore interactions between upstream and downstream </span></span></span>
 <span class="r-in"><span><span class="co"># passage probabilities when both vary. This changes</span></span></span>
 <span class="r-in"><span><span class="co"># drastically from one river to another depending on</span></span></span>
 <span class="r-in"><span><span class="co"># habitat above and below dams, and number of dams.</span></span></span>
-<span class="r-in"><span><span class="va">upstream_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0</span>, to<span class="op">=</span><span class="fl">1</span>, by<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">downstream_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0</span>, to<span class="op">=</span><span class="fl">1</span>, by<span class="op">=</span><span class="fl">0.01</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">s_down</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="cn">NA</span>, nrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">upstream_p</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">downstream_p</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">upstream_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">downstream_p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">s_down</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="cn">NA</span>, </span></span>
+<span class="r-in"><span>                 nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">upstream_p</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>                 ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">downstream_p</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">upstream_p</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw">for</span><span class="op">(</span><span class="va">t</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">downstream_p</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="va">s_down</span><span class="op">[</span><span class="va">i</span>,<span class="va">t</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">make_downstream</span><span class="op">(</span></span></span>
-<span class="r-in"><span>      habitat_data <span class="op">=</span> <span class="va">habitat</span>,</span></span>
-<span class="r-in"><span>      river <span class="op">=</span> <span class="st">'Susquehanna'</span>,</span></span>
-<span class="r-in"><span>      downstream <span class="op">=</span> <span class="va">downstream_p</span><span class="op">[</span><span class="va">t</span><span class="op">]</span>,</span></span>
-<span class="r-in"><span>      upstream <span class="op">=</span> <span class="va">upstream_p</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span></span>
-<span class="r-in"><span>      <span class="op">)</span>  </span></span>
+<span class="r-in"><span>    <span class="va">s_down</span><span class="op">[</span><span class="va">i</span>,<span class="va">t</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">make_downstream</span><span class="op">(</span>habitat_data <span class="op">=</span> <span class="va">habitat</span>,</span></span>
+<span class="r-in"><span>                                   river <span class="op">=</span> <span class="st">'Susquehanna'</span>,</span></span>
+<span class="r-in"><span>                                   downstream <span class="op">=</span> <span class="va">downstream_p</span><span class="op">[</span><span class="va">t</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>                                   upstream <span class="op">=</span> <span class="va">upstream_p</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>  </span></span>
 <span class="r-in"><span>  <span class="op">}</span>   </span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">zd</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">s_down</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/filled.contour.html" class="external-link">filled.contour</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">upstream_p</span>, y<span class="op">=</span><span class="va">downstream_p</span>, z<span class="op">=</span><span class="va">zd</span>,</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/filled.contour.html" class="external-link">filled.contour</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">upstream_p</span>, </span></span>
+<span class="r-in"><span>               y <span class="op">=</span> <span class="va">downstream_p</span>, </span></span>
+<span class="r-in"><span>               z <span class="op">=</span> <span class="va">zd</span>,</span></span>
 <span class="r-in"><span>               xlab <span class="op">=</span> <span class="st">'Upstream passage probability'</span>,</span></span>
 <span class="r-in"><span>               ylab <span class="op">=</span> <span class="st">'Downstream survival per dam'</span>,</span></span>
-<span class="r-in"><span>               main <span class="op">=</span> <span class="st">'Catchment-wide dam mortality'</span></span></span>
-<span class="r-in"><span>               <span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span>               main <span class="op">=</span> <span class="st">'Catchment-wide dam mortality'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

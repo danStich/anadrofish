@@ -71,30 +71,24 @@ or multiple. If multiple values are passed as a vector, the length of
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span><span class="co"># Population vital rates</span></span></span>
-<span class="r-in"><span>  <span class="va">max_age</span> <span class="op">=</span> <span class="fl">9</span></span></span>
-<span class="r-in"><span>  <span class="va">nM</span> <span class="op">=</span> <span class="fl">0.38</span></span></span>
-<span class="r-in"><span>  <span class="va">fM</span> <span class="op">=</span> <span class="fl">0.00</span></span></span>
-<span class="r-in"><span>  <span class="va">n_init</span> <span class="op">=</span> <span class="fl">1e5</span></span></span>
+<span class="r-in"><span><span class="va">max_age</span> <span class="op">&lt;-</span> <span class="fl">9</span></span></span>
+<span class="r-in"><span><span class="va">nM</span> <span class="op">&lt;-</span> <span class="fl">0.38</span></span></span>
+<span class="r-in"><span><span class="va">fM</span> <span class="op">&lt;-</span> <span class="fl">0.00</span></span></span>
+<span class="r-in"><span><span class="va">n_init</span> <span class="op">&lt;-</span> <span class="fl">1e5</span></span></span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span><span class="co"># Simulate a fish population at stable age distribution</span></span></span>
-<span class="r-in"><span>  <span class="va">pop</span> <span class="op">=</span> <span class="fu"><a href="make_pop.html">make_pop</a></span><span class="op">(</span>max_age <span class="op">=</span> <span class="va">max_age</span>,</span></span>
-<span class="r-in"><span>                 nM <span class="op">=</span> <span class="va">nM</span>,</span></span>
-<span class="r-in"><span>                 fM <span class="op">=</span> <span class="va">fM</span>,</span></span>
-<span class="r-in"><span>                 n_init <span class="op">=</span> <span class="va">n_init</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_pop.html">make_pop</a></span><span class="op">(</span>max_age <span class="op">=</span> <span class="va">max_age</span>, nM <span class="op">=</span> <span class="va">nM</span>, fM <span class="op">=</span> <span class="va">fM</span>, n_init <span class="op">=</span> <span class="va">n_init</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span><span class="co"># Spawners ----</span></span></span>
 <span class="r-in"><span><span class="co"># Define probability of recruitment to spawn- probability of</span></span></span>
 <span class="r-in"><span><span class="co"># recruitment to the first spawning event</span></span></span>
 <span class="r-in"><span><span class="co"># by age class (Bailey and Zydlewski 2013)</span></span></span>
-<span class="r-in"><span><span class="co">### This is using probability of first spawn.</span></span></span>
-<span class="r-in"><span><span class="co">### clearly does not work here because it will always</span></span></span>
-<span class="r-in"><span><span class="co">### result in the oldest age classes having the most fish</span></span></span>
-<span class="r-in"><span>  <span class="va">spawnRecruit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.01</span>, <span class="fl">.33</span>, <span class="fl">.84</span>, <span class="fl">.97</span>, <span class="fl">.99</span>, <span class="fl">1.00</span><span class="op">)</span>  </span></span>
+<span class="r-in"><span><span class="va">spawnRecruit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.01</span>, <span class="fl">.33</span>, <span class="fl">.84</span>, <span class="fl">.97</span>, <span class="fl">.99</span>, <span class="fl">1.00</span><span class="op">)</span>  </span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get spawner numbers  </span></span></span>
-<span class="r-in"><span>  <span class="va">spawners</span> <span class="op">&lt;-</span> <span class="fu">make_spawners</span><span class="op">(</span><span class="va">pop</span>, probs <span class="op">=</span> <span class="va">spawnRecruit</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">spawners</span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="va">spawners</span> <span class="op">&lt;-</span> <span class="fu">make_spawners</span><span class="op">(</span><span class="va">pop</span>, probs <span class="op">=</span> <span class="va">spawnRecruit</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">spawners</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
