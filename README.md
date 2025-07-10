@@ -186,7 +186,7 @@ ggplot(plotter, aes(x = year, y = pop)) +
   geom_ribbon(aes(xmax = year, ymin = lci, ymax = uci, color = NULL), alpha = 0.25)
 ```
 
-![Figure 2: Example result from Sebasticook River simulation](man/figures/seb_ale.jpg?raw=true)
+![**Figure 2**: Example result from Sebasticook River simulation.](man/figures/seb_ale.jpg?raw=true)
 
 </br>
 </br>
@@ -336,7 +336,7 @@ ggplot(plotter, aes(x = downstream_j, y = fit, color = downstream, fill = downst
   )
 ```
 
-![](man/figures/ct_shad.jpg?raw=true)
+![**Figure 3**: Example simulation for historical fish passage scenarios in the Connecticut River.](man/figures/ct_shad.jpg?raw=true)
 
 </br>
 </br>
@@ -476,7 +476,7 @@ ggplot(plotter, aes(x = scenario, y = pop)) +
 
 ```
 
-![](man/figures/coastal_bbh.jpg?raw=true)
+![**Figure 4**: Figure from example coast-wide blueback herring simulation.](man/figures/coastal_bbh.jpg?raw=true)
 
 
 </br>
@@ -484,7 +484,7 @@ ggplot(plotter, aes(x = scenario, y = pop)) +
 
 
 ### Creating a custom population
-In this example, we create a custom population for alewife using the names from the custom_habitat_template() to build a dataframe with a novel habitat configuration. This simple example also demonstrates use of dam-specific upstream passage efficiencies. It is important to note that in more complex systems (e.g., with multiple upstream migration paths), dam-specific passage rates are not currently supported. For example, if we had a fourth dam with `dam_order` of `2` in our example below, it would not be explicitly upstream of either of the two dams with `dam_order` of `1`. We are currently working to implement matrix-based operations for custom habitat datasets that will allow for dam-specific fish passage rates in more complex systems. Until then, catchment-wide passage efficiencies can be applied in those complex systems, or the systems can be simplified using `custom_habitat_template()` to address dam-specific questions.
+In this example, we create a custom population for alewife using the names from the `custom_habitat_template()` to build a dataframe with a novel habitat configuration. This simple example also demonstrates use of dam-specific upstream passage efficiencies. It is important to note that in more complex systems (e.g., with multiple upstream migration paths), dam-specific passage rates are not currently supported. For example, if we had a fourth dam with `dam_order` of `2` in our example below, it would not be explicitly upstream of either of the two dams with `dam_order` of `1`. We are currently working to implement matrix-based operations for custom habitat datasets that will allow for dam-specific fish passage rates in more complex systems. Until then, catchment-wide passage efficiencies can be applied in those complex systems, or the systems can be simplified using `custom_habitat_template()` to address dam-specific questions.
 
 ```r
 # Package load ----
@@ -615,7 +615,7 @@ custom_plot <- ggplot(resdf, aes(spawners)) +
 custom_plot
 ```
 
-![](man/figures/custom_ale.jpg?raw=true)
+![**Figure 5**: Simulation result for custom alewife river (novel system).](man/figures/custom_ale.jpg?raw=true)
 
 </br>
 </br>
@@ -627,8 +627,6 @@ custom_plot
 `inst/examples/` Examples for those requiring more than a one-liner
 
 `inst/data/` Example dataset for `README.md`. Included in `.Rbuildignore`.
-
-`inst/images/` Figures from examples in `README.md`. Included in `.Rbuildignore`.
 
 `man/` Help files and documentation, example figures for readme
 
