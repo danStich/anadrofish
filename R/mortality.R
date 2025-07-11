@@ -1,4 +1,4 @@
-#' @title Sex-specific instaneous mortality of American shad
+#' @title Sex-specific instantaneous mortality of American shad
 #'
 #' @description A dataset containing sex-specific instantaneous
 #' mortality estimates for each life-history region

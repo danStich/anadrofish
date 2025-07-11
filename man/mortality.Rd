@@ -3,7 +3,7 @@
 \docType{data}
 \name{mortality}
 \alias{mortality}
-\title{Sex-specific instaneous mortality of American shad}
+\title{Sex-specific instantaneous mortality of American shad}
 \format{
 A data frame with 6 observations of 3 variables:
 \describe{
