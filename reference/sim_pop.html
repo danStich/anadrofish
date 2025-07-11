@@ -248,12 +248,11 @@ Symposium 35:185-192.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example usage</span></span></span>
-<span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 1. Simulate a single population one time for 50 years ----------------</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://danstich.github.io/anadrofish/">anadrofish</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(ggplot2):</span> there is no package called ‘ggplot2’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Set rng seed ----</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
@@ -279,16 +278,13 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Year"</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Number of spawners"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ggplot(res, aes(x = year, y = spawners)):</span> could not find function "ggplot"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 2. Simulate a single population 100 times in parallel ----------------</span></span></span>
 <span class="r-in"><span><span class="co"># Package load ----</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">snowfall</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(snowfall):</span> there is no package called ‘snowfall’</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://danstich.github.io/anadrofish/">anadrofish</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(tidyverse):</span> there is no package called ‘tidyverse’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Set rng seed ----</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
@@ -299,7 +295,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Initialize snowfall</span></span></span>
 <span class="r-in"><span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK"):</span> could not find function "sfInit"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Wrapper function ----</span></span></span>
 <span class="r-in"><span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -329,7 +324,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span><span class="co"># Parallel execution ----</span></span></span>
 <span class="r-in"><span><span class="co"># . Load libraries on workers -----</span></span></span>
 <span class="r-in"><span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">anadrofish</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sfLibrary(anadrofish):</span> could not find function "sfLibrary"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . Distribute to workers -----</span></span></span>
 <span class="r-in"><span><span class="co"># Number of simulations to run</span></span></span>
@@ -339,15 +333,12 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span><span class="va">start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">sfLapply</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">niterations</span>, <span class="va">sim</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sfLapply(1:niterations, sim):</span> could not find function "sfLapply"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">total_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">start</span></span></span>
 <span class="r-in"><span><span class="va">total_time</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.0007867813 secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . Stop snowfall ----</span></span></span>
 <span class="r-in"><span><span class="fu">sfStop</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sfStop():</span> could not find function "sfStop"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Results ----</span></span></span>
 <span class="r-in"><span><span class="co"># 'result' is a list of lists. Save this:</span></span></span>
@@ -355,14 +346,10 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Extract results dataframes by string and rbind them</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">result</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"res"</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'result' not found</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(data.table):</span> there is no package called ‘data.table’</span>
 <span class="r-in"><span><span class="va">resdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu">rbindlist</span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in rbindlist(res):</span> could not find function "rbindlist"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">glimpse</span><span class="op">(</span><span class="va">resdf</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in glimpse(resdf):</span> could not find function "glimpse"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Results summary</span></span></span>
 <span class="r-in"><span><span class="va">plotter</span> <span class="op">&lt;-</span> <span class="va">resdf</span> <span class="op">%&gt;%</span></span></span>
@@ -372,7 +359,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span>    lwr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">spawners</span>, <span class="fl">0.025</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    upr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">spawners</span>, <span class="fl">0.975</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in resdf %&gt;% group_by(year) %&gt;% summarize(fit = mean(spawners),     lwr = quantile(spawners, 0.025), upr = quantile(spawners,         0.975)):</span> could not find function "%&gt;%"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Plotting</span></span></span>
 <span class="r-in"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">plotter</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">fit</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
@@ -386,7 +372,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    alpha <span class="op">=</span> <span class="fl">0.40</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ggplot(plotter, aes(x = year, y = fit)):</span> could not find function "ggplot"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 3. Multi-river simulation --------------------------------------------</span></span></span>
@@ -398,11 +383,9 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span><span class="co"># output, but only for the final year of simulation</span></span></span>
 <span class="r-in"><span><span class="co"># Package load ----</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">snowfall</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(snowfall):</span> there is no package called ‘snowfall’</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://danstich.github.io/anadrofish/">anadrofish</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(tidyverse):</span> there is no package called ‘tidyverse’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Set rng seed ----</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
@@ -413,7 +396,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Initialize snowfall</span></span></span>
 <span class="r-in"><span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK"):</span> could not find function "sfInit"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Wrapper function ----</span></span></span>
 <span class="r-in"><span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -450,7 +432,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span><span class="co"># Parallel execution ----</span></span></span>
 <span class="r-in"><span><span class="co"># . Load libraries on workers -----</span></span></span>
 <span class="r-in"><span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">anadrofish</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sfLibrary(anadrofish):</span> could not find function "sfLibrary"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . Distribute to workers -----</span></span></span>
 <span class="r-in"><span><span class="co"># Number of simulations to run</span></span></span>
@@ -460,15 +441,12 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span><span class="va">start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">sfLapply</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">niterations</span>, <span class="va">sim</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sfLapply(1:niterations, sim):</span> could not find function "sfLapply"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">total_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="va">start</span></span></span>
 <span class="r-in"><span><span class="va">total_time</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.00070858 secs</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . Stop snowfall ----</span></span></span>
 <span class="r-in"><span><span class="fu">sfStop</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sfStop():</span> could not find function "sfStop"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Results ----</span></span></span>
 <span class="r-in"><span><span class="co"># 'result' is a list of lists. Save this:</span></span></span>
@@ -476,33 +454,24 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Extract results dataframes by string and rbind them</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">result</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"res"</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'result' not found</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(data.table):</span> there is no package called ‘data.table’</span>
 <span class="r-in"><span><span class="va">resdf</span> <span class="op">&lt;-</span> <span class="fu">rbindlist</span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in rbindlist(res):</span> could not find function "rbindlist"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . Summary statistics by passage scenario -----</span></span></span>
 <span class="r-in"><span><span class="va">resdf</span><span class="op">$</span><span class="va">river</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">resdf</span><span class="op">$</span><span class="va">river</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'resdf' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Sum population size and spawners across age groups</span></span></span>
 <span class="r-in"><span><span class="va">resdf</span><span class="op">$</span><span class="va">spawners</span> <span class="op">&lt;-</span> <span class="va">resdf</span> <span class="op">%&gt;%</span></span></span>
 <span class="r-in"><span>  <span class="fu">select</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"spawners"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">resdf</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in resdf %&gt;% select(grep("spawners", colnames(resdf))) %&gt;% rowSums():</span> could not find function "%&gt;%"</span>
 <span class="r-in"><span><span class="va">resdf</span><span class="op">$</span><span class="va">pop</span> <span class="op">&lt;-</span> <span class="va">resdf</span> <span class="op">%&gt;%</span></span></span>
 <span class="r-in"><span>  <span class="fu">select</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"pop"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">resdf</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in resdf %&gt;% select(grep("pop", colnames(resdf))) %&gt;% rowSums():</span> could not find function "%&gt;%"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Assign scenarios based on upstream passage</span></span></span>
 <span class="r-in"><span><span class="va">resdf</span><span class="op">$</span><span class="va">scenario</span> <span class="op">&lt;-</span> <span class="st">"No dams"</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'resdf' not found</span>
 <span class="r-in"><span><span class="va">resdf</span><span class="op">$</span><span class="va">scenario</span><span class="op">[</span><span class="va">resdf</span><span class="op">$</span><span class="va">upstream</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"No passage"</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'resdf' not found</span>
 <span class="r-in"><span><span class="va">resdf</span><span class="op">$</span><span class="va">scenario</span><span class="op">[</span><span class="va">resdf</span><span class="op">$</span><span class="va">upstream</span> <span class="op">==</span> <span class="fl">.40</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Current condition"</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'resdf' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . System-specific summaries ----</span></span></span>
 <span class="r-in"><span><span class="va">rivers</span> <span class="op">&lt;-</span> <span class="va">resdf</span> <span class="op">%&gt;%</span></span></span>
@@ -512,7 +481,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span>    lwr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">spawners</span>, <span class="fl">0.025</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    upr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">spawners</span>, <span class="fl">0.975</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in resdf %&gt;% group_by(region, river, scenario) %&gt;% summarize(fit = mean(spawners),     lwr = quantile(spawners, 0.025), upr = quantile(spawners,         0.975)):</span> could not find function "%&gt;%"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . Coastal summary ----</span></span></span>
@@ -523,7 +491,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span>    lwr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">lwr</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    upr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">upr</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in rivers %&gt;% group_by(scenario) %&gt;% summarize(fit = sum(fit), lwr = sum(lwr),     upr = sum(upr)):</span> could not find function "%&gt;%"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . River plot ----</span></span></span>
 <span class="r-in"><span><span class="va">rivers</span> <span class="op">%&gt;%</span></span></span>
@@ -535,7 +502,6 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Number of spawning adults"</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">ggtitle</span><span class="op">(</span><span class="st">"Southern Iteroparous Region"</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">theme</span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in rivers %&gt;% filter(region == "SI") %&gt;% ggplot(aes(x = river, y = fit,     color = scenario, fill = scenario)):</span> could not find function "%&gt;%"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># . Coastal plot ----</span></span></span>
 <span class="r-in"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">coastal</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">scenario</span>, y <span class="op">=</span> <span class="va">fit</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
@@ -545,9 +511,8 @@ Symposium 35:185-192.</p>
 <span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">xlab</span><span class="op">(</span><span class="st">"Scenario"</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Number of spawning adults"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ggplot(coastal, aes(x = scenario, y = fit)):</span> could not find function "ggplot"</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
