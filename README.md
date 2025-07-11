@@ -199,10 +199,15 @@ seb_plot <- ggplot(plotter, aes(x = year, y = pop)) +
 seb_plot
 ```
 
-![**Figure 2**: Example result from Sebasticook River simulation.](man/figures/seb_ale.jpg?raw=true)
+<figure>
+  <img src="man/figures/seb_ale.jpg?raw=true" alt="Example result from Sebasticook River simulation">
+  <figcaption><b>Figure 2</b>: Example result from Sebasticook River simulation.</figcaption>
+</figure>
+
 
 </br>
 </br>
+
 
 
 ### Running multiple scenarios for one river many times in parallel
@@ -366,10 +371,16 @@ ct_plot <- ggplot(plotter,
 ct_plot
 ```
 
-![**Figure 3**: Example simulation for historical fish passage scenarios in the Connecticut River. The horizontal dashed line indicates the maximum estimated abundance in the river prior to 1974.](man/figures/ct_shad.jpg?raw=true)
+
+<figure>
+  <img src="man/figures/ct_shad.jpg?raw=true" alt="Example simulation for historical fish passage scenarios in the Connecticut River. The horizontal dashed line indicates the maximum estimated abundance in the river prior to 1974">
+  <figcaption><b>Figure 3</b>: Example simulation for historical fish passage scenarios in the Connecticut River. The horizontal dashed line indicates the maximum estimated abundance in the river prior to 1974.</figcaption>
+</figure>
+
 
 </br>
 </br>
+
 
 ### Running multiple scenarios for many rivers many times in parallel
 This example uses the randomized sampling scenarios used in ASMFC (2024) for range-wide blueback herring population assessment. It randomly samples rivers from all available populations, and selects a management scenario ("no dams", "no passage", "current") randomly for broad-scale simulation. Note that this scenario would need to be run > 1 million times to produce stabilized results for all populations included.
@@ -514,7 +525,11 @@ ggplot(plotter, aes(x = scenario, y = pop)) +
   )
 ```
 
-![**Figure 4**: Figure from example coast-wide blueback herring simulation.](man/figures/coastal_bbh.jpg?raw=true)
+
+<figure>
+  <img src="man/figures/coastal_bbh.jpg?raw=true" alt="Example result from coast-wide blueback herring simulation">
+  <figcaption><b>Figure 4</b>: Example result from coast-wide blueback herring simulation.</figcaption>
+</figure>
 
 
 </br>
@@ -653,7 +668,12 @@ custom_plot <- ggplot(resdf, aes(spawners)) +
 custom_plot
 ```
 
-![**Figure 5**: Simulation result for custom alewife river (novel system).](man/figures/custom_ale.jpg?raw=true)
+
+<figure>
+  <img src="man/figures/custom_ale.jpg?raw=true" alt="Simulation result for custom alewife river (novel system)">
+  <figcaption><b>Figure 5</b>: Simulation result for custom alewife river (novel system).</figcaption>
+</figure>
+
 
 </br>
 </br>
