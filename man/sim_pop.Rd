@@ -157,7 +157,7 @@ passage probabilities and uncertainty in life-history information.
 }
 \examples{
 # Example usage
-# \dontrun{
+\dontrun{
 
 # Example 1. Simulate a single population one time for 50 years ----------------
 library(anadrofish)
@@ -421,7 +421,7 @@ ggplot(coastal, aes(x = scenario, y = fit)) +
   xlab("Scenario") +
   ylab("Number of spawning adults")
 
-# }
+}
 }
 \references{
 Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019.
