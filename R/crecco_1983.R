@@ -14,7 +14,7 @@
 #'     \item{\code{Sc}}{Cumulative survival}
 #' }
 #'
-#' #' @references Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates
+#' @references Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates
 #' of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut
 #' River with changes in year-class strength. Canadian Journal of
 #' Fisheries and Aquatic Sciences 40:1719–1728.
