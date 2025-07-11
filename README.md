@@ -82,15 +82,15 @@ library(tidyverse)
 library(data.table)
 library(parallel)
 
-# Set a seed for random number generators for reproducibility ----
-set.seed(12345)
-
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
 ncpus <- detectCores() - 1
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
+
+# Set a seed for random number generators for reproducibility ----
+sfClusterSetupRNG(seed = 12345)
 
 # Read in the Sebasticook River data ----
 # This data set is in the inst/data folder on the GitHub repo
@@ -153,7 +153,7 @@ sfExport("sebasticook_habitat")
 
 # . Distribute to workers -----
 # Number of simulations to run
-niterations <- 1e2
+niterations <- 100
 
 # Run the simulation ----
 # Assign starting time
@@ -221,8 +221,6 @@ library(tidyverse)
 library(data.table)
 library(parallel)
 
-# Set a seed for random number generators for reproducibility ----
-set.seed(12345)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
@@ -230,6 +228,9 @@ ncpus <- detectCores() - 1
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
+
+# Set a seed for random number generators for reproducibility ----
+sfClusterSetupRNG(seed = 12345)
 
 # Wrapper function ----
 sim <- function(x) {
@@ -383,7 +384,7 @@ ct_plot
 
 
 ### Running multiple scenarios for many rivers many times in parallel
-This example uses the randomized sampling scenarios used in ASMFC (2024) for range-wide blueback herring population assessment. It randomly samples rivers from all available populations, and selects a management scenario ("no dams", "no passage", "current") randomly for broad-scale simulation. Note that this scenario would need to be run > 1 million times to produce stabilized results for all populations included.
+This example uses the randomized sampling scenarios used in ASMFC (2024) for range-wide blueback herring population assessment. It randomly samples rivers from all available populations, and selects a management scenario ("no dams", "no passage", "current") randomly for broad-scale simulation. Note that this scenario would need to be run > 1 million times to produce stabilized results for all populations included that match the results in ASMFC (2024), especially for variances around means.
 
 ```r
 # Package load ----
@@ -393,8 +394,6 @@ library(tidyverse)
 library(data.table)
 library(parallel)
 
-# Set a seed for random number generators for reproducibility ----
-set.seed(12345)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
@@ -402,6 +401,9 @@ ncpus <- detectCores() - 1
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
+
+# Set a seed for random number generators for reproducibility ----
+sfClusterSetupRNG(seed = 12345)
 
 # Wrapper function ----
 sim <- function(x) {
@@ -459,7 +461,7 @@ sfLibrary(tidyverse)
 # . Distribute to workers -----
 # Number of simulations to run
 # You will need to run this MANY more times (1 million+) to stabilize results
-niterations <- 1e2
+niterations <- 1e3
 
 # Run the simulation ----
 # Assign starting time
@@ -547,8 +549,6 @@ library(tidyverse)
 library(data.table)
 library(parallel)
 
-# Set a seed for random number generators for reproducibility ----
-set.seed(12345)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
@@ -556,6 +556,9 @@ ncpus <- detectCores() - 1
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
+
+# Set a seed for random number generators for reproducibility ----
+sfClusterSetupRNG(seed = 12345)
 
 # Wrapper function ----
 sim <- function(x) {
