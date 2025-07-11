@@ -15,15 +15,24 @@
 #' (e.g., \code{get_rivers()}). Alternatively, the user can specify
 #' \code{rivers = sample(get_rivers, 1)} to randomly sample river
 #' within larger simulation studies. Information about each river can be
-#' found in the \code{\link{habitat}} dataset.
+#' found in the \code{\link{habitat}} dataset. If specifying 
+#' \code{custom_habitat}, then \code{river} must match the name of the river
+#' used in \code{custom_habitat} (see also 
+#' \code{\link{custom_habitat_template}}).
 #'
 #' @param max_age Maximum age of fish in population. If \code{NULL}
 #' (default), then based on the maximum age of females for the
-#' corresponding region in the \code{\link{max_ages}} dataset.
+#' corresponding region in the \code{\link{max_ages}} dataset for American shad
+#' or the region- and species-specific maximum age in the 
+#' \code{\link{mortality_rh}} dataset for alewife and blueback herring.
 #'
 #' @param nM Instantaneous natural mortality. If \code{NULL}
-#' (default), then based on the average of males and females for the
-#' corresponding region in the \code{\link{mortality}} dataset.
+#' (default), then based on sex-specific or sex-aggregated values for the
+#' corresponding region in the datasets for each species.
+#' For American shad, the default values are drawn from \code{\link{mortality}} 
+#' with \code{\link{make_mortality}} within the \code{sim_pop()}
+#' function. For alewife and blueback herring, default values are drawn from
+#' \code{\link{mortality_rh}} within \code{\link{make_mortality}}.  
 #'
 #' @param fM Instantaneous fishing mortality. The default value is zero.
 #'
@@ -35,7 +44,9 @@
 #' @param spawnRecruit Probability of recruitment to spawn at age. If
 #' \code{NULL} (default), then probabilities are based on the mean of
 #' male and female recruitment to first spawn at age from the
-#' \code{\link{maturity}} dataset.
+#' \code{\link{maturity}} dataset for American shad within
+#' \code{\link{make_spawnrecruit}} or simulated within  
+#' \code{\link{make_spawnrecruit_rh}} for alewife and blueback herring.
 #'
 #' @param eggs Number of eggs per female. Can be a vector of length 1
 #' if eggs per female is age invariant, or can be vector of length
@@ -55,16 +66,20 @@
 #' approximates a carrying capacity that corresponds to about 500 adult fish
 #' per acre.
 #'
-#' @param s_juvenile Survival from hatch to outmigrant. If NULL
-#' (default) then simulated from a (log) normal distribution using
+#' @param s_juvenile Survival from hatch to outmigrant. For American shad, 
+#' if NULL (default) then simulated from a (log) normal distribution using
 #' mean and sd of \code{Sc} through \code{70 d} for 1979-1982 from
-#' Crecco et al. (1983) in \code{\link{crecco_1983}}.
-#'
+#' Crecco et al. (1983) in \code{\link{crecco_1983}} within the 
+#' \code{\link{sim_juvenile_s}} function. The default of NULL results in 
+#' juvenile survival being simulated truncated normal distribution based on 
+#' means and standard deviations from Overton et al. (2012) for blueback herring
+#' or Hook et al. (2007) for alewife.
+#' 
 #' @param upstream Numeric of length 1 representing proportional
 #' upstream passage through dams.
 #'
 #' @param downstream Numeric of length 1 indicating proportional
-#' downstream survival through dams.
+#' downstream survival through dams for adult fish.
 #'
 #' @param downstream_j Numeric of length 1 indicating proportional
 #' downstream survival through dams for juveniles.
@@ -84,7 +99,10 @@
 #' regardless of \code{max_age}, but all abundances for ages greater
 #' than \code{max_age} are zero.
 #'
-#' @param sex_specific Whether to use sex-specific life-history data.
+#' @param sex_specific Whether to use sex-specific life-history data. Default
+#' is \code{TRUE}. Sex-aggregate functionality has not been widely implemented
+#' within the package and should be considered experimental (for future 
+#' development).
 #'
 #' @param custom_habitat A dataframe containing columns corresponding to the
 #' those in the output from \code{\link{custom_habitat_template}}. The default,
@@ -128,9 +146,15 @@
 #'
 #' @example inst/examples/simpop_ex.R
 #'
-#' @references Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019.
-#' Digital Image Analysis as a Technique for Alewife Fecundity Estimation in a
-#' New Hampshire River. North American Journal of Fisheries Management 39:353-361.
+#' @references Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates
+#' of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut
+#' River with changes in year-class strength. Canadian Journal of
+#' Fisheries and Aquatic Sciences 40:1719-1728.
+#' 
+#' Hook, T. O., E. S. Rutherford, D. M. Mason, and G. S. Carter. 2007. Hatch
+#' Dates, Growth, Survival, and Overwinter Mortality of Age-0 Alewives in
+#' Lake Michigan: Implications for Habitat-Specific Recruitment Success.
+#' Transactions of the American Fisheries Society 136:1298-1312. 
 #'
 #' McBride, R. S., R. Ferreri, E. K. Towle, J. M. Boucher, and
 #' G. Basilone, G. 2016. Yolked oocyte dynamics support agreement
@@ -143,6 +167,15 @@
 #' revisiting the paradigm of reciprocal latitudinal trends
 #' in reproductive traits. American Fisheries Society
 #' Symposium 35:185-192.
+#'
+#' Overton A. S., N. A. Jones, and R. Rulifson. 2012. Spatial and temporal
+#' variability in instantaneous growth, mortality, and recruitment of larval
+#' river herring in the Tar-Pamlico River, North Carolina. Marine and Coastal
+#' Fisheries: Dynamics, Management, and Ecosystem Science 4:218-227.
+#'
+#' Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019.
+#' Digital Image Analysis as a Technique for Alewife Fecundity Estimation in a
+#' New Hampshire River. North American Journal of Fisheries Management 39:353-361.
 #'
 #' @export
 #'
