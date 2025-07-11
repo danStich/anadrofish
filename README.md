@@ -26,6 +26,8 @@ The purpose of this package is to distribute code and provide a user interface f
 
 
 </br>
+</br>
+
 
 Existing (built-in) population models for each species can be implemented using the `sim_pop()` function. New models can be constructed using the existing helper functions within `anadrofish` and appropriately structured habitat data. **As of version 2.1.0** (2024-11-26), we implemented the `custom_habitat_template()` function. This allows use of default habitat data sets, modifying habitat data based on built-in datasets, querying custom habitat datasets ranging from the single stream segment to regional stock scales for each species, or constructing completely custom habitat configurations including fabricated (i.e., theoretical) habitat configurations for optimization studies. 
 
