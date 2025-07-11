@@ -61,7 +61,7 @@ To install `anadrofish`, you will need to have `devtools` installed ahead of tim
 
 ## Examples
 ### Running one scenario for one river many times in parallel
-This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls annually since then.
+This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls (5.3 miles from mouth of Sebasticook River) annually since then.
 
 In this example, we return output from `sim_pop()` using `years = "all"` to also demonstrate the number of years needed for a stable population estimate under this scenario. If we wanted to model changes over time, we would run different scenarios for each year and return only the final year of simulations using `years = "last"`. In theory, this approach could also be used to identify stable population sizes for seeding the initial population in temporal studies, but this has not been validated.
 
@@ -86,6 +86,7 @@ ncpus <- detectCores() - 1
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
 
 # Read in the Sebasticook River data ----
+# This data set is in the inst/data folder on the GitHub repo
 sebasticook_habitat_data <- read_csv("https://raw.githubusercontent.com/danStich/anadrofish/refs/heads/master/inst/data/sebasticook_habitat.csv")
 
 sebasticook_habitat_data <-
@@ -96,7 +97,7 @@ sebasticook_habitat_data <-
   )
 
 # Make a custom habitat data set for the Sebasticook River, ME
-# since it is only included as part of the larger Kennebec River 
+# since it is only included as part of the larger Kennebec River
 # watershed for river herring
 sebasticook_habitat <- data.frame(
   river = "Sebasticook",
@@ -110,31 +111,32 @@ sebasticook_habitat <- data.frame(
 )
 
 # Wrapper function ----
-sim <- function(x){
-
-# . Call simulation ----
+sim <- function(x) {
+  # . Call simulation ----
   res <- sim_pop(
     species = "ALE",
     river = "Sebasticook",
-    nyears = 50,    
+    nyears = 50,
     n_init = round(runif(1, 1e6, 22e7)),
     sr = 0.5,
     b = 0.05,
-    upstream = 1, #runif(1, 0.95, 1.00),
-    downstream = 1, #runif(1, 0.95, 1.00),
-    downstream_j = 1, #runif(1, 0.95, 1.00),
-    output_years = 'all',
+    upstream = 1, # runif(1, 0.95, 1.00), # Could draw from a uniform instead
+    downstream = 1, # runif(1, 0.95, 1.00),
+    downstream_j = 1, # runif(1, 0.95, 1.00),
+    output_years = "all",
     age_structured_output = FALSE,
     sex_specific = TRUE,
-    custom_habitat = sebasticook_habitat)
+    custom_habitat = sebasticook_habitat
+  )
 
-# . Define the output lists ----
+  # . Define the output lists ----
   retlist <- list(
-    res=res)      
-  
-  return(retlist)    
-}  
-  
+    res = res
+  )
+
+  return(retlist)
+}
+
 
 # Parallel execution ----
 # . Load libraries on workers -----
@@ -151,20 +153,20 @@ niterations <- 1e2
 start <- Sys.time()
 
 # Run the sim
-result <- sfLapply(1:niterations, sim) 
+result <- sfLapply(1:niterations, sim)
 
 # Calculate and print run time
-total_time <- Sys.time()-start
+total_time <- Sys.time() - start
 total_time
 
 # . Stop snowfall ----
 sfStop()
 
 # Results ----
-# 'result' is a list of lists. 
+# 'result' is a list of lists.
 
 # Extract results dataframes by string and rbind them
-res <- lapply(result, function(x) x[[c('res')]])
+res <- lapply(result, function(x) x[[c("res")]])
 resdf <- data.frame(rbindlist(res))
 
 # . Summary statistics by passage scenario -----
@@ -176,14 +178,18 @@ plotter <- resdf %>%
     pop = mean(spawners),
     lci = quantile(spawners, 0.025),
     uci = quantile(spawners, 0.975),
-    samp = length(spawners))
+    samp = length(spawners)
+  )
 
 # . Plot the result ----
 # It looks like we need to run this model for at least 25 years or so
 # to get stable results for a given scenario
-ggplot(plotter, aes(x = year, y = pop)) +
+seb_plot <- ggplot(plotter, aes(x = year, y = pop)) +
   geom_line(linewidth = 1) +
-  geom_ribbon(aes(xmax = year, ymin = lci, ymax = uci, color = NULL), alpha = 0.25)
+  geom_ribbon(aes(xmax = year, ymin = lci, ymax = uci, color = NULL), 
+  alpha = 0.25)
+
+seb_plot
 ```
 
 ![**Figure 2**: Example result from Sebasticook River simulation.](man/figures/seb_ale.jpg?raw=true)
@@ -214,13 +220,15 @@ ncpus <- detectCores() - 1
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
 
 # Wrapper function ----
-sim <- function(x){
-
+sim <- function(x) {
   # Define habitat
   # Extract the built-in habitat data for American shad in the Connecticut
   # River so we can use it to specify dam-specific passage rates
-  ct_habitat <- custom_habitat_template(species = "AMS", built_in = TRUE, river = "Connecticut")
-  
+  ct_habitat <- custom_habitat_template(species = "AMS", 
+                                        built_in = TRUE, 
+                                        river = "Connecticut"
+                                        )
+
   # Make upstream passage at all dams zero, then add low passage rates
   # at Holyoke dam prior to fish passage improvements after 1974
   # (Table 2 in https://www.nrc.gov/docs/ML0701/ML070190410.pdf). This should
@@ -228,27 +236,28 @@ sim <- function(x){
   ct_passage <- rep(0, nrow(ct_habitat))
   holyoke_historical <- mean(c(3.0, 2.6, 2.7, 3.8, 5.2, 4.5, 5.5, 5.9, 5.8))
   ct_passage[9] <- holyoke_historical
-  
+
   # We don't actually "know" what downstream survival rates were at Holyoke
   # at that time...unless we can dig up a study on it
   downstream <- sample(seq(0, 1, .1), 1, replace = TRUE)
   downstream_j <- sample(seq(0, 1, .1), 1, replace = TRUE)
-  
+
   # Include estimates of commercial and sport fishery exploitation rates
   # from same document (Table 1 in https://www.nrc.gov/docs/ML0701/ML070190410.pdf)
-  ct_exploitation <- mean(c(28.7, 19.8, 13.0, 9.4, 10.0, 10.4, 19.3, 25.2))/100
-  
-  # Need to convert this to an instantaneous rate for the sim_pop() function
+  ct_exploitation <- mean(
+    c(28.7, 19.8, 13.0, 9.4, 10.0, 10.4, 19.3, 25.2)) / 100
+    
+  # Need to convert this to an instantaneous rate for the model
   ct_f <- -log(1 - ct_exploitation)
-  
+
   # Choose a species
   species <- "AMS"
-  
-# . Call simulation ----
+
+  # . Call simulation ----
   res <- sim_pop(
     species = species,
     river = "Connecticut",
-    nyears = 50,    
+    nyears = 50,
     n_init = MASS::rnegbin(1, 1e6, 1),
     sr = rbeta(1, 100, 100),
     b = 0.21904,
@@ -256,17 +265,19 @@ sim <- function(x){
     upstream = ct_passage,
     downstream = downstream,
     downstream_j = downstream_j,
-    output_years = 'last',
+    output_years = "last",
     age_structured_output = FALSE,
-    sex_specific = TRUE)
+    sex_specific = TRUE
+  )
 
-# . Define the output lists ----
-    retlist <- list(
-      res=res)      
-    
-    return(retlist)    
-  }  
-  
+  # . Define the output lists ----
+  retlist <- list(
+    res = res
+  )
+
+  return(retlist)
+}
+
 
 # Parallel execution ----
 # . Load libraries on workers -----
@@ -282,40 +293,50 @@ niterations <- 1e4
 start <- Sys.time()
 
 # Run the sim
-result <- sfLapply(1:niterations, sim) 
+result <- sfLapply(1:niterations, sim)
 
 # Calculate and print run time
-total_time <- Sys.time()-start
+total_time <- Sys.time() - start
 total_time
 
 # . Stop snowfall ----
 sfStop()
 
 # Results ----
-# 'result' is a list of lists. 
+# 'result' is a list of lists.
 
 # Extract results dataframes by string and rbind them
-res <- lapply(result, function(x) x[[c('res')]])
+res <- lapply(result, function(x) x[[c("res")]])
+
 resdf <- data.frame(rbindlist(res))
 
 
-# . Summary statistics by downstream survival scenario -----
+# . Summary statistics by passage scenario -----
 # Summary data for plotting results by genetic reporting group region
-plotter <- resdf %>% 
-  group_by(fM, downstream, downstream_j) %>% 
-  summarize(fit = mean(spawners),
-            lwr = quantile(spawners, 0.025),
-            upr = quantile(spawners, 0.975),
-            iterations = n()) %>% 
+plotter <- resdf %>%
+  group_by(fM, downstream, downstream_j) %>%
+  summarize(
+    fit = mean(spawners),
+    lwr = quantile(spawners, 0.025),
+    upr = quantile(spawners, 0.975),
+    iterations = n()
+  ) %>%
   mutate(downstream = as.character(downstream))
 
 plotter
 
 # Plot of results
-ggplot(plotter, aes(x = downstream_j, y = fit, color = downstream, fill = downstream)) +
+ct_plot <- ggplot(plotter, 
+                  aes(x = downstream_j,
+                      y = fit,
+                      color = downstream,
+                      fill = downstream
+                      )) +
   geom_line() +
-  geom_ribbon(aes(xmax = downstream_j, ymin = lwr, ymax = upr,
-                  color = NULL), alpha = 0.05) +
+  geom_ribbon(aes(
+    xmax = downstream_j, ymin = lwr, ymax = upr,
+    color = NULL
+  ), alpha = 0.05) +
   guides(fill = guide_legend(nrow = 1, byrow = TRUE)) +
   geom_hline(yintercept = 1.3e6, linetype = 2) +
   scale_y_continuous(breaks = seq(0, 1e7, .5e6), labels = seq(0, 10, .5)) +
@@ -334,9 +355,11 @@ ggplot(plotter, aes(x = downstream_j, y = fit, color = downstream, fill = downst
     strip.background = element_blank(),
     strip.text.x = element_blank()
   )
+
+ct_plot
 ```
 
-![**Figure 3**: Example simulation for historical fish passage scenarios in the Connecticut River.](man/figures/ct_shad.jpg?raw=true)
+![**Figure 3**: Example simulation for historical fish passage scenarios in the Connecticut River. The horizontal dashed line indicates the maximum estimated abundance in the river prior to 1974.](man/figures/ct_shad.jpg?raw=true)
 
 </br>
 </br>
@@ -346,11 +369,11 @@ This example uses the randomized sampling scenarios used in ASMFC (2024) for ran
 
 ```r
 # Package load ----
-  library(snowfall)
-  library(anadrofish)
-  library(tidyverse)
-  library(data.table)
-  library(parallel)
+library(snowfall)
+library(anadrofish)
+library(tidyverse)
+library(data.table)
+library(parallel)
 
 # Set a seed for random number generators for reproducibility ----
 set.seed(12345)
@@ -363,48 +386,52 @@ ncpus <- detectCores() - 1
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
 
 # Wrapper function ----
-sim <- function(x){
-
-  # Define passage scenarios used for ASFMC (2024) 
+sim <- function(x) {
+  # Define passage scenarios used for ASFMC (2024)
   passages <- list(
-    c(0, 1, 1),         # No passage
-    c(1, 1, 1),         # No dams
-    c(0.31, 0.8, 0.90)) # Current
-  
+    c(0, 1, 1), # No passage
+    c(1, 1, 1), # No dams
+    c(0.31, 0.8, 0.90)
+  ) # Current
+
   scenarios <- c("No passage", "No dams", "Current")
-  
+
   # Randomly sample the scenario for each iteration
   scenario_num <- sample(1:3, 1, replace = TRUE)
   scenario <- scenarios[scenario_num]
   passage <- passages[[scenario_num]]
-  
+
   # Choose a species
   species <- "BBH"
-  
-# . Call simulation ----
+
+  # . Call simulation ----
   res <- sim_pop(
     species = species,
-    river = as.character(get_rivers(species)[sample(1:length(get_rivers(species)), 1)]),
-    nyears = 50,    
+    river = as.character(
+      get_rivers(species)[sample(1:length(get_rivers(species)), 1)]
+    ),
+    nyears = 50,
     n_init = MASS::rnegbin(1, 1e6, 1),
     sr = rbeta(1, 100, 100),
     b = 0.05,
     upstream = passage[1],
     downstream = passage[2],
     downstream_j = passage[3],
-    output_years = 'last',
+    output_years = "last",
     age_structured_output = FALSE,
-    sex_specific = TRUE)
+    sex_specific = TRUE
+  )
 
-# . Define the output lists ----
+  # . Define the output lists ----
   res$scenario <- scenario
-  
+
   retlist <- list(
-    res=res)      
-  
-  return(retlist)    
-}  
-  
+    res = res
+  )
+
+  return(retlist)
+}
+
 
 # Parallel execution ----
 # . Load libraries on workers -----
@@ -413,7 +440,7 @@ sfLibrary(tidyverse)
 
 # . Distribute to workers -----
 # Number of simulations to run
-# You will need to run this MANY more times (1 million+) to stabilize results 
+# You will need to run this MANY more times (1 million+) to stabilize results
 niterations <- 1e2
 
 # Run the simulation ----
@@ -421,20 +448,20 @@ niterations <- 1e2
 start <- Sys.time()
 
 # Run the sim
-result <- sfLapply(1:niterations, sim) 
+result <- sfLapply(1:niterations, sim)
 
 # Calculate and print run time
-total_time <- Sys.time()-start
+total_time <- Sys.time() - start
 total_time
 
 # . Stop snowfall ----
 sfStop()
 
 # Results ----
-# 'result' is a list of lists. 
+# 'result' is a list of lists.
 
 # Extract results dataframes by string and rbind them
-res <- lapply(result, function(x) x[[c('res')]])
+res <- lapply(result, function(x) x[[c("res")]])
 resdf <- data.frame(rbindlist(res))
 
 # . Summary statistics by passage scenario -----
@@ -445,19 +472,23 @@ plotter <- resdf %>%
     pop = mean(spawners),
     lci = quantile(spawners, 0.025),
     uci = quantile(spawners, 0.975),
-    samp = length(spawners))
+    samp = length(spawners)
+  )
 
 plotter <- plotter %>%
   group_by(scenario) %>%
-  summarize(pop = sum(pop),
-            lwr = sum(lci),
-            upr = sum(uci))
+  summarize(
+    pop = sum(pop),
+    lwr = sum(lci),
+    upr = sum(uci)
+  )
 
 # Names for fish passage scenarios
-n_pass <- mean(plotter$pop[plotter$scenario == "No passage"]) 
+n_pass <- mean(plotter$pop[plotter$scenario == "No passage"])
 plotter$scenario <- factor(plotter$scenario,
-                           levels = c("No passage", "Current", "No dams"),
-                           labels = c("No passage", "Current", "No dams"))
+  levels = c("No passage", "Current", "No dams"),
+  labels = c("No passage", "Current", "No dams")
+)
 
 # Plot of results
 ggplot(plotter, aes(x = scenario, y = pop)) +
@@ -472,8 +503,8 @@ ggplot(plotter, aes(x = scenario, y = pop)) +
   theme(
     legend.position = "top",
     legend.box = "horizontal",
-    legend.margin = margin(unit(.5, units = "npc")))
-
+    legend.margin = margin(unit(.5, units = "npc"))
+  )
 ```
 
 ![**Figure 4**: Figure from example coast-wide blueback herring simulation.](man/figures/coastal_bbh.jpg?raw=true)
@@ -488,11 +519,11 @@ In this example, we create a custom population for alewife using the names from 
 
 ```r
 # Package load ----
-  library(snowfall)
-  library(anadrofish)
-  library(tidyverse)
-  library(data.table)
-  library(parallel)
+library(snowfall)
+library(anadrofish)
+library(tidyverse)
+library(data.table)
+library(parallel)
 
 # Set a seed for random number generators for reproducibility ----
 set.seed(12345)
@@ -505,8 +536,7 @@ ncpus <- detectCores() - 1
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
 
 # Wrapper function ----
-sim <- function(x){
-  
+sim <- function(x) {
   # Define a novel hydrosystem in the mid-Atlantic region
   # using `custom_habitat_template()` or by creating a template
   # using the same columns. You could export this in a .csv
@@ -518,40 +548,40 @@ sim <- function(x){
     built_in = FALSE,
     river = "new_config"
   )
-  
+
   # Check out the names so we can build a simple,
   # in-line example for demonstration
   names(novel_config)
-  
+
   # Heavily commented novel habitat definition
   novel_config <- data.frame(
     # Can be anything
     river = "new_config",
     # Must be from pre-defined within species (biological basis for this)
-    region = "MAT", 
+    region = "MAT",
     # Can be anything, not actually used in biological models
     govt = "NY",
     # Used for latitudinal trends in life-history traits for American shad only
     lat = NA,
-    # Not actually used in the models, but could be useful for data querying 
+    # Not actually used in the models, but could be useful for data querying
     # in the future
     lon = NA,
     # Number of dams from each element back to first. This example has two
-    # dams that are each the first dam within their "migration route". That 
-    # means at least one of the dams is on a tributary in this configuration 
+    # dams that are each the first dam within their "migration route". That
+    # means at least one of the dams is on a tributary in this configuration.
     dam_order = c(0, 1, 1),
     # Amount of habitat (surface area in square km)
-    Hab_sqkm <- c(0, 1, 1)    
-    )
+    Hab_sqkm <- c(0, 1, 1)
+  )
 
   # Choose a species
   species <- "ALE"
-  
-# . Call simulation ----
+
+  # . Call simulation ----
   res <- sim_pop(
     species = species,
     river = "new_config",
-    nyears = 50,    
+    nyears = 50,
     n_init = runif(1, 1e4, 2e6),
     sr = rbeta(1, 100, 100),
     b = 0.05,
@@ -560,16 +590,17 @@ sim <- function(x){
     downstream_j = 1,
     custom_habitat = novel_config,
     output_years = "last"
-    )
+  )
 
-# . Define the output lists ----
-  
+  # . Define the output lists ----
+
   retlist <- list(
-    res=res)      
-  
-  return(retlist)    
-}  
-  
+    res = res
+  )
+
+  return(retlist)
+}
+
 
 # Parallel execution ----
 # . Load libraries on workers -----
@@ -579,7 +610,7 @@ sfLibrary(tidyverse)
 
 # . Distribute to workers -----
 # Number of simulations to run
-# You will need to run this MANY more times (1 million+) to stabilize results 
+# You will need to run this MANY more times (1 million+) to stabilize results
 niterations <- 1e2
 
 # Run the simulation ----
@@ -587,20 +618,20 @@ niterations <- 1e2
 start <- Sys.time()
 
 # Run the sim
-result <- sfLapply(1:niterations, sim) 
+result <- sfLapply(1:niterations, sim)
 
 # Calculate and print run time
-total_time <- Sys.time()-start
+total_time <- Sys.time() - start
 total_time
 
 # . Stop snowfall ----
 sfStop()
 
 # Results ----
-# 'result' is a list of lists. 
+# 'result' is a list of lists.
 
 # Extract results dataframes by string and rbind them
-res <- lapply(result, function(x) x[[c('res')]])
+res <- lapply(result, function(x) x[[c("res")]])
 resdf <- data.frame(rbindlist(res))
 
 # . Quick summary statistics ----
