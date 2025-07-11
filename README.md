@@ -61,7 +61,7 @@ To install `anadrofish`, you will need to have `devtools` installed ahead of tim
 
 ## Examples
 ### Running one scenario for one river many times in parallel
-This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls (5.3 miles from mouth of Sebasticook River) annually since then.
+This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls (5.3 miles from mouth of Sebasticook River, and 17 miles from Edwards Dam) annually since then.
 
 In this example, we return output from `sim_pop()` using `years = "all"` to also demonstrate the number of years needed for a stable population estimate under this scenario. If we wanted to model changes over time, we would run different scenarios for each year and return only the final year of simulations using `years = "last"`. In theory, this approach could also be used to identify stable population sizes for seeding the initial population in temporal studies, but this has not been validated.
 
