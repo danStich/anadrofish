@@ -20,8 +20,8 @@ The purpose of this package is to distribute code and provide a user interface f
 
 
 <figure>
-    <img src="man/figures/conceptual-model.jpg?raw=true" alt="Graphical overview of the `anadrofish` workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the `sim_pop()` function along with built-in data sets to simulate anadromous fish populations." />
-    <figcaption><b>Figure 1</b>: Graphical overview of the `anadrofish` workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the `sim_pop()` function along with built-in data sets to simulate anadromous fish populations.</figcaption>
+    <img src="man/figures/conceptual-model.jpg?raw=true" alt="Graphical overview of the anadrofish workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the sim_pop() function along with built-in data sets to simulate anadromous fish populations." />
+    <figcaption><b>Figure 1</b>: Graphical overview of the <code>anadrofish</code> workflow (right) compared to conceptual life-history model for anadromous fishes (left). Helper functions are used within the <code>sim_pop()</code> function along with built-in data sets to simulate anadromous fish populations.</figcaption>
 </figure>
 
 
