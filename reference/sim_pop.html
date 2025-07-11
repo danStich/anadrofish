@@ -86,19 +86,28 @@ can be viewed by calling <code><a href="get_rivers.html">get_rivers</a></code> w
 (e.g., <code><a href="get_rivers.html">get_rivers()</a></code>). Alternatively, the user can specify
 <code>rivers = sample(get_rivers, 1)</code> to randomly sample river
 within larger simulation studies. Information about each river can be
-found in the <code><a href="habitat.html">habitat</a></code> dataset.</p></dd>
+found in the <code><a href="habitat.html">habitat</a></code> dataset. If specifying
+<code>custom_habitat</code>, then <code>river</code> must match the name of the river
+used in <code>custom_habitat</code> (see also
+<code><a href="custom_habitat_template.html">custom_habitat_template</a></code>).</p></dd>
 
 
 <dt id="arg-max-age">max_age<a class="anchor" aria-label="anchor" href="#arg-max-age"></a></dt>
 <dd><p>Maximum age of fish in population. If <code>NULL</code>
 (default), then based on the maximum age of females for the
-corresponding region in the <code><a href="max_ages.html">max_ages</a></code> dataset.</p></dd>
+corresponding region in the <code><a href="max_ages.html">max_ages</a></code> dataset for American shad
+or the region- and species-specific maximum age in the
+<code><a href="mortality_rh.html">mortality_rh</a></code> dataset for alewife and blueback herring.</p></dd>
 
 
 <dt id="arg-nm">nM<a class="anchor" aria-label="anchor" href="#arg-nm"></a></dt>
 <dd><p>Instantaneous natural mortality. If <code>NULL</code>
-(default), then based on the average of males and females for the
-corresponding region in the <code><a href="mortality.html">mortality</a></code> dataset.</p></dd>
+(default), then based on sex-specific or sex-aggregated values for the
+corresponding region in the datasets for each species.
+For American shad, the default values are drawn from <code><a href="mortality.html">mortality</a></code>
+with <code><a href="make_mortality.html">make_mortality</a></code> within the <code>sim_pop()</code>
+function. For alewife and blueback herring, default values are drawn from
+<code><a href="mortality_rh.html">mortality_rh</a></code> within <code><a href="make_mortality.html">make_mortality</a></code>.</p></dd>
 
 
 <dt id="arg-fm">fM<a class="anchor" aria-label="anchor" href="#arg-fm"></a></dt>
@@ -116,7 +125,9 @@ once expectations for abundance at population stability are determined.</p></dd>
 <dd><p>Probability of recruitment to spawn at age. If
 <code>NULL</code> (default), then probabilities are based on the mean of
 male and female recruitment to first spawn at age from the
-<code><a href="maturity.html">maturity</a></code> dataset.</p></dd>
+<code><a href="maturity.html">maturity</a></code> dataset for American shad within
+<code><a href="make_spawnrecruit.html">make_spawnrecruit</a></code> or simulated within
+<code><a href="make_spawnrecruit_rh.html">make_spawnrecruit_rh</a></code> for alewife and blueback herring.</p></dd>
 
 
 <dt id="arg-eggs">eggs<a class="anchor" aria-label="anchor" href="#arg-eggs"></a></dt>
@@ -144,10 +155,14 @@ per acre.</p></dd>
 
 
 <dt id="arg-s-juvenile">s_juvenile<a class="anchor" aria-label="anchor" href="#arg-s-juvenile"></a></dt>
-<dd><p>Survival from hatch to outmigrant. If NULL
-(default) then simulated from a (log) normal distribution using
+<dd><p>Survival from hatch to outmigrant. For American shad,
+if NULL (default) then simulated from a (log) normal distribution using
 mean and sd of <code>Sc</code> through <code>70 d</code> for 1979-1982 from
-Crecco et al. (1983) in <code><a href="crecco_1983.html">crecco_1983</a></code>.</p></dd>
+Crecco et al. (1983) in <code><a href="crecco_1983.html">crecco_1983</a></code> within the
+<code><a href="sim_juvenile_s.html">sim_juvenile_s</a></code> function. The default of NULL results in
+juvenile survival being simulated truncated normal distribution based on
+means and standard deviations from Overton et al. (2012) for blueback herring
+or Hook et al. (2007) for alewife.</p></dd>
 
 
 <dt id="arg-upstream">upstream<a class="anchor" aria-label="anchor" href="#arg-upstream"></a></dt>
@@ -157,7 +172,7 @@ upstream passage through dams.</p></dd>
 
 <dt id="arg-downstream">downstream<a class="anchor" aria-label="anchor" href="#arg-downstream"></a></dt>
 <dd><p>Numeric of length 1 indicating proportional
-downstream survival through dams.</p></dd>
+downstream survival through dams for adult fish.</p></dd>
 
 
 <dt id="arg-downstream-j">downstream_j<a class="anchor" aria-label="anchor" href="#arg-downstream-j"></a></dt>
@@ -185,7 +200,10 @@ than <code>max_age</code> are zero.</p></dd>
 
 
 <dt id="arg-sex-specific">sex_specific<a class="anchor" aria-label="anchor" href="#arg-sex-specific"></a></dt>
-<dd><p>Whether to use sex-specific life-history data.</p></dd>
+<dd><p>Whether to use sex-specific life-history data. Default
+is <code>TRUE</code>. Sex-aggregate functionality has not been widely implemented
+within the package and should be considered experimental (for future
+development).</p></dd>
 
 
 <dt id="arg-custom-habitat">custom_habitat<a class="anchor" aria-label="anchor" href="#arg-custom-habitat"></a></dt>
@@ -230,9 +248,14 @@ including the following variables:</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019.
-Digital Image Analysis as a Technique for Alewife Fecundity Estimation in a
-New Hampshire River. North American Journal of Fisheries Management 39:353-361.</p>
+    <p>Crecco, V., T. Savoy, and L. Gunn. 1983. Daily mortality rates
+of larval and juvenile American shad (*Alosa sapidissima*) in the Connecticut
+River with changes in year-class strength. Canadian Journal of
+Fisheries and Aquatic Sciences 40:1719-1728.</p>
+<p>Hook, T. O., E. S. Rutherford, D. M. Mason, and G. S. Carter. 2007. Hatch
+Dates, Growth, Survival, and Overwinter Mortality of Age-0 Alewives in
+Lake Michigan: Implications for Habitat-Specific Recruitment Success.
+Transactions of the American Fisheries Society 136:1298-1312.</p>
 <p>McBride, R. S., R. Ferreri, E. K. Towle, J. M. Boucher, and
 G. Basilone, G. 2016. Yolked oocyte dynamics support agreement
 between determinate- and indeterminate-method estimates of annual
@@ -243,6 +266,13 @@ variation in batch fecundity of American shad (*Alosa sapidissima*):
 revisiting the paradigm of reciprocal latitudinal trends
 in reproductive traits. American Fisheries Society
 Symposium 35:185-192.</p>
+<p>Overton A. S., N. A. Jones, and R. Rulifson. 2012. Spatial and temporal
+variability in instantaneous growth, mortality, and recruitment of larval
+river herring in the Tar-Pamlico River, North Carolina. Marine and Coastal
+Fisheries: Dynamics, Management, and Ecosystem Science 4:218-227.</p>
+<p>Sullivan, K.M, M.M. Bailey, and D.L. Berlinksky. 2019.
+Digital Image Analysis as a Technique for Alewife Fecundity Estimation in a
+New Hampshire River. North American Journal of Fisheries Management 39:353-361.</p>
     </div>
 
     <div class="section level2">
