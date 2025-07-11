@@ -120,15 +120,15 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Set a seed for random number generators for reproducibility ----</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
-<span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
 <span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
 <span></span>
 <span><span class="co"># Initialize snowfall socket cluster</span></span>
 <span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Set a seed for random number generators for reproducibility ----</span></span>
+<span><span class="fu">sfClusterSetupRNG</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">12345</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Read in the Sebasticook River data ----</span></span>
 <span><span class="co"># This data set is in the inst/data folder on the GitHub repo</span></span>
@@ -191,7 +191,7 @@
 <span></span>
 <span><span class="co"># . Distribute to workers -----</span></span>
 <span><span class="co"># Number of simulations to run</span></span>
-<span><span class="va">niterations</span> <span class="op">&lt;-</span> <span class="fl">1e2</span></span>
+<span><span class="va">niterations</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span></span>
 <span><span class="co"># Run the simulation ----</span></span>
 <span><span class="co"># Assign starting time</span></span>
@@ -250,8 +250,6 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Set a seed for random number generators for reproducibility ----</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
@@ -259,6 +257,9 @@
 <span></span>
 <span><span class="co"># Initialize snowfall socket cluster</span></span>
 <span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Set a seed for random number generators for reproducibility ----</span></span>
+<span><span class="fu">sfClusterSetupRNG</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">12345</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Wrapper function ----</span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -404,7 +405,7 @@
 <div class="section level3">
 <h3 id="running-multiple-scenarios-for-many-rivers-many-times-in-parallel">Running multiple scenarios for many rivers many times in parallel<a class="anchor" aria-label="anchor" href="#running-multiple-scenarios-for-many-rivers-many-times-in-parallel"></a>
 </h3>
-<p>This example uses the randomized sampling scenarios used in ASMFC (2024) for range-wide blueback herring population assessment. It randomly samples rivers from all available populations, and selects a management scenario (“no dams”, “no passage”, “current”) randomly for broad-scale simulation. Note that this scenario would need to be run &gt; 1 million times to produce stabilized results for all populations included.</p>
+<p>This example uses the randomized sampling scenarios used in ASMFC (2024) for range-wide blueback herring population assessment. It randomly samples rivers from all available populations, and selects a management scenario (“no dams”, “no passage”, “current”) randomly for broad-scale simulation. Note that this scenario would need to be run &gt; 1 million times to produce stabilized results for all populations included that match the results in ASMFC (2024), especially for variances around means.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Package load ----</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">snowfall</span><span class="op">)</span></span>
@@ -413,8 +414,6 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Set a seed for random number generators for reproducibility ----</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
@@ -422,6 +421,9 @@
 <span></span>
 <span><span class="co"># Initialize snowfall socket cluster</span></span>
 <span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Set a seed for random number generators for reproducibility ----</span></span>
+<span><span class="fu">sfClusterSetupRNG</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">12345</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Wrapper function ----</span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
@@ -479,7 +481,7 @@
 <span><span class="co"># . Distribute to workers -----</span></span>
 <span><span class="co"># Number of simulations to run</span></span>
 <span><span class="co"># You will need to run this MANY more times (1 million+) to stabilize results</span></span>
-<span><span class="va">niterations</span> <span class="op">&lt;-</span> <span class="fl">1e2</span></span>
+<span><span class="va">niterations</span> <span class="op">&lt;-</span> <span class="fl">1e3</span></span>
 <span></span>
 <span><span class="co"># Run the simulation ----</span></span>
 <span><span class="co"># Assign starting time</span></span>
@@ -558,8 +560,6 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Set a seed for random number generators for reproducibility ----</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
@@ -567,6 +567,9 @@
 <span></span>
 <span><span class="co"># Initialize snowfall socket cluster</span></span>
 <span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Set a seed for random number generators for reproducibility ----</span></span>
+<span><span class="fu">sfClusterSetupRNG</span><span class="op">(</span>seed <span class="op">=</span> <span class="fl">12345</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Wrapper function ----</span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
