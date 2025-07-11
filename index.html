@@ -695,6 +695,115 @@
 </div>
 <p> </p>
 </div>
+<div class="section level3">
+<h3 id="benchmarking-against-related-r-package">Benchmarking against related R package<a class="anchor" aria-label="anchor" href="#benchmarking-against-related-r-package"></a>
+</h3>
+<p>This example provides a brief benchmarking demonstration against a similar, more complex (individual-based) shad and river herring models from the <a href="https://github.com/danStich/shadia" class="external-link"><code>shadia</code></a> R package.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Libraries ----</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">shadia</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://danstich.github.io/anadrofish/">anadrofish</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joshuaulrich/microbenchmark/" class="external-link">microbenchmark</a></span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Set seed for rng ----</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Benchmarking ----</span></span>
+<span><span class="co"># Notes:</span></span>
+<span><span class="co"># Uses default settings for upstream passage and downstream survival</span></span>
+<span><span class="co"># rates of `1` at all dams, otherwise used same settings across modeling</span></span>
+<span><span class="co"># frameworks to standardize as much as possible.</span></span>
+<span></span>
+<span><span class="co"># The warnings() output is coming from the C++ function that moves individual</span></span>
+<span><span class="co"># fish upstream through rivers in shadia::penobscotRiverModel(). This does not</span></span>
+<span><span class="co"># appear to be influencing accuracy of estimates compared to published research,</span></span>
+<span><span class="co"># but may result in deserialization of nodes in parallel processing, so we use</span></span>
+<span><span class="co"># a serial approach to benchmarking below. We have not suppressed those warnings </span></span>
+<span><span class="co"># here for the sake of transparency (`shadia` models were even slower before </span></span>
+<span><span class="co"># any updates that could have caused this warning).</span></span>
+<span></span>
+<span><span class="co"># We use `microbenchmark::microbenchmark()` because run time for 1 iteration</span></span>
+<span><span class="co"># of `anadrofish` package models is &lt;&lt; 1 second compared to ~ 30 second for</span></span>
+<span><span class="co"># `shadia` package models.</span></span>
+<span></span>
+<span><span class="co"># The total number of `times` in in `microbenchmark()` would normally be higher,</span></span>
+<span><span class="co"># but the individual-based models in `shadia` take a long time to run in serial</span></span>
+<span><span class="co"># and the difference in run times is several orders of magnitude here.</span></span>
+<span><span class="va">mb_test</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="op">(</span></span>
+<span>  <span class="st">"shadia_check"</span> <span class="op">=</span> <span class="op">{</span></span>
+<span>    <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu">penobscotRiverModel</span><span class="op">(</span></span>
+<span>      nRuns <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>      species <span class="op">=</span> <span class="st">"shad"</span>,</span>
+<span>      nYears <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>      n_adults <span class="op">=</span> <span class="fl">10000</span>,</span>
+<span>      watershed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>      output_years <span class="op">=</span> <span class="st">"last"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span>,</span>
+<span>  <span class="st">"anadrofish_test"</span> <span class="op">=</span> <span class="op">{</span></span>
+<span>    <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sim_pop.html">sim_pop</a></span><span class="op">(</span></span>
+<span>      species <span class="op">=</span> <span class="st">"AMS"</span>,</span>
+<span>      nyears <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>      n_init <span class="op">=</span> <span class="fl">10000</span>,</span>
+<span>      river <span class="op">=</span> <span class="st">"Penobscot"</span>,</span>
+<span>      output_years <span class="op">=</span> <span class="st">"last"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span>,</span>
+<span>  times <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Our results (<code>mb_test</code>) should look something like this:</p>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="20%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">expr</th>
+<th align="right">min</th>
+<th align="right">lq</th>
+<th align="right">mean</th>
+<th align="right">median</th>
+<th align="right">uq</th>
+<th align="right">max</th>
+<th align="right">neval</th>
+<th align="right">cld</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">shadia_check (ms)</td>
+<td align="right">32428.537</td>
+<td align="right">34306.0663</td>
+<td align="right">38115.6585</td>
+<td align="right">37837.9312</td>
+<td align="right">42599.1752</td>
+<td align="right">45740.3324</td>
+<td align="right">10</td>
+<td align="right">a</td>
+</tr>
+<tr class="even">
+<td align="left">anadrofish_test (ms)</td>
+<td align="right">55.809</td>
+<td align="right">111.2171</td>
+<td align="right">116.7442</td>
+<td align="right">118.4982</td>
+<td align="right">133.6141</td>
+<td align="right">143.2512</td>
+<td align="right">10</td>
+<td align="right">b</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section level2">
 <h2 id="directories">Directories<a class="anchor" aria-label="anchor" href="#directories"></a>
