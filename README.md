@@ -651,6 +651,78 @@ custom_plot
 </br>
 </br>
 
+
+### Benchmarking against related R package
+This example provides a brief benchmarking demonstration against a similar,
+more complex (individual-based) shad and river herring models from the 
+[`shadia`](https://github.com/danStich/shadia) R package.
+
+```r
+# Libraries ----
+library(tidyverse)
+library(shadia)
+library(anadrofish)
+library(microbenchmark)
+
+
+# Set seed for rng ----
+set.seed(12345)
+
+
+# Benchmarking ----
+# Notes:
+# Uses default settings for upstream passage and downstream survival
+# rates of `1` at all dams, otherwise used same settings across modeling
+# frameworks to standardize as much as possible.
+
+# The warnings() output is coming from the C++ function that moves individual
+# fish upstream through rivers in shadia::penobscotRiverModel(). This does not
+# appear to be influencing accuracy of estimates compared to published research,
+# but may result in deserialization of nodes in parallel processing, so we use
+# a serial approach to benchmarking below. We have not suppressed those warnings 
+# here for the sake of transparency (`shadia` models were even slower before 
+# any updates that could have caused this warning).
+
+# We use `microbenchmark::microbenchmark()` because run time for 1 iteration
+# of `anadrofish` package models is << 1 second compared to ~ 30 second for
+# `shadia` package models.
+
+# The total number of `times` in in `microbenchmark()` would normally be higher,
+# but the individual-based models in `shadia` take a long time to run in serial
+# and the difference in run times is several orders of magnitude here.
+mb_test <- microbenchmark(
+  "shadia_check" = {
+    test <- penobscotRiverModel(
+      nRuns = 1,
+      species = "shad",
+      nYears = 30,
+      n_adults = 10000,
+      watershed = TRUE,
+      output_years = "last"
+    )
+  },
+  "anadrofish_test" = {
+    test <- sim_pop(
+      species = "AMS",
+      nyears = 30,
+      n_init = 10000,
+      river = "Penobscot",
+      output_years = "last"
+    )
+  },
+  times = 10
+)
+
+```
+
+Our results (`mb_test`) should look something like this:
+
+|           expr |       min |         lq |       mean |     median |         uq |        max | neval |    cld|
+|           :------- |      ---: |       ---: |       ---: |       ---: |       ---: |       ---: |  ---: |  ---: |
+|   shadia_check (ms)| 32428.537 | 34306.0663 | 38115.6585 | 37837.9312 | 42599.1752 | 45740.3324 |    10 | a |
+|anadrofish_test (ms)|    55.809 |   111.2171 |   116.7442 |   118.4982 |   133.6141 |   143.2512 |    10 |  b|
+
+
 ## Directories
 
 `data/` Built-in data sets for the package
