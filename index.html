@@ -119,6 +119,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf" class="external-link">rlecuyer</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
@@ -186,7 +187,7 @@
 <span><span class="co"># Parallel execution ----</span></span>
 <span><span class="co"># . Load libraries on workers -----</span></span>
 <span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">anadrofish</span><span class="op">)</span></span>
-<span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">rlecuyer</span><span class="op">)</span></span>
 <span><span class="fu">sfExport</span><span class="op">(</span><span class="st">"sebasticook_habitat"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># . Distribute to workers -----</span></span>
@@ -249,6 +250,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf" class="external-link">rlecuyer</a></span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
@@ -324,7 +326,7 @@
 <span><span class="co"># Parallel execution ----</span></span>
 <span><span class="co"># . Load libraries on workers -----</span></span>
 <span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">anadrofish</span><span class="op">)</span></span>
-<span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">rlecuyer</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># . Distribute to workers -----</span></span>
 <span><span class="co"># Number of simulations to run</span></span>
@@ -413,6 +415,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf" class="external-link">rlecuyer</a></span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
@@ -476,7 +479,7 @@
 <span><span class="co"># Parallel execution ----</span></span>
 <span><span class="co"># . Load libraries on workers -----</span></span>
 <span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">anadrofish</span><span class="op">)</span></span>
-<span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">rlecuyer</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># . Distribute to workers -----</span></span>
 <span><span class="co"># Number of simulations to run</span></span>
@@ -559,7 +562,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
-<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf" class="external-link">rlecuyer</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
@@ -641,13 +644,13 @@
 <span><span class="co"># Parallel execution ----</span></span>
 <span><span class="co"># . Load libraries on workers -----</span></span>
 <span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">anadrofish</span><span class="op">)</span></span>
-<span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span><span class="fu">sfLibrary</span><span class="op">(</span><span class="va">rlecuyer</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># . Distribute to workers -----</span></span>
 <span><span class="co"># Number of simulations to run</span></span>
 <span><span class="co"># You will need to run this MANY more times (1 million+) to stabilize results</span></span>
-<span><span class="va">niterations</span> <span class="op">&lt;-</span> <span class="fl">1e2</span></span>
+<span><span class="va">niterations</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span></span>
 <span><span class="co"># Run the simulation ----</span></span>
 <span><span class="co"># Assign starting time</span></span>
@@ -800,7 +803,7 @@
 <p><code>data/</code> Built-in data sets for the package</p>
 <p><code>inst/examples/</code> Examples for those requiring more than a one-liner</p>
 <p><code>inst/data/</code> Example dataset for <code>README.md</code>. Included in <code>.Rbuildignore</code>.</p>
-<p><code>man/</code> Help files and documentation, example figures for readme</p>
+<p><code>man/</code> Help files and documentation, example figures for README.md</p>
 <p><code>R/</code> R functions in scripts</p>
 <p><code>tests/</code> Function tests and checks using the <code>testhat</code> package</p>
 <p> </p>
