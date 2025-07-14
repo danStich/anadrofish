@@ -81,6 +81,7 @@ library(anadrofish)
 library(tidyverse)
 library(data.table)
 library(parallel)
+library(rlecuyer)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
@@ -148,7 +149,7 @@ sim <- function(x) {
 # Parallel execution ----
 # . Load libraries on workers -----
 sfLibrary(anadrofish)
-sfLibrary(tidyverse)
+sfLibrary(rlecuyer)
 sfExport("sebasticook_habitat")
 
 # . Distribute to workers -----
@@ -220,6 +221,7 @@ library(anadrofish)
 library(tidyverse)
 library(data.table)
 library(parallel)
+library(rlecuyer)
 
 
 # Parallel settings ----
@@ -295,7 +297,7 @@ sim <- function(x) {
 # Parallel execution ----
 # . Load libraries on workers -----
 sfLibrary(anadrofish)
-sfLibrary(tidyverse)
+sfLibrary(rlecuyer)
 
 # . Distribute to workers -----
 # Number of simulations to run
@@ -393,6 +395,7 @@ library(anadrofish)
 library(tidyverse)
 library(data.table)
 library(parallel)
+library(rlecuyer)
 
 
 # Parallel settings ----
@@ -456,7 +459,7 @@ sim <- function(x) {
 # Parallel execution ----
 # . Load libraries on workers -----
 sfLibrary(anadrofish)
-sfLibrary(tidyverse)
+sfLibrary(rlecuyer)
 
 # . Distribute to workers -----
 # Number of simulations to run
@@ -548,7 +551,7 @@ library(anadrofish)
 library(tidyverse)
 library(data.table)
 library(parallel)
-
+library(rlecuyer)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
@@ -630,13 +633,13 @@ sim <- function(x) {
 # Parallel execution ----
 # . Load libraries on workers -----
 sfLibrary(anadrofish)
-sfLibrary(tidyverse)
+sfLibrary(rlecuyer)
 
 
 # . Distribute to workers -----
 # Number of simulations to run
 # You will need to run this MANY more times (1 million+) to stabilize results
-niterations <- 1e2
+niterations <- 100
 
 # Run the simulation ----
 # Assign starting time
@@ -765,7 +768,7 @@ Our results (`mb_test`) should look something like this:
 
 `inst/data/` Example dataset for `README.md`. Included in `.Rbuildignore`.
 
-`man/` Help files and documentation, example figures for readme
+`man/` Help files and documentation, example figures for README.md
 
 `R/` R functions in scripts
 
