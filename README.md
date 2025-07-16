@@ -87,7 +87,7 @@ library(rlecuyer)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
-ncpus <- 4
+ncpus <- 7
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
@@ -226,7 +226,7 @@ library(rlecuyer)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
-ncpus <- 4
+ncpus <- 7
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
@@ -399,7 +399,7 @@ library(rlecuyer)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
-ncpus <- 4
+ncpus <- 7
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
@@ -552,7 +552,7 @@ library(rlecuyer)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
-ncpus <- 4
+ncpus <- 7
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
