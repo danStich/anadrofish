@@ -67,6 +67,9 @@ To install `anadrofish`, you will need to have `devtools` installed ahead of tim
 </br>
 
 ## Examples
+Please note that in all examples below that are run in parallel we set `ncpus` (number of processing cores) to `7` for reproducibility because of how random number generation is handled for parallel back-ends. Different numbers of cores result in different numbers of RNG streams for the overall simulation, meaning that in order to reproduce the results below exactly, you will need to use 7 cores (most modern laptops have at least 8 cores in total and one should be left idle to avoid crashing). Ideally, you should use `ncpus <- parallel::detectCores()-1` for faster completion.
+
+
 ### Running one scenario for one river many times in parallel
 This example uses alewife in the Sebasticook River, ME, USA [Wipplehauser 2021](https://onlinelibrary.wiley.com/doi/full/10.1002/tafs.10292) to understand baseline population predictions following the removal of Edwards Dam in 1999, removal of Fort Halifax Dam in 2008, and installation of a fish lift at the next dam in the Sebasticook River. Approximately 1-6 million spawning alewife have passed upstream of Benton Falls (5.3 miles from mouth of Sebasticook River, and 17 miles from Edwards Dam) annually since then.
 
@@ -80,12 +83,11 @@ library(snowfall)
 library(anadrofish)
 library(tidyverse)
 library(data.table)
-library(parallel)
 library(rlecuyer)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
-ncpus <- detectCores() - 1
+ncpus <- 4
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
@@ -210,7 +212,6 @@ seb_plot
 </br>
 
 
-
 ### Running multiple scenarios for one river many times in parallel
 This example uses American shad in the Connecticut River, CT, USA. Here, we benchmark model predictions against population estimates from the river prior to implementation of fish passage at Holyoke Dam, the most downstream dam in this river. Spawner abundance estimates for the population were on the order of about 400,000 to > 1 million American shad prior to initial improvement of upstream passage at Holyoke Dam in 1974 and later, further improvements. Because we don't "know" what downstream survival rates were through Holyoke Dam prior to 1974, we can consider multiple scenarios for adult and juvenile downstream survival through dams to gauge a range of potential conditions.
 
@@ -220,13 +221,12 @@ library(snowfall)
 library(anadrofish)
 library(tidyverse)
 library(data.table)
-library(parallel)
 library(rlecuyer)
 
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
-ncpus <- detectCores() - 1
+ncpus <- 4
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
@@ -394,13 +394,12 @@ library(snowfall)
 library(anadrofish)
 library(tidyverse)
 library(data.table)
-library(parallel)
 library(rlecuyer)
 
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
-ncpus <- detectCores() - 1
+ncpus <- 4
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
@@ -451,7 +450,6 @@ sim <- function(x) {
   retlist <- list(
     res = res
   )
-
   return(retlist)
 }
 
@@ -550,12 +548,11 @@ library(snowfall)
 library(anadrofish)
 library(tidyverse)
 library(data.table)
-library(parallel)
 library(rlecuyer)
 
 # Parallel settings ----
 # Get number of cores for simulation using parallel package
-ncpus <- detectCores() - 1
+ncpus <- 4
 
 # Initialize snowfall socket cluster
 sfInit(parallel = TRUE, cpus = ncpus, type = "SOCK")
@@ -638,7 +635,6 @@ sfLibrary(rlecuyer)
 
 # . Distribute to workers -----
 # Number of simulations to run
-# You will need to run this MANY more times (1 million+) to stabilize results
 niterations <- 100
 
 # Run the simulation ----
