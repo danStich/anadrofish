@@ -106,6 +106,7 @@
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
+<p>Please note that in all examples below that are run in parallel we set <code>ncpus</code> (number of processing cores) to <code>7</code> for reproducibility because of how random number generation is handled for parallel back-ends. Different numbers of cores result in different numbers of RNG streams for the overall simulation, meaning that in order to reproduce the results below exactly, you will need to use 7 cores (most modern laptops have at least 8 cores in total and one should be left idle to avoid crashing). Ideally, you should use <code>ncpus &lt;- parallel::detectCores()-1</code> for faster completion.</p>
 <div class="section level3">
 <h3 id="running-one-scenario-for-one-river-many-times-in-parallel">Running one scenario for one river many times in parallel<a class="anchor" aria-label="anchor" href="#running-one-scenario-for-one-river-many-times-in-parallel"></a>
 </h3>
@@ -118,12 +119,11 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://danstich.github.io/anadrofish/">anadrofish</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf" class="external-link">rlecuyer</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
-<span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
 <span></span>
 <span><span class="co"># Initialize snowfall socket cluster</span></span>
 <span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span>
@@ -249,13 +249,12 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://danstich.github.io/anadrofish/">anadrofish</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf" class="external-link">rlecuyer</a></span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
-<span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
 <span></span>
 <span><span class="co"># Initialize snowfall socket cluster</span></span>
 <span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span>
@@ -414,13 +413,12 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://danstich.github.io/anadrofish/">anadrofish</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf" class="external-link">rlecuyer</a></span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
-<span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
 <span></span>
 <span><span class="co"># Initialize snowfall socket cluster</span></span>
 <span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span>
@@ -471,7 +469,6 @@
 <span>  <span class="va">retlist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    res <span class="op">=</span> <span class="va">res</span></span>
 <span>  <span class="op">)</span></span>
-<span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">retlist</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
@@ -561,12 +558,11 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://danstich.github.io/anadrofish/">anadrofish</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://www.iro.umontreal.ca/~lecuyer/myftp/papers/streams00.pdf" class="external-link">rlecuyer</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Parallel settings ----</span></span>
 <span><span class="co"># Get number of cores for simulation using parallel package</span></span>
-<span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
+<span><span class="va">ncpus</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
 <span></span>
 <span><span class="co"># Initialize snowfall socket cluster</span></span>
 <span><span class="fu">sfInit</span><span class="op">(</span>parallel <span class="op">=</span> <span class="cn">TRUE</span>, cpus <span class="op">=</span> <span class="va">ncpus</span>, type <span class="op">=</span> <span class="st">"SOCK"</span><span class="op">)</span></span>
@@ -649,7 +645,6 @@
 <span></span>
 <span><span class="co"># . Distribute to workers -----</span></span>
 <span><span class="co"># Number of simulations to run</span></span>
-<span><span class="co"># You will need to run this MANY more times (1 million+) to stabilize results</span></span>
 <span><span class="va">niterations</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span></span>
 <span><span class="co"># Run the simulation ----</span></span>
