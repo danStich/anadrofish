@@ -7,8 +7,8 @@ cff-version: 1.2.0
 message: 'To cite package "anadrofish" in publications use:'
 type: software
 license: GPL-3.0-or-later
-title: 'anadrofish: Anadromous Fish Population Responses to Habitat Changes'
-version: 2.3.0
+title: 'anadrofish: Anadromous Fish Population Responses to Dams'
+version: 2.3.1
 abstract: Stochastic estimation of anadromous fish population response to changes
   in habitat.
 authors:
@@ -35,7 +35,7 @@ authors:
   given-names: J. D.
   orcid: https://orcid.org/0000-0002-2255-2303
 url: https://danstich.github.io/anadrofish/
-date-released: '2025-06-06'
+date-released: '2025-07-23'
 contact:
 - family-names: Stich
   given-names: Daniel S.
