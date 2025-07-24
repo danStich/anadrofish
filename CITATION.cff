@@ -8,7 +8,7 @@ message: 'To cite package "anadrofish" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'anadrofish: Anadromous Fish Population Responses to Dams'
-version: 2.3.1
+version: 2.3.2
 abstract: Stochastic estimation of anadromous fish population response to changes
   in habitat.
 authors:
