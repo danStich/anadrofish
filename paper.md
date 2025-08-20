@@ -30,9 +30,6 @@ authors:
   - name: Shawn D. Snyder
     orcid: "0000-0003-3286-4957"
     affiliation: "5"
-  - name: Joseph D. Zydlewski
-    orcid: "0000-0002-2255-2303"
-    affiliation: "6, 5"
 affiliations:
 - name: Biology Department, State University of New York at Oneonta, NY 13280 USA
   index: 1
@@ -44,8 +41,6 @@ affiliations:
   index: 4
 - name: Department of Wildlife, Fisheries, and Conservation Biology, University of Maine, Orono, ME, 04469 USA
   index: 5
-- name: U.S. Geological Survey Maine Cooperative Fish and Wildlife Research Unit, Orono, ME, 04469 USA
-  index: 6
 date: 25 April 2025
 bibliography: paper.bib
 ---
