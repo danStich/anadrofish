@@ -7,9 +7,9 @@ tags:
   - anadromous
   - life history
 output:
-  word_document: default
   html_document:
     df_print: paged
+  word_document: default
 authors:
   - name: Daniel S. Stich
     orcid: "0000-0002-8946-1115"
@@ -30,6 +30,9 @@ authors:
   - name: Shawn D. Snyder
     orcid: "0000-0003-3286-4957"
     affiliation: "5"
+  - name: Joseph D. Zydlewski
+    orcid: "0000-0002-2255-2303"
+    affiliation: "6, 5"    
 affiliations:
 - name: Biology Department, State University of New York at Oneonta, NY 13280 USA
   index: 1
@@ -41,7 +44,9 @@ affiliations:
   index: 4
 - name: Department of Wildlife, Fisheries, and Conservation Biology, University of Maine, Orono, ME, 04469 USA
   index: 5
-date: 25 April 2025
+- name: U.S. Geological Survey Maine Cooperative Fish and Wildlife Research Unit, Orono, ME, 04469 USA
+  index: 6  
+date: 26 August 2025
 bibliography: paper.bib
 ---
 
@@ -57,7 +62,7 @@ Traditional stock assessment tools such as per-recruit analyses often fail to ca
 
 The package includes a variety of helper functions for simulating life-history events and population dynamics as well as built-in data sets from empirical studies and population assessments for the native North American range of multiple species of fish from Florida, USA through maritime Canada. It generalizes similar routines implemented in other species- or population-specific modeling tools [@barber:2018; @stich:2019; @stich2025], is faster than other empirical life-history models [e.g., @shadia], and can be modified to use outputs of common empirical fisheries analyses from other R packages such as `fishStan` [@Erickson2022] or `FSA` [@FSA]. The package can also be used to simulate new populations in arbitrary watersheds. Default outputs are readily integrated into tidy workflows through packages in the `tidyverse` [@tidyverse], including plotting and visualization of results in `ggplot2` [@ggplot2].
 
-The `sim_pop()` function provides high-level functionality for end users interested in investigating theoretical questions or applied population management scenarios. This function links various helper functions and built-in datasets to simulate populations through time and space. By default, it includes functionality for 169 American shad, 222 alewife, and 238 blueback herring populations. Additionally, optional arguments to this function such as `custom_habitat` and the corresponding `custom_habitat_template()` helper function provide customization options or ability to extend to arbitrarily defined scales or novel systems. This flexibility has the potential to broaden the application of these modeling approaches to novel species and geographies or restoration scenarios for management strategy evaluation. The next steps for this project will include addition of generalized homing and straying routines that can be used to customize probability of fish migration to specific portions of empirical or derived watersheds, and creation of methods that allow for multiyear freshwater residence to accommodate a wider range of life histories, including catadromous fishes that grow in freshwater and spawn in the marine environment.
+The `sim_pop()` function provides high-level functionality for end users interested in investigating theoretical questions or applied population management scenarios. This function links various helper functions and built-in datasets to simulate populations through time and space. By default, it includes functionality for 169 American shad, 222 alewife, and 238 blueback herring populations. Additionally, optional arguments to this function such as `custom_habitat` and the corresponding `custom_habitat_template()` helper function provide customization options or ability to extend to arbitrarily defined scales or novel systems. This flexibility has the potential to broaden the application of these modeling approaches to novel species and geographies or restoration scenarios for management strategy evaluation. Potential next steps for this project could include addition of generalized homing and straying routines that can be used to customize probability of fish migration to specific portions of empirical or derived watersheds, and creation of methods that allow for multiyear freshwater residence to accommodate a wider range of life histories, including catadromous fishes that grow in freshwater and spawn in the marine environment.
 
 
 # Acknowledgements
