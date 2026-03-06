@@ -4,23 +4,23 @@
 \alias{write_output}
 \title{Write simulation results}
 \usage{
-write_output(.sim_pop, sex_specific = FALSE)
+write_output(rows, age_structured_output, output_years)
 }
 \arguments{
-\item{.sim_pop}{A hidden environment in the calling frame
-of \code{\link{sim_pop}}. Arbitrarily any named object with
-names matching those used in the function.}
+\item{rows}{A list of named lists, one per simulation year, as returned
+by \code{make_output_row}.}
 
-\item{sex_specific}{Logical inherited from \code{\link{sim_pop}}
-indicating whether to use sex-specific output.}
+\item{age_structured_output}{Logical; if TRUE, pop and spawners are
+returned as age-structured columns.}
+
+\item{output_years}{Character; if "last", only the final year is returned.}
 }
 \value{
-A list of results.
+A data.frame of simulation results.
 }
 \description{
-Internal function used to collect and
-return all model inputs and relevant model
-outputs (e.g., population size) from all years t.
+Internal function used to assemble per-year output rows
+into a single data.frame.
 
 For internal use in \code{\link{sim_pop}}. Not intended
 to be called directly.
