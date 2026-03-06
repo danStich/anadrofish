@@ -1,4 +1,4 @@
-#' @title Write simulation results
+#' @title Assemble simulation results
 #'
 #' @description Internal function used to assemble per-year output rows
 #' into a single data.frame.
@@ -20,7 +20,7 @@
 #'
 #' @export
 #'
-write_output <- function(rows, age_structured_output, output_years) {
+assemble_output <- function(rows, age_structured_output, output_years) {
   # -- Pop and spawners: expand to matrices, pad to 13 cols --
   pop_mat <- do.call(rbind, lapply(rows, function(r) unlist(r$pop)))
   if (ncol(pop_mat) < 13) {

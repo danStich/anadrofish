@@ -587,5 +587,5 @@ sim_pop <- function(
   } # YEAR LOOP
 
   # Assemble results into a data.frame
-  write_output(rows, .sim_pop$age_structured_output, .sim_pop$output_years)
+  assemble_output(rows, .sim_pop$age_structured_output, .sim_pop$output_years)
 }
