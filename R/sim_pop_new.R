@@ -232,6 +232,8 @@ sim_pop <- function(
     To see a list of available rivers, run get_rivers()")
   }
 
+  # Make a hidden environment so it is easier
+  # to pass output to make_output_row()
   .sim_pop <- new.env()
 
   # Unlist function args to internal environment
