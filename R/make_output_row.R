@@ -4,11 +4,22 @@
 #' \code{.sim_pop} for a single year. Called inside the simulation loop
 #' in \code{\link{sim_pop}}.
 #'
+#' Fields stored as scalar values are passed through as-is. Fields wrapped in
+#' \code{list()} are treated as age-structured vectors.
+#' \code{\link{assemble_output}} dynamically detects all list-valued fields
+#' and, depending on \code{age_structured_output}, either expands them into
+#' one column per age class (\code{<field>_1}, \code{<field>_2}, \ldots) or
+#' collapses them to a single summed column. Adding a new age-structured field
+#' requires only wrapping its value in \code{list()} here; no changes to
+#' \code{assemble_output} are needed.
+#'
 #' @param .sim_pop The simulation environment.
 #'
 #' @param sex_specific Logical indicating whether to use sex-specific output.
 #'
-#' @return A named list representing one row of output.
+#' @return A named list representing one row of output. Scalar fields are
+#' stored as atomic values; age-structured fields are stored as single-element
+#' lists containing numeric vectors.
 #'
 #' @keywords Internal
 #'

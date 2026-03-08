@@ -7,11 +7,11 @@
 #' to be called directly.
 #'
 #' @param rows A list of named lists, one per simulation year, as returned
-#'   by \code{make_output_row}.
+#' by \code{make_output_row}.
 #'
 #' @param age_structured_output Logical; if TRUE, list-valued fields (e.g.
-#'   pop, spawners) provided in make_row_output are returned as age-structured
-#'   columns.
+#' pop, spawners) provided in \code{make_row_output} are returned as
+#' age-structured columns.
 #'
 #' @param output_years Character; if "last", only the final year is returned.
 #'
