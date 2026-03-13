@@ -21,7 +21,10 @@ A vector of length one containing pre-spawn survival.
 }
 \description{
 Function used to derive total in-river adult survival during
-the spawning migration from annual mortality and post-spawn survival.
+the spawning migration from annual mortality and post-spawn survival. This function
+is not currently implemented in the underlying population model, can be used
+to estimate numbers of fish lost in freshwater environments for purposes such
+as nutrient modeling.
 }
 \examples{
 make_s_spawn(0.68, 0.92)
