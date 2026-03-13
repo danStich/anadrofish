@@ -1,0 +1,132 @@
+# Calculate downstream survival given dam passage scenario.
+
+Function used to create population-level survival through dams during
+seasonal downstream migration of juveniles and adults.
+
+## Usage
+
+``` r
+make_downstream(
+  river,
+  species = c("AMS", "ALE", "BBH"),
+  downstream,
+  upstream,
+  historical = FALSE,
+  custom_habitat = NULL
+)
+```
+
+## Arguments
+
+- river:
+
+  Character string specifying river name.
+
+- species:
+
+  Species for which population dynamics will be simulated. Choices
+  include American shad (`"AMS"`), alewife (`"ALE"`), and blueback
+  herring (`"BBH"`).
+
+- downstream:
+
+  Numeric indicating proportional downstream survival through a single
+  dam.
+
+- upstream:
+
+  Numeric indicating proportional upstream passage through a single dam.
+
+- historical:
+
+  Logical indicating whether to use contemporary or historical habitat
+  data.
+
+- custom_habitat:
+
+  A dataframe containing columns corresponding to the those in the
+  output from
+  [`custom_habitat_template`](https://danstich.github.io/anadrofish/reference/custom_habitat_template.md).
+  The default, `NULL` uses the default habitat data set for a given
+  combination of `species` and `river`.
+
+## Value
+
+Numeric vector of length 1 representing weighted catchment-scale
+downstream migration mortality for juvenile or adult fish.
+
+## Details
+
+This function assigns cumulative downstream passage values to all
+features in
+[`habitat`](https://danstich.github.io/anadrofish/reference/habitat.md)
+corresponding to `river`. It then calculates the proportion of habitat
+in each habitat segment of a river, and weights downstream mortality at
+the catchment-scale by proportion of habitat. This implicitly assumes
+that fish are distributed throughout the river during spawning in
+proportion to available habitat.
+
+## Examples
+
+``` r
+# Example usage
+if (FALSE) { # \dontrun{
+  
+# Example 1. ----  
+# Calculate population-level survival during outmigration
+# for fixed upstream and downstream dam passage probabilities
+s_down <- make_downstream(habitat_data = habitat,
+                          river = 'Susquehanna',
+                          downstream = 0.95,
+                          upstream = 0.80)
+  
+# Example 2. ----
+# Explore how upstream passage affects catchment-wide survival
+# during outmigration for a fixed downstream passage
+upstream_p <- seq(from = 0, to = 1, by = 0.01)
+s_down <- vector(mode = 'numeric', length = length(upstream_p))
+for(i in 1:length(upstream_p)){
+  s_down[i] <- make_downstream(habitat_data = habitat,
+                               river = 'Susquehanna',
+                               downstream = 0.5,
+                               upstream = upstream_p[i])  
+} 
+
+Zd <- 1 - s_down
+
+plot(x = upstream_p, 
+     y = Zd, 
+     type = 'l',
+     xlab = 'Upstream passage',
+     ylab = 'Total downstream mortality',
+     main = 'Susquehanna River')
+
+# Example 3. ----
+# Explore interactions between upstream and downstream 
+# passage probabilities when both vary. This changes
+# drastically from one river to another depending on
+# habitat above and below dams, and number of dams.
+upstream_p <- seq(from = 0, to = 1, by = 0.01)
+downstream_p <- seq(from = 0, to = 1, by = 0.01)
+s_down <- matrix(data = NA, 
+                 nrow = length(upstream_p), 
+                 ncol = length(downstream_p))
+
+for(i in 1:length(upstream_p)){
+  for(t in 1:length(downstream_p)){
+    s_down[i,t] <- make_downstream(habitat_data = habitat,
+                                   river = 'Susquehanna',
+                                   downstream = downstream_p[t],
+                                   upstream = upstream_p[i])  
+  }   
+}
+
+zd <- 1 - s_down
+filled.contour(x = upstream_p, 
+               y = downstream_p, 
+               z = zd,
+               xlab = 'Upstream passage probability',
+               ylab = 'Downstream survival per dam',
+               main = 'Catchment-wide dam mortality')
+} # }
+```

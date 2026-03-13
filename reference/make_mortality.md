@@ -1,0 +1,72 @@
+# Make instantaneous natural mortality.
+
+The purpose of this function is to query the instantaneous natural
+mortality (regional estimates) for the selected river from built-in data
+set containing region-specific
+[`mortality`](https://danstich.github.io/anadrofish/reference/mortality.md)
+for American shad or
+[`mortality_rh`](https://danstich.github.io/anadrofish/reference/mortality_rh.md)
+for river herring.
+
+## Usage
+
+``` r
+make_mortality(
+  river,
+  sex = c(NULL, "female", "male"),
+  species = c("AMS", "ALE", "BBH"),
+  custom_habitat = NULL
+)
+```
+
+## Source
+
+Atlantic States Marine Fisheries Commission
+
+## Arguments
+
+- river:
+
+  River for which maximum age is needed.
+
+- sex:
+
+  Fish sex. If `NULL` (default) or `"Pooled"`, then mean of male and
+  female estimates is used.
+
+- species:
+
+  Species for which population dynamics will be simulated. Choices
+  include American shad (`"AMS"`), alewife (`"ALE"`), and blueback
+  herring (`"BBH"`).
+
+- custom_habitat:
+
+  A dataframe containing columns corresponding to the those in the
+  output from
+  [`custom_habitat_template`](https://danstich.github.io/anadrofish/reference/custom_habitat_template.md).
+  The default, `NULL` uses the default habitat data set for a given
+  combination of `species` and `river`.
+
+## Value
+
+A numeric vector of `length = 1` containing natural instantaneous
+mortality of fish in population.
+
+## References
+
+Atlantic States Marine Fisheries Commission (ASMFC). 2020. American shad
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA.
+
+Atlantic States Marine Fisheries Commission. 2024. River herring
+benchmark stock assessment and peer-review report. ASMFC, Arlington, VA.
+URL:
+https://asmfc.org/uploads/file/66f59e40RiverHerringAssessment_PeerReviewReport_2024.pdf
+
+## Examples
+
+``` r
+make_mortality(river = "Penobscot", species = "BBH")
+#> [1] 1.0995165 0.8519435 0.7573630 0.7126715 0.6895006 0.6769152 0.6699073
+#> [8] 0.6659513
+```
