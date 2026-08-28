@@ -84,6 +84,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Daniel S. Stich \email{daniel.stich@oneonta.edu} (\href{https://orcid.org/0000-0002-8946-1115}{ORCID})
   \item J. D. Hardesty (\href{https://orcid.org/0009-0009-0280-1999}{ORCID})
   \item N. T. Jordan (\href{https://orcid.org/0009-0009-8632-6979}{ORCID})
   \item S. G. Roy (\href{https://orcid.org/0000-0002-2491-948X}{ORCID})
