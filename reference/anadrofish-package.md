@@ -203,6 +203,9 @@ Useful links:
 
 Authors:
 
+- Daniel S. Stich <daniel.stich@oneonta.edu>
+  ([ORCID](https://orcid.org/0000-0002-8946-1115))
+
 - J. D. Hardesty ([ORCID](https://orcid.org/0009-0009-0280-1999))
 
 - N. T. Jordan ([ORCID](https://orcid.org/0009-0009-8632-6979))

@@ -21,12 +21,12 @@
 
 Stich D, Hardesty J, Jordan N, Roy S, Sheehan T, Snyder S, Zydlewski J
 (2026). *anadrofish: Anadromous Fish Population Responses to Dams*. R
-package version 2.3.2, <https://danstich.github.io/anadrofish/>.
+package version 2.3.3, <https://danstich.github.io/anadrofish/>.
 
     @Manual{,
       title = {anadrofish: Anadromous Fish Population Responses to Dams},
       author = {Daniel S. Stich and J. D. Hardesty and N. T. Jordan and S. G. Roy and T. F. Sheehan and S. D. Snyder and J. D. Zydlewski},
       year = {2026},
-      note = {R package version 2.3.2},
+      note = {R package version 2.3.3},
       url = {https://danstich.github.io/anadrofish/},
     }

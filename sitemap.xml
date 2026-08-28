@@ -6,10 +6,10 @@
 <url><loc>https://danstich.github.io/anadrofish/paper.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/add_unequal_vectors.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/anadrofish-package.html</loc></url>
+<url><loc>https://danstich.github.io/anadrofish/reference/assemble_output.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/beverton_holt.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/crecco_1983.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/custom_habitat_template.html</loc></url>
-<url><loc>https://danstich.github.io/anadrofish/reference/fill_output.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/fl_tl_conversions.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/get_dams.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/get_govt.html</loc></url>
@@ -31,7 +31,7 @@
 <url><loc>https://danstich.github.io/anadrofish/reference/make_lat.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/make_maxage.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/make_mortality.html</loc></url>
-<url><loc>https://danstich.github.io/anadrofish/reference/make_output.html</loc></url>
+<url><loc>https://danstich.github.io/anadrofish/reference/make_output_row.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/make_pop.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/make_postspawn.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/make_recruits.html</loc></url>
@@ -58,6 +58,5 @@
 <url><loc>https://danstich.github.io/anadrofish/reference/vbgf_SP.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/vbgf_ale.html</loc></url>
 <url><loc>https://danstich.github.io/anadrofish/reference/vbgf_bbh.html</loc></url>
-<url><loc>https://danstich.github.io/anadrofish/reference/write_output.html</loc></url>
 </urlset>
 

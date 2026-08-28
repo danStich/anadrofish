@@ -7,6 +7,8 @@
 - [`anadrofish`](https://danstich.github.io/anadrofish/reference/anadrofish-package.md)
   [`anadrofish-package`](https://danstich.github.io/anadrofish/reference/anadrofish-package.md)
   : anadrofish: Anadromous Fish Population Responses to Habitat Changes
+- [`assemble_output()`](https://danstich.github.io/anadrofish/reference/assemble_output.md)
+  : Assemble simulation results
 - [`beverton_holt()`](https://danstich.github.io/anadrofish/reference/beverton_holt.md)
   : Beverton-Holt stock recruit curve
 - [`crecco_1983`](https://danstich.github.io/anadrofish/reference/crecco_1983.md)
@@ -14,8 +16,6 @@
 - [`custom_habitat_template()`](https://danstich.github.io/anadrofish/reference/custom_habitat_template.md)
   : Make custom habitat for an existing river or a template for a new
   river of interest
-- [`fill_output()`](https://danstich.github.io/anadrofish/reference/fill_output.md)
-  : Fill output vectors
 - [`fl_tl_conversions`](https://danstich.github.io/anadrofish/reference/fl_tl_conversions.md)
   : Fork length - total length conversions for river herring
 - [`get_dams()`](https://danstich.github.io/anadrofish/reference/get_dams.md)
@@ -57,8 +57,8 @@
   : Make maximum age for population using built-in data sets.
 - [`make_mortality()`](https://danstich.github.io/anadrofish/reference/make_mortality.md)
   : Make instantaneous natural mortality.
-- [`make_output()`](https://danstich.github.io/anadrofish/reference/make_output.md)
-  : Make output vectors
+- [`make_output_row()`](https://danstich.github.io/anadrofish/reference/make_output_row.md)
+  : Make one row of simulation output
 - [`make_pop()`](https://danstich.github.io/anadrofish/reference/make_pop.md)
   : Make population
 - [`make_postspawn()`](https://danstich.github.io/anadrofish/reference/make_postspawn.md)
@@ -110,5 +110,3 @@
   : Sex-specific von Bertalanffy growth parameters for alewife
 - [`vbgf_bbh`](https://danstich.github.io/anadrofish/reference/vbgf_bbh.md)
   : Sex-specific von Bertalanffy growth parameters for blueback herring
-- [`write_output()`](https://danstich.github.io/anadrofish/reference/write_output.md)
-  : Write simulation results
