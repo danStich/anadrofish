@@ -22,6 +22,11 @@ Suggests:
     rmarkdown,
     vctrs,
     testthat (>= 3.0.0)
+Imports:
+    bslib,
+    ggplot2,
+    shiny,
+    shinycssloaders
 URL: https://danstich.github.io/anadrofish/
 Config/testthat/edition: 3
 License: GPL (>= 3)

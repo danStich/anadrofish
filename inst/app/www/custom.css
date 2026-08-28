@@ -1,0 +1,113 @@
+.app-header {
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Metric tiles */
+
+.metric-tile {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px 20px;
+  text-align: center;
+  height: 100%;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6c757d;
+  margin-bottom: 6px;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #003366;
+  line-height: 1.2;
+}
+
+/* Trend banner */
+
+.trend-banner {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.trend-banner .trend-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+.trend-banner .trend-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Empty state */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 460px;
+  color: #adb5bd;
+  text-align: center;
+  gap: 12px;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  opacity: 0.4;
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+/* Selectize fixes */
+
+.card-body,
+.tab-content,
+.nav-content,
+.bslib-navs-card .tab-content,
+#input_tabs,
+.bslib-card,
+.bslib-card .card {
+  overflow: visible !important;
+}
+
+.selectize-control {
+  margin-bottom: 8px;
+}
+
+.selectize-dropdown {
+  position: absolute;
+  z-index: 2000 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.selectize-dropdown .selectize-dropdown-content {
+  max-height: 70vh !important;
+  overflow-y: auto !important;
+}
+
+.selectize-dropdown .option {
+  white-space: normal;
+}
