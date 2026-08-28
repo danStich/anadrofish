@@ -67,5 +67,10 @@
 #'
 #' @aliases anadrofish-package
 #'
-#' @importFrom stats quantile rnorm runif sd
+#' @importFrom stats quantile rnorm runif sd aggregate
+#' @importFrom utils head read.csv tail write.csv
+#' @import shiny 
+#' @import ggplot2
+#' @import bslib
+#' @import shinycssloaders
 NULL

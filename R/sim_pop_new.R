@@ -524,6 +524,10 @@ sim_pop <- function(
     }
 
     # Calculate pre-spawn (fw survival) based on post-spawn and M
+    # Note that this value is output but is not currently used in the population
+    # model due to cohorting - it can be used to derive number of fish that die
+    # in freshwater environments for estimating nutrient import and export
+    # (e.g., Zydlewski et al. 2021)
     if (sex_specific == FALSE) {
       .sim_pop$s_spawn <- make_s_spawn(.sim_pop$nM, .sim_pop$s_postspawn)
     }
