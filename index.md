@@ -179,6 +179,7 @@ The data set is in the `inst/data` folder on the GitHub repo but is
 ignored during R package install.
 
 ``` r
+
 # Package load ----
 library(snowfall)
 library(anadrofish)
@@ -322,6 +323,7 @@ consider multiple scenarios for adult and juvenile downstream survival
 through dams to gauge a range of potential conditions.
 
 ``` r
+
 # Package load ----
 library(snowfall)
 library(anadrofish)
@@ -501,6 +503,7 @@ match the results in ASMFC (2024), especially for variances around
 means.
 
 ``` r
+
 # Package load ----
 library(snowfall)
 library(anadrofish)
@@ -667,6 +670,7 @@ simplified using
 to address dam-specific questions.
 
 ``` r
+
 # Package load ----
 library(snowfall)
 library(anadrofish)
@@ -806,6 +810,7 @@ similar, more complex (individual-based) shad and river herring models
 from the [`shadia`](https://github.com/danStich/shadia) R package.
 
 ``` r
+
 # Libraries ----
 library(tidyverse)
 library(shadia)
@@ -864,10 +869,10 @@ mb_test <- microbenchmark(
 
 Our results (`mb_test`) should look something like this:
 
-| expr                 |       min |         lq |       mean |     median |         uq |        max | neval | cld |
-|:---------------------|----------:|-----------:|-----------:|-----------:|-----------:|-----------:|------:|----:|
-| shadia_check (ms)    | 32428.537 | 34306.0663 | 38115.6585 | 37837.9312 | 42599.1752 | 45740.3324 |    10 |   a |
-| anadrofish_test (ms) |    55.809 |   111.2171 |   116.7442 |   118.4982 |   133.6141 |   143.2512 |    10 |   b |
+| expr | min | lq | mean | median | uq | max | neval | cld |
+|:---|---:|---:|---:|---:|---:|---:|---:|---:|
+| shadia_check (ms) | 32428.537 | 34306.0663 | 38115.6585 | 37837.9312 | 42599.1752 | 45740.3324 | 10 | a |
+| anadrofish_test (ms) | 55.809 | 111.2171 | 116.7442 | 118.4982 | 133.6141 | 143.2512 | 10 | b |
 
 ## Directories
 

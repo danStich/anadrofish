@@ -93,6 +93,8 @@
   : Juvenile (hatch-to-outmigrant) survival
 - [`sim_pop()`](https://danstich.github.io/anadrofish/reference/sim_pop.md)
   : Simulate population dynamics through time.
+- [`sim_pop_shiny()`](https://danstich.github.io/anadrofish/reference/sim_pop_shiny.md)
+  : Launch Anadromous Fish Population Simulator
 - [`upper95()`](https://danstich.github.io/anadrofish/reference/upper95.md)
   : Calculate upper 95 % confidence limit
 - [`vbgf_NI`](https://danstich.github.io/anadrofish/reference/vbgf_NI.md)
